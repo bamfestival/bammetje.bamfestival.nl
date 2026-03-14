@@ -21,15 +21,15 @@
       content="Klein van opzet, groots in sfeer: Bammetje vindt plaats op zaterdag 23 mei 2026 van 14:00 tot 23:00 bij Broedplaats Oogst in Hengelo."
     />
     <meta property="og:url" content="https://bammetje.bamfestival.nl/" />
-    <meta property="og:image" content="https://bammetje.bamfestival.nl/assets/hero/header-1440.jpg" />
-    <meta property="og:image:alt" content="De organisatie van BAM! Festival tijdens de Rabo ClubSupport-uitreiking." />
+    <meta property="og:image" content="https://bammetje.bamfestival.nl/assets/hero/bammetje-header-1440.jpg" />
+    <meta property="og:image:alt" content="Bammetje 2026 header visual voor de mini-editie van BAM! Festival." />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Bammetje 2026 | Mini-editie van BAM! Festival in Hengelo" />
     <meta
       name="twitter:description"
       content="Zaterdag 23 mei 2026 bij Broedplaats Oogst in Hengelo. De line-up van Bammetje wordt later bekendgemaakt."
     />
-    <meta name="twitter:image" content="https://bammetje.bamfestival.nl/assets/hero/header-1440.jpg" />
+    <meta name="twitter:image" content="https://bammetje.bamfestival.nl/assets/hero/bammetje-header-1440.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -87,7 +87,7 @@
         "eventStatus": "https://schema.org/EventScheduled",
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
         "image": [
-          "https://bammetje.bamfestival.nl/assets/hero/header-1440.jpg"
+          "https://bammetje.bamfestival.nl/assets/hero/bammetje-header-1440.jpg"
         ],
         "location": {
           "@type": "Place",
@@ -107,6 +107,31 @@
         "url": "https://bammetje.bamfestival.nl/"
       }
     </script>
+    <style>
+      .schedule-board {
+        display: grid;
+        grid-template-columns: 5rem repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .schedule-time-column,
+      .schedule-column {
+        display: grid;
+        grid-template-rows: repeat(18, minmax(0, 2.75rem));
+        gap: 0.5rem;
+      }
+
+      .schedule-slot {
+        border: 1px dashed rgba(23, 23, 23, 0.08);
+        border-radius: 1rem;
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      .schedule-event {
+        position: relative;
+        z-index: 1;
+      }
+    </style>
   </head>
   <body class="bg-sand font-sans text-ink antialiased selection:bg-rust/20">
     <a
@@ -117,126 +142,165 @@
 
     <div class="relative isolate overflow-hidden">
       <div
-        class="absolute inset-x-0 top-0 -z-10 h-[36rem] bg-[radial-gradient(circle_at_top_left,_rgba(197,97,47,0.22),_transparent_38%),radial-gradient(circle_at_top_right,_rgba(198,161,84,0.24),_transparent_32%),linear-gradient(180deg,_#fcfaf4_0%,_#f4efe4_100%)]"
+        class="absolute inset-x-0 top-0 -z-10 h-[42rem] bg-[radial-gradient(circle_at_top_left,_rgba(143,63,23,0.18),_transparent_28%),radial-gradient(circle_at_top_right,_rgba(198,161,84,0.22),_transparent_30%),radial-gradient(circle_at_bottom,_rgba(67,84,60,0.12),_transparent_30%),linear-gradient(180deg,_#fffdf8_0%,_#f4efe4_72%,_#f8f4ea_100%)]"
       ></div>
 
-      <header class="mx-auto max-w-7xl px-6 pb-10 pt-6 lg:px-8">
-        <div class="flex items-center justify-between">
+      <header class="mx-auto max-w-7xl px-6 pb-8 pt-6 lg:px-8">
+        <div class="flex flex-wrap items-center justify-between gap-4 rounded-full border border-ink/10 bg-white/70 px-5 py-3 shadow-card backdrop-blur">
           <a href="./" class="inline-flex items-center gap-3">
             <img
               src="./assets/branding/bammetje-logo-zwart-vierkant.webp"
               alt="Bammetje logo"
               width="64"
               height="64"
-              class="h-12 w-12 rounded-2xl border border-ink/10 bg-white/80 p-1 shadow-sm"
+              class="h-12 w-12 rounded-2xl border border-ink/10 bg-white p-1 shadow-sm"
             />
             <div>
               <p class="text-xs font-semibold uppercase tracking-[0.35em] text-moss">Bammetje 2026</p>
               <p class="text-sm text-ink/70">Mini-editie van BAM! Festival</p>
             </div>
           </a>
-          <a
-            href="https://www.google.com/maps/search/?api=1&query=Broedplaats+Oogst,+Esrein+53,+7553+CX+Hengelo"
-            class="hidden rounded-full border border-ink/10 bg-white/80 px-4 py-2 text-sm font-medium text-ink shadow-sm transition hover:border-ink/20 hover:bg-white lg:inline-flex"
-            >Route bekijken</a
-          >
+          <div class="flex flex-wrap items-center gap-3">
+            <a
+              href="#timetable"
+              class="hidden rounded-full border border-ink/10 bg-white/80 px-4 py-2 text-sm font-medium text-ink transition hover:border-ink/20 hover:bg-white sm:inline-flex"
+              >Timetable</a
+            >
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Broedplaats+Oogst,+Esrein+53,+7553+CX+Hengelo"
+              class="rounded-full bg-ink px-4 py-2 text-sm font-semibold text-sand transition hover:bg-moss"
+              >Route bekijken</a
+            >
+          </div>
         </div>
       </header>
 
       <main id="main-content">
-        <section class="mx-auto grid max-w-7xl gap-10 px-6 pb-16 pt-4 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:px-8 lg:pb-24">
-          <div>
-            <p class="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-rust">Zaterdag 23 mei 2026</p>
-            <h1 class="max-w-3xl text-5xl font-extrabold leading-none tracking-tight text-ink sm:text-6xl">
-              Bammetje brengt de BAM!-sfeer naar Broedplaats Oogst.
+        <section class="mx-auto grid max-w-7xl gap-10 px-6 pb-14 pt-4 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:px-8 lg:pb-20">
+          <div class="relative">
+            <p class="mb-5 inline-flex items-center gap-2 rounded-full border border-rust/10 bg-white/80 px-4 py-2 text-sm font-semibold text-rust shadow-sm">
+              <span class="inline-block h-2.5 w-2.5 rounded-full bg-rust"></span>
+              Zaterdag 23 mei 2026 • 14:00 tot 23:00
+            </p>
+            <h1 class="max-w-4xl text-5xl font-extrabold leading-[0.9] tracking-tight text-ink sm:text-6xl xl:text-7xl">
+              Een kleine editie,
+              <span class="block text-rust">dezelfde BAM!-sfeer.</span>
             </h1>
             <p class="mt-6 max-w-2xl text-lg leading-8 text-ink/75">
-              Het grote festival kan dit jaar niet doorgaan, maar stil blijft het niet. Daarom komt de organisatie met
-              een kleinschalige editie vol livemuziek, ontmoeting en zomergevoel in Hengelo.
+              Bammetje is de compacte 2026-editie van BAM! Festival op Broedplaats Oogst in Hengelo: een middag en
+              avond vol livemuziek, ontmoeting en die vertrouwde open festivalsfeer.
             </p>
-            <dl class="mt-8 grid gap-4 sm:grid-cols-3">
-              <div class="rounded-3xl border border-ink/10 bg-white/75 p-5 shadow-card">
-                <dt class="text-sm font-medium text-ink/60">Tijd</dt>
-                <dd class="mt-2 text-xl font-semibold">14:00 tot 23:00</dd>
+            <div class="mt-8 flex flex-wrap gap-3">
+              <span class="rounded-full bg-white/80 px-4 py-2 text-sm font-semibold text-moss shadow-sm">Broedplaats Oogst</span>
+              <span class="rounded-full bg-white/80 px-4 py-2 text-sm font-semibold text-moss shadow-sm">Esrein 53, Hengelo</span>
+              <span class="rounded-full bg-white/80 px-4 py-2 text-sm font-semibold text-moss shadow-sm">Gratis toegankelijk</span>
+            </div>
+            <dl class="mt-10 grid gap-4 sm:grid-cols-3">
+              <div class="rounded-[1.75rem] border border-ink/10 bg-white/75 p-5 shadow-card">
+                <dt class="text-sm font-medium text-ink/60">Voorlopige podia</dt>
+                <dd class="mt-2 text-lg font-semibold">Tommy Loods, De Tent en Hoofdpodium</dd>
               </div>
-              <div class="rounded-3xl border border-ink/10 bg-white/75 p-5 shadow-card">
-                <dt class="text-sm font-medium text-ink/60">Locatie</dt>
-                <dd class="mt-2 text-xl font-semibold">Broedplaats Oogst</dd>
+              <div class="rounded-[1.75rem] border border-ink/10 bg-white/75 p-5 shadow-card">
+                <dt class="text-sm font-medium text-ink/60">Line-up</dt>
+                <dd class="mt-2 text-lg font-semibold">Wordt later bekendgemaakt</dd>
               </div>
-              <div class="rounded-3xl border border-ink/10 bg-white/75 p-5 shadow-card">
-                <dt class="text-sm font-medium text-ink/60">Adres</dt>
-                <dd class="mt-2 text-xl font-semibold">Esrein 53, 7553 CX Hengelo</dd>
+              <div class="rounded-[1.75rem] border border-ink/10 bg-white/75 p-5 shadow-card">
+                <dt class="text-sm font-medium text-ink/60">Locatiegevoel</dt>
+                <dd class="mt-2 text-lg font-semibold">Creatief, intiem en zomers</dd>
               </div>
             </dl>
             <div class="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
-                href="https://www.google.com/maps/search/?api=1&query=Broedplaats+Oogst,+Esrein+53,+7553+CX+Hengelo"
+                href="#timetable"
                 class="inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 text-base font-semibold text-sand transition hover:bg-moss"
-                >Plan je route</a
+                >Bekijk de timetable</a
               >
               <a
-                href="#line-up"
+                href="https://www.google.com/maps/search/?api=1&query=Broedplaats+Oogst,+Esrein+53,+7553+CX+Hengelo"
                 class="inline-flex items-center justify-center rounded-full border border-ink/15 bg-white/75 px-6 py-3 text-base font-semibold text-ink transition hover:border-ink/25 hover:bg-white"
-                >Line-up volgt later</a
+                >Plan je route</a
               >
             </div>
           </div>
 
-          <figure class="relative overflow-hidden rounded-[2rem] border border-ink/10 bg-white p-3 shadow-card">
-            <picture>
-              <source
-                type="image/webp"
-                srcset="
-                  ./assets/hero/header-640.webp 640w,
-                  ./assets/hero/header-960.webp 960w,
-                  ./assets/hero/header-1440.webp 1440w,
-                  ./assets/hero/header-1920.webp 1920w
-                "
-                sizes="(min-width: 1024px) 42vw, 100vw"
-              />
-              <source
-                type="image/jpeg"
-                srcset="
-                  ./assets/hero/header-640.jpg 640w,
-                  ./assets/hero/header-960.jpg 960w,
-                  ./assets/hero/header-1440.jpg 1440w,
-                  ./assets/hero/header-1920.jpg 1920w
-                "
-                sizes="(min-width: 1024px) 42vw, 100vw"
-              />
-              <img
-                src="./assets/hero/header-1440.jpg"
-                alt="De organisatie van BAM! Festival tijdens de Rabo ClubSupport-uitreiking."
-                width="1440"
-                height="754"
-                class="aspect-[16/10] w-full rounded-[1.4rem] object-cover"
-                fetchpriority="high"
-              />
-            </picture>
-          </figure>
+          <div class="space-y-5">
+            <figure class="overflow-hidden rounded-[2rem] border border-ink/10 bg-white p-3 shadow-card">
+              <picture>
+                <source
+                  type="image/webp"
+                  srcset="
+                    ./assets/hero/bammetje-header-640.webp 640w,
+                    ./assets/hero/bammetje-header-960.webp 960w,
+                    ./assets/hero/bammetje-header-1440.webp 1440w,
+                    ./assets/hero/bammetje-header-1920.webp 1920w
+                  "
+                  sizes="(min-width: 1024px) 42vw, 100vw"
+                />
+                <source
+                  type="image/jpeg"
+                  srcset="
+                    ./assets/hero/bammetje-header-640.jpg 640w,
+                    ./assets/hero/bammetje-header-960.jpg 960w,
+                    ./assets/hero/bammetje-header-1440.jpg 1440w,
+                    ./assets/hero/bammetje-header-1920.jpg 1920w
+                  "
+                  sizes="(min-width: 1024px) 42vw, 100vw"
+                />
+                <img
+                  src="./assets/hero/bammetje-header-1440.jpg"
+                  alt="Bammetje 2026 header visual voor de mini-editie van BAM! Festival."
+                  width="1440"
+                  height="337"
+                  class="w-full rounded-[1.4rem] object-cover"
+                  fetchpriority="high"
+                />
+              </picture>
+            </figure>
+
+            <div class="grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
+              <div class="rounded-[2rem] border border-ink/10 bg-white/80 p-6 shadow-card">
+                <p class="text-sm font-semibold uppercase tracking-[0.3em] text-rust">Voorlopige setting</p>
+                <h2 class="mt-3 text-3xl font-extrabold tracking-tight">Oogst als speelterrein</h2>
+                <p class="mt-4 leading-7 text-ink/75">
+                  Geen park, geen grote veldopstelling, maar een kleinere editie op een creatieve plek. Precies daarom
+                  mag de site ook losser, warmer en dichter op de ervaring zitten.
+                </p>
+              </div>
+              <div class="overflow-hidden rounded-[2rem] border border-ink/10 bg-moss/95 p-4 text-sand shadow-card">
+                <img
+                  src="./assets/branding/bammetje-logo-datum-locatie.webp"
+                  alt="Bammetje logo met datum en locatie"
+                  width="3508"
+                  height="2481"
+                  class="h-full w-full rounded-[1.4rem] object-contain bg-white/5 p-3"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
         </section>
 
-        <section class="border-y border-ink/10 bg-white/70">
+        <section class="border-y border-ink/10 bg-white/65">
           <div class="mx-auto grid max-w-7xl gap-6 px-6 py-10 lg:grid-cols-3 lg:px-8">
-            <div class="rounded-3xl bg-sand p-6">
+            <div class="rounded-[2rem] bg-sand p-6">
               <p class="text-sm font-semibold uppercase tracking-[0.3em] text-rust">Waarom Bammetje?</p>
               <p class="mt-3 text-lg leading-8 text-ink/75">
                 Door de verbouwing van het Prins Bernhardplantsoen is er in 2026 geen regulier BAM! Festival. Bammetje
                 houdt de traditie toch levend met een compacte editie.
               </p>
             </div>
-            <div class="rounded-3xl bg-sand p-6">
+            <div class="rounded-[2rem] bg-sand p-6">
               <p class="text-sm font-semibold uppercase tracking-[0.3em] text-rust">Wat blijft hetzelfde?</p>
               <p class="mt-3 text-lg leading-8 text-ink/75">
                 Samen genieten van livemuziek en een drankje. De opzet is kleiner, maar de sfeer blijft herkenbaar BAM:
                 open, lokaal en muzikaal.
               </p>
             </div>
-            <div class="rounded-3xl bg-sand p-6">
+            <div class="rounded-[2rem] bg-sand p-6">
               <p class="text-sm font-semibold uppercase tracking-[0.3em] text-rust">Wat kun je verwachten?</p>
               <p class="mt-3 text-lg leading-8 text-ink/75">
-                Een fijne festivalmiddag en -avond op een nieuwe locatie. De line-up wordt later bekendgemaakt via de
-                festivalkanalen.
+                Een fijne festivalmiddag en -avond op een nieuwe locatie, met meerdere speelplekken op Oogst. De
+                line-up wordt later bekendgemaakt via de festivalkanalen.
               </p>
             </div>
           </div>
@@ -298,11 +362,16 @@
               aria-labelledby="line-up-title"
             >
               <p class="text-sm font-semibold uppercase tracking-[0.35em] text-gold">Line-up</p>
-              <h2 id="line-up-title" class="mt-4 text-3xl font-extrabold">Wordt later aangekondigd</h2>
+              <h2 id="line-up-title" class="mt-4 text-3xl font-extrabold">Nog even geduld</h2>
               <p class="mt-4 text-base leading-7 text-sand/80">
-                Achter de schermen wordt gewerkt aan het programma. Zodra de acts bekend zijn, verschijnt hier meer
-                informatie.
+                Achter de schermen wordt gewerkt aan het programma. Zodra de acts rond zijn, vullen we hier de namen,
+                speelplekken en tijden aan.
               </p>
+              <div class="mt-6 flex flex-wrap gap-3 text-sm font-semibold text-sand/80">
+                <span class="rounded-full border border-white/15 px-4 py-2">Tommy Loods</span>
+                <span class="rounded-full border border-white/15 px-4 py-2">De Tent</span>
+                <span class="rounded-full border border-white/15 px-4 py-2">Hoofdpodium</span>
+              </div>
             </section>
 
             <section
@@ -316,9 +385,404 @@
                 <li><strong class="text-ink">Tijden:</strong> van 14:00 tot 23:00 uur</li>
                 <li><strong class="text-ink">Locatie:</strong> Broedplaats Oogst, Esrein 53, 7553 CX Hengelo</li>
                 <li><strong class="text-ink">Karakter:</strong> compacte editie met de vertrouwde BAM!-sfeer</li>
+                <li><strong class="text-ink">Podia:</strong> voorlopig Tommy Loods, De Tent en Hoofdpodium</li>
               </ul>
             </section>
           </aside>
+        </section>
+
+        <section class="mx-auto max-w-7xl px-6 pb-16 lg:px-8" aria-labelledby="lineup-cards-title">
+          <div class="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-[0.35em] text-rust">Line-up blokken</p>
+              <h2 id="lineup-cards-title" class="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">Card group voor line-up</h2>
+            </div>
+            <p class="max-w-2xl text-base leading-7 text-ink/70">
+              Deze opzet kan straks gevuld worden met echte artiesten, maar werkt nu al als duidelijke structuur per
+              podium en moment van de dag.
+            </p>
+          </div>
+
+          <div class="grid gap-5 lg:grid-cols-12">
+            <article class="overflow-hidden rounded-[2rem] border border-ink/10 bg-ink text-sand shadow-card lg:col-span-5">
+              <picture>
+                <source type="image/webp" srcset="./assets/cards/lineup-story.webp" />
+                <img
+                  src="./assets/cards/lineup-story.jpg"
+                  alt="Sfeerbeeld voor de toekomstige line-up van Bammetje"
+                  width="960"
+                  height="640"
+                  class="h-64 w-full object-cover"
+                  loading="lazy"
+                />
+              </picture>
+              <div class="p-7">
+                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-gold">Hoofdpodium</p>
+                <h3 class="mt-4 text-4xl font-extrabold tracking-tight">Later aan te kondigen hoofdact</h3>
+                <p class="mt-4 max-w-md text-base leading-7 text-sand/75">
+                  Grote kaart voor headliner of slotact, met ruimte voor tijd, korte omschrijving en podiumlabel.
+                </p>
+                <div class="mt-8 flex items-center justify-between text-sm font-semibold text-sand/65">
+                  <span>Zaterdagavond</span>
+                  <span>Hoofdpodium</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="overflow-hidden rounded-[2rem] border border-ink/10 bg-white/85 shadow-card lg:col-span-4">
+              <picture>
+                <source type="image/webp" srcset="./assets/cards/news-story.webp" />
+                <img
+                  src="./assets/cards/news-story.jpg"
+                  alt="Visual voor Tommy Loods line-up kaart"
+                  width="960"
+                  height="640"
+                  class="h-52 w-full object-cover"
+                  loading="lazy"
+                />
+              </picture>
+              <div class="p-7">
+                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-rust">Tommy Loods</p>
+                <h3 class="mt-4 text-3xl font-extrabold tracking-tight">Intiem liveblok</h3>
+                <p class="mt-4 text-base leading-7 text-ink/70">
+                  Geschikt voor bands, singer-songwriters of een kleinere showcase met een duidelijk podiumprofiel.
+                </p>
+                <div class="mt-8 text-sm font-semibold text-ink/70">Middag of vroege avond</div>
+              </div>
+            </article>
+
+            <div class="grid gap-5 sm:grid-cols-2 lg:col-span-3">
+              <article class="overflow-hidden rounded-[2rem] border border-ink/10 bg-rust/10">
+                <picture>
+                  <source type="image/webp" srcset="./assets/cards/news-feature.webp" />
+                  <img
+                    src="./assets/cards/news-feature.jpg"
+                    alt="Visual voor De Tent kaart"
+                    width="960"
+                    height="504"
+                    class="h-36 w-full object-cover"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="p-6">
+                  <p class="text-xs font-semibold uppercase tracking-[0.25em] text-rust">De Tent</p>
+                  <h3 class="mt-3 text-2xl font-extrabold">Special set</h3>
+                  <p class="mt-3 text-sm leading-6 text-ink/70">Kaart voor kortere acts of verrassingsmomenten.</p>
+                </div>
+              </article>
+              <article class="overflow-hidden rounded-[2rem] border border-ink/10 bg-moss/10">
+                <picture>
+                  <source type="image/webp" srcset="./assets/cards/news-oogst.webp" />
+                  <img
+                    src="./assets/cards/news-oogst.jpg"
+                    alt="Visual voor extra line-up slot"
+                    width="960"
+                    height="225"
+                    class="h-36 w-full object-cover"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="p-6">
+                  <p class="text-xs font-semibold uppercase tracking-[0.25em] text-moss">Extra slot</p>
+                  <h3 class="mt-3 text-2xl font-extrabold">Later meer</h3>
+                  <p class="mt-3 text-sm leading-6 text-ink/70">Reservekaart voor groei van de line-up.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="mx-auto max-w-7xl px-6 pb-16 lg:px-8" aria-labelledby="news-cards-title">
+          <div class="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-[0.35em] text-rust">Nieuws en updates</p>
+              <h2 id="news-cards-title" class="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">Card group voor nieuws</h2>
+            </div>
+            <p class="max-w-2xl text-base leading-7 text-ink/70">
+              Een nieuwsrij is belangrijk voor Bammetje: hiermee kun je updates over line-up, terrein en praktische info
+              publiceren zonder de homepage opnieuw te structureren.
+            </p>
+          </div>
+
+          <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            <article class="overflow-hidden rounded-[2rem] border border-ink/10 bg-white/85 shadow-card">
+              <picture>
+                <source type="image/webp" srcset="./assets/cards/news-oogst.webp" />
+                <img
+                  src="./assets/cards/news-oogst.jpg"
+                  alt="Nieuwsbeeld voor Bammetje op Oogst"
+                  width="960"
+                  height="225"
+                  class="h-48 w-full object-cover"
+                  loading="lazy"
+                />
+              </picture>
+              <div class="p-7">
+                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-rust">Nieuws</p>
+                <h3 class="mt-4 text-2xl font-extrabold tracking-tight">Mini-editie op Oogst bevestigd</h3>
+                <p class="mt-4 text-base leading-7 text-ink/70">
+                  De basis van Bammetje staat vast: zaterdag 23 mei 2026 op Broedplaats Oogst in Hengelo.
+                </p>
+              </div>
+            </article>
+            <article class="overflow-hidden rounded-[2rem] border border-ink/10 bg-white/85 shadow-card">
+              <picture>
+                <source type="image/webp" srcset="./assets/cards/news-story.webp" />
+                <img
+                  src="./assets/cards/news-story.jpg"
+                  alt="Updatebeeld voor line-up nieuws"
+                  width="960"
+                  height="640"
+                  class="h-48 w-full object-cover"
+                  loading="lazy"
+                />
+              </picture>
+              <div class="p-7">
+                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-rust">Update</p>
+                <h3 class="mt-4 text-2xl font-extrabold tracking-tight">Line-up volgt later</h3>
+                <p class="mt-4 text-base leading-7 text-ink/70">
+                  Zodra de acts rond zijn, kan deze kaart direct verwijzen naar het complete programma of een deelupdate.
+                </p>
+              </div>
+            </article>
+            <article class="overflow-hidden rounded-[2rem] border border-ink/10 bg-ink text-sand shadow-card">
+              <picture>
+                <source type="image/webp" srcset="./assets/cards/news-feature.webp" />
+                <img
+                  src="./assets/cards/news-feature.jpg"
+                  alt="Redactioneel beeld voor het verhaal achter Bammetje"
+                  width="960"
+                  height="504"
+                  class="h-48 w-full object-cover opacity-90"
+                  loading="lazy"
+                />
+              </picture>
+              <div class="p-7">
+                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-gold">Bron</p>
+                <h3 class="mt-4 text-2xl font-extrabold tracking-tight">Verhaal achter Bammetje</h3>
+                <p class="mt-4 text-base leading-7 text-sand/75">
+                  Het artikel van indebuurt Hengelo kan hier als redactionele kaart blijven doorwerken als contextblok.
+                </p>
+                <a
+                  href="https://indebuurt.nl/hengelo/genieten-van-hengelo/goed-nieuws-organisatie-bam-komt-met-mini-festival~ac7daea0/"
+                  class="mt-6 inline-flex text-sm font-semibold text-gold underline decoration-white/20 underline-offset-4"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Lees het artikel</a
+                >
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="timetable" class="mx-auto max-w-7xl px-6 pb-16 lg:px-8 lg:pb-24" aria-labelledby="timetable-title">
+          <div class="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-[0.35em] text-rust">Programma-opzet</p>
+              <h2 id="timetable-title" class="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">Responsive timetable</h2>
+            </div>
+            <p class="max-w-2xl text-base leading-7 text-ink/70">
+              Hieronder staat de tijdlijnopzet voor de mini-editie op Oogst. De podia zijn voorlopig en het programma
+              wordt later ingevuld, maar de structuur van de dag staat al klaar.
+            </p>
+          </div>
+
+          <div class="mb-6 flex flex-wrap gap-3 text-sm font-semibold">
+            <span class="rounded-full bg-white px-4 py-2 text-ink shadow-sm">Onder voorbehoud</span>
+            <span class="rounded-full bg-white px-4 py-2 text-moss shadow-sm">Tommy Loods</span>
+            <span class="rounded-full bg-white px-4 py-2 text-moss shadow-sm">De Tent</span>
+            <span class="rounded-full bg-white px-4 py-2 text-moss shadow-sm">Hoofdpodium</span>
+          </div>
+
+          <div class="hidden lg:block">
+            <div class="mb-4 grid grid-cols-[5rem_repeat(3,minmax(0,1fr))] gap-4">
+              <div></div>
+              <div class="rounded-[1.6rem] border border-ink/10 bg-white/85 px-5 py-4 shadow-card">
+                <p class="text-xs font-semibold uppercase tracking-[0.22em] text-rust">Podium 01</p>
+                <h3 class="mt-2 text-2xl font-extrabold">Tommy Loods</h3>
+              </div>
+              <div class="rounded-[1.6rem] border border-ink/10 bg-white/85 px-5 py-4 shadow-card">
+                <p class="text-xs font-semibold uppercase tracking-[0.22em] text-rust">Podium 02</p>
+                <h3 class="mt-2 text-2xl font-extrabold">De Tent</h3>
+              </div>
+              <div class="rounded-[1.6rem] border border-ink/10 bg-ink px-5 py-4 text-sand shadow-card">
+                <p class="text-xs font-semibold uppercase tracking-[0.22em] text-gold">Podium 03</p>
+                <h3 class="mt-2 text-2xl font-extrabold">Hoofdpodium</h3>
+              </div>
+            </div>
+
+            <div class="schedule-board">
+              <div class="schedule-time-column pt-1 text-right text-xs font-semibold uppercase tracking-[0.18em] text-ink/70">
+                <div class="pr-3">14:00</div>
+                <div class="pr-3">14:30</div>
+                <div class="pr-3">15:00</div>
+                <div class="pr-3">15:30</div>
+                <div class="pr-3">16:00</div>
+                <div class="pr-3">16:30</div>
+                <div class="pr-3">17:00</div>
+                <div class="pr-3">17:30</div>
+                <div class="pr-3">18:00</div>
+                <div class="pr-3">18:30</div>
+                <div class="pr-3">19:00</div>
+                <div class="pr-3">19:30</div>
+                <div class="pr-3">20:00</div>
+                <div class="pr-3">20:30</div>
+                <div class="pr-3">21:00</div>
+                <div class="pr-3">21:30</div>
+                <div class="pr-3">22:00</div>
+                <div class="pr-3">22:30</div>
+              </div>
+
+              <div class="schedule-column rounded-[2rem] border border-ink/10 bg-white/80 p-3 shadow-card">
+                <div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div>
+                <article class="schedule-event rounded-[1.4rem] border border-rust/15 bg-rust/10 p-4" style="grid-row: 2 / span 2;">
+                  <p class="text-xs font-semibold uppercase tracking-[0.2em] text-rust">14:30 - 15:30</p>
+                  <h4 class="mt-2 text-lg font-extrabold">Programma volgt</h4>
+                  <p class="mt-1 text-sm leading-6 text-ink/70">Openingsslot voor een eerste liveblok.</p>
+                </article>
+                <article class="schedule-event rounded-[1.4rem] border border-rust/15 bg-rust/10 p-4" style="grid-row: 5 / span 2;">
+                  <p class="text-xs font-semibold uppercase tracking-[0.2em] text-rust">16:00 - 17:00</p>
+                  <h4 class="mt-2 text-lg font-extrabold">Programma volgt</h4>
+                  <p class="mt-1 text-sm leading-6 text-ink/70">Tweede middagslot in een intiemere setting.</p>
+                </article>
+                <article class="schedule-event rounded-[1.4rem] border border-moss/15 bg-moss/10 p-4" style="grid-row: 11 / span 3;">
+                  <p class="text-xs font-semibold uppercase tracking-[0.2em] text-moss">19:00 - 20:30</p>
+                  <h4 class="mt-2 text-lg font-extrabold">Avondblok volgt</h4>
+                  <p class="mt-1 text-sm leading-6 text-ink/70">Later ruimte voor een steviger liveset.</p>
+                </article>
+                <article class="schedule-event rounded-[1.4rem] border border-moss/15 bg-moss/10 p-4" style="grid-row: 15 / span 2;">
+                  <p class="text-xs font-semibold uppercase tracking-[0.2em] text-moss">21:00 - 22:00</p>
+                  <h4 class="mt-2 text-lg font-extrabold">Laat slot volgt</h4>
+                  <p class="mt-1 text-sm leading-6 text-ink/70">Kort slot of verrassingsset aan het einde van de avond.</p>
+                </article>
+              </div>
+
+              <div class="schedule-column rounded-[2rem] border border-ink/10 bg-white/80 p-3 shadow-card">
+                <div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div><div class="schedule-slot"></div>
+                <article class="schedule-event rounded-[1.4rem] border border-gold/35 bg-gold/20 p-4" style="grid-row: 3 / span 2;">
+                  <p class="text-xs font-semibold uppercase tracking-[0.2em] text-rust">15:00 - 16:00</p>
+                  <h4 class="mt-2 text-lg font-extrabold">Tentprogramma volgt</h4>
+                  <p class="mt-1 text-sm leading-6 text-ink/70">Geschikt voor een eerste compacte set of showcase.</p>
+                </article>
+                <article class="schedule-event rounded-[1.4rem] border border-gold/35 bg-gold/20 p-4" style="grid-row: 7 / span 2;">
+                  <p class="text-xs font-semibold uppercase tracking-[0.2em] text-rust">17:00 - 18:00</p>
+                  <h4 class="mt-2 text-lg font-extrabold">Tentprogramma volgt</h4>
+                  <p class="mt-1 text-sm leading-6 text-ink/70">Middagslot met ruimte voor een eigen sfeer.</p>
+                </article>
+                <article class="schedule-event rounded-[1.4rem] border border-rust/15 bg-rust/10 p-4" style="grid-row: 12 / span 2;">
+                  <p class="text-xs font-semibold uppercase tracking-[0.2em] text-rust">19:30 - 20:30</p>
+                  <h4 class="mt-2 text-lg font-extrabold">Later meer</h4>
+                  <p class="mt-1 text-sm leading-6 text-ink/70">Avondslot voor een act met meer focus of afwijkend karakter.</p>
+                </article>
+                <article class="schedule-event rounded-[1.4rem] border border-rust/15 bg-rust/10 p-4" style="grid-row: 16 / span 2;">
+                  <p class="text-xs font-semibold uppercase tracking-[0.2em] text-rust">21:30 - 22:30</p>
+                  <h4 class="mt-2 text-lg font-extrabold">Later meer</h4>
+                  <p class="mt-1 text-sm leading-6 text-ink/70">Laatste blok voor een afsluitend tentslot.</p>
+                </article>
+              </div>
+
+              <div class="schedule-column rounded-[2rem] border border-ink/10 bg-ink/95 p-3 shadow-card">
+                <div class="schedule-slot border-white/10 bg-white/5"></div><div class="schedule-slot border-white/10 bg-white/5"></div><div class="schedule-slot border-white/10 bg-white/5"></div><div class="schedule-slot border-white/10 bg-white/5"></div><div class="schedule-slot border-white/10 bg-white/5"></div><div class="schedule-slot border-white/10 bg-white/5"></div><div class="schedule-slot border-white/10 bg-white/5"></div><div class="schedule-slot border-white/10 bg-white/5"></div><div class="schedule-slot border-white/10 bg-white/5"></div><div class="schedule-slot border-white/10 bg-white/5"></div><div class="schedule-slot border-white/10 bg-white/5"></div><div class="schedule-slot border-white/10 bg-white/5"></div><div class="schedule-slot border-white/10 bg-white/5"></div><div class="schedule-slot border-white/10 bg-white/5"></div><div class="schedule-slot border-white/10 bg-white/5"></div><div class="schedule-slot border-white/10 bg-white/5"></div><div class="schedule-slot border-white/10 bg-white/5"></div><div class="schedule-slot border-white/10 bg-white/5"></div>
+                <article class="schedule-event rounded-[1.4rem] border border-white/10 bg-white/5 p-4 text-sand" style="grid-row: 1 / span 2;">
+                  <p class="text-xs font-semibold uppercase tracking-[0.2em] text-gold">14:00 - 15:00</p>
+                  <h4 class="mt-2 text-lg font-extrabold">Opening volgt</h4>
+                  <p class="mt-1 text-sm leading-6 text-sand/75">Start van de dag met het eerste grotere moment op het terrein.</p>
+                </article>
+                <article class="schedule-event rounded-[1.4rem] border border-white/10 bg-white/5 p-4 text-sand" style="grid-row: 6 / span 2;">
+                  <p class="text-xs font-semibold uppercase tracking-[0.2em] text-gold">16:30 - 17:30</p>
+                  <h4 class="mt-2 text-lg font-extrabold">Middagslot volgt</h4>
+                  <p class="mt-1 text-sm leading-6 text-sand/75">Ruimte voor een publiekstrekker in de namiddag.</p>
+                </article>
+                <article class="schedule-event rounded-[1.4rem] border border-gold/30 bg-gold/10 p-4 text-sand" style="grid-row: 12 / span 3;">
+                  <p class="text-xs font-semibold uppercase tracking-[0.2em] text-gold">19:30 - 21:00</p>
+                  <h4 class="mt-2 text-lg font-extrabold">Hoofdprogramma volgt</h4>
+                  <p class="mt-1 text-sm leading-6 text-sand/75">Later in te vullen met een van de grotere namen van de dag.</p>
+                </article>
+                <article class="schedule-event rounded-[1.4rem] border border-gold/30 bg-gold/10 p-4 text-sand" style="grid-row: 16 / span 2;">
+                  <p class="text-xs font-semibold uppercase tracking-[0.2em] text-gold">21:30 - 22:30</p>
+                  <h4 class="mt-2 text-lg font-extrabold">Slotset volgt</h4>
+                  <p class="mt-1 text-sm leading-6 text-sand/75">Afsluitend blok richting het einde van Bammetje.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-4 lg:hidden">
+            <article class="rounded-[2rem] border border-ink/10 bg-white/85 p-6 shadow-card">
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="text-2xl font-extrabold">Tommy Loods</h3>
+                <span class="rounded-full bg-rust/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-rust">Voorlopig</span>
+              </div>
+              <div class="mt-5 space-y-3 border-l-2 border-rust/20 pl-4">
+                <div>
+                  <p class="text-sm font-semibold text-rust">14:30 - 15:30</p>
+                  <p class="mt-1 font-semibold">Programma volgt</p>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-rust">16:00 - 17:00</p>
+                  <p class="mt-1 font-semibold">Programma volgt</p>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-rust">19:00 - 20:30</p>
+                  <p class="mt-1 font-semibold">Avondblok volgt</p>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-rust">21:00 - 22:00</p>
+                  <p class="mt-1 font-semibold">Laat slot volgt</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="rounded-[2rem] border border-ink/10 bg-white/85 p-6 shadow-card">
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="text-2xl font-extrabold">De Tent</h3>
+                <span class="rounded-full bg-gold/30 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-rust">Voorlopig</span>
+              </div>
+              <div class="mt-5 space-y-3 border-l-2 border-gold/40 pl-4">
+                <div>
+                  <p class="text-sm font-semibold text-rust">15:00 - 16:00</p>
+                  <p class="mt-1 font-semibold">Tentprogramma volgt</p>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-rust">17:00 - 18:00</p>
+                  <p class="mt-1 font-semibold">Tentprogramma volgt</p>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-rust">19:30 - 20:30</p>
+                  <p class="mt-1 font-semibold">Later meer</p>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-rust">21:30 - 22:30</p>
+                  <p class="mt-1 font-semibold">Later meer</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="rounded-[2rem] border border-ink/10 bg-ink p-6 text-sand shadow-card">
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="text-2xl font-extrabold">Hoofdpodium</h3>
+                <span class="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-gold">Voorlopig</span>
+              </div>
+              <div class="mt-5 space-y-3 border-l-2 border-gold/30 pl-4">
+                <div>
+                  <p class="text-sm font-semibold text-gold">14:00 - 15:00</p>
+                  <p class="mt-1 font-semibold">Opening volgt</p>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-gold">16:30 - 17:30</p>
+                  <p class="mt-1 font-semibold">Middagslot volgt</p>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-gold">19:30 - 21:00</p>
+                  <p class="mt-1 font-semibold">Hoofdprogramma volgt</p>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-gold">21:30 - 22:30</p>
+                  <p class="mt-1 font-semibold">Slotset volgt</p>
+                </div>
+              </div>
+            </article>
+          </div>
         </section>
 
         <section class="border-t border-ink/10 bg-white/80" aria-labelledby="sponsors-title">
