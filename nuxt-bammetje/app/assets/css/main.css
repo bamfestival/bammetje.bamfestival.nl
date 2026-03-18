@@ -1,0 +1,84 @@
+:root {
+  --page-ink: #22161a;
+  --page-soft-ink: #51383e;
+  --page-surface: #fcf4ef;
+  --page-surface-warm: #f7e9dc;
+  --page-panel: rgba(253, 250, 251, 0.82);
+  --page-dark: #120206;
+  --page-burgundy: #530a1d;
+  --page-red-dark: #921234;
+  --page-red: #c62144;
+  --page-orange: #e26426;
+  --page-yellow: #f8be05;
+  --page-white: #fdfafb;
+  --page-soft-white: rgba(253, 250, 251, 0.84);
+  --page-soft-white-border: rgba(253, 250, 251, 0.14);
+  --page-soft-dark: rgba(18, 2, 6, 0.68);
+  --page-header-surface: rgba(83, 10, 29, 0.72);
+  --page-accent-ring: rgba(248, 190, 5, 0.18);
+  --page-blob-orange: rgba(226, 100, 38, 0.26);
+  --page-blob-red: rgba(198, 33, 68, 0.2);
+  --page-panel-border: rgba(83, 10, 29, 0.1);
+  --page-chip-surface: rgba(253, 250, 251, 0.12);
+  --page-shadow: 0 20px 70px rgba(83, 10, 29, 0.14);
+  --page-gradient: linear-gradient(135deg, #530a1d 0%, #921234 35%, #c62144 55%, #e26426 80%, #f8be05 100%);
+  --page-story-gradient: linear-gradient(180deg, #25040d 0%, #530a1d 28%, #6d0d27 52%, #8c1233 70%, #5a0a1f 100%);
+  --page-location-gradient: linear-gradient(160deg, #2a0610 0%, #530a1d 34%, #7b112c 62%, #e26426 100%);
+  --page-footer-gradient: linear-gradient(180deg, rgba(18, 2, 6, 0) 0%, rgba(18, 2, 6, 0.85) 16%, #120206 100%);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --section-gap: clamp(4rem, 7vw, 8rem);
+  --container-pad: clamp(1.25rem, 3vw, 2rem);
+
+  color-scheme: dark light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  font-family: 'Instrument Sans', sans-serif;
+  color: var(--page-ink);
+  background:
+    radial-gradient(circle at 10% 10%, rgba(248, 190, 5, 0.16), transparent 22%),
+    radial-gradient(circle at 90% 15%, rgba(198, 33, 68, 0.15), transparent 18%),
+    linear-gradient(180deg, #fff6ec 0%, #fff1eb 26%, #fff7f2 52%, #fff1dd 100%);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a,
+button {
+  transition:
+    transform 220ms var(--ease-out-quint),
+    background-color 220ms var(--ease-out-quint),
+    border-color 220ms var(--ease-out-quint),
+    color 220ms var(--ease-out-quint),
+    opacity 220ms var(--ease-out-quint),
+    box-shadow 220ms var(--ease-out-quint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+}
