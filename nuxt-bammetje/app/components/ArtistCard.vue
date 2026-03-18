@@ -30,11 +30,11 @@ const stageClass = computed(() => {
   <article 
     class="flip-card" 
     :class="{ 'is-flipped': isFlipped }"
-    @click="toggleFlip"
-    @keydown.enter="toggleFlip"
     tabindex="0"
     role="button"
     :aria-label="`${artist.name} - klik voor meer informatie`"
+    @click="toggleFlip"
+    @keydown.enter="toggleFlip"
   >
     <div class="flip-card-inner">
       <div class="flip-card-front" :data-theme="artist.theme">

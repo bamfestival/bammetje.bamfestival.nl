@@ -1,0 +1,104 @@
+export const useSite = () => {
+  const { data: siteConfig } = useAsyncData('site-config', () =>
+    queryCollection('site').first()
+  )
+
+  const config = computed(() => siteConfig.value ?? {
+    title: 'Bammetje 2026',
+    tagline: 'Gratis mini-editie van BAM! Festival in Hengelo',
+    date: '23 mei 2026',
+    location: 'Broedplaats Oogst, Hengelo',
+    address: 'Esrein 53, 7553 CX Hengelo',
+    coordinates: [52.2621, 6.7937] as [number, number],
+    slogan: 'Klein, maar BAM.',
+    subtitle: 'Op zaterdag 23 mei 2026 landt de mini-editie van BAM! Festival bij Broedplaats Oogst in Hengelo: gratis muziek, warme sfeer en een dag die voelt als een compacte uitbarsting van alles waar BAM voor staat.',
+    eventDate: '23 mei',
+    eventDay: 'Zaterdag in 2026',
+    eventTime: '14:00 – 23:00',
+    admission: 'Gratis',
+    admissionNote: 'Kom langs zonder ticketstress',
+    freeEntry: {
+      title: 'Gratis entree',
+      location: 'Oogst / Hengelo',
+      description: 'Van middag tot avond, met ruimte voor muziek, drinken en die herkenbare BAM-sfeer in een compactere vorm.'
+    },
+    about: {
+      title: 'Waarom Bammetje',
+      intro: 'BAM! Festival kan in 2026 niet neerstrijken in het Prins Bernhardplantsoen, maar stil blijft het niet. Vanuit liefde voor muziek, organiseren en vrijwilligersenergie komt er een kleinere editie op Oogst.',
+      points: [
+        {
+          title: 'Geen vervanging, wel dezelfde geest',
+          description: 'Bammetje is bewust kleiner dan het festival in het park, maar moet dezelfde open, warme en lokale energie vasthouden.'
+        },
+        {
+          title: 'Gebouwd voor Hengelo en Twente',
+          description: 'De site moet snel duidelijk maken dat dit een gratis, toegankelijke festivaldag is voor het lokale publiek dat BAM mist.'
+        },
+        {
+          title: 'Compact in info, rijk in sfeer',
+          description: 'Niet volstoppen met details. Eerst gevoel, dan de praktische zekerheid om gewoon te komen.'
+        }
+      ]
+    },
+    footer: {
+      brand: 'Bammetje',
+      text: 'De mini-editie van BAM! Festival voor Hengelo en Twente. Gratis, warm en klaar om in 2026 even flink uit te pakken.',
+      quote: 'Samen genieten van livemuziek en een drankje. Dat is uiteindelijk waar BAM altijd om draait.'
+    },
+    meta: {
+      description: 'Bammetje is de gratis mini-editie van BAM! Festival op zaterdag 23 mei 2026 bij Broedplaats Oogst in Hengelo. Bekijk de sfeer, praktische info en updates.',
+      ogDescription: 'Klein, maar BAM. Op zaterdag 23 mei 2026 strijkt Bammetje neer bij Broedplaats Oogst in Hengelo.',
+      ogImage: 'https://bammetje.bamfestival.nl/assets/hero/bammetje-header-1440.webp',
+      ogImageAlt: 'Posterbeeld voor Bammetje 2026'
+    },
+    links: {
+      bamFestival: 'https://www.bamfestival.nl/',
+      route: 'https://www.google.com/maps/search/?api=1&query=Broedplaats+Oogst+Hengelo',
+      hengelo: 'https://www.hengelo.nl/',
+      hartVanZuid: 'https://www.hartvanzuid.nl/'
+    }
+  })
+
+  return {
+    siteConfig: config
+  }
+}
+
+export const useArtists = () => {
+  const { data: artists } = useAsyncData('artists', () =>
+    queryCollection('artists').all()
+  )
+
+  const mappedArtists = computed(() => {
+    if (!artists.value) return []
+    return artists.value.map((artist: any) => ({
+      name: artist.title,
+      stage: artist.stage,
+      description: artist.subtitle,
+      bio: artist.bodytext || '',
+      time: artist.starttime ? `${artist.starttime} indicatie` : '',
+      theme: artist.theme || 'dark',
+      image: artist.image_landscape,
+      spotify: artist.spotify,
+      youtube: artist.youtube,
+    }))
+  })
+
+  return { artists: mappedArtists }
+}
+
+export const useSponsors = () => {
+  const { data: sponsors } = useAsyncData('sponsors', () =>
+    queryCollection('sponsors').all()
+  )
+
+  return { sponsors }
+}
+
+export const usePerformances = () => {
+  const { data: performances } = useAsyncData('performances', () =>
+    queryCollection('performances').all()
+  )
+
+  return { performances }
+}

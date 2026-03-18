@@ -1,0 +1,15 @@
+{
+  "title": "André Manuel",
+  "subtitle": "Een van de grotere namen op het Hoofdpodium: zichtbaar, dragend en perfect voor een gezamenlijk BAM-moment.",
+  "tags": ["hoofdpodium", "live", "zang"],
+  "spotify": "",
+  "youtube": "",
+  "image_landscape": "/assets/stock/concert-crowd-stage-960.webp",
+  "image_landscape_alt": "André Manuel optreden op het Hoofdpodium",
+  "image_square": "/assets/stock/concert-crowd-stage-960.webp",
+  "image_square_alt": "André Manuel",
+  "stage": "Hoofdpodium",
+  "starttime": "18:45",
+  "endtime": "19:45",
+  "theme": "dark"
+}

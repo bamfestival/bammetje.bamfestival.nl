@@ -1,0 +1,15 @@
+{
+  "title": "IDA",
+  "subtitle": "Ook op het Hoofdpodium: een naam die de grotere publieksmomenten van Bammetje mee kleur geeft.",
+  "tags": ["hoofdpodium", "live", "zang"],
+  "spotify": "",
+  "youtube": "",
+  "image_landscape": "/assets/stock/concert-singer-audience-960.webp",
+  "image_landscape_alt": "IDA optreden",
+  "image_square": "/assets/stock/concert-singer-audience-960.webp",
+  "image_square_alt": "IDA",
+  "stage": "Hoofdpodium",
+  "starttime": "20:15",
+  "endtime": "21:15",
+  "theme": "light"
+}

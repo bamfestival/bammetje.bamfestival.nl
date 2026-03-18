@@ -724,13 +724,342 @@
       margin-bottom: 1.25rem;
     }
 
+    .line_up_board {
+      display: grid;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .line_up_stage {
+      display: grid;
+      gap: 1rem;
+      align-content: start;
+      padding: 1.15rem;
+      border-radius: 1.7rem;
+      box-shadow: var(--page_shadow);
+      overflow: clip;
+      position: relative;
+    }
+
+    .line_up_stage > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .line_up_stage::after {
+      content: "";
+      position: absolute;
+      right: -1.75rem;
+      top: -1.75rem;
+      width: 7rem;
+      height: 7rem;
+      border-radius: 999px;
+      background: rgba(253, 250, 251, 0.12);
+      filter: blur(2px);
+      pointer-events: none;
+    }
+
+    .line_up_stage_main {
+      color: var(--page_white);
+      background:
+        radial-gradient(circle at 84% 18%, rgba(248, 190, 5, 0.26), transparent 20%),
+        linear-gradient(150deg, #410916 0%, #7a112c 36%, #c62144 68%, #e26426 100%);
+    }
+
+    .line_up_stage_tent {
+      color: var(--page_ink);
+      background:
+        radial-gradient(circle at 74% 20%, rgba(216, 151, 156, 0.28), transparent 14%),
+        linear-gradient(180deg, #fff3e5 0%, #f7dbc8 100%);
+    }
+
+    .line_up_stage_loft {
+      color: var(--page_white);
+      background:
+        radial-gradient(circle at 16% 20%, rgba(248, 190, 5, 0.2), transparent 16%),
+        linear-gradient(180deg, #120206 0%, #530a1d 100%);
+    }
+
+    .line_up_stage_head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .line_up_stage_intro {
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .line_up_stage_intro p {
+      margin: 0;
+      max-width: 32ch;
+      line-height: 1.55;
+      font-size: 0.96rem;
+    }
+
+    .line_up_total {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2rem;
+      padding: 0.42rem 0.78rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .line_up_stage_main .line_up_total,
+    .line_up_stage_loft .line_up_total {
+      background: rgba(253, 250, 251, 0.14);
+      border: 1px solid rgba(253, 250, 251, 0.14);
+      color: var(--page_white);
+    }
+
+    .line_up_stage_tent .line_up_total {
+      background: rgba(83, 10, 29, 0.08);
+      border: 1px solid rgba(83, 10, 29, 0.08);
+      color: var(--page_burgundy);
+    }
+
+    .line_up_list {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .line_up_stage_media {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      margin: 0;
+      border-radius: 1.3rem;
+      overflow: clip;
+      isolation: isolate;
+    }
+
+    .line_up_stage_media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(18, 2, 6, 0.08) 0%, rgba(18, 2, 6, 0.44) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .line_up_stage_media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .line_up_artist {
+      display: grid;
+      gap: 0;
+      padding: 0;
+      border-radius: 1.25rem;
+      min-width: 0;
+      height: 100%;
+      overflow: clip;
+    }
+
+    .line_up_stage_main .line_up_artist,
+    .line_up_stage_loft .line_up_artist {
+      background: rgba(253, 250, 251, 0.12);
+      border: 1px solid rgba(253, 250, 251, 0.14);
+    }
+
+    .line_up_stage_tent .line_up_artist {
+      background: rgba(253, 250, 251, 0.72);
+      border: 1px solid rgba(83, 10, 29, 0.08);
+    }
+
+    .line_up_stage_tent .line_up_stage_media::after {
+      background: linear-gradient(180deg, rgba(83, 10, 29, 0.06) 0%, rgba(83, 10, 29, 0.2) 100%);
+    }
+
+    .line_up_artist_poster {
+      position: relative;
+      margin: 0;
+      aspect-ratio: 5 / 6;
+      isolation: isolate;
+      overflow: clip;
+    }
+
+    .line_up_artist_poster::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(18, 2, 6, 0.08) 0%, rgba(18, 2, 6, 0.62) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .line_up_artist_poster img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .line_up_artist_body {
+      display: grid;
+      gap: 0.6rem;
+      align-content: start;
+      padding: 0.9rem 1rem 1rem;
+    }
+
+    .line_up_artist_title {
+      position: absolute;
+      left: 1rem;
+      right: 1rem;
+      bottom: 0.9rem;
+      z-index: 2;
+      color: var(--page_white);
+      text-shadow: 0 0.18rem 0.7rem rgba(18, 2, 6, 0.42);
+    }
+
+    .line_up_artist_name {
+      margin: 0;
+      font-family: "Saira Condensed", sans-serif;
+      font-size: clamp(1.8rem, 7vw, 2.4rem);
+      line-height: 0.9;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      text-wrap: balance;
+    }
+
+    .line_up_artist_title .line_up_artist_name {
+      font-size: clamp(2rem, 7.5vw, 2.8rem);
+    }
+
+    .line_up_artist_meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .line_up_artist_meta span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2rem;
+      padding: 0.42rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .line_up_stage_main .line_up_artist_meta span,
+    .line_up_stage_loft .line_up_artist_meta span {
+      background: rgba(253, 250, 251, 0.14);
+      border: 1px solid rgba(253, 250, 251, 0.14);
+      color: var(--page_white);
+    }
+
+    .line_up_stage_tent .line_up_artist_meta span {
+      background: rgba(83, 10, 29, 0.08);
+      border: 1px solid rgba(83, 10, 29, 0.08);
+      color: var(--page_burgundy);
+    }
+
+    .line_up_artist_title .line_up_artist_meta span {
+      background: rgba(253, 250, 251, 0.16);
+      border: 1px solid rgba(253, 250, 251, 0.18);
+      color: var(--page_white);
+      backdrop-filter: blur(0.35rem);
+    }
+
+    .line_up_artist p {
+      margin: 0;
+      max-width: 34ch;
+      line-height: 1.5;
+      font-size: 0.96rem;
+    }
+
+    .line_up_more {
+      display: grid;
+      gap: 0.55rem;
+      padding: 1rem 1.1rem;
+      border-radius: 1.4rem;
+      height: 100%;
+      align-content: start;
+      background: rgba(253, 250, 251, 0.86);
+      border: 1px solid rgba(83, 10, 29, 0.08);
+      box-shadow: var(--page_shadow);
+    }
+
+    .line_up_more p {
+      margin: 0;
+      max-width: 42rem;
+      line-height: 1.65;
+      color: var(--page_soft_ink);
+    }
+
+    .line_up_note {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      min-height: 2rem;
+      padding: 0.42rem 0.72rem;
+      border-radius: 999px;
+      background: rgba(83, 10, 29, 0.08);
+      color: var(--page_burgundy);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .line_up_artist {
+      box-shadow: var(--page_shadow);
+    }
+
+    .line_up_artist.artist_main,
+    .line_up_artist.artist_loft {
+      color: var(--page_white);
+    }
+
+    .line_up_artist.artist_main {
+      background:
+        radial-gradient(circle at 84% 18%, rgba(248, 190, 5, 0.18), transparent 20%),
+        linear-gradient(150deg, #410916 0%, #7a112c 36%, #c62144 68%, #e26426 100%);
+      border: 1px solid rgba(253, 250, 251, 0.14);
+    }
+
+    .line_up_artist.artist_tent {
+      color: var(--page_ink);
+      background:
+        radial-gradient(circle at 74% 20%, rgba(216, 151, 156, 0.24), transparent 14%),
+        linear-gradient(180deg, #fff3e5 0%, #f7dbc8 100%);
+      border: 1px solid rgba(83, 10, 29, 0.08);
+    }
+
+    .line_up_artist.artist_loft {
+      background:
+        radial-gradient(circle at 16% 20%, rgba(248, 190, 5, 0.16), transparent 16%),
+        linear-gradient(180deg, #120206 0%, #530a1d 100%);
+      border: 1px solid rgba(253, 250, 251, 0.14);
+    }
+
+    .line_up_artist_stage {
+      display: inline-flex;
+      margin-bottom: 0.6rem;
+    }
+
     .swipe_hint {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 0.75rem;
-      padding: 0.9rem 1rem;
+      padding: 1rem 1.05rem;
       border-radius: 1.2rem;
       background: rgba(83, 10, 29, 0.08);
       border: 1px solid rgba(83, 10, 29, 0.08);
@@ -750,14 +1079,18 @@
 
     .swipe_status {
       border-radius: 999px;
-      padding: 0.45rem 0.75rem;
+      padding: 0.55rem 0.8rem;
       background: rgba(253, 250, 251, 0.8);
       color: var(--page_red_dark);
-      font-size: 0.75rem;
+      font-size: 0.71rem;
       font-weight: 800;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.08em;
+      line-height: 1.25;
       text-transform: uppercase;
-      white-space: nowrap;
+      white-space: normal;
+      text-align: center;
+      max-width: 11rem;
+      box-shadow: 0 10px 24px rgba(83, 10, 29, 0.08);
     }
 
     .swipe_stack {
@@ -1174,9 +1507,9 @@
       min-width: 3.2rem;
       min-height: 3.2rem;
       padding: 0.75rem 1rem;
-      border: 0;
+      border: 1px solid rgba(83, 10, 29, 0.1);
       border-radius: 999px;
-      background: rgba(83, 10, 29, 0.08);
+      background: rgba(253, 250, 251, 0.82);
       color: var(--page_burgundy);
       font-weight: 800;
       box-shadow: 0 10px 28px rgba(83, 10, 29, 0.08);
@@ -1185,7 +1518,8 @@
     .swipe_button:hover,
     .swipe_button:focus-visible {
       transform: translateY(-2px) scale(1.02);
-      background: rgba(83, 10, 29, 0.12);
+      background: rgba(253, 250, 251, 0.94);
+      border-color: rgba(83, 10, 29, 0.16);
     }
 
     .swipe_card.show_like .swipe_badge_like,
@@ -1264,11 +1598,13 @@
       line-height: 0.88;
       letter-spacing: 0.03em;
       text-transform: uppercase;
+      text-wrap: balance;
     }
 
     .sticker p {
       margin: 0;
       line-height: 1.65;
+      max-width: 30ch;
     }
 
     .sticker small {
@@ -1387,11 +1723,15 @@
     }
 
     .sticker_gold {
-      color: #2b1603;
+      color: #fdfafb;
       background:
         radial-gradient(circle at 24% 18%, rgba(253, 250, 251, 0.34), transparent 12%),
         linear-gradient(180deg, #f8be05 0%, #f3a513 100%);
       transform: rotate(2deg);
+    }
+
+    .sticker_gold .sticker_media::after {
+      background: linear-gradient(180deg, rgba(18, 2, 6, 0.2) 0%, rgba(18, 2, 6, 0.78) 100%);
     }
 
     .stage_chip {
@@ -1870,6 +2210,15 @@
         gap: 1.15rem;
       }
 
+      .line_up_board {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: stretch;
+      }
+
+      .line_up_more {
+        grid-column: 1 / -1;
+      }
+
       .swipe_stack {
         min-height: 31rem;
       }
@@ -1976,6 +2325,39 @@
 
       .hero_inner {
         margin-top: clamp(-5.2rem, -6vw, -4rem);
+      }
+
+      .line_up_board {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: stretch;
+      }
+
+      .line_up_more {
+        grid-column: auto;
+      }
+
+      .line_up_swiper {
+        display: none;
+      }
+
+      .sticker_wall {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-template-areas:
+          "headline headline headline headline headline headline headline story story story story story"
+          "headline headline headline headline headline headline headline warm warm gold gold gold";
+        align-items: stretch;
+        gap: 1.2rem;
+      }
+
+      .sticker_headliner {
+        grid-column: span 7;
+      }
+
+      .sticker_story,
+      .sticker_warm,
+      .sticker_gold {
+        min-height: 15rem;
       }
     }
 
@@ -2173,633 +2555,136 @@
         <div class="frame">
           <div class="section_intro" data_reveal>
             <span class="eyebrow eyebrow_light">Line-up</span>
-            <h2 class="section_title">Drie podia. Zeven namen. Meteen overzicht.</h2>
+            <h2 class="section_title">Alle bevestigde namen. Meteen in beeld.</h2>
             <p class="section_text">
-              De eerste indeling staat nu vast: de grotere namen op het Hoofdpodium, de dj's in de Tommy-Loods en de andere acts in De Tent.
-              Zo voelt de line-up niet alleen levendiger, maar ook meteen logisch voor bezoekers.
+              Geen kaarten om door te klikken en geen verborgen acts: dit zijn alle artiesten die nu bevestigd zijn, met het podium direct op elke kaart.
             </p>
           </div>
 
-          <div class="line_up_swiper" data_reveal>
-            <div class="swipe_hint">
-              <div>
-                <strong>Swipe door de line-up</strong>
-                <p>Veeg door de kaarten en open per artiest de achterkant voor bio, podium en straks ook speeltijd.</p>
+          <div class="line_up_board">
+            <article class="line_up_artist artist_main" data_reveal>
+              <figure class="line_up_artist_poster" aria-hidden="true">
+                <img src="./assets/stock/concert-singer-audience-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 32%;">
+                <div class="line_up_artist_title">
+                  <span class="line_up_artist_stage stage_chip stage_main">Hoofdpodium</span>
+                  <h3 class="line_up_artist_name">André Manuel</h3>
+                  <div class="line_up_artist_meta">
+                    <span>Grotere naam</span>
+                    <span>Scherpe teksten</span>
+                  </div>
+                </div>
+              </figure>
+              <div class="line_up_artist_body">
+                <p>Uitgesproken, raak en sterk genoeg om het terrein meteen samen te trekken.</p>
               </div>
-              <div class="swipe_status" data_swipe_status>1 / 7</div>
-            </div>
+            </article>
 
-            <div class="swipe_stack" data_swipe_stack aria-label="Swipebare line-up kaarten">
-              <article class="swipe_card" data_swipe_card data_theme="dark">
-                <div class="swipe_card_inner">
-                  <div class="swipe_face swipe_face_front">
-                    <div class="swipe_badges" aria-hidden="true">
-                      <span class="swipe_badge swipe_badge_like">Nice</span>
-                      <span class="swipe_badge swipe_badge_next">Next</span>
-                    </div>
-                    <picture class="swipe_card_media">
-                      <source
-                        type="image/webp"
-                        srcset="
-                          ./assets/stock/concert-crowd-stage-640.webp 640w,
-                          ./assets/stock/concert-crowd-stage-960.webp 960w,
-                          ./assets/stock/concert-crowd-stage-1440.webp 1440w
-                        "
-                        sizes="100vw"
-                      />
-                      <img
-                        src="./assets/stock/concert-crowd-stage-960.jpg"
-                        srcset="
-                          ./assets/stock/concert-crowd-stage-640.jpg 640w,
-                          ./assets/stock/concert-crowd-stage-960.jpg 960w,
-                          ./assets/stock/concert-crowd-stage-1440.jpg 1440w
-                        "
-                        sizes="100vw"
-                        alt="Publiek voor een verlicht podium tijdens een liveconcert"
-                        width="960"
-                        height="640"
-                        loading="lazy"
-                      />
-                    </picture>
-                    <div class="swipe_front_body">
-                      <div class="swipe_front_header">
-                        <span class="stage_chip stage_main">Hoofdpodium</span>
-                        <span class="swipe_front_kicker">Live</span>
-                      </div>
-                      <h3>André Manuel</h3>
-                      <div class="swipe_front_meta" aria-label="Kaartdetails">
-                        <span class="swipe_front_meta_item">Grotere naam</span>
-                        <span class="swipe_front_meta_item">Scherpe teksten</span>
-                      </div>
-                      <p>Een herkenbare naam voor een gezamenlijk hoofdpodiummoment: direct, uitgesproken en dragend genoeg om het terrein samen te trekken.</p>
-                    </div>
-                  </div>
-                  <div class="swipe_face swipe_face_back">
-                    <div class="swipe_back_header">
-                      <span class="stage_chip stage_main">Details</span>
-                      <span class="swipe_back_kicker">Database-ready</span>
-                    </div>
-                    <h3>André Manuel</h3>
-                    <p class="swipe_back_text">Scherpe teksten, veel karakter en precies het soort naam dat op Bammetje meteen gewicht geeft aan de dag.</p>
-                    <div class="swipe_meta">
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Podium</span>
-                        <span class="swipe_meta_value">Hoofdpodium</span>
-                      </div>
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Speeltijd</span>
-                        <span class="swipe_meta_value">Volgt</span>
-                      </div>
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Status</span>
-                        <span class="swipe_meta_value">Eerste drop</span>
-                      </div>
-                    </div>
-                    <p class="swipe_data_note">Podium staat vast. Speeltijd komt later uit de timetable-database zodra de planning rond is.</p>
+            <article class="line_up_artist artist_main" data_reveal>
+              <figure class="line_up_artist_poster" aria-hidden="true">
+                <img src="./assets/stock/concert-audience-lights-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 48%;">
+                <div class="line_up_artist_title">
+                  <span class="line_up_artist_stage stage_chip stage_main">Hoofdpodium</span>
+                  <h3 class="line_up_artist_name">IDA</h3>
+                  <div class="line_up_artist_meta">
+                    <span>Publieksmoment</span>
+                    <span>Open lucht</span>
                   </div>
                 </div>
-              </article>
-
-              <article class="swipe_card" data_swipe_card data_theme="light">
-                <div class="swipe_card_inner">
-                  <div class="swipe_face swipe_face_front">
-                    <div class="swipe_badges" aria-hidden="true">
-                      <span class="swipe_badge swipe_badge_like">Nice</span>
-                      <span class="swipe_badge swipe_badge_next">Next</span>
-                    </div>
-                    <picture class="swipe_card_media">
-                      <source
-                        type="image/webp"
-                        srcset="
-                          ./assets/stock/concert-singer-audience-640.webp 640w,
-                          ./assets/stock/concert-singer-audience-960.webp 960w,
-                          ./assets/stock/concert-singer-audience-1440.webp 1440w
-                        "
-                        sizes="100vw"
-                      />
-                      <img
-                        src="./assets/stock/concert-singer-audience-960.jpg"
-                        srcset="
-                          ./assets/stock/concert-singer-audience-640.jpg 640w,
-                          ./assets/stock/concert-singer-audience-960.jpg 960w,
-                          ./assets/stock/concert-singer-audience-1440.jpg 1440w
-                        "
-                        sizes="100vw"
-                        alt="Liveconcert met een artiest voor fel verlicht publiek"
-                        width="960"
-                        height="640"
-                        loading="lazy"
-                      />
-                    </picture>
-                    <div class="swipe_front_body">
-                      <div class="swipe_front_header">
-                        <span class="stage_chip stage_main">Hoofdpodium</span>
-                        <span class="swipe_front_kicker">Live</span>
-                      </div>
-                      <h3>IDA</h3>
-                      <div class="swipe_front_meta" aria-label="Kaartdetails">
-                        <span class="swipe_front_meta_item">Publieksmoment</span>
-                        <span class="swipe_front_meta_item">Open lucht</span>
-                      </div>
-                      <p>Een artiest die de grotere blokken van de dag kleur geeft en het Hoofdpodium meteen een open, energieke toon meegeeft.</p>
-                    </div>
-                  </div>
-                  <div class="swipe_face swipe_face_back">
-                    <div class="swipe_back_header">
-                      <span class="stage_chip stage_main">Details</span>
-                      <span class="swipe_back_kicker">Database-ready</span>
-                    </div>
-                    <h3>IDA</h3>
-                    <p class="swipe_back_text">Een energieke livekaart voor de grotere publieksblokken, met genoeg uitstraling om het Hoofdpodium echt open te trekken.</p>
-                    <div class="swipe_meta">
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Podium</span>
-                        <span class="swipe_meta_value">Hoofdpodium</span>
-                      </div>
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Speeltijd</span>
-                        <span class="swipe_meta_value">Volgt</span>
-                      </div>
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Status</span>
-                        <span class="swipe_meta_value">Bevestigd</span>
-                      </div>
-                    </div>
-                    <p class="swipe_data_note">Deze kaart is al voorbereid op velden als `stage`, `time_label` en `bio`, zodat de achterkant later direct uit contentdata kan komen.</p>
-                  </div>
-                </div>
-              </article>
-
-              <article class="swipe_card" data_swipe_card data_theme="night">
-                <div class="swipe_card_inner">
-                  <div class="swipe_face swipe_face_front">
-                    <div class="swipe_badges" aria-hidden="true">
-                      <span class="swipe_badge swipe_badge_like">Nice</span>
-                      <span class="swipe_badge swipe_badge_next">Next</span>
-                    </div>
-                    <picture class="swipe_card_media">
-                      <source
-                        type="image/webp"
-                        srcset="
-                          ./assets/stock/concert-audience-lights-640.webp 640w,
-                          ./assets/stock/concert-audience-lights-960.webp 960w,
-                          ./assets/stock/concert-audience-lights-1440.webp 1440w
-                        "
-                        sizes="100vw"
-                      />
-                      <img
-                        src="./assets/stock/concert-audience-lights-960.jpg"
-                        srcset="
-                          ./assets/stock/concert-audience-lights-640.jpg 640w,
-                          ./assets/stock/concert-audience-lights-960.jpg 960w,
-                          ./assets/stock/concert-audience-lights-1440.jpg 1440w
-                        "
-                        sizes="100vw"
-                        alt="Zanger voor een publiek met telefoons en lichtjes"
-                        width="960"
-                        height="640"
-                        loading="lazy"
-                      />
-                    </picture>
-                    <div class="swipe_front_body">
-                      <div class="swipe_front_header">
-                        <span class="stage_chip stage_tent">De Tent</span>
-                        <span class="swipe_front_kicker">Live</span>
-                      </div>
-                      <h3>Post Ella</h3>
-                      <div class="swipe_front_meta" aria-label="Kaartdetails">
-                        <span class="swipe_front_meta_item">Intiem</span>
-                        <span class="swipe_front_meta_item">Dichter op publiek</span>
-                      </div>
-                      <p>Post Ella past precies in de compactere tentflow: minder afstand, meer direct contact en ruimte voor een warm liveblok.</p>
-                    </div>
-                  </div>
-                  <div class="swipe_face swipe_face_back">
-                    <div class="swipe_back_header">
-                      <span class="stage_chip stage_tent">Details</span>
-                      <span class="swipe_back_kicker">Database-ready</span>
-                    </div>
-                    <h3>Post Ella</h3>
-                    <p class="swipe_back_text">Een tent-act die het publiek dichterbij trekt: minder afstand, meer direct contact en precies de juiste spanning voor Bammetje.</p>
-                    <div class="swipe_meta">
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Podium</span>
-                        <span class="swipe_meta_value">De Tent</span>
-                      </div>
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Speeltijd</span>
-                        <span class="swipe_meta_value">Volgt</span>
-                      </div>
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Blok</span>
-                        <span class="swipe_meta_value">Middag</span>
-                      </div>
-                    </div>
-                    <p class="swipe_data_note">Voor nu tonen we alleen de vaste podiumindeling. Exacte tenttijden volgen zodra de productieplanning is bevestigd.</p>
-                  </div>
-                </div>
-              </article>
-
-              <article class="swipe_card" data_swipe_card data_theme="gold">
-                <div class="swipe_card_inner">
-                  <div class="swipe_face swipe_face_front">
-                    <div class="swipe_badges" aria-hidden="true">
-                      <span class="swipe_badge swipe_badge_like">Nice</span>
-                      <span class="swipe_badge swipe_badge_next">Next</span>
-                    </div>
-                    <picture class="swipe_card_media">
-                      <source
-                        type="image/webp"
-                        srcset="
-                          ./assets/stock/concert-singer-audience-640.webp 640w,
-                          ./assets/stock/concert-singer-audience-960.webp 960w,
-                          ./assets/stock/concert-singer-audience-1440.webp 1440w
-                        "
-                        sizes="100vw"
-                      />
-                      <img
-                        src="./assets/stock/concert-singer-audience-960.jpg"
-                        srcset="
-                          ./assets/stock/concert-singer-audience-640.jpg 640w,
-                          ./assets/stock/concert-singer-audience-960.jpg 960w,
-                          ./assets/stock/concert-singer-audience-1440.jpg 1440w
-                        "
-                        sizes="100vw"
-                        alt="Liveconcert met een artiest voor fel verlicht publiek"
-                        width="960"
-                        height="640"
-                        loading="lazy"
-                      />
-                    </picture>
-                    <div class="swipe_front_body">
-                      <div class="swipe_front_header">
-                        <span class="stage_chip stage_tent">De Tent</span>
-                        <span class="swipe_front_kicker">Live</span>
-                      </div>
-                      <h3>Lenny Monsou</h3>
-                      <div class="swipe_front_meta" aria-label="Kaartdetails">
-                        <span class="swipe_front_meta_item">Warm</span>
-                        <span class="swipe_front_meta_item">Compact podium</span>
-                      </div>
-                      <p>Een naam die goed werkt in een kleinere setting: dichtbij, menselijk en precies passend bij het warmere tentgevoel van Bammetje.</p>
-                    </div>
-                  </div>
-                  <div class="swipe_face swipe_face_back">
-                    <div class="swipe_back_header">
-                      <span class="stage_chip stage_tent">Details</span>
-                      <span class="swipe_back_kicker">Database-ready</span>
-                    </div>
-                    <h3>Lenny Monsou</h3>
-                    <p class="swipe_back_text">Een naam die goed past in de kleinere, warmere setting van De Tent: dichtbij, menselijk en meteen aanwezig.</p>
-                    <div class="swipe_meta">
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Podium</span>
-                        <span class="swipe_meta_value">De Tent</span>
-                      </div>
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Speeltijd</span>
-                        <span class="swipe_meta_value">Volgt</span>
-                      </div>
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Status</span>
-                        <span class="swipe_meta_value">Bevestigd</span>
-                      </div>
-                    </div>
-                    <p class="swipe_data_note">Deze achterkant is ingericht voor toekomstige data-updates zonder dat het kaartpatroon opnieuw hoeft te worden ontworpen.</p>
-                  </div>
-                </div>
-              </article>
-
-              <article class="swipe_card" data_swipe_card data_theme="light">
-                <div class="swipe_card_inner">
-                  <div class="swipe_face swipe_face_front">
-                    <div class="swipe_badges" aria-hidden="true">
-                      <span class="swipe_badge swipe_badge_like">Nice</span>
-                      <span class="swipe_badge swipe_badge_next">Next</span>
-                    </div>
-                    <picture class="swipe_card_media">
-                      <source
-                        type="image/webp"
-                        srcset="
-                          ./assets/stock/concert-crowd-stage-640.webp 640w,
-                          ./assets/stock/concert-crowd-stage-960.webp 960w,
-                          ./assets/stock/concert-crowd-stage-1440.webp 1440w
-                        "
-                        sizes="100vw"
-                      />
-                      <img
-                        src="./assets/stock/concert-crowd-stage-960.jpg"
-                        srcset="
-                          ./assets/stock/concert-crowd-stage-640.jpg 640w,
-                          ./assets/stock/concert-crowd-stage-960.jpg 960w,
-                          ./assets/stock/concert-crowd-stage-1440.jpg 1440w
-                        "
-                        sizes="100vw"
-                        alt="Publiek voor een verlicht podium tijdens een liveconcert"
-                        width="960"
-                        height="640"
-                        loading="lazy"
-                      />
-                    </picture>
-                    <div class="swipe_front_body">
-                      <div class="swipe_front_header">
-                        <span class="stage_chip stage_tent">De Tent</span>
-                        <span class="swipe_front_kicker">Live</span>
-                      </div>
-                      <h3>Lézard</h3>
-                      <div class="swipe_front_meta" aria-label="Kaartdetails">
-                        <span class="swipe_front_meta_item">Spannend</span>
-                        <span class="swipe_front_meta_item">Nabije setting</span>
-                      </div>
-                      <p>Een act die in een tentsetting snel naar voren kan springen: compact van schaal, maar met genoeg spanning om direct op te vallen.</p>
-                    </div>
-                  </div>
-                  <div class="swipe_face swipe_face_back">
-                    <div class="swipe_back_header">
-                      <span class="stage_chip stage_tent">Details</span>
-                      <span class="swipe_back_kicker">Database-ready</span>
-                    </div>
-                    <h3>Lézard</h3>
-                    <p class="swipe_back_text">Een act voor het vroegere tentblok: spannend genoeg om op te vallen, maar compact genoeg voor de directe setting van Bammetje.</p>
-                    <div class="swipe_meta">
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Podium</span>
-                        <span class="swipe_meta_value">De Tent</span>
-                      </div>
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Speeltijd</span>
-                        <span class="swipe_meta_value">Volgt</span>
-                      </div>
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Blok</span>
-                        <span class="swipe_meta_value">Later op dag</span>
-                      </div>
-                    </div>
-                    <p class="swipe_data_note">De combinatie van `bio`, `stage` en `time_label` kan later rechtstreeks uit een CMS of database per artiestkaart worden geladen.</p>
-                  </div>
-                </div>
-              </article>
-
-              <article class="swipe_card" data_swipe_card data_theme="night">
-                <div class="swipe_card_inner">
-                  <div class="swipe_face swipe_face_front">
-                    <div class="swipe_badges" aria-hidden="true">
-                      <span class="swipe_badge swipe_badge_like">Nice</span>
-                      <span class="swipe_badge swipe_badge_next">Next</span>
-                    </div>
-                    <picture class="swipe_card_media">
-                      <source
-                        type="image/webp"
-                        srcset="
-                          ./assets/stock/concert-audience-lights-640.webp 640w,
-                          ./assets/stock/concert-audience-lights-960.webp 960w,
-                          ./assets/stock/concert-audience-lights-1440.webp 1440w
-                        "
-                        sizes="100vw"
-                      />
-                      <img
-                        src="./assets/stock/concert-audience-lights-960.jpg"
-                        srcset="
-                          ./assets/stock/concert-audience-lights-640.jpg 640w,
-                          ./assets/stock/concert-audience-lights-960.jpg 960w,
-                          ./assets/stock/concert-audience-lights-1440.jpg 1440w
-                        "
-                        sizes="100vw"
-                        alt="Zanger voor een publiek met telefoons en lichtjes"
-                        width="960"
-                        height="640"
-                        loading="lazy"
-                      />
-                    </picture>
-                    <div class="swipe_front_body">
-                      <div class="swipe_front_header">
-                        <span class="stage_chip stage_loft">Tommy-Loods</span>
-                        <span class="swipe_front_kicker">DJ set</span>
-                      </div>
-                      <h3>Yo That’s Shit</h3>
-                      <div class="swipe_front_meta" aria-label="Kaartdetails">
-                        <span class="swipe_front_meta_item">Later op avond</span>
-                        <span class="swipe_front_meta_item">Meer tempo</span>
-                      </div>
-                      <p>In de Tommy-Loods mag het later en losser voelen: ritme, vaart en een duidelijk nachtblok voor het dj-gedeelte van de dag.</p>
-                    </div>
-                  </div>
-                  <div class="swipe_face swipe_face_back">
-                    <div class="swipe_back_header">
-                      <span class="stage_chip stage_loft">Details</span>
-                      <span class="swipe_back_kicker">Database-ready</span>
-                    </div>
-                    <h3>Yo That’s Shit</h3>
-                    <p class="swipe_back_text">Een dj-slot voor wanneer Bammetje wat meer nachtenergie mag krijgen: rauwer, sneller en gebouwd op beweging.</p>
-                    <div class="swipe_meta">
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Podium</span>
-                        <span class="swipe_meta_value">Tommy-Loods</span>
-                      </div>
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Speeltijd</span>
-                        <span class="swipe_meta_value">Volgt</span>
-                      </div>
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Type</span>
-                        <span class="swipe_meta_value">DJ set</span>
-                      </div>
-                    </div>
-                    <p class="swipe_data_note">Voor dj-kaarten blijft hetzelfde model werken: beeld, bio, podium en later een exacte tijd vanuit dezelfde bron.</p>
-                  </div>
-                </div>
-              </article>
-
-              <article class="swipe_card" data_swipe_card data_theme="dark">
-                <div class="swipe_card_inner">
-                  <div class="swipe_face swipe_face_front">
-                    <div class="swipe_badges" aria-hidden="true">
-                      <span class="swipe_badge swipe_badge_like">Nice</span>
-                      <span class="swipe_badge swipe_badge_next">Next</span>
-                    </div>
-                    <picture class="swipe_card_media">
-                      <source
-                        type="image/webp"
-                        srcset="
-                          ./assets/stock/concert-singer-audience-640.webp 640w,
-                          ./assets/stock/concert-singer-audience-960.webp 960w,
-                          ./assets/stock/concert-singer-audience-1440.webp 1440w
-                        "
-                        sizes="100vw"
-                      />
-                      <img
-                        src="./assets/stock/concert-singer-audience-960.jpg"
-                        srcset="
-                          ./assets/stock/concert-singer-audience-640.jpg 640w,
-                          ./assets/stock/concert-singer-audience-960.jpg 960w,
-                          ./assets/stock/concert-singer-audience-1440.jpg 1440w
-                        "
-                        sizes="100vw"
-                        alt="Liveconcert met een artiest voor fel verlicht publiek"
-                        width="960"
-                        height="640"
-                        loading="lazy"
-                      />
-                    </picture>
-                    <div class="swipe_front_body">
-                      <div class="swipe_front_header">
-                        <span class="stage_chip stage_loft">Tommy-Loods</span>
-                        <span class="swipe_front_kicker">DJ set</span>
-                      </div>
-                      <h3>Mørssync &amp; Sabossi</h3>
-                      <div class="swipe_front_meta" aria-label="Kaartdetails">
-                        <span class="swipe_front_meta_item">Afsluitende vibe</span>
-                        <span class="swipe_front_meta_item">Loods</span>
-                      </div>
-                      <p>Een set voor het latere blok in de loods: iets donkerder, iets sneller en precies goed om de mini-editie met tempo af te ronden.</p>
-                    </div>
-                  </div>
-                  <div class="swipe_face swipe_face_back">
-                    <div class="swipe_back_header">
-                      <span class="stage_chip stage_loft">Details</span>
-                      <span class="swipe_back_kicker">Database-ready</span>
-                    </div>
-                    <h3>Mørssync &amp; Sabossi</h3>
-                    <p class="swipe_back_text">Een afsluitende dj-vibe voor de loods: iets donkerder, iets later en perfect om de mini-editie met tempo af te ronden.</p>
-                    <div class="swipe_meta">
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Podium</span>
-                        <span class="swipe_meta_value">Tommy-Loods</span>
-                      </div>
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Speeltijd</span>
-                        <span class="swipe_meta_value">Volgt</span>
-                      </div>
-                      <div class="swipe_meta_item">
-                        <span class="swipe_meta_label">Type</span>
-                        <span class="swipe_meta_value">DJ set</span>
-                      </div>
-                    </div>
-                    <p class="swipe_data_note">Zodra de database gevuld is, kan deze achterkant zonder extra markup een echte tijd, bio en eventuele links tonen.</p>
-                  </div>
-                </div>
-              </article>
-            </div>
-
-            <div class="swipe_actions">
-              <div class="swipe_buttons">
-                <button class="swipe_button" type="button" data_swipe_prev aria-label="Vorige line-up kaart">Terug</button>
-                <button class="swipe_button" type="button" data_swipe_next aria-label="Volgende line-up kaart">Volgende</button>
+              </figure>
+              <div class="line_up_artist_body">
+                <p>Geeft het grote podium een open, energieke toon en kleur aan de middag.</p>
               </div>
-              <div class="swipe_progress" aria-hidden="true">
-                <span class="swipe_dot is_active" data_swipe_dot></span>
-                <span class="swipe_dot" data_swipe_dot></span>
-                <span class="swipe_dot" data_swipe_dot></span>
-                <span class="swipe_dot" data_swipe_dot></span>
-                <span class="swipe_dot" data_swipe_dot></span>
-                <span class="swipe_dot" data_swipe_dot></span>
-                <span class="swipe_dot" data_swipe_dot></span>
+            </article>
+
+            <article class="line_up_artist artist_tent" data_reveal>
+              <figure class="line_up_artist_poster" aria-hidden="true">
+                <img src="./assets/stock/concert-audience-lights-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 28%;">
+                <div class="line_up_artist_title">
+                  <span class="line_up_artist_stage stage_chip stage_tent">De Tent</span>
+                  <h3 class="line_up_artist_name">Post Ella</h3>
+                  <div class="line_up_artist_meta">
+                    <span>Intiem</span>
+                    <span>Dichter op publiek</span>
+                  </div>
+                </div>
+              </figure>
+              <div class="line_up_artist_body">
+                <p>Minder afstand, meer direct contact en precies goed voor een warm liveblok.</p>
               </div>
-            </div>
-          </div>
-
-          <div class="sticker_wall">
-            <article class="sticker sticker_headliner" data_reveal>
-              <picture class="sticker_media">
-                <source
-                  type="image/webp"
-                  srcset="
-                    ./assets/stock/concert-crowd-stage-640.webp 640w,
-                    ./assets/stock/concert-crowd-stage-960.webp 960w,
-                    ./assets/stock/concert-crowd-stage-1440.webp 1440w
-                  "
-                  sizes="(min-width: 48rem) 34rem, 100vw"
-                />
-                <img
-                  src="./assets/stock/concert-crowd-stage-960.jpg"
-                  srcset="
-                    ./assets/stock/concert-crowd-stage-640.jpg 640w,
-                    ./assets/stock/concert-crowd-stage-960.jpg 960w,
-                    ./assets/stock/concert-crowd-stage-1440.jpg 1440w
-                  "
-                  sizes="(min-width: 48rem) 34rem, 100vw"
-                  alt="Publiek voor een verlicht podium tijdens een liveconcert"
-                  width="960"
-                  height="640"
-                  loading="lazy"
-                />
-              </picture>
-              <span class="stage_chip stage_main">Hoofdpodium</span>
-              <h3>André Manuel<br />IDA</h3>
-              <p>Hier landen de grotere namen: zichtbaar, dragend en geschikt voor de momenten waarop het terrein echt samenkomt.</p>
-              <span class="eyebrow eyebrow_dark">Grotere namen</span>
             </article>
 
-            <article class="sticker sticker_warm" data_reveal>
-              <span class="stage_chip stage_tent">De Tent</span>
-              <h3>Post Ella<br />Lenny Monsou</h3>
-              <p>De Tent houdt ruimte voor acts die dichter op het publiek zitten en de dag een lossere, intiemere flow geven.</p>
-              <ul class="artist_list artist_list_dark" aria-label="Extra bevestigde namen">
-                <li>Post Ella</li>
-                <li>Lenny Monsou</li>
-                <li>Lézard</li>
-              </ul>
+            <article class="line_up_artist artist_tent" data_reveal>
+              <figure class="line_up_artist_poster" aria-hidden="true">
+                <img src="./assets/stock/concert-audience-lights-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 52%;">
+                <div class="line_up_artist_title">
+                  <span class="line_up_artist_stage stage_chip stage_tent">De Tent</span>
+                  <h3 class="line_up_artist_name">Lenny Monsou</h3>
+                  <div class="line_up_artist_meta">
+                    <span>Warm</span>
+                    <span>Compact podium</span>
+                  </div>
+                </div>
+              </figure>
+              <div class="line_up_artist_body">
+                <p>Dichtbij, menselijk en passend bij het lossere tentgevoel van deze mini-editie.</p>
+              </div>
             </article>
 
-            <article class="sticker sticker_story" data_reveal>
-              <picture class="sticker_media">
-                <source
-                  type="image/webp"
-                  srcset="
-                    ./assets/stock/concert-audience-lights-640.webp 640w,
-                    ./assets/stock/concert-audience-lights-960.webp 960w,
-                    ./assets/stock/concert-audience-lights-1440.webp 1440w
-                  "
-                  sizes="(min-width: 48rem) 18rem, 100vw"
-                />
-                <img
-                  src="./assets/stock/concert-audience-lights-960.jpg"
-                  srcset="
-                    ./assets/stock/concert-audience-lights-640.jpg 640w,
-                    ./assets/stock/concert-audience-lights-960.jpg 960w,
-                    ./assets/stock/concert-audience-lights-1440.jpg 1440w
-                  "
-                  sizes="(min-width: 48rem) 18rem, 100vw"
-                  alt="Zanger voor een publiek met telefoons en lichtjes"
-                  width="960"
-                  height="640"
-                  loading="lazy"
-                />
-              </picture>
-              <span class="stage_chip stage_loft">Tommy-Loods</span>
-              <h3>Yo That’s Shit<br />Mørssync &amp; Sabossi</h3>
-              <p>De dj-hoek mag later en losser voelen: kleiner qua setting, maar juist sterk voor ritme, sfeer en beweging.</p>
+            <article class="line_up_artist artist_tent" data_reveal>
+              <figure class="line_up_artist_poster" aria-hidden="true">
+                <img src="./assets/stock/concert-audience-lights-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 74%;">
+                <div class="line_up_artist_title">
+                  <span class="line_up_artist_stage stage_chip stage_tent">De Tent</span>
+                  <h3 class="line_up_artist_name">Lézard</h3>
+                  <div class="line_up_artist_meta">
+                    <span>Spannend</span>
+                    <span>Nabije setting</span>
+                  </div>
+                </div>
+              </figure>
+              <div class="line_up_artist_body">
+                <p>Compact van schaal, maar met genoeg spanning om direct op te vallen.</p>
+              </div>
             </article>
 
-            <article class="sticker sticker_gold" data_reveal>
-              <picture class="sticker_media">
-                <source
-                  type="image/webp"
-                  srcset="
-                    ./assets/stock/concert-singer-audience-640.webp 640w,
-                    ./assets/stock/concert-singer-audience-960.webp 960w,
-                    ./assets/stock/concert-singer-audience-1440.webp 1440w
-                  "
-                  sizes="(min-width: 48rem) 18rem, 100vw"
-                />
-                <img
-                  src="./assets/stock/concert-singer-audience-960.jpg"
-                  srcset="
-                    ./assets/stock/concert-singer-audience-640.jpg 640w,
-                    ./assets/stock/concert-singer-audience-960.jpg 960w,
-                    ./assets/stock/concert-singer-audience-1440.jpg 1440w
-                  "
-                  sizes="(min-width: 48rem) 18rem, 100vw"
-                  alt="Liveconcert met een artiest voor fel verlicht publiek"
-                  width="960"
-                  height="640"
-                  loading="lazy"
-                />
-              </picture>
-              <span class="stage_chip stage_tent">Meer volgt</span>
-              <h3>Drie podia.<br />Meer namen<br />onderweg.</h3>
-              <p>De basis staat nu goed: Hoofdpodium, De Tent en Tommy-Loods hebben hun eerste namen. Deze kaart houdt ruimte voor de volgende aankondigingen zonder de line-up te herhalen.</p>
+            <article class="line_up_artist artist_loft" data_reveal>
+              <figure class="line_up_artist_poster" aria-hidden="true">
+                <img src="./assets/stock/concert-crowd-stage-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 32%;">
+                <div class="line_up_artist_title">
+                  <span class="line_up_artist_stage stage_chip stage_loft">Tommy-Loods</span>
+                  <h3 class="line_up_artist_name">Yo That’s Shit</h3>
+                  <div class="line_up_artist_meta">
+                    <span>Later op avond</span>
+                    <span>Meer tempo</span>
+                  </div>
+                </div>
+              </figure>
+              <div class="line_up_artist_body">
+                <p>Een dj-slot voor wanneer Bammetje merkbaar meer nachtenergie mag krijgen.</p>
+              </div>
             </article>
+
+            <article class="line_up_artist artist_loft" data_reveal>
+              <figure class="line_up_artist_poster" aria-hidden="true">
+                <img src="./assets/stock/concert-crowd-stage-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 70%;">
+                <div class="line_up_artist_title">
+                  <span class="line_up_artist_stage stage_chip stage_loft">Tommy-Loods</span>
+                  <h3 class="line_up_artist_name">Mørssync &amp; Sabossi</h3>
+                  <div class="line_up_artist_meta">
+                    <span>Afsluitende vibe</span>
+                    <span>Loods</span>
+                  </div>
+                </div>
+              </figure>
+              <div class="line_up_artist_body">
+                <p>Donkerder, later en precies goed om de mini-editie met vaart af te ronden.</p>
+              </div>
+            </article>
+
+            <aside class="line_up_more" data_reveal aria-label="Meer namen volgen">
+              <span class="line_up_note">7 acts bevestigd</span>
+              <p>Dit zijn nu alle bevestigde namen op de pagina. Zodra de speeltijden klaar zijn, kunnen ze hier direct per kaart worden aangevuld.</p>
+            </aside>
           </div>
         </div>
       </section>
@@ -3029,6 +2914,11 @@
     let active_swipe_index = 0;
     let drag_state = null;
 
+    const set_card_interactivity = (card, is_active) => {
+      card.inert = !is_active;
+      card.setAttribute("aria-hidden", String(!is_active));
+    };
+
     const set_swipe_face_state = (card, is_flipped) => {
       const front_face = card.querySelector(".swipe_face_front");
       const back_face = card.querySelector(".swipe_face_back");
@@ -3056,6 +2946,7 @@
     swipe_cards.forEach((card, index) => {
       const front_face = card.querySelector(".swipe_face_front");
       const back_face = card.querySelector(".swipe_face_back");
+      const card_title = card.querySelector("h3")?.textContent?.trim();
 
       front_face?.querySelectorAll(".swipe_flip_hint:not(.swipe_flip_button)").forEach((node) => {
         node.remove();
@@ -3071,7 +2962,7 @@
         open_button.className = "swipe_flip_button swipe_flip_hint";
         open_button.dataset.flipAction = "open";
         open_button.setAttribute("aria-expanded", "false");
-        open_button.setAttribute("aria-label", "Toon bio, podium en speeltijd");
+        open_button.setAttribute("aria-label", "Toon meer info over deze artiest");
         open_button.textContent = "Bekijk details";
         front_face.append(open_button);
       }
@@ -3092,11 +2983,27 @@
       }
 
       const open_button = front_face?.querySelector('[data_flip_action="open"]');
+      const close_button = back_face?.querySelector('[data_flip_action="close"]');
+
+      if (front_face && !front_face.id) {
+        front_face.id = `swipe-card-front-${index + 1}`;
+      }
 
       if (open_button && back_face?.id) {
         open_button.setAttribute("aria-controls", back_face.id);
       }
 
+      if (close_button && front_face?.id) {
+        close_button.setAttribute("aria-controls", front_face.id);
+      }
+
+      if (card_title) {
+        card.setAttribute("aria-label", `${card_title} (${index + 1} van ${swipe_cards.length})`);
+      }
+
+      card.setAttribute("role", "group");
+      card.setAttribute("aria-roledescription", "kaart");
+      set_card_interactivity(card, index === 0);
       set_swipe_face_state(card, false);
     });
 
@@ -3150,12 +3057,14 @@
 
       swipe_cards.forEach((card, index) => {
         const offset = (index - active_swipe_index + swipe_cards.length) % swipe_cards.length;
+        const is_active = offset === 0;
         card.classList.remove("is_current", "is_next", "is_third", "show_like", "show_next", "threshold_reached", "is_leaving_left", "is_leaving_right");
         card.style.removeProperty("transform");
         card.style.removeProperty("opacity");
+        set_card_interactivity(card, is_active);
         set_swipe_face_state(card, false);
 
-        if (offset === 0) {
+        if (is_active) {
           card.classList.add("is_current");
           card.style.transform = "translate3d(0, 0, 0) rotate(-1.2deg) scale(1)";
           card.style.opacity = "1";
@@ -3174,7 +3083,10 @@
       });
 
       if (swipe_status) {
-        swipe_status.textContent = `${active_swipe_index + 1} / ${swipe_cards.length}`;
+        const current_title = swipe_cards[active_swipe_index]?.querySelector("h3")?.textContent?.trim();
+        swipe_status.textContent = current_title
+          ? `${current_title} - artiest ${active_swipe_index + 1} van ${swipe_cards.length}`
+          : `Artiest ${active_swipe_index + 1} van ${swipe_cards.length}`;
       }
 
       swipe_dots.forEach((dot, index) => {

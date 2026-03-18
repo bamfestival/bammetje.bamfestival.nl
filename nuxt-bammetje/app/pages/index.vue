@@ -1,12 +1,14 @@
 <script setup lang="ts">
+const { siteConfig } = useSite()
 const { artists } = useArtists()
+const { sponsors } = useSponsors()
 
 useSeoMeta({
-  title: 'Bammetje 2026 | Gratis mini-editie van BAM! Festival in Hengelo',
-  ogTitle: 'Bammetje 2026 | Gratis mini-editie van BAM! Festival in Hengelo',
-  description: 'Bammetje is de gratis mini-editie van BAM! Festival op zaterdag 23 mei 2026 bij Broedplaats Oogst in Hengelo. Bekijk de sfeer, praktische info en updates.',
-  ogDescription: 'Klein, maar BAM. Op zaterdag 23 mei 2026 strijkt Bammetje neer bij Broedplaats Oogst in Hengelo.',
-  ogImage: 'https://bammetje.bamfestival.nl/assets/hero/bammetje-header-1440.webp',
+  title: siteConfig.value.title,
+  ogTitle: siteConfig.value.title,
+  description: siteConfig.value.meta.description,
+  ogDescription: siteConfig.value.meta.ogDescription,
+  ogImage: siteConfig.value.meta.ogImage,
   twitterCard: 'summary_large_image',
 })
 </script>
@@ -23,10 +25,10 @@ useSeoMeta({
               alt="Bammetje logo"
               width="192"
               height="192"
-            />
+            >
             <div>
-              <p class="brand-name">Bammetje</p>
-              <p class="brand-note">23 mei 2026 • Hengelo</p>
+              <p class="brand-name">{{ siteConfig.title }}</p>
+              <p class="brand-note">{{ siteConfig.date }} • Hengelo</p>
             </div>
           </NuxtLink>
         </div>
@@ -34,7 +36,7 @@ useSeoMeta({
     </header>
 
     <main id="main-content">
-      <section class="hero" id="top">
+      <section id="top" class="hero">
         <div class="hero-banner">
           <picture>
             <source
@@ -46,7 +48,7 @@ useSeoMeta({
                 /assets/hero/bammetje-header-1920.webp 1920w
               "
               sizes="100vw"
-            />
+            >
             <NuxtImg
               src="/assets/hero/bammetje-header-1440.jpg"
               srcset="
@@ -65,13 +67,12 @@ useSeoMeta({
         </div>
         <div class="frame hero-inner hero-grid">
           <div class="hero-copy">
-            <span class="eyebrow eyebrow-dark"><span class="dot" aria-hidden="true"></span> Mini BAM, maximale vibe</span>
+            <span class="eyebrow eyebrow-dark"><span class="dot" aria-hidden="true"/> Mini BAM, maximale vibe</span>
             <div class="hero-title-wrap">
-              <p class="eyebrow eyebrow-light">Gratis mini-editie van BAM! Festival</p>
-              <h1 class="hero-title">Bammetje</h1>
+              <p class="eyebrow eyebrow-light">{{ siteConfig.tagline }}</p>
+              <h1 class="hero-title">{{ siteConfig.slogan.replace('Klein, maar ', '').replace('.', '') }}</h1>
               <p class="hero-subtitle">
-                Klein, maar BAM. Op zaterdag 23 mei 2026 landt de mini-editie van BAM! Festival bij Broedplaats Oogst in Hengelo:
-                gratis muziek, warme sfeer en een dag die voelt als een compacte uitbarsting van alles waar BAM voor staat.
+                {{ siteConfig.subtitle }}
               </p>
               <div class="hero-actions">
                 <a class="action-button action-button-primary" href="#line-up">Bekijk line-up</a>
@@ -79,25 +80,25 @@ useSeoMeta({
               </div>
               <div class="hero-strip" aria-label="Belangrijkste evenementdetails">
                 <div class="hero-strip-item">
-                  <strong>23 mei</strong>
-                  <span>Zaterdag in 2026</span>
+                  <strong>{{ siteConfig.eventDate }}</strong>
+                  <span>{{ siteConfig.eventDay }}</span>
                 </div>
                 <div class="hero-strip-item">
-                  <strong>Gratis</strong>
-                  <span>Kom langs zonder ticketstress</span>
+                  <strong>{{ siteConfig.admission }}</strong>
+                  <span>{{ siteConfig.admissionNote }}</span>
                 </div>
                 <div class="hero-strip-item">
-                  <strong>Oogst</strong>
-                  <span>Broedplaats in Hengelo</span>
+                  <strong>{{ siteConfig.freeEntry.location.split(' ')[0] }}</strong>
+                  <span>{{ siteConfig.freeEntry.location.split(' ').slice(1).join(' ') }}</span>
                 </div>
               </div>
             </div>
           </div>
-          <aside class="ticket-card hero-ticket" id="gratis-entree" aria-label="Kerninformatie Bammetje">
-            <span class="eyebrow eyebrow-light">Gratis entree</span>
-            <strong>Oogst<br />Hengelo</strong>
+          <aside id="gratis-entree" class="ticket-card hero-ticket" aria-label="Kerninformatie Bammetje">
+            <span class="eyebrow eyebrow-light">{{ siteConfig.freeEntry.title }}</span>
+            <strong>{{ siteConfig.freeEntry.location.replace(' / ', '\n') }}</strong>
             <p class="section-text hero-ticket-text">
-              Van middag tot avond, met ruimte voor muziek, drinken en die herkenbare BAM-sfeer in een compactere vorm.
+              {{ siteConfig.freeEntry.description }}
             </p>
           </aside>
         </div>
@@ -106,39 +107,28 @@ useSeoMeta({
       <section class="section story-band">
         <div class="frame story-layout">
           <div class="story-quote">
-            <span class="eyebrow eyebrow-dark">Waarom Bammetje</span>
+            <span class="eyebrow eyebrow-dark">{{ siteConfig.about.title }}</span>
             <p>
-              BAM! Festival kan in 2026 niet neerstrijken in het Prins Bernhardplantsoen, maar stil blijft het niet.
-              Vanuit liefde voor muziek, organiseren en vrijwilligersenergie komt er een kleinere editie op Oogst.
+              {{ siteConfig.about.intro }}
             </p>
           </div>
           <div class="story-points">
-            <div class="story-point">
-              <span class="dot" aria-hidden="true"></span>
+            <div
+              v-for="point in siteConfig.about.points"
+              :key="point.title"
+              class="story-point"
+            >
+              <span class="dot" aria-hidden="true"/>
               <div>
-                <strong>Geen vervanging, wel dezelfde geest</strong>
-                <p>Bammetje is bewust kleiner dan het festival in het park, maar moet dezelfde open, warme en lokale energie vasthouden.</p>
-              </div>
-            </div>
-            <div class="story-point">
-              <span class="dot" aria-hidden="true"></span>
-              <div>
-                <strong>Gebouwd voor Hengelo en Twente</strong>
-                <p>De site moet snel duidelijk maken dat dit een gratis, toegankelijke festivaldag is voor het lokale publiek dat BAM mist.</p>
-              </div>
-            </div>
-            <div class="story-point">
-              <span class="dot" aria-hidden="true"></span>
-              <div>
-                <strong>Compact in info, rijk in sfeer</strong>
-                <p>Niet volstoppen met details. Eerst gevoel, dan de praktische zekerheid om gewoon te komen.</p>
+                <strong>{{ point.title }}</strong>
+                <p>{{ point.description }}</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section" id="line-up">
+      <section id="line-up" class="section">
         <div class="frame">
           <div class="section-intro">
             <span class="eyebrow eyebrow-light">Line-up</span>
@@ -159,7 +149,7 @@ useSeoMeta({
         </div>
       </section>
 
-      <section class="section" id="timetable">
+      <section id="timetable" class="section">
         <div class="frame">
           <div class="section-intro">
             <span class="eyebrow eyebrow-light">Timetable</span>
@@ -176,8 +166,10 @@ useSeoMeta({
                 <div class="time-tag">Grotere namen</div>
               </div>
               <ul>
-                <li><span class="time-stage">Bevestigd</span><span>André Manuel</span></li>
-                <li><span class="time-stage">Bevestigd</span><span>IDA</span></li>
+                <li v-for="artist in artists.filter(a => a.stage === 'Hoofdpodium')" :key="artist.name">
+                  <span class="time-stage">{{ artist.time || 'Bevestigd' }}</span>
+                  <span>{{ artist.name }}</span>
+                </li>
               </ul>
               <p class="time-note">Dit podium draagt de grotere publieksmomenten. Speeltijden volgen zodra het schema rond is.</p>
             </article>
@@ -188,9 +180,10 @@ useSeoMeta({
                 <div class="time-tag">Live en dichtbij</div>
               </div>
               <ul>
-                <li><span class="time-stage">Bevestigd</span><span>Post Ella</span></li>
-                <li><span class="time-stage">Bevestigd</span><span>Lenny Monsou</span></li>
-                <li><span class="time-stage">Bevestigd</span><span>Lézard</span></li>
+                <li v-for="artist in artists.filter(a => a.stage === 'De Tent')" :key="artist.name">
+                  <span class="time-stage">{{ artist.time || 'Bevestigd' }}</span>
+                  <span>{{ artist.name }}</span>
+                </li>
               </ul>
               <p class="time-note">De Tent is voor de andere liveacts: intiemer, directer en perfect voor een compactere setting.</p>
             </article>
@@ -201,8 +194,10 @@ useSeoMeta({
                 <div class="time-tag">Dj-hoek</div>
               </div>
               <ul>
-                <li><span class="time-stage">Bevestigd</span><span>Yo That's Shit</span></li>
-                <li><span class="time-stage">Bevestigd</span><span>Mørssync & Sabossi</span></li>
+                <li v-for="artist in artists.filter(a => a.stage === 'Tommy-Loods')" :key="artist.name">
+                  <span class="time-stage">{{ artist.time || 'Bevestigd' }}</span>
+                  <span>{{ artist.name }}</span>
+                </li>
               </ul>
               <p class="time-note">De dj's zitten hier samen. Zodra de tijden bekend zijn, kan dit blok direct een echte timetable worden.</p>
             </article>
@@ -210,7 +205,7 @@ useSeoMeta({
         </div>
       </section>
 
-      <section class="section" id="info">
+      <section id="info" class="section">
         <div class="frame">
           <div class="section-intro">
             <span class="eyebrow eyebrow-light">Info</span>
@@ -224,49 +219,48 @@ useSeoMeta({
             <div class="info-stack">
               <dl class="info-card">
                 <dt>Datum</dt>
-                <dd>23 mei 2026</dd>
-                <dd>Zaterdag, midden in het voorjaar. Klaar om buiten weer BAM-gevoel op te bouwen.</dd>
+                <dd>{{ siteConfig.eventDate }} 2026</dd>
+                <dd>{{ siteConfig.eventDay }}. Klaar om buiten weer BAM-gevoel op te bouwen.</dd>
               </dl>
               <dl class="info-card">
                 <dt>Tijd</dt>
-                <dd>14:00 – 23:00</dd>
+                <dd>{{ siteConfig.eventTime }}</dd>
                 <dd>Van middag tot avond, compact genoeg om overzichtelijk te blijven en lang genoeg om echt sfeer te maken.</dd>
               </dl>
               <dl class="info-card">
                 <dt>Toegang</dt>
-                <dd>Gratis</dd>
+                <dd>{{ siteConfig.admission }}</dd>
                 <dd>Geen ticket nodig. Gewoon komen, aansluiten en genieten van muziek en een drankje.</dd>
               </dl>
             </div>
 
-            <section class="location-panel" id="locatie" aria-labelledby="locatie_title">
+            <section id="locatie" class="location-panel" aria-labelledby="locatie_title">
               <span class="eyebrow eyebrow-dark">Locatie</span>
-              <h2 class="section-title location-title" id="locatie_title">Broedplaats Oogst</h2>
+              <h2 id="locatie_title" class="section-title location-title">{{ siteConfig.freeEntry.location.split(' / ')[0] }}</h2>
               <p>
                 Bammetje landt bij Oogst in Hengelo. Verwacht geen exacte kopie van BAM! Festival in het park, maar een kleinere setting met dezelfde liefde voor livemuziek,
                 ontmoeting en lokale energie.
               </p>
               <address class="location-address">
-                Esrein 53<br />
-                7553 CX Hengelo
+                {{ siteConfig.address.replace(', ', '\n') }}
               </address>
               <div class="location-map">
                 <ClientOnly>
                   <LMap
                     ref="map"
                     :zoom="15"
-                    :center="[52.2621, 6.7937]"
+                    :center="siteConfig.coordinates"
                     :use-global-leaflet="false"
                   >
                     <LTileLayer
                       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                       attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                     />
-                    <LMarker :lat-lng="[52.2621, 6.7937]">
+                    <LMarker :lat-lng="siteConfig.coordinates">
                       <LPopup>
                         <div class="map-popup">
-                          <strong>Broedplaats Oogst</strong><br />
-                          Esrein 53, Hengelo
+                          <strong>{{ siteConfig.freeEntry.location.split(' / ')[0] }}</strong><br >
+                          {{ siteConfig.address }}
                         </div>
                       </LPopup>
                     </LMarker>
@@ -274,8 +268,8 @@ useSeoMeta({
                 </ClientOnly>
               </div>
               <div class="location-links">
-                <a class="action-button action-button-primary" href="https://www.google.com/maps/search/?api=1&query=Broedplaats+Oogst+Hengelo" target="_blank" rel="noreferrer">Route openen</a>
-                <a class="action-button action-button-secondary" href="https://www.bamfestival.nl/" target="_blank" rel="noreferrer">Bekijk BAM! Festival</a>
+                <a class="action-button action-button-primary" :href="siteConfig.links.route" target="_blank" rel="noreferrer">Route openen</a>
+                <a class="action-button action-button-secondary" :href="siteConfig.links.bamFestival" target="_blank" rel="noreferrer">Bekijk BAM! Festival</a>
               </div>
             </section>
           </div>
@@ -286,7 +280,7 @@ useSeoMeta({
         <div class="frame">
           <div class="quote-ribbon">
             <p>
-              "Samen genieten van livemuziek en een drankje. Dat is uiteindelijk waar BAM altijd om draait."
+              "{{ siteConfig.footer.quote }}"
             </p>
           </div>
         </div>
@@ -303,19 +297,17 @@ useSeoMeta({
               </p>
             </div>
             <div class="sponsor-logos">
-              <a href="https://www.hengelo.nl/" target="_blank" rel="noreferrer" class="sponsor-logo">
+              <a
+                v-for="sponsor in sponsors"
+                :key="sponsor.title"
+                :href="sponsor.link"
+                target="_blank"
+                rel="noreferrer"
+                class="sponsor-logo"
+              >
                 <NuxtImg
-                  src="/assets/logos/gemeente-hengelo-640.webp"
-                  alt="Logo van Gemeente Hengelo"
-                  width="640"
-                  height="238"
-                  loading="lazy"
-                />
-              </a>
-              <a href="https://www.hartvanzuid.nl/" target="_blank" rel="noreferrer" class="sponsor-logo">
-                <NuxtImg
-                  src="/assets/logos/hart-van-zuid-640.webp"
-                  alt="Logo van Hart van Zuid"
+                  :src="sponsor.logo"
+                  :alt="sponsor.logo_alt"
                   width="640"
                   height="238"
                   loading="lazy"
@@ -330,14 +322,14 @@ useSeoMeta({
     <footer class="footer">
       <div class="frame footer-bar">
         <div>
-          <p class="brand-name footer-brand">Bammetje</p>
+          <p class="brand-name footer-brand">{{ siteConfig.footer.brand }}</p>
           <p class="footer-text">
-            De mini-editie van BAM! Festival voor Hengelo en Twente. Gratis, warm en klaar om in 2026 even flink uit te pakken.
+            {{ siteConfig.footer.text }}
           </p>
         </div>
         <div class="footer-meta">
-          <a href="https://www.bamfestival.nl/" target="_blank" rel="noreferrer">BAM! Festival</a>
-          <a href="https://www.google.com/maps/search/?api=1&query=Broedplaats+Oogst+Hengelo" target="_blank" rel="noreferrer">Route</a>
+          <a :href="siteConfig.links.bamFestival" target="_blank" rel="noreferrer">BAM! Festival</a>
+          <a :href="siteConfig.links.route" target="_blank" rel="noreferrer">Route</a>
         </div>
       </div>
     </footer>
@@ -1108,6 +1100,7 @@ button {
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: rgba(253, 250, 251, 0.9);
+  white-space: pre-line;
 }
 
 .location-map {

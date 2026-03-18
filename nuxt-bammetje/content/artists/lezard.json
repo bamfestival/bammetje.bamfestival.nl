@@ -1,0 +1,15 @@
+{
+  "title": "Lézard",
+  "subtitle": "De Tent blijft de plek voor acts die klein beginnen maar de ruimte toch meteen naar zich toe trekken.",
+  "tags": ["de-tent", "live", "zang"],
+  "spotify": "",
+  "youtube": "",
+  "image_landscape": "/assets/stock/concert-crowd-stage-960.webp",
+  "image_landscape_alt": "Lézard optreden",
+  "image_square": "/assets/stock/concert-crowd-stage-960.webp",
+  "image_square_alt": "Lézard",
+  "stage": "De Tent",
+  "starttime": "17:45",
+  "endtime": "18:45",
+  "theme": "light"
+}
