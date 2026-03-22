@@ -3,6 +3,12 @@ export const useSite = () => {
     queryCollection('site').first()
   )
 
+  const defaultStages = {
+    hoofdpodium: { name: 'Hoofdpodium', description: 'Het grote buitenpodium' },
+    'de-tent': { name: 'De Tent', description: 'Overdekte tent' },
+    'tommy-loods': { name: 'Tommy-Loods', description: 'Industriële binnenruimte' },
+  }
+
   const config = computed(() => siteConfig.value ?? {
     title: 'Bammetje 2026',
     tagline: 'Gratis mini-editie van BAM! Festival in Hengelo',
@@ -17,6 +23,7 @@ export const useSite = () => {
     eventTime: '14:00 – 23:00',
     admission: 'Gratis',
     admissionNote: 'Kom langs zonder ticketstress',
+    stages: defaultStages,
     freeEntry: {
       title: 'Gratis entree',
       location: 'Oogst / Hengelo',
@@ -59,8 +66,20 @@ export const useSite = () => {
     }
   })
 
+  const getStageName = (stageKey: string | undefined): string => {
+    if (!stageKey) return ''
+    const stages = config.value?.stages || defaultStages
+    return stages[stageKey as keyof typeof stages]?.name || stageKey
+  }
+
+  const stages = computed(() => {
+    return config.value?.stages || defaultStages
+  })
+
   return {
-    siteConfig: config
+    siteConfig: config,
+    getStageName,
+    stages,
   }
 }
 
@@ -75,12 +94,15 @@ export const useArtists = () => {
       name: artist.title,
       stage: artist.stage,
       description: artist.subtitle,
-      bio: artist.bodytext || '',
+      bio: artist.bio || '',
       time: artist.starttime ? `${artist.starttime} indicatie` : '',
       theme: artist.theme || 'dark',
       image: artist.image_landscape,
-      spotify: artist.spotify,
-      youtube: artist.youtube,
+      spotify: artist.spotify || '',
+      youtube: artist.youtube || '',
+      website: artist.website || '',
+      instagram: artist.instagram || '',
+      facebook: artist.facebook || '',
     }))
   })
 
@@ -92,7 +114,17 @@ export const useSponsors = () => {
     queryCollection('sponsors').all()
   )
 
-  return { sponsors }
+  const mappedSponsors = computed(() => {
+    if (!sponsors.value) return []
+    return sponsors.value.map((sponsor: any) => ({
+      title: sponsor.title,
+      logo: sponsor.logo || '/assets/logos/default-640.webp',
+      logo_alt: sponsor.logo_alt || `Logo van ${sponsor.title}`,
+      link: sponsor.link || '#',
+    }))
+  })
+
+  return { sponsors: mappedSponsors }
 }
 
 export const usePerformances = () => {

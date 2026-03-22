@@ -9,7 +9,7 @@
     content="Bammetje is de gratis mini-editie van BAM! Festival op zaterdag 23 mei 2026 bij Broedplaats Oogst in Hengelo. Bekijk de sfeer, praktische info en updates."
   />
   <meta name="theme-color" content="#530A1D" />
-  <meta name="color-scheme" content="dark light" />
+  <meta name="color-scheme" content="light" />
   <meta name="format-detection" content="telephone=no" />
   <link rel="canonical" href="https://bammetje.bamfestival.nl/" />
   <link rel="manifest" href="./site.webmanifest" />
@@ -45,7 +45,7 @@
   </script>
   <style>
     :root {
-      color-scheme: dark light;
+      color-scheme: light;
       --page_ink: #22161a;
       --page_soft_ink: #51383e;
       --page_surface: #fcf4ef;
@@ -77,6 +77,21 @@
         radial-gradient(circle at 18% 16%, rgba(216, 151, 156, 0.24), transparent 12%),
         radial-gradient(circle at 75% 65%, rgba(226, 100, 38, 0.28), transparent 26%),
         linear-gradient(125deg, rgba(18, 2, 6, 0.88) 4%, rgba(83, 10, 29, 0.9) 24%, rgba(146, 18, 52, 0.92) 46%, rgba(198, 33, 68, 0.92) 64%, rgba(226, 100, 38, 0.92) 82%, rgba(248, 190, 5, 0.88) 100%);
+      --role_primary: var(--page_red);
+      --role_secondary: var(--page_orange);
+      --role_accent: var(--page_yellow);
+      --surface_panel_soft: rgba(253, 250, 251, 0.86);
+      --surface_panel_strong: rgba(253, 250, 251, 0.92);
+      --surface_panel_muted: rgba(253, 250, 251, 0.78);
+      --surface_tint_soft: rgba(83, 10, 29, 0.08);
+      --surface_dark_soft: rgba(253, 250, 251, 0.1);
+      --surface_dark_strong: rgba(253, 250, 251, 0.16);
+      --border_tint_soft: rgba(108, 24, 48, 0.12);
+      --text_tint_strong: #6c1830;
+      --text_on_dark: rgba(253, 250, 251, 0.92);
+      --text_on_dark_soft: rgba(253, 250, 251, 0.86);
+      --text_on_dark_muted: rgba(253, 250, 251, 0.8);
+      --header_surface_scrolled: rgba(83, 10, 29, 0.88);
       --ease_out_quart: cubic-bezier(0.25, 1, 0.5, 1);
       --ease_out_quint: cubic-bezier(0.22, 1, 0.36, 1);
       --ease_out_expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -194,14 +209,55 @@
 
     .eyebrow_light {
       background: var(--page_soft_white);
-      color: #6c1830;
-      border: 1px solid rgba(108, 24, 48, 0.12);
+      color: var(--text_tint_strong);
+      border: 1px solid var(--border_tint_soft);
     }
 
     .eyebrow_dark {
       background: var(--page_soft_dark);
       color: var(--page_white);
       border: 1px solid var(--page_soft_white_border);
+    }
+
+    .stage_chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 0.42rem 0.72rem;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .stage_chip::before {
+      content: "";
+      width: 0.58rem;
+      height: 0.58rem;
+      border-radius: 999px;
+      background: currentColor;
+      opacity: 0.9;
+    }
+
+    .stage_main {
+      background: rgba(253, 250, 251, 0.16);
+      color: var(--page_white);
+      border: 1px solid rgba(253, 250, 251, 0.16);
+    }
+
+    .stage_tent {
+      background: rgba(83, 10, 29, 0.08);
+      color: var(--page_red_dark);
+      border: 1px solid rgba(83, 10, 29, 0.12);
+    }
+
+    .stage_loft {
+      background: rgba(248, 190, 5, 0.22);
+      color: var(--page_white);
+      border: 1px solid rgba(253, 250, 251, 0.16);
     }
 
     .dot {
@@ -219,14 +275,26 @@
       backdrop-filter: blur(18px);
       background: var(--page_header_surface);
       border-bottom: 1px solid var(--page_soft_white_border);
+      overflow: clip;
       transition:
         background-color 240ms var(--ease_out_quart),
         box-shadow 240ms var(--ease_out_quart),
         border-color 240ms var(--ease_out_quart);
     }
 
+    .site_header::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 0.34rem;
+      background: linear-gradient(90deg, var(--page_yellow) 0%, var(--page_orange) 30%, var(--page_red) 62%, var(--page_burgundy) 100%);
+      transform-origin: left center;
+      transition: transform 260ms var(--ease_out_quart), opacity 260ms var(--ease_out_quart);
+      opacity: 0.82;
+    }
+
     .site_header.is_scrolled {
-      background: rgba(83, 10, 29, 0.88);
+      background: var(--header_surface_scrolled);
       border-bottom-color: rgba(253, 250, 251, 0.2);
       box-shadow: 0 12px 34px rgba(18, 2, 6, 0.22);
     }
@@ -236,7 +304,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      min-height: 4.75rem;
+      min-height: 5rem;
       padding-block: 0.8rem;
     }
 
@@ -247,24 +315,30 @@
       min-width: 0;
       text-decoration: none;
       color: var(--page_white);
+      position: relative;
     }
 
     .brand_mark {
       width: 3.2rem;
       height: 3.2rem;
-      border-radius: 1.1rem;
+      border-radius: 1rem;
       padding: 0.35rem;
-      background: rgba(253, 250, 251, 0.94);
-      box-shadow: 0 14px 34px rgba(18, 2, 6, 0.18);
+      background:
+        linear-gradient(155deg, rgba(248, 190, 5, 0.98) 0%, rgba(226, 100, 38, 0.98) 54%, rgba(198, 33, 68, 0.96) 100%);
+      box-shadow:
+        0 14px 34px rgba(18, 2, 6, 0.18),
+        inset 0 1px 0 rgba(253, 250, 251, 0.28);
       transform-origin: center;
+      transform: rotate(-5deg);
+      transition: transform 260ms var(--ease_out_quart), box-shadow 260ms var(--ease_out_quart);
     }
 
     .brand_name {
       margin: 0;
       font-family: "Saira Condensed", sans-serif;
-      font-size: 1.7rem;
+      font-size: clamp(1.8rem, 3vw, 2.15rem);
       line-height: 0.88;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
@@ -277,17 +351,27 @@
       color: rgba(253, 250, 251, 0.74);
     }
 
+    .brand_link:hover .brand_mark,
+    .brand_link:focus-visible .brand_mark {
+      transform: rotate(-2deg) translateY(-0.08rem) scale(1.04);
+      box-shadow:
+        0 18px 42px rgba(18, 2, 6, 0.22),
+        inset 0 1px 0 rgba(253, 250, 251, 0.34);
+    }
+
     .nav_toggle {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       width: 3rem;
       height: 3rem;
-      border-radius: 1rem;
+      border-radius: 0.9rem;
       border: 1px solid rgba(253, 250, 251, 0.18);
-      background: rgba(253, 250, 251, 0.08);
-      color: #fdfafb;
-      box-shadow: 0 10px 24px rgba(18, 2, 6, 0);
+      background:
+        linear-gradient(160deg, rgba(248, 190, 5, 0.18) 0%, rgba(226, 100, 38, 0.16) 42%, rgba(83, 10, 29, 0.82) 100%);
+      color: var(--page_white);
+      box-shadow: 0 10px 24px rgba(18, 2, 6, 0.12);
+      transition: transform 220ms var(--ease_out_quint), box-shadow 220ms var(--ease_out_quint), background-color 220ms var(--ease_out_quint);
     }
 
     .nav_toggle svg {
@@ -298,12 +382,13 @@
 
     .nav_toggle:hover,
     .nav_toggle:focus-visible {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 24px rgba(18, 2, 6, 0.18);
+      transform: translateY(-1px) rotate(-2deg);
+      box-shadow: 0 14px 30px rgba(18, 2, 6, 0.24);
     }
 
     .nav_toggle[aria-expanded="true"] {
-      background: rgba(253, 250, 251, 0.14);
+      background:
+        linear-gradient(160deg, rgba(248, 190, 5, 0.28) 0%, rgba(198, 33, 68, 0.22) 40%, rgba(83, 10, 29, 0.92) 100%);
     }
 
     .nav_toggle[aria-expanded="true"] svg {
@@ -340,22 +425,29 @@
 
     .mobile_panel_inner {
       overflow: hidden;
+      border-top: 1px solid rgba(253, 250, 251, 0.12);
     }
 
     .mobile_menu {
       display: grid;
       gap: 0.7rem;
-      padding: 0 0 1rem;
+      padding: 0.95rem 0 1rem;
     }
 
     .mobile_menu a {
+      position: relative;
       border-radius: 1rem;
-      padding: 0.95rem 1rem;
+      padding: 1rem 1rem 1rem 1.15rem;
       text-decoration: none;
+      font-family: "Saira Condensed", sans-serif;
+      font-size: 1.16rem;
       font-weight: 700;
-      color: #fdfafb;
-      background: rgba(253, 250, 251, 0.08);
-      border: 1px solid var(--page_soft_white_border);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--page_white);
+      background:
+        linear-gradient(140deg, rgba(248, 190, 5, 0.12) 0%, rgba(226, 100, 38, 0.1) 30%, rgba(83, 10, 29, 0.82) 100%);
+      border: 1px solid rgba(253, 250, 251, 0.14);
       opacity: 0;
       transform: translateY(-0.45rem);
       transition:
@@ -363,6 +455,15 @@
         opacity 180ms var(--ease_out_quart),
         background-color 220ms var(--ease_out_quint),
         border-color 220ms var(--ease_out_quint);
+    }
+
+    .mobile_menu a::before {
+      content: "";
+      position: absolute;
+      inset: 0.6rem auto 0.6rem 0.55rem;
+      width: 0.28rem;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--page_yellow) 0%, var(--page_orange) 50%, var(--page_red) 100%);
     }
 
     .mobile_panel[data-open="true"] .mobile_menu a {
@@ -392,8 +493,9 @@
 
     .mobile_menu a:hover,
     .mobile_menu a:focus-visible {
-      transform: translateY(-2px);
-      background: rgba(253, 250, 251, 0.14);
+      transform: translateY(-2px) translateX(0.1rem);
+      background:
+        linear-gradient(140deg, rgba(248, 190, 5, 0.18) 0%, rgba(198, 33, 68, 0.16) 36%, rgba(83, 10, 29, 0.94) 100%);
     }
 
     .hero {
@@ -412,7 +514,7 @@
       width: 100%;
       min-height: clamp(16rem, 42vw, 34rem);
       overflow: clip;
-      background: #2a0610;
+      background: var(--page_dark);
       box-shadow: var(--page_shadow);
     }
 
@@ -465,8 +567,10 @@
       line-height: 0.82;
       letter-spacing: 0.01em;
       text-transform: uppercase;
-      color: #fdfafb;
+      color: var(--page_white);
       text-wrap: balance;
+      overflow-wrap: anywhere;
+      hyphens: auto;
     }
 
     .hero_title_wrap {
@@ -484,7 +588,7 @@
       position: absolute;
       inset: 1rem;
       border-radius: clamp(1.1rem, 2vw, 2rem);
-      border: 1px solid rgba(253, 250, 251, 0.16);
+      border: 1px solid var(--surface_dark_strong);
       pointer-events: none;
     }
 
@@ -493,13 +597,16 @@
       margin: 1.1rem 0 0;
       font-size: clamp(1.05rem, 2vw, 1.35rem);
       line-height: 1.65;
-      color: rgba(253, 250, 251, 0.9);
+      color: var(--text_on_dark);
       text-wrap: pretty;
+      overflow-wrap: anywhere;
+      hyphens: auto;
     }
 
     .hero_actions {
       display: flex;
       flex-wrap: wrap;
+      align-items: stretch;
       gap: 0.9rem;
       margin-top: 1.6rem;
     }
@@ -518,11 +625,14 @@
       line-height: 1;
       position: relative;
       overflow: clip;
+      min-width: 0;
+      width: 100%;
+      overflow-wrap: anywhere;
     }
 
     .action_button_primary {
-      background: #f8be05;
-      color: #120206;
+      background: var(--role_accent);
+      color: var(--page_dark);
       box-shadow: 0 16px 40px rgba(248, 190, 5, 0.28);
     }
 
@@ -534,14 +644,14 @@
 
     .action_button_secondary {
       border-color: rgba(253, 250, 251, 0.2);
-      color: #fdfafb;
-      background: rgba(253, 250, 251, 0.1);
+      color: var(--page_white);
+      background: var(--surface_dark_soft);
     }
 
     .action_button_secondary:hover,
     .action_button_secondary:focus-visible {
       transform: translateY(-2px);
-      background: rgba(253, 250, 251, 0.16);
+      background: var(--surface_dark_strong);
     }
 
     .action_button:active {
@@ -550,7 +660,7 @@
 
     .hero_strip {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: 1fr;
       gap: 0.8rem;
       margin-top: 1.3rem;
     }
@@ -559,8 +669,9 @@
       padding: 0.95rem 1rem;
       border-radius: 1.25rem;
       background: var(--page_chip_surface);
-      border: 1px solid rgba(253, 250, 251, 0.12);
-      color: #fdfafb;
+      border: 1px solid var(--page_soft_white_border);
+      color: var(--page_white);
+      min-width: 0;
       transition:
         transform 260ms var(--ease_out_quart),
         border-color 220ms var(--ease_out_quint),
@@ -570,7 +681,7 @@
     .hero_strip_item:hover {
       transform: translateY(-3px);
       border-color: rgba(253, 250, 251, 0.24);
-      background: rgba(253, 250, 251, 0.16);
+      background: var(--surface_dark_strong);
     }
 
     .hero_strip_item strong {
@@ -587,7 +698,7 @@
       margin-top: 0.35rem;
       font-size: 0.88rem;
       line-height: 1.4;
-      color: rgba(253, 250, 251, 0.82);
+      color: var(--text_on_dark_soft);
     }
 
     .ticket_card {
@@ -596,7 +707,7 @@
       max-width: 24rem;
       padding: 1.35rem;
       border-radius: 1.8rem;
-      background: rgba(253, 250, 251, 0.92);
+      background: var(--surface_panel_strong);
       color: var(--page_ink);
       box-shadow: var(--page_shadow);
       transform: rotate(-2deg);
@@ -635,6 +746,8 @@
       letter-spacing: 0.02em;
       text-transform: uppercase;
       text-wrap: balance;
+      overflow-wrap: anywhere;
+      hyphens: auto;
     }
 
     .section_text {
@@ -644,6 +757,8 @@
       line-height: 1.75;
       color: var(--page_soft_ink);
       text-wrap: pretty;
+      overflow-wrap: anywhere;
+      hyphens: auto;
     }
 
     .light_panel {
@@ -655,7 +770,7 @@
 
     .story_band {
       position: relative;
-      color: #fdfafb;
+      color: var(--page_white);
       background:
         radial-gradient(circle at 12% 18%, rgba(248, 190, 5, 0.18), transparent 12%),
         radial-gradient(circle at 88% 24%, rgba(216, 151, 156, 0.16), transparent 12%),
@@ -671,15 +786,17 @@
       position: relative;
       padding: clamp(1.4rem, 3vw, 2rem);
       border-radius: 1.6rem;
-      background: rgba(253, 250, 251, 0.08);
-      border: 1px solid rgba(253, 250, 251, 0.12);
+      background: var(--surface_dark_soft);
+      border: 1px solid var(--page_soft_white_border);
     }
 
     .story_quote p {
       margin: 0;
       font-size: clamp(1.15rem, 2vw, 1.45rem);
       line-height: 1.6;
-      color: rgba(253, 250, 251, 0.94);
+      color: var(--page_white);
+      overflow-wrap: anywhere;
+      hyphens: auto;
     }
 
     .story_points {
@@ -704,24 +821,25 @@
       display: block;
       font-size: 1rem;
       line-height: 1.35;
-      color: #fdfafb;
+      color: var(--page_white);
+      overflow-wrap: anywhere;
+      hyphens: auto;
     }
 
     .story_point p {
       margin: 0.2rem 0 0;
-      color: rgba(253, 250, 251, 0.8);
+      color: var(--text_on_dark_muted);
       line-height: 1.6;
+      overflow-wrap: anywhere;
+      hyphens: auto;
     }
 
-    .sticker_wall {
-      display: none;
-      gap: 1rem;
-    }
-
-    .line_up_swiper {
-      display: grid;
-      gap: 1rem;
-      margin-bottom: 1.25rem;
+    .line_up_more,
+    .time_block,
+    .info_card {
+      background: var(--surface_panel_soft);
+      border: 1px solid var(--page_panel_border);
+      box-shadow: var(--page_shadow);
     }
 
     .line_up_board {
@@ -730,156 +848,79 @@
       align-items: stretch;
     }
 
-    .line_up_stage {
-      display: grid;
-      gap: 1rem;
-      align-content: start;
-      padding: 1.15rem;
-      border-radius: 1.7rem;
-      box-shadow: var(--page_shadow);
-      overflow: clip;
-      position: relative;
-    }
-
-    .line_up_stage > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .line_up_stage::after {
-      content: "";
-      position: absolute;
-      right: -1.75rem;
-      top: -1.75rem;
-      width: 7rem;
-      height: 7rem;
-      border-radius: 999px;
-      background: rgba(253, 250, 251, 0.12);
-      filter: blur(2px);
-      pointer-events: none;
-    }
-
-    .line_up_stage_main {
-      color: var(--page_white);
-      background:
-        radial-gradient(circle at 84% 18%, rgba(248, 190, 5, 0.26), transparent 20%),
-        linear-gradient(150deg, #410916 0%, #7a112c 36%, #c62144 68%, #e26426 100%);
-    }
-
-    .line_up_stage_tent {
-      color: var(--page_ink);
-      background:
-        radial-gradient(circle at 74% 20%, rgba(216, 151, 156, 0.28), transparent 14%),
-        linear-gradient(180deg, #fff3e5 0%, #f7dbc8 100%);
-    }
-
-    .line_up_stage_loft {
-      color: var(--page_white);
-      background:
-        radial-gradient(circle at 16% 20%, rgba(248, 190, 5, 0.2), transparent 16%),
-        linear-gradient(180deg, #120206 0%, #530a1d 100%);
-    }
-
-    .line_up_stage_head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.9rem;
-      flex-wrap: wrap;
-    }
-
-    .line_up_stage_intro {
-      display: grid;
-      gap: 0.45rem;
-    }
-
-    .line_up_stage_intro p {
-      margin: 0;
-      max-width: 32ch;
-      line-height: 1.55;
-      font-size: 0.96rem;
-    }
-
-    .line_up_total {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 2rem;
-      padding: 0.42rem 0.78rem;
-      border-radius: 999px;
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .line_up_stage_main .line_up_total,
-    .line_up_stage_loft .line_up_total {
-      background: rgba(253, 250, 251, 0.14);
-      border: 1px solid rgba(253, 250, 251, 0.14);
-      color: var(--page_white);
-    }
-
-    .line_up_stage_tent .line_up_total {
-      background: rgba(83, 10, 29, 0.08);
-      border: 1px solid rgba(83, 10, 29, 0.08);
-      color: var(--page_burgundy);
-    }
-
-    .line_up_list {
-      display: grid;
-      gap: 0.8rem;
-    }
-
-    .line_up_stage_media {
-      position: relative;
-      aspect-ratio: 16 / 9;
-      margin: 0;
-      border-radius: 1.3rem;
-      overflow: clip;
-      isolation: isolate;
-    }
-
-    .line_up_stage_media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(18, 2, 6, 0.08) 0%, rgba(18, 2, 6, 0.44) 100%);
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .line_up_stage_media img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-    }
-
     .line_up_artist {
-      display: grid;
-      gap: 0;
-      padding: 0;
+      position: relative;
       border-radius: 1.25rem;
       min-width: 0;
       height: 100%;
+      min-height: clamp(31rem, 92vw, 38rem);
       overflow: clip;
+      box-shadow: var(--page_shadow);
+      perspective: 1400px;
+      cursor: pointer;
     }
 
-    .line_up_stage_main .line_up_artist,
-    .line_up_stage_loft .line_up_artist {
-      background: rgba(253, 250, 251, 0.12);
+    .line_up_artist.artist_main,
+    .line_up_artist.artist_loft {
+      color: var(--page_white);
+    }
+
+    .line_up_artist.artist_main {
+      background:
+        radial-gradient(circle at 84% 18%, rgba(248, 190, 5, 0.18), transparent 20%),
+        linear-gradient(150deg, #410916 0%, #7a112c 36%, #c62144 68%, #e26426 100%);
       border: 1px solid rgba(253, 250, 251, 0.14);
     }
 
-    .line_up_stage_tent .line_up_artist {
-      background: rgba(253, 250, 251, 0.72);
+    .line_up_artist.artist_tent {
+      color: var(--page_ink);
+      background:
+        radial-gradient(circle at 74% 20%, rgba(216, 151, 156, 0.24), transparent 14%),
+        linear-gradient(180deg, #fff3e5 0%, #f7dbc8 100%);
       border: 1px solid rgba(83, 10, 29, 0.08);
     }
 
-    .line_up_stage_tent .line_up_stage_media::after {
-      background: linear-gradient(180deg, rgba(83, 10, 29, 0.06) 0%, rgba(83, 10, 29, 0.2) 100%);
+    .line_up_artist.artist_loft {
+      background:
+        radial-gradient(circle at 16% 20%, rgba(248, 190, 5, 0.16), transparent 16%),
+        linear-gradient(180deg, #120206 0%, #530a1d 100%);
+      border: 1px solid rgba(253, 250, 251, 0.14);
+    }
+
+    .line_up_artist_inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      transform-style: preserve-3d;
+      transition: transform 760ms var(--ease_out_expo);
+    }
+
+    .line_up_artist.is_flipped .line_up_artist_inner {
+      transform: rotateX(180deg);
+    }
+
+    .line_up_artist_face {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .line_up_artist_front {
+      grid-template-rows: minmax(0, 1fr) auto;
+      overflow: clip;
+    }
+
+    .line_up_artist_back {
+      align-content: start;
+      gap: 0.95rem;
+      padding: 1rem;
+      overflow: auto;
+      transform: rotateX(180deg);
+      background: linear-gradient(180deg, rgba(18, 2, 6, 0.08) 0%, rgba(18, 2, 6, 0.22) 100%);
+      scrollbar-width: thin;
     }
 
     .line_up_artist_poster {
@@ -911,16 +952,48 @@
       gap: 0.6rem;
       align-content: start;
       padding: 0.9rem 1rem 1rem;
+      min-width: 0;
+    }
+
+    .line_up_artist_hint {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      margin-top: 0.15rem;
+      border-radius: 999px;
+      padding: 0.4rem 0.65rem;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .artist_main .line_up_artist_hint,
+    .artist_loft .line_up_artist_hint {
+      background: rgba(253, 250, 251, 0.14);
+      color: var(--page_white);
+      border: 1px solid rgba(253, 250, 251, 0.14);
+    }
+
+    .artist_tent .line_up_artist_hint {
+      background: rgba(83, 10, 29, 0.08);
+      color: var(--page_burgundy);
+      border: 1px solid rgba(83, 10, 29, 0.08);
     }
 
     .line_up_artist_title {
       position: absolute;
-      left: 1rem;
-      right: 1rem;
+      inset-inline: 1rem;
       bottom: 0.9rem;
       z-index: 2;
       color: var(--page_white);
       text-shadow: 0 0.18rem 0.7rem rgba(18, 2, 6, 0.42);
+      min-width: 0;
+    }
+
+    .line_up_artist_stage {
+      display: inline-flex;
+      margin-bottom: 0.6rem;
     }
 
     .line_up_artist_name {
@@ -931,6 +1004,8 @@
       letter-spacing: 0.03em;
       text-transform: uppercase;
       text-wrap: balance;
+      overflow-wrap: anywhere;
+      hyphens: auto;
     }
 
     .line_up_artist_title .line_up_artist_name {
@@ -941,6 +1016,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.45rem;
+      min-width: 0;
     }
 
     .line_up_artist_meta span {
@@ -955,14 +1031,14 @@
       text-transform: uppercase;
     }
 
-    .line_up_stage_main .line_up_artist_meta span,
-    .line_up_stage_loft .line_up_artist_meta span {
+    .artist_main .line_up_artist_meta span,
+    .artist_loft .line_up_artist_meta span {
       background: rgba(253, 250, 251, 0.14);
       border: 1px solid rgba(253, 250, 251, 0.14);
       color: var(--page_white);
     }
 
-    .line_up_stage_tent .line_up_artist_meta span {
+    .artist_tent .line_up_artist_meta span {
       background: rgba(83, 10, 29, 0.08);
       border: 1px solid rgba(83, 10, 29, 0.08);
       color: var(--page_burgundy);
@@ -980,6 +1056,138 @@
       max-width: 34ch;
       line-height: 1.5;
       font-size: 0.96rem;
+      overflow-wrap: anywhere;
+      hyphens: auto;
+    }
+
+    .line_up_artist_back_top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
+
+    .line_up_artist_back_title {
+      display: grid;
+      gap: 0.45rem;
+      min-width: 0;
+    }
+
+    .line_up_artist_back_title p {
+      max-width: none;
+    }
+
+    .line_up_artist_close {
+      appearance: none;
+      border: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.4rem;
+      padding: 0.55rem 0.85rem;
+      border-radius: 999px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .artist_main .line_up_artist_close,
+    .artist_loft .line_up_artist_close {
+      background: rgba(253, 250, 251, 0.14);
+      color: var(--page_white);
+      border: 1px solid rgba(253, 250, 251, 0.14);
+    }
+
+    .artist_tent .line_up_artist_close {
+      background: rgba(83, 10, 29, 0.08);
+      color: var(--page_burgundy);
+      border: 1px solid rgba(83, 10, 29, 0.12);
+    }
+
+    .line_up_embed_group {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .line_up_embed_label {
+      margin: 0;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    .line_up_embed_frame {
+      border-radius: 1rem;
+      overflow: clip;
+      min-height: 12rem;
+      border: 1px solid rgba(253, 250, 251, 0.12);
+      background: rgba(18, 2, 6, 0.2);
+    }
+
+    .artist_tent .line_up_embed_frame {
+      border-color: rgba(83, 10, 29, 0.12);
+      background: rgba(253, 250, 251, 0.46);
+    }
+
+    .line_up_embed_frame iframe {
+      display: block;
+      width: 100%;
+      border: 0;
+    }
+
+    .line_up_embed_frame_youtube iframe {
+      aspect-ratio: 16 / 9;
+      min-height: 12rem;
+    }
+
+    .line_up_embed_frame_spotify iframe {
+      min-height: 152px;
+    }
+
+    .line_up_embed_empty {
+      display: grid;
+      gap: 0.55rem;
+      padding: 0.95rem 1rem;
+    }
+
+    .line_up_embed_empty p {
+      max-width: none;
+    }
+
+    .line_up_socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .line_up_socials a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.2rem;
+      padding: 0.5rem 0.8rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .artist_main .line_up_socials a,
+    .artist_loft .line_up_socials a {
+      background: rgba(253, 250, 251, 0.14);
+      color: var(--page_white);
+      border: 1px solid rgba(253, 250, 251, 0.14);
+    }
+
+    .artist_tent .line_up_socials a {
+      background: rgba(83, 10, 29, 0.08);
+      color: var(--page_burgundy);
+      border: 1px solid rgba(83, 10, 29, 0.12);
     }
 
     .line_up_more {
@@ -989,9 +1197,6 @@
       border-radius: 1.4rem;
       height: 100%;
       align-content: start;
-      background: rgba(253, 250, 251, 0.86);
-      border: 1px solid rgba(83, 10, 29, 0.08);
-      box-shadow: var(--page_shadow);
     }
 
     .line_up_more p {
@@ -999,6 +1204,8 @@
       max-width: 42rem;
       line-height: 1.65;
       color: var(--page_soft_ink);
+      overflow-wrap: anywhere;
+      hyphens: auto;
     }
 
     .line_up_note {
@@ -1009,770 +1216,12 @@
       min-height: 2rem;
       padding: 0.42rem 0.72rem;
       border-radius: 999px;
-      background: rgba(83, 10, 29, 0.08);
+      background: var(--surface_tint_soft);
       color: var(--page_burgundy);
       font-size: 0.72rem;
       font-weight: 800;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-    }
-
-    .line_up_artist {
-      box-shadow: var(--page_shadow);
-    }
-
-    .line_up_artist.artist_main,
-    .line_up_artist.artist_loft {
-      color: var(--page_white);
-    }
-
-    .line_up_artist.artist_main {
-      background:
-        radial-gradient(circle at 84% 18%, rgba(248, 190, 5, 0.18), transparent 20%),
-        linear-gradient(150deg, #410916 0%, #7a112c 36%, #c62144 68%, #e26426 100%);
-      border: 1px solid rgba(253, 250, 251, 0.14);
-    }
-
-    .line_up_artist.artist_tent {
-      color: var(--page_ink);
-      background:
-        radial-gradient(circle at 74% 20%, rgba(216, 151, 156, 0.24), transparent 14%),
-        linear-gradient(180deg, #fff3e5 0%, #f7dbc8 100%);
-      border: 1px solid rgba(83, 10, 29, 0.08);
-    }
-
-    .line_up_artist.artist_loft {
-      background:
-        radial-gradient(circle at 16% 20%, rgba(248, 190, 5, 0.16), transparent 16%),
-        linear-gradient(180deg, #120206 0%, #530a1d 100%);
-      border: 1px solid rgba(253, 250, 251, 0.14);
-    }
-
-    .line_up_artist_stage {
-      display: inline-flex;
-      margin-bottom: 0.6rem;
-    }
-
-    .swipe_hint {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      padding: 1rem 1.05rem;
-      border-radius: 1.2rem;
-      background: rgba(83, 10, 29, 0.08);
-      border: 1px solid rgba(83, 10, 29, 0.08);
-      color: var(--page_soft_ink);
-    }
-
-    .swipe_hint strong {
-      color: var(--page_burgundy);
-      font-size: 0.96rem;
-    }
-
-    .swipe_hint p {
-      margin: 0.2rem 0 0;
-      font-size: 0.92rem;
-      line-height: 1.5;
-    }
-
-    .swipe_status {
-      border-radius: 999px;
-      padding: 0.55rem 0.8rem;
-      background: rgba(253, 250, 251, 0.8);
-      color: var(--page_red_dark);
-      font-size: 0.71rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      line-height: 1.25;
-      text-transform: uppercase;
-      white-space: normal;
-      text-align: center;
-      max-width: 11rem;
-      box-shadow: 0 10px 24px rgba(83, 10, 29, 0.08);
-    }
-
-    .swipe_stack {
-      position: relative;
-      min-height: 29rem;
-      isolation: isolate;
-      touch-action: pan-y;
-      user-select: none;
-    }
-
-    .swipe_card {
-      position: absolute;
-      inset: 0;
-      border-radius: 1.8rem;
-      overflow: visible;
-      box-shadow: var(--page_shadow);
-      transform-origin: center 120%;
-      opacity: 0;
-      pointer-events: none;
-      transition:
-        transform 320ms var(--ease_out_quart),
-        opacity 220ms var(--ease_out_quart),
-        box-shadow 320ms var(--ease_out_quart);
-    }
-
-    .swipe_card_inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      min-height: inherit;
-      border-radius: inherit;
-      transform-style: preserve-3d;
-      transition: transform 620ms var(--ease_out_expo);
-    }
-
-    .swipe_card.is_flipped .swipe_card_inner {
-      transform: rotateY(180deg);
-    }
-
-    .swipe_face {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      padding: 1rem;
-      border-radius: inherit;
-      overflow: clip;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-    }
-
-    .swipe_face > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .swipe_face_back {
-      transform: rotateY(180deg);
-    }
-
-    .swipe_badges {
-      position: absolute;
-      inset: 0.9rem 0.9rem auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    .swipe_badge {
-      border-radius: 999px;
-      padding: 0.55rem 0.8rem;
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      box-shadow: 0 12px 30px rgba(18, 2, 6, 0.18);
-      opacity: 0;
-      transform: translateY(0.35rem) scale(0.94);
-      transition: opacity 120ms linear, transform 180ms var(--ease_out_quart);
-    }
-
-    .swipe_badge_like {
-      background: rgba(253, 250, 251, 0.94);
-      color: var(--page_red_dark);
-    }
-
-    .swipe_badge_next {
-      margin-left: auto;
-      background: rgba(18, 2, 6, 0.86);
-      color: var(--page_yellow);
-      border: 1px solid rgba(253, 250, 251, 0.14);
-    }
-
-    .swipe_card_media {
-      position: relative;
-      z-index: 0;
-      display: block;
-      aspect-ratio: 1 / 1;
-      min-height: 13.5rem;
-      border-radius: 1.35rem;
-      overflow: hidden;
-    }
-
-    .swipe_card_media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(18, 2, 6, 0.06) 0%, rgba(18, 2, 6, 0.5) 100%);
-    }
-
-    .swipe_card_media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .swipe_face_front,
-    .swipe_face_back {
-      background: linear-gradient(180deg, rgba(18, 2, 6, 0.04) 0%, rgba(18, 2, 6, 0.1) 100%);
-    }
-
-    .swipe_front_header,
-    .swipe_back_header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-    }
-
-    .swipe_front_kicker,
-    .swipe_back_kicker {
-      font-size: 0.74rem;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      opacity: 0.84;
-    }
-
-    .swipe_front_body {
-      display: grid;
-      gap: 0.6rem;
-      padding: 1rem 1rem 0.95rem;
-      border-radius: 1.35rem;
-      background: rgba(18, 2, 6, 0.28);
-      border: 1px solid rgba(253, 250, 251, 0.12);
-      backdrop-filter: blur(10px);
-    }
-
-    .swipe_card[data_theme="light"] .swipe_front_body,
-    .swipe_card[data_theme="gold"] .swipe_front_body {
-      background: rgba(253, 250, 251, 0.74);
-      border-color: rgba(83, 10, 29, 0.1);
-    }
-
-    .swipe_front_meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .swipe_front_meta_item {
-      display: inline-flex;
-      align-items: center;
-      min-height: 2rem;
-      padding: 0.45rem 0.7rem;
-      border-radius: 999px;
-      font-size: 0.74rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      background: rgba(253, 250, 251, 0.12);
-      border: 1px solid rgba(253, 250, 251, 0.12);
-    }
-
-    .swipe_card[data_theme="light"] .swipe_front_meta_item,
-    .swipe_card[data_theme="gold"] .swipe_front_meta_item {
-      background: rgba(83, 10, 29, 0.08);
-      border-color: rgba(83, 10, 29, 0.08);
-    }
-
-    .swipe_card[data_theme="light"] {
-      color: #2e1418;
-      background:
-        radial-gradient(circle at 74% 20%, rgba(216, 151, 156, 0.28), transparent 14%),
-        linear-gradient(180deg, #fff3e5 0%, #f7dbc8 100%);
-    }
-
-    .swipe_card[data_theme="dark"] {
-      color: #fdfafb;
-      background:
-        radial-gradient(circle at 84% 18%, rgba(248, 190, 5, 0.3), transparent 18%),
-        linear-gradient(150deg, #410916 0%, #7a112c 36%, #c62144 68%, #e26426 100%);
-    }
-
-    .swipe_card[data_theme="night"] {
-      color: #fdfafb;
-      background:
-        radial-gradient(circle at 16% 20%, rgba(248, 190, 5, 0.2), transparent 16%),
-        linear-gradient(180deg, #120206 0%, #530a1d 100%);
-    }
-
-    .swipe_card[data_theme="gold"] {
-      color: #2b1603;
-      background:
-        radial-gradient(circle at 24% 18%, rgba(253, 250, 251, 0.34), transparent 12%),
-        linear-gradient(180deg, #f8be05 0%, #f3a513 100%);
-    }
-
-    .swipe_card.is_current {
-      opacity: 1;
-      pointer-events: auto;
-      z-index: 4;
-      box-shadow: 0 30px 80px rgba(83, 10, 29, 0.18);
-      cursor: grab;
-    }
-
-    .swipe_card.is_dragging {
-      transition: none;
-      cursor: grabbing;
-    }
-
-    .swipe_card.threshold_reached {
-      box-shadow: 0 34px 86px rgba(83, 10, 29, 0.26);
-      filter: saturate(1.04);
-    }
-
-    .swipe_card.is_leaving_right,
-    .swipe_card.is_leaving_left {
-      transition:
-        transform 260ms var(--ease_out_expo),
-        opacity 220ms linear,
-        box-shadow 260ms var(--ease_out_expo);
-      z-index: 6;
-    }
-
-    .swipe_card.is_leaving_right {
-      transform: translate3d(135%, -3%, 0) rotate(20deg) scale(1.02) !important;
-      opacity: 0 !important;
-      box-shadow: 0 36px 90px rgba(83, 10, 29, 0.24);
-    }
-
-    .swipe_card.is_leaving_left {
-      transform: translate3d(-135%, -3%, 0) rotate(-20deg) scale(1.02) !important;
-      opacity: 0 !important;
-      box-shadow: 0 36px 90px rgba(83, 10, 29, 0.24);
-    }
-
-    .swipe_card.is_next {
-      opacity: 1;
-      z-index: 3;
-    }
-
-    .swipe_card.is_third {
-      opacity: 1;
-      z-index: 2;
-    }
-
-    .swipe_card h3 {
-      margin: 0;
-      font-family: "Saira Condensed", sans-serif;
-      font-size: clamp(2rem, 8vw, 2.8rem);
-      line-height: 0.92;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-    }
-
-    .swipe_card p {
-      margin: 0;
-      line-height: 1.58;
-      max-width: none;
-    }
-
-    .swipe_artist_list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .swipe_artist_list li {
-      padding: 0.5rem 0.76rem;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      line-height: 1.2;
-      border: 1px solid rgba(253, 250, 251, 0.18);
-      background: rgba(253, 250, 251, 0.14);
-      backdrop-filter: blur(8px);
-    }
-
-    .swipe_card[data_theme="light"] .swipe_artist_list li,
-    .swipe_card[data_theme="gold"] .swipe_artist_list li {
-      border-color: rgba(83, 10, 29, 0.12);
-      background: rgba(253, 250, 251, 0.72);
-      color: var(--page_ink);
-    }
-
-    .swipe_flip_hint {
-      margin-top: auto;
-      width: fit-content;
-    }
-
-    .swipe_flip_button {
-      margin-top: auto;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 8.5rem;
-      min-height: 3rem;
-      width: fit-content;
-      border-radius: 999px;
-      padding: 0.7rem 1rem;
-      border: 1px solid rgba(253, 250, 251, 0.16);
-      font-size: 0.74rem;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      background: rgba(253, 250, 251, 0.16);
-      color: currentColor;
-      cursor: pointer;
-    }
-
-    .swipe_flip_button:hover,
-    .swipe_flip_button:focus-visible {
-      transform: translateY(-2px);
-      background: rgba(253, 250, 251, 0.22);
-    }
-
-    .swipe_card[data_theme="light"] .swipe_flip_button,
-    .swipe_card[data_theme="gold"] .swipe_flip_button {
-      background: rgba(83, 10, 29, 0.08);
-      border-color: rgba(83, 10, 29, 0.1);
-    }
-
-    .swipe_card[data_theme="light"] .swipe_flip_button:hover,
-    .swipe_card[data_theme="light"] .swipe_flip_button:focus-visible,
-    .swipe_card[data_theme="gold"] .swipe_flip_button:hover,
-    .swipe_card[data_theme="gold"] .swipe_flip_button:focus-visible {
-      background: rgba(83, 10, 29, 0.14);
-    }
-
-    .swipe_meta {
-      display: grid;
-      gap: 0.8rem;
-      margin-top: 0.1rem;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .swipe_meta_item {
-      padding: 0.9rem 1rem;
-      border-radius: 1.2rem;
-      background: rgba(253, 250, 251, 0.12);
-      border: 1px solid rgba(253, 250, 251, 0.14);
-    }
-
-    .swipe_card[data_theme="light"] .swipe_meta_item,
-    .swipe_card[data_theme="gold"] .swipe_meta_item {
-      background: rgba(253, 250, 251, 0.64);
-      border-color: rgba(83, 10, 29, 0.1);
-    }
-
-    .swipe_meta_label {
-      display: block;
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      opacity: 0.8;
-    }
-
-    .swipe_meta_value {
-      display: block;
-      margin-top: 0.3rem;
-      font-family: "Saira Condensed", sans-serif;
-      font-size: clamp(1.2rem, 4.4vw, 1.7rem);
-      line-height: 1;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-    }
-
-    .swipe_back_text {
-      max-width: none;
-    }
-
-    .swipe_data_note {
-      margin: 0;
-      font-size: 0.82rem;
-      line-height: 1.55;
-      opacity: 0.82;
-    }
-
-    .swipe_actions {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.9rem;
-    }
-
-    .swipe_buttons {
-      display: flex;
-      gap: 0.8rem;
-    }
-
-    .swipe_button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 3.2rem;
-      min-height: 3.2rem;
-      padding: 0.75rem 1rem;
-      border: 1px solid rgba(83, 10, 29, 0.1);
-      border-radius: 999px;
-      background: rgba(253, 250, 251, 0.82);
-      color: var(--page_burgundy);
-      font-weight: 800;
-      box-shadow: 0 10px 28px rgba(83, 10, 29, 0.08);
-    }
-
-    .swipe_button:hover,
-    .swipe_button:focus-visible {
-      transform: translateY(-2px) scale(1.02);
-      background: rgba(253, 250, 251, 0.94);
-      border-color: rgba(83, 10, 29, 0.16);
-    }
-
-    .swipe_card.show_like .swipe_badge_like,
-    .swipe_card.show_next .swipe_badge_next {
-      opacity: 1;
-      transform: translateY(0) scale(1.04);
-    }
-
-    .swipe_card.is_next::before,
-    .swipe_card.is_third::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      border: 1px solid rgba(253, 250, 251, 0.12);
-      opacity: 0.5;
-      pointer-events: none;
-    }
-
-    .swipe_progress {
-      display: flex;
-      gap: 0.45rem;
-    }
-
-    .swipe_dot {
-      width: 0.6rem;
-      height: 0.6rem;
-      border-radius: 999px;
-      background: rgba(83, 10, 29, 0.18);
-      transition: transform 220ms var(--ease_out_quint), background-color 220ms var(--ease_out_quint);
-    }
-
-    .swipe_dot.is_active {
-      background: var(--page_red);
-      transform: scale(1.3);
-    }
-
-    .sticker {
-      position: relative;
-      display: grid;
-      gap: 0.9rem;
-      align-content: start;
-      min-height: 12rem;
-      padding: 1.15rem;
-      border-radius: 1.6rem;
-      box-shadow: var(--page_shadow);
-      overflow: clip;
-      transition:
-        transform 300ms var(--ease_out_quart),
-        box-shadow 300ms var(--ease_out_quart),
-        filter 300ms var(--ease_out_quart);
-    }
-
-    .sticker > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .sticker::after {
-      content: "";
-      position: absolute;
-      top: 0.7rem;
-      right: 0.7rem;
-      width: 4rem;
-      height: 4rem;
-      border-radius: 999px;
-      background: rgba(253, 250, 251, 0.16);
-      filter: blur(0.3px);
-      transition: transform 420ms var(--ease_out_expo), opacity 320ms var(--ease_out_quart);
-    }
-
-    .sticker h3 {
-      margin: 0;
-      font-family: "Saira Condensed", sans-serif;
-      font-size: clamp(2rem, 6vw, 3rem);
-      line-height: 0.88;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      text-wrap: balance;
-    }
-
-    .sticker p {
-      margin: 0;
-      line-height: 1.65;
-      max-width: 30ch;
-    }
-
-    .sticker small {
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      opacity: 0.88;
-    }
-
-    .sticker_media {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-
-    .sticker_media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(18, 2, 6, 0.08) 0%, rgba(18, 2, 6, 0.74) 100%);
-    }
-
-    .sticker_media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform: scale(1);
-      transition: transform 620ms var(--ease_out_expo), filter 420ms var(--ease_out_quart);
-    }
-
-    .sticker:hover,
-    .sticker:focus-within {
-      box-shadow: 0 28px 72px rgba(83, 10, 29, 0.22);
-      filter: saturate(1.02);
-    }
-
-    .sticker_headliner:hover,
-    .sticker_headliner:focus-within {
-      transform: rotate(-1deg) translateY(-6px);
-    }
-
-    .sticker_story:hover,
-    .sticker_story:focus-within {
-      transform: rotate(2deg) translateY(-6px);
-    }
-
-    .sticker_warm:hover,
-    .sticker_warm:focus-within {
-      transform: rotate(-0.5deg) translateY(-6px);
-    }
-
-    .sticker_gold:hover,
-    .sticker_gold:focus-within {
-      transform: rotate(3deg) translateY(-6px);
-    }
-
-    .sticker:hover::after,
-    .sticker:focus-within::after {
-      transform: scale(1.18);
-      opacity: 0.9;
-    }
-
-    .sticker:hover .sticker_media img,
-    .sticker:focus-within .sticker_media img {
-      transform: scale(1.05);
-    }
-
-    .artist_list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.55rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .artist_list li {
-      padding: 0.52rem 0.8rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      line-height: 1.2;
-      border: 1px solid rgba(253, 250, 251, 0.18);
-      background: rgba(253, 250, 251, 0.12);
-      backdrop-filter: blur(8px);
-    }
-
-    .artist_list_dark li {
-      border-color: rgba(83, 10, 29, 0.12);
-      background: rgba(253, 250, 251, 0.68);
-      color: var(--page_ink);
-    }
-
-    .sticker_headliner {
-      color: #fdfafb;
-      background:
-        radial-gradient(circle at 84% 18%, rgba(248, 190, 5, 0.3), transparent 18%),
-        linear-gradient(150deg, #410916 0%, #7a112c 36%, #c62144 68%, #e26426 100%);
-      transform: rotate(-2deg);
-    }
-
-    .sticker_story {
-      color: #fdfafb;
-      background:
-        radial-gradient(circle at 16% 20%, rgba(248, 190, 5, 0.2), transparent 16%),
-        linear-gradient(180deg, #120206 0%, #530a1d 100%);
-      transform: rotate(1.3deg);
-    }
-
-    .sticker_warm {
-      color: #2e1418;
-      background:
-        radial-gradient(circle at 74% 20%, rgba(216, 151, 156, 0.28), transparent 14%),
-        linear-gradient(180deg, #fff3e5 0%, #f7dbc8 100%);
-      transform: rotate(-1.4deg);
-    }
-
-    .sticker_gold {
-      color: #fdfafb;
-      background:
-        radial-gradient(circle at 24% 18%, rgba(253, 250, 251, 0.34), transparent 12%),
-        linear-gradient(180deg, #f8be05 0%, #f3a513 100%);
-      transform: rotate(2deg);
-    }
-
-    .sticker_gold .sticker_media::after {
-      background: linear-gradient(180deg, rgba(18, 2, 6, 0.2) 0%, rgba(18, 2, 6, 0.78) 100%);
-    }
-
-    .stage_chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      width: fit-content;
-      border-radius: 999px;
-      padding: 0.42rem 0.72rem;
-      font-size: 0.74rem;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      line-height: 1;
-    }
-
-    .stage_chip::before {
-      content: "";
-      width: 0.58rem;
-      height: 0.58rem;
-      border-radius: 999px;
-      background: currentColor;
-      opacity: 0.9;
-    }
-
-    .stage_main {
-      background: rgba(198, 33, 68, 0.16);
-      color: var(--page_white);
-      border: 1px solid rgba(253, 250, 251, 0.14);
-    }
-
-    .stage_tent {
-      background: rgba(253, 250, 251, 0.72);
-      color: var(--page_red_dark);
-      border: 1px solid rgba(83, 10, 29, 0.12);
-    }
-
-    .stage_loft {
-      background: rgba(248, 190, 5, 0.22);
-      color: var(--page_white);
-      border: 1px solid rgba(253, 250, 251, 0.14);
     }
 
     .timetable {
@@ -1783,8 +1232,6 @@
     .time_block {
       padding: 1.15rem;
       border-radius: 1.4rem;
-      background: rgba(253, 250, 251, 0.84);
-      border: 1px solid var(--page_panel_border);
       transition: transform 260ms var(--ease_out_quart), box-shadow 260ms var(--ease_out_quart);
     }
 
@@ -1794,21 +1241,21 @@
     }
 
     .time_block_main {
-      border-top: 0.35rem solid var(--page_red);
+      border-top: 0.35rem solid var(--role_primary);
     }
 
     .time_block_tent {
-      border-top: 0.35rem solid var(--page_orange);
+      border-top: 0.35rem solid var(--role_secondary);
     }
 
     .time_block_loft {
-      border-top: 0.35rem solid var(--page_yellow);
+      border-top: 0.35rem solid var(--role_accent);
     }
 
     .time_block_top {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       gap: 0.7rem;
     }
@@ -1829,33 +1276,8 @@
       font-weight: 800;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      background: rgba(83, 10, 29, 0.08);
+      background: var(--surface_tint_soft);
       color: var(--page_burgundy);
-    }
-
-    .time_block ul {
-      list-style: none;
-      padding: 0;
-      margin: 1rem 0 0;
-      display: grid;
-      gap: 0.7rem;
-    }
-
-    .time_block li {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0.7rem;
-      align-items: start;
-      line-height: 1.55;
-    }
-
-    .time_stage {
-      min-width: 5.4rem;
-      font-size: 0.76rem;
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--page_red_dark);
     }
 
     .time_note {
@@ -1865,6 +1287,8 @@
       font-size: 0.92rem;
       line-height: 1.65;
       color: var(--page_soft_ink);
+      overflow-wrap: anywhere;
+      hyphens: auto;
     }
 
     .info_grid {
@@ -1880,9 +1304,6 @@
     .info_card {
       padding: 1.25rem;
       border-radius: 1.5rem;
-      background: rgba(253, 250, 251, 0.86);
-      border: 1px solid var(--page_panel_border);
-      box-shadow: var(--page_shadow);
       transition: transform 260ms var(--ease_out_quart), box-shadow 260ms var(--ease_out_quart);
     }
 
@@ -1918,6 +1339,8 @@
       margin: 0.65rem 0 0;
       line-height: 1.65;
       color: var(--page_soft_ink);
+      overflow-wrap: anywhere;
+      hyphens: auto;
     }
 
     .location_panel {
@@ -1925,7 +1348,7 @@
       overflow: clip;
       padding: clamp(1.5rem, 3vw, 2.2rem);
       border-radius: clamp(1.8rem, 3vw, 2.4rem);
-      color: #fdfafb;
+      color: var(--page_white);
       background:
         radial-gradient(circle at 22% 18%, rgba(248, 190, 5, 0.18), transparent 14%),
         radial-gradient(circle at 82% 74%, rgba(216, 151, 156, 0.2), transparent 20%),
@@ -1942,11 +1365,15 @@
     .location_panel p {
       max-width: 33rem;
       line-height: 1.7;
-      color: rgba(253, 250, 251, 0.86);
+      color: var(--text_on_dark_soft);
+      overflow-wrap: anywhere;
+      hyphens: auto;
     }
 
     .location_links {
       display: flex;
+      flex-direction: column;
+      align-items: stretch;
       flex-wrap: wrap;
       gap: 0.8rem;
       margin-top: 1.4rem;
@@ -1955,8 +1382,8 @@
     .quote_ribbon {
       padding: 1.25rem 1.4rem;
       border-radius: 1.5rem;
-      background: rgba(253, 250, 251, 0.74);
-      border: 1px solid rgba(83, 10, 29, 0.08);
+      background: var(--surface_panel_muted);
+      border: 1px solid var(--page_panel_border);
       box-shadow: var(--page_shadow);
     }
 
@@ -2020,32 +1447,56 @@
       max-width: 34rem;
       line-height: 1.7;
       color: rgba(253, 250, 251, 0.76);
+      overflow-wrap: anywhere;
+      hyphens: auto;
     }
 
     .sponsor_logos {
       display: grid;
       gap: 1rem;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: 1fr;
+      align-items: stretch;
     }
 
     .sponsor_logo {
       display: flex;
       align-items: center;
       justify-content: center;
+      min-width: 0;
       min-height: 6.5rem;
       padding: 1rem;
       border-radius: 1.25rem;
-      background: rgba(253, 250, 251, 0.64);
-      border: 1px solid rgba(83, 10, 29, 0.08);
+      background: var(--surface_panel_muted);
+      border: 1px solid var(--page_panel_border);
       transition:
         transform 240ms var(--ease_out_quart),
         background-color 220ms var(--ease_out_quint),
         box-shadow 240ms var(--ease_out_quart);
     }
 
+    .sponsor_logo picture {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .sponsor_logo img {
+      display: block;
+      width: 100%;
+      max-width: 12rem;
+      height: auto;
+      max-height: 4rem;
+      max-inline-size: min(100%, 12rem);
+      max-block-size: 4rem;
+      object-fit: contain;
+      object-position: center;
+    }
+
     .sponsor_logo:hover {
       transform: translateY(-3px);
-      background: rgba(253, 250, 251, 0.8);
+      background: var(--surface_panel_soft);
       box-shadow: 0 16px 36px rgba(83, 10, 29, 0.1);
     }
 
@@ -2077,29 +1528,46 @@
     }
 
     .footer a {
-      color: #fdfafb;
+      color: var(--page_white);
       text-decoration-thickness: 0.08em;
       text-underline-offset: 0.15em;
     }
 
     .footer_meta {
       display: flex;
+      flex-direction: column;
+      align-items: flex-start;
       flex-wrap: wrap;
       gap: 0.7rem 1.2rem;
     }
 
+    .footer_meta a,
+    .main_nav a,
+    .mobile_menu a {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    @keyframes reveal_up {
+      from {
+        opacity: 0;
+        transform: translateY(1.2rem) scale(0.988);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
     .js [data_reveal] {
-      opacity: 0;
-      transform: translateY(1.4rem) scale(0.985);
-      transition:
-        opacity 520ms var(--ease_out_expo),
-        transform 520ms var(--ease_out_expo);
-      transition-delay: var(--reveal_delay, 0ms);
+      opacity: 1;
+      transform: none;
     }
 
     .js [data_reveal].is_visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
+      animation: reveal_up 520ms var(--ease_out_expo) both;
+      animation-delay: var(--reveal_delay, 0ms);
     }
 
     .js .brand_link,
@@ -2206,10 +1674,6 @@
         grid-column: span 7;
       }
 
-      .line_up_swiper {
-        gap: 1.15rem;
-      }
-
       .line_up_board {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         align-items: stretch;
@@ -2217,53 +1681,6 @@
 
       .line_up_more {
         grid-column: 1 / -1;
-      }
-
-      .swipe_stack {
-        min-height: 31rem;
-      }
-
-      .swipe_card {
-        padding: 1.2rem;
-      }
-
-      .swipe_face {
-        padding: 1.15rem;
-      }
-
-      .swipe_card_media {
-        aspect-ratio: 16 / 10;
-        min-height: 14rem;
-      }
-
-      .swipe_front_body {
-        grid-template-columns: 1fr auto;
-        align-items: end;
-      }
-
-      .swipe_front_body > p {
-        grid-column: 1 / -1;
-      }
-
-      .swipe_meta {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .sticker_headliner {
-        grid-area: headline;
-        min-height: 22rem;
-      }
-
-      .sticker_story {
-        grid-area: story;
-      }
-
-      .sticker_warm {
-        grid-area: warm;
-      }
-
-      .sticker_gold {
-        grid-area: gold;
       }
 
       .timetable {
@@ -2278,10 +1695,6 @@
         grid-column: span 7;
       }
 
-      .sponsor_bar {
-        grid-template-columns: 1.2fr 1fr;
-      }
-
       .footer_bar > :first-child {
         grid-column: span 6;
       }
@@ -2292,26 +1705,87 @@
       }
     }
 
+    @media (min-width: 36rem) {
+      .action_button {
+        width: auto;
+      }
+
+      .hero_strip {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .location_links {
+        flex-direction: row;
+      }
+
+      .sponsor_logos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer_meta {
+        flex-direction: row;
+      }
+    }
+
     @media (min-width: 64rem) {
       .main_nav {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.6rem;
+        padding: 0.3rem;
+        border-radius: 999px;
+        background: rgba(83, 10, 29, 0.22);
+        border: 1px solid rgba(253, 250, 251, 0.1);
+        box-shadow: inset 0 1px 0 rgba(253, 250, 251, 0.08);
       }
 
       .main_nav a {
-        padding: 0.7rem 1rem;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2.95rem;
+        padding: 0.78rem 1.15rem;
         border-radius: 999px;
         text-decoration: none;
-        font-size: 0.92rem;
+        font-family: "Saira Condensed", sans-serif;
+        font-size: 1.02rem;
         font-weight: 700;
-        color: rgba(253, 250, 251, 0.88);
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: rgba(253, 250, 251, 0.84);
+        transition:
+          transform 220ms var(--ease_out_quart),
+          background-color 220ms var(--ease_out_quart),
+          color 220ms var(--ease_out_quart),
+          box-shadow 220ms var(--ease_out_quart);
+      }
+
+      .main_nav a::after {
+        content: "";
+        position: absolute;
+        inset: auto 0.9rem 0.42rem;
+        height: 0.18rem;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--page_yellow) 0%, var(--page_orange) 48%, var(--page_red) 100%);
+        transform: scaleX(0.18);
+        transform-origin: center;
+        opacity: 0.52;
+        transition: transform 220ms var(--ease_out_quart), opacity 220ms var(--ease_out_quart);
       }
 
       .main_nav a:hover,
       .main_nav a:focus-visible {
-        background: rgba(253, 250, 251, 0.12);
-        color: #fdfafb;
+        transform: translateY(-0.08rem);
+        background: rgba(253, 250, 251, 0.1);
+        color: var(--page_white);
+        box-shadow: 0 10px 24px rgba(18, 2, 6, 0.16);
+      }
+
+      .main_nav a:hover::after,
+      .main_nav a:focus-visible::after {
+        transform: scaleX(1);
+        opacity: 1;
       }
 
       .nav_toggle,
@@ -2333,31 +1807,11 @@
       }
 
       .line_up_more {
-        grid-column: auto;
+        grid-column: 1 / -1;
       }
 
-      .line_up_swiper {
-        display: none;
-      }
-
-      .sticker_wall {
-        display: grid;
-        grid-template-columns: repeat(12, minmax(0, 1fr));
-        grid-template-areas:
-          "headline headline headline headline headline headline headline story story story story story"
-          "headline headline headline headline headline headline headline warm warm gold gold gold";
-        align-items: stretch;
-        gap: 1.2rem;
-      }
-
-      .sticker_headliner {
-        grid-column: span 7;
-      }
-
-      .sticker_story,
-      .sticker_warm,
-      .sticker_gold {
-        min-height: 15rem;
+      .sponsor_bar {
+        grid-template-columns: 1.2fr 1fr;
       }
     }
 
@@ -2385,8 +1839,7 @@
       .hero_title_wrap,
       .hero_ticket,
       .hero_strip_item,
-      .mobile_menu a,
-      .swipe_card {
+      .mobile_menu a {
         opacity: 1 !important;
         transform: none !important;
       }
@@ -2483,8 +1936,8 @@
               <p class="eyebrow eyebrow_light">Gratis mini-editie van BAM! Festival</p>
               <h1 class="hero_title">Bammetje</h1>
               <p class="hero_subtitle">
-                Klein, maar BAM. Op zaterdag 23 mei 2026 landt de mini-editie van BAM! Festival bij Broedplaats Oogst in Hengelo:
-                gratis muziek, warme sfeer en een dag die voelt als een compacte uitbarsting van alles waar BAM voor staat.
+                Op zaterdag 23 mei 2026 landt Bammetje bij Broedplaats Oogst in Hengelo:
+                gratis muziek, warme sfeer en een compacte festivaldag zonder gedoe.
               </p>
               <div class="hero_actions">
                 <a class="action_button action_button_primary" href="#line_up">Bekijk line-up</a>
@@ -2510,7 +1963,7 @@
             <span class="eyebrow eyebrow_light">Gratis entree</span>
             <strong>Oogst<br />Hengelo</strong>
             <p class="section_text hero_ticket_text">
-              Van middag tot avond, met ruimte voor muziek, drinken en die herkenbare BAM-sfeer in een compactere vorm.
+              Van 14:00 tot 23:00. Gewoon aanwaaien, iets drinken en blijven hangen.
             </p>
           </aside>
         </div>
@@ -2521,8 +1974,7 @@
           <div class="story_quote" data_reveal>
             <span class="eyebrow eyebrow_dark">Waarom Bammetje</span>
             <p>
-              BAM! Festival kan in 2026 niet neerstrijken in het Prins Bernhardplantsoen, maar stil blijft het niet.
-              Vanuit liefde voor muziek, organiseren en vrijwilligersenergie komt er een kleinere editie op Oogst.
+              BAM! Festival staat in 2026 niet in het park, maar stil blijft het niet. Daarom komt er een kleinere editie op Oogst.
             </p>
           </div>
           <div class="story_points" data_reveal>
@@ -2530,21 +1982,21 @@
               <span class="dot" aria-hidden="true"></span>
               <div>
                 <strong>Geen vervanging, wel dezelfde geest</strong>
-                <p>Bammetje is bewust kleiner dan het festival in het park, maar moet dezelfde open, warme en lokale energie vasthouden.</p>
+                <p>Kleiner van schaal, maar nog steeds open, warm en lokaal.</p>
               </div>
             </div>
             <div class="story_point">
               <span class="dot" aria-hidden="true"></span>
               <div>
                 <strong>Gebouwd voor Hengelo en Twente</strong>
-                <p>De site moet snel duidelijk maken dat dit een gratis, toegankelijke festivaldag is voor het lokale publiek dat BAM mist.</p>
+                <p>Snel duidelijk voor mensen die BAM missen en gewoon willen weten of ze moeten komen: ja.</p>
               </div>
             </div>
             <div class="story_point">
               <span class="dot" aria-hidden="true"></span>
               <div>
                 <strong>Compact in info, rijk in sfeer</strong>
-                <p>Niet volstoppen met details. Eerst gevoel, dan de praktische zekerheid om gewoon te komen.</p>
+                <p>Eerst sfeer. Daarna alleen de praktische info die nodig is.</p>
               </div>
             </div>
           </div>
@@ -2562,122 +2014,395 @@
           </div>
 
           <div class="line_up_board">
-            <article class="line_up_artist artist_main" data_reveal>
-              <figure class="line_up_artist_poster" aria-hidden="true">
-                <img src="./assets/stock/concert-singer-audience-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 32%;">
-                <div class="line_up_artist_title">
-                  <span class="line_up_artist_stage stage_chip stage_main">Hoofdpodium</span>
-                  <h3 class="line_up_artist_name">André Manuel</h3>
-                  <div class="line_up_artist_meta">
-                    <span>Grotere naam</span>
-                    <span>Scherpe teksten</span>
+            <article
+              class="line_up_artist artist_main"
+              data_reveal
+              data_artist_name="André Manuel"
+              data_youtube_query="Andre Manuel officiele video"
+              data_spotify_embed="https://open.spotify.com/embed/track/4zhSfChynhB1mIneEVOr1l?utm_source=generator"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-label="Draai kaart van André Manuel om voor video, Spotify en socials"
+            >
+              <div class="line_up_artist_inner">
+                <div class="line_up_artist_face line_up_artist_front">
+                  <figure class="line_up_artist_poster" aria-hidden="true">
+                    <img src="./assets/stock/concert-singer-audience-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 32%;">
+                    <div class="line_up_artist_title">
+                      <span class="line_up_artist_stage stage_chip stage_main">Hoofdpodium</span>
+                      <h3 class="line_up_artist_name">André Manuel</h3>
+                      <div class="line_up_artist_meta">
+                        <span>Grotere naam</span>
+                        <span>Scherpe teksten</span>
+                      </div>
+                    </div>
+                  </figure>
+                  <div class="line_up_artist_body">
+                    <p>Uitgesproken, raak en sterk genoeg om het terrein meteen samen te trekken.</p>
+                    <span class="line_up_artist_hint">Tik voor media en socials</span>
                   </div>
                 </div>
-              </figure>
-              <div class="line_up_artist_body">
-                <p>Uitgesproken, raak en sterk genoeg om het terrein meteen samen te trekken.</p>
+                <div class="line_up_artist_face line_up_artist_back">
+                  <div class="line_up_artist_back_top">
+                    <div class="line_up_artist_back_title">
+                      <span class="line_up_artist_stage stage_chip stage_main">Hoofdpodium</span>
+                      <h3 class="line_up_artist_name">André Manuel</h3>
+                      <p>Video zonder autoplay, Spotify-miniplayer en snelle links naar de kanalen van de artiest.</p>
+                    </div>
+                    <button class="line_up_artist_close" type="button" aria-label="Sluit kaart van André Manuel">Terug</button>
+                  </div>
+                  <div class="line_up_embed_group">
+                    <p class="line_up_embed_label">YouTube</p>
+                    <div class="line_up_embed_frame line_up_embed_frame_youtube" data_embed="youtube"></div>
+                  </div>
+                  <div class="line_up_embed_group">
+                    <p class="line_up_embed_label">Spotify</p>
+                    <div class="line_up_embed_frame line_up_embed_frame_spotify" data_embed="spotify"></div>
+                  </div>
+                  <div class="line_up_socials">
+                    <a href="https://www.youtube.com/results?search_query=Andre+Manuel" target="_blank" rel="noreferrer">YouTube</a>
+                    <a href="https://open.spotify.com/search/Andre%20Manuel" target="_blank" rel="noreferrer">Spotify</a>
+                    <a href="https://www.instagram.com/explore/search/keyword/?q=Andre%20Manuel" target="_blank" rel="noreferrer">Instagram</a>
+                    <a href="https://www.facebook.com/search/top/?q=Andre%20Manuel" target="_blank" rel="noreferrer">Facebook</a>
+                  </div>
+                </div>
               </div>
             </article>
 
-            <article class="line_up_artist artist_main" data_reveal>
-              <figure class="line_up_artist_poster" aria-hidden="true">
-                <img src="./assets/stock/concert-audience-lights-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 48%;">
-                <div class="line_up_artist_title">
-                  <span class="line_up_artist_stage stage_chip stage_main">Hoofdpodium</span>
-                  <h3 class="line_up_artist_name">IDA</h3>
-                  <div class="line_up_artist_meta">
-                    <span>Publieksmoment</span>
-                    <span>Open lucht</span>
+            <article
+              class="line_up_artist artist_main"
+              data_reveal
+              data_artist_name="IDA"
+              data_youtube_query="IDA official music video"
+              data_spotify_embed="https://open.spotify.com/embed/artist/7c4xb6WHJ6NhTQqgTQnbDN?utm_source=generator"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-label="Draai kaart van IDA om voor video, Spotify en socials"
+            >
+              <div class="line_up_artist_inner">
+                <div class="line_up_artist_face line_up_artist_front">
+                  <figure class="line_up_artist_poster" aria-hidden="true">
+                    <img src="./assets/stock/concert-audience-lights-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 48%;">
+                    <div class="line_up_artist_title">
+                      <span class="line_up_artist_stage stage_chip stage_main">Hoofdpodium</span>
+                      <h3 class="line_up_artist_name">IDA</h3>
+                      <div class="line_up_artist_meta">
+                        <span>Publieksmoment</span>
+                        <span>Open lucht</span>
+                      </div>
+                    </div>
+                  </figure>
+                  <div class="line_up_artist_body">
+                    <p>Geeft het grote podium een open, energieke toon en kleur aan de middag.</p>
+                    <span class="line_up_artist_hint">Tik voor media en socials</span>
                   </div>
                 </div>
-              </figure>
-              <div class="line_up_artist_body">
-                <p>Geeft het grote podium een open, energieke toon en kleur aan de middag.</p>
+                <div class="line_up_artist_face line_up_artist_back">
+                  <div class="line_up_artist_back_top">
+                    <div class="line_up_artist_back_title">
+                      <span class="line_up_artist_stage stage_chip stage_main">Hoofdpodium</span>
+                      <h3 class="line_up_artist_name">IDA</h3>
+                      <p>Video zonder autoplay, Spotify-miniplayer en snelle links naar de kanalen van de artiest.</p>
+                    </div>
+                    <button class="line_up_artist_close" type="button" aria-label="Sluit kaart van IDA">Terug</button>
+                  </div>
+                  <div class="line_up_embed_group">
+                    <p class="line_up_embed_label">YouTube</p>
+                    <div class="line_up_embed_frame line_up_embed_frame_youtube" data_embed="youtube"></div>
+                  </div>
+                  <div class="line_up_embed_group">
+                    <p class="line_up_embed_label">Spotify</p>
+                    <div class="line_up_embed_frame line_up_embed_frame_spotify" data_embed="spotify"></div>
+                  </div>
+                  <div class="line_up_socials">
+                    <a href="https://www.youtube.com/results?search_query=IDA+official" target="_blank" rel="noreferrer">YouTube</a>
+                    <a href="https://open.spotify.com/search/IDA" target="_blank" rel="noreferrer">Spotify</a>
+                    <a href="https://www.instagram.com/explore/search/keyword/?q=IDA" target="_blank" rel="noreferrer">Instagram</a>
+                    <a href="https://www.facebook.com/search/top/?q=IDA%20music" target="_blank" rel="noreferrer">Facebook</a>
+                  </div>
+                </div>
               </div>
             </article>
 
-            <article class="line_up_artist artist_tent" data_reveal>
-              <figure class="line_up_artist_poster" aria-hidden="true">
-                <img src="./assets/stock/concert-audience-lights-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 28%;">
-                <div class="line_up_artist_title">
-                  <span class="line_up_artist_stage stage_chip stage_tent">De Tent</span>
-                  <h3 class="line_up_artist_name">Post Ella</h3>
-                  <div class="line_up_artist_meta">
-                    <span>Intiem</span>
-                    <span>Dichter op publiek</span>
+            <article
+              class="line_up_artist artist_tent"
+              data_reveal
+              data_artist_name="Post Ella"
+              data_youtube_query="Post Ella official video"
+              data_spotify_embed="https://open.spotify.com/embed/playlist/1fWw928ddiUvE0o930gunI?utm_source=generator"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-label="Draai kaart van Post Ella om voor video, Spotify en socials"
+            >
+              <div class="line_up_artist_inner">
+                <div class="line_up_artist_face line_up_artist_front">
+                  <figure class="line_up_artist_poster" aria-hidden="true">
+                    <img src="./assets/stock/concert-audience-lights-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 28%;">
+                    <div class="line_up_artist_title">
+                      <span class="line_up_artist_stage stage_chip stage_tent">De Tent</span>
+                      <h3 class="line_up_artist_name">Post Ella</h3>
+                      <div class="line_up_artist_meta">
+                        <span>Intiem</span>
+                        <span>Dichter op publiek</span>
+                      </div>
+                    </div>
+                  </figure>
+                  <div class="line_up_artist_body">
+                    <p>Minder afstand, meer direct contact en precies goed voor een warm liveblok.</p>
+                    <span class="line_up_artist_hint">Tik voor media en socials</span>
                   </div>
                 </div>
-              </figure>
-              <div class="line_up_artist_body">
-                <p>Minder afstand, meer direct contact en precies goed voor een warm liveblok.</p>
+                <div class="line_up_artist_face line_up_artist_back">
+                  <div class="line_up_artist_back_top">
+                    <div class="line_up_artist_back_title">
+                      <span class="line_up_artist_stage stage_chip stage_tent">De Tent</span>
+                      <h3 class="line_up_artist_name">Post Ella</h3>
+                      <p>Video zonder autoplay, Spotify-miniplayer en snelle links naar de kanalen van de artiest.</p>
+                    </div>
+                    <button class="line_up_artist_close" type="button" aria-label="Sluit kaart van Post Ella">Terug</button>
+                  </div>
+                  <div class="line_up_embed_group">
+                    <p class="line_up_embed_label">YouTube</p>
+                    <div class="line_up_embed_frame line_up_embed_frame_youtube" data_embed="youtube"></div>
+                  </div>
+                  <div class="line_up_embed_group">
+                    <p class="line_up_embed_label">Spotify</p>
+                    <div class="line_up_embed_frame line_up_embed_frame_spotify" data_embed="spotify"></div>
+                  </div>
+                  <div class="line_up_socials">
+                    <a href="https://www.youtube.com/results?search_query=Post+Ella" target="_blank" rel="noreferrer">YouTube</a>
+                    <a href="https://open.spotify.com/search/Post%20Ella" target="_blank" rel="noreferrer">Spotify</a>
+                    <a href="https://www.instagram.com/explore/search/keyword/?q=Post%20Ella" target="_blank" rel="noreferrer">Instagram</a>
+                    <a href="https://www.facebook.com/search/top/?q=Post%20Ella" target="_blank" rel="noreferrer">Facebook</a>
+                  </div>
+                </div>
               </div>
             </article>
 
-            <article class="line_up_artist artist_tent" data_reveal>
-              <figure class="line_up_artist_poster" aria-hidden="true">
-                <img src="./assets/stock/concert-audience-lights-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 52%;">
-                <div class="line_up_artist_title">
-                  <span class="line_up_artist_stage stage_chip stage_tent">De Tent</span>
-                  <h3 class="line_up_artist_name">Lenny Monsou</h3>
-                  <div class="line_up_artist_meta">
-                    <span>Warm</span>
-                    <span>Compact podium</span>
+            <article
+              class="line_up_artist artist_tent"
+              data_reveal
+              data_artist_name="Lenny Monsou"
+              data_youtube_query="Lenny Monsou official video"
+              data_spotify_embed="https://open.spotify.com/embed/playlist/02Gj1L83dtQEKBlMC0OeAu?utm_source=generator"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-label="Draai kaart van Lenny Monsou om voor video, Spotify en socials"
+            >
+              <div class="line_up_artist_inner">
+                <div class="line_up_artist_face line_up_artist_front">
+                  <figure class="line_up_artist_poster" aria-hidden="true">
+                    <img src="./assets/stock/concert-audience-lights-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 52%;">
+                    <div class="line_up_artist_title">
+                      <span class="line_up_artist_stage stage_chip stage_tent">De Tent</span>
+                      <h3 class="line_up_artist_name">Lenny Monsou</h3>
+                      <div class="line_up_artist_meta">
+                        <span>Warm</span>
+                        <span>Compact podium</span>
+                      </div>
+                    </div>
+                  </figure>
+                  <div class="line_up_artist_body">
+                    <p>Dichtbij, menselijk en passend bij het lossere tentgevoel van deze mini-editie.</p>
+                    <span class="line_up_artist_hint">Tik voor media en socials</span>
                   </div>
                 </div>
-              </figure>
-              <div class="line_up_artist_body">
-                <p>Dichtbij, menselijk en passend bij het lossere tentgevoel van deze mini-editie.</p>
+                <div class="line_up_artist_face line_up_artist_back">
+                  <div class="line_up_artist_back_top">
+                    <div class="line_up_artist_back_title">
+                      <span class="line_up_artist_stage stage_chip stage_tent">De Tent</span>
+                      <h3 class="line_up_artist_name">Lenny Monsou</h3>
+                      <p>Video zonder autoplay, Spotify-miniplayer en snelle links naar de kanalen van de artiest.</p>
+                    </div>
+                    <button class="line_up_artist_close" type="button" aria-label="Sluit kaart van Lenny Monsou">Terug</button>
+                  </div>
+                  <div class="line_up_embed_group">
+                    <p class="line_up_embed_label">YouTube</p>
+                    <div class="line_up_embed_frame line_up_embed_frame_youtube" data_embed="youtube"></div>
+                  </div>
+                  <div class="line_up_embed_group">
+                    <p class="line_up_embed_label">Spotify</p>
+                    <div class="line_up_embed_frame line_up_embed_frame_spotify" data_embed="spotify"></div>
+                  </div>
+                  <div class="line_up_socials">
+                    <a href="https://www.youtube.com/%40LennyMonsou" target="_blank" rel="noreferrer">YouTube</a>
+                    <a href="https://open.spotify.com/artist/1mCVcC6TZs4aJutLlvIDkY" target="_blank" rel="noreferrer">Spotify</a>
+                    <a href="https://www.instagram.com/lennymonsou/" target="_blank" rel="noreferrer">Instagram</a>
+                    <a href="https://www.facebook.com/search/top/?q=Lenny%20Monsou" target="_blank" rel="noreferrer">Facebook</a>
+                  </div>
+                </div>
               </div>
             </article>
 
-            <article class="line_up_artist artist_tent" data_reveal>
-              <figure class="line_up_artist_poster" aria-hidden="true">
-                <img src="./assets/stock/concert-audience-lights-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 74%;">
-                <div class="line_up_artist_title">
-                  <span class="line_up_artist_stage stage_chip stage_tent">De Tent</span>
-                  <h3 class="line_up_artist_name">Lézard</h3>
-                  <div class="line_up_artist_meta">
-                    <span>Spannend</span>
-                    <span>Nabije setting</span>
+            <article
+              class="line_up_artist artist_tent"
+              data_reveal
+              data_artist_name="Lézard"
+              data_youtube_query="Lezard band official video"
+              data_spotify_embed="https://open.spotify.com/embed/artist/71OpeN8Riy5gGtmqlSYfVH?utm_source=generator"
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-label="Draai kaart van Lézard om voor video, Spotify en socials"
+            >
+              <div class="line_up_artist_inner">
+                <div class="line_up_artist_face line_up_artist_front">
+                  <figure class="line_up_artist_poster" aria-hidden="true">
+                    <img src="./assets/stock/concert-audience-lights-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 74%;">
+                    <div class="line_up_artist_title">
+                      <span class="line_up_artist_stage stage_chip stage_tent">De Tent</span>
+                      <h3 class="line_up_artist_name">Lézard</h3>
+                      <div class="line_up_artist_meta">
+                        <span>Spannend</span>
+                        <span>Nabije setting</span>
+                      </div>
+                    </div>
+                  </figure>
+                  <div class="line_up_artist_body">
+                    <p>Compact van schaal, maar met genoeg spanning om direct op te vallen.</p>
+                    <span class="line_up_artist_hint">Tik voor media en socials</span>
                   </div>
                 </div>
-              </figure>
-              <div class="line_up_artist_body">
-                <p>Compact van schaal, maar met genoeg spanning om direct op te vallen.</p>
+                <div class="line_up_artist_face line_up_artist_back">
+                  <div class="line_up_artist_back_top">
+                    <div class="line_up_artist_back_title">
+                      <span class="line_up_artist_stage stage_chip stage_tent">De Tent</span>
+                      <h3 class="line_up_artist_name">Lézard</h3>
+                      <p>Video zonder autoplay, Spotify-miniplayer en snelle links naar de kanalen van de artiest.</p>
+                    </div>
+                    <button class="line_up_artist_close" type="button" aria-label="Sluit kaart van Lézard">Terug</button>
+                  </div>
+                  <div class="line_up_embed_group">
+                    <p class="line_up_embed_label">YouTube</p>
+                    <div class="line_up_embed_frame line_up_embed_frame_youtube" data_embed="youtube"></div>
+                  </div>
+                  <div class="line_up_embed_group">
+                    <p class="line_up_embed_label">Spotify</p>
+                    <div class="line_up_embed_frame line_up_embed_frame_spotify" data_embed="spotify"></div>
+                  </div>
+                  <div class="line_up_socials">
+                    <a href="https://www.youtube.com/channel/UCEi_Iw1vQwS_oovkbQGwyYw" target="_blank" rel="noreferrer">YouTube</a>
+                    <a href="https://open.spotify.com/artist/71OpeN8Riy5gGtmqlSYfVH?si=e562af781246455e" target="_blank" rel="noreferrer">Spotify</a>
+                    <a href="https://www.instagram.com/lezard.music/" target="_blank" rel="noreferrer">Instagram</a>
+                    <a href="https://www.facebook.com/lezard.music/" target="_blank" rel="noreferrer">Facebook</a>
+                  </div>
+                </div>
               </div>
             </article>
 
-            <article class="line_up_artist artist_loft" data_reveal>
-              <figure class="line_up_artist_poster" aria-hidden="true">
-                <img src="./assets/stock/concert-crowd-stage-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 32%;">
-                <div class="line_up_artist_title">
-                  <span class="line_up_artist_stage stage_chip stage_loft">Tommy-Loods</span>
-                  <h3 class="line_up_artist_name">Yo That’s Shit</h3>
-                  <div class="line_up_artist_meta">
-                    <span>Later op avond</span>
-                    <span>Meer tempo</span>
+            <article
+              class="line_up_artist artist_loft"
+              data_reveal
+              data_artist_name="Yo That's Shit"
+              data_youtube_query="Yo That's Shit dj set"
+              data_spotify_embed=""
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-label="Draai kaart van Yo That's Shit om voor video, Spotify en socials"
+            >
+              <div class="line_up_artist_inner">
+                <div class="line_up_artist_face line_up_artist_front">
+                  <figure class="line_up_artist_poster" aria-hidden="true">
+                    <img src="./assets/stock/concert-crowd-stage-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 32%;">
+                    <div class="line_up_artist_title">
+                      <span class="line_up_artist_stage stage_chip stage_loft">Tommy-Loods</span>
+                      <h3 class="line_up_artist_name">Yo That’s Shit</h3>
+                      <div class="line_up_artist_meta">
+                        <span>Later op avond</span>
+                        <span>Meer tempo</span>
+                      </div>
+                    </div>
+                  </figure>
+                  <div class="line_up_artist_body">
+                    <p>Een dj-slot voor wanneer Bammetje merkbaar meer nachtenergie mag krijgen.</p>
+                    <span class="line_up_artist_hint">Tik voor media en socials</span>
                   </div>
                 </div>
-              </figure>
-              <div class="line_up_artist_body">
-                <p>Een dj-slot voor wanneer Bammetje merkbaar meer nachtenergie mag krijgen.</p>
+                <div class="line_up_artist_face line_up_artist_back">
+                  <div class="line_up_artist_back_top">
+                    <div class="line_up_artist_back_title">
+                      <span class="line_up_artist_stage stage_chip stage_loft">Tommy-Loods</span>
+                      <h3 class="line_up_artist_name">Yo That’s Shit</h3>
+                      <p>Video zonder autoplay en snelle links naar kanalen. Voor Spotify staat een zoeklink klaar zodra er een vaste embed beschikbaar is.</p>
+                    </div>
+                    <button class="line_up_artist_close" type="button" aria-label="Sluit kaart van Yo That's Shit">Terug</button>
+                  </div>
+                  <div class="line_up_embed_group">
+                    <p class="line_up_embed_label">YouTube</p>
+                    <div class="line_up_embed_frame line_up_embed_frame_youtube" data_embed="youtube"></div>
+                  </div>
+                  <div class="line_up_embed_group">
+                    <p class="line_up_embed_label">Spotify</p>
+                    <div class="line_up_embed_frame line_up_embed_frame_spotify" data_embed="spotify"></div>
+                  </div>
+                  <div class="line_up_socials">
+                    <a href="https://www.youtube.com/results?search_query=Yo+That%27s+Shit" target="_blank" rel="noreferrer">YouTube</a>
+                    <a href="https://open.spotify.com/search/Yo%20That%27s%20Shit" target="_blank" rel="noreferrer">Spotify</a>
+                    <a href="https://www.instagram.com/explore/search/keyword/?q=Yo%20That%27s%20Shit" target="_blank" rel="noreferrer">Instagram</a>
+                    <a href="https://www.tiktok.com/search?q=Yo%20That%27s%20Shit" target="_blank" rel="noreferrer">TikTok</a>
+                  </div>
+                </div>
               </div>
             </article>
 
-            <article class="line_up_artist artist_loft" data_reveal>
-              <figure class="line_up_artist_poster" aria-hidden="true">
-                <img src="./assets/stock/concert-crowd-stage-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 70%;">
-                <div class="line_up_artist_title">
-                  <span class="line_up_artist_stage stage_chip stage_loft">Tommy-Loods</span>
-                  <h3 class="line_up_artist_name">Mørssync &amp; Sabossi</h3>
-                  <div class="line_up_artist_meta">
-                    <span>Afsluitende vibe</span>
-                    <span>Loods</span>
+            <article
+              class="line_up_artist artist_loft"
+              data_reveal
+              data_artist_name="Mørssync &amp; Sabossi"
+              data_youtube_query="Morssync Sabossi dj set"
+              data_spotify_embed=""
+              tabindex="0"
+              role="button"
+              aria-expanded="false"
+              aria-label="Draai kaart van Mørssync en Sabossi om voor video, Spotify en socials"
+            >
+              <div class="line_up_artist_inner">
+                <div class="line_up_artist_face line_up_artist_front">
+                  <figure class="line_up_artist_poster" aria-hidden="true">
+                    <img src="./assets/stock/concert-crowd-stage-960.webp" alt="" loading="lazy" decoding="async" style="object-position: center 70%;">
+                    <div class="line_up_artist_title">
+                      <span class="line_up_artist_stage stage_chip stage_loft">Tommy-Loods</span>
+                      <h3 class="line_up_artist_name">Mørssync &amp; Sabossi</h3>
+                      <div class="line_up_artist_meta">
+                        <span>Afsluitende vibe</span>
+                        <span>Loods</span>
+                      </div>
+                    </div>
+                  </figure>
+                  <div class="line_up_artist_body">
+                    <p>Donkerder, later en precies goed om de mini-editie met vaart af te ronden.</p>
+                    <span class="line_up_artist_hint">Tik voor media en socials</span>
                   </div>
                 </div>
-              </figure>
-              <div class="line_up_artist_body">
-                <p>Donkerder, later en precies goed om de mini-editie met vaart af te ronden.</p>
+                <div class="line_up_artist_face line_up_artist_back">
+                  <div class="line_up_artist_back_top">
+                    <div class="line_up_artist_back_title">
+                      <span class="line_up_artist_stage stage_chip stage_loft">Tommy-Loods</span>
+                      <h3 class="line_up_artist_name">Mørssync &amp; Sabossi</h3>
+                      <p>Video zonder autoplay en snelle links naar kanalen. Voor Spotify staat een zoeklink klaar zodra er een vaste embed beschikbaar is.</p>
+                    </div>
+                    <button class="line_up_artist_close" type="button" aria-label="Sluit kaart van Mørssync en Sabossi">Terug</button>
+                  </div>
+                  <div class="line_up_embed_group">
+                    <p class="line_up_embed_label">YouTube</p>
+                    <div class="line_up_embed_frame line_up_embed_frame_youtube" data_embed="youtube"></div>
+                  </div>
+                  <div class="line_up_embed_group">
+                    <p class="line_up_embed_label">Spotify</p>
+                    <div class="line_up_embed_frame line_up_embed_frame_spotify" data_embed="spotify"></div>
+                  </div>
+                  <div class="line_up_socials">
+                    <a href="https://www.youtube.com/results?search_query=M%C3%B8rssync+Sabossi" target="_blank" rel="noreferrer">YouTube</a>
+                    <a href="https://open.spotify.com/search/M%C3%B8rssync%20Sabossi" target="_blank" rel="noreferrer">Spotify</a>
+                    <a href="https://www.instagram.com/explore/search/keyword/?q=M%C3%B8rssync%20Sabossi" target="_blank" rel="noreferrer">Instagram</a>
+                    <a href="https://www.tiktok.com/search?q=M%C3%B8rssync%20Sabossi" target="_blank" rel="noreferrer">TikTok</a>
+                  </div>
+                </div>
               </div>
             </article>
 
@@ -2695,7 +2420,7 @@
             <span class="eyebrow eyebrow_light">Timetable</span>
             <h2 class="section_title">Podia nu. Speeltijden straks.</h2>
             <p class="section_text">
-              De precieze programmering komt later. Daarom staat hier geen verzonnen tijdschema, maar wel een heldere podiumindeling die straks direct naar echte speeltijden kan worden vertaald.
+              De tijden zijn nog niet bekend. Daarom staat hier alleen hoe de dag grofweg beweegt.
             </p>
           </div>
 
@@ -2703,38 +2428,25 @@
             <article class="time_block time_block_main" data_reveal>
               <div class="time_block_top">
                 <div class="time_label">Hoofdpodium</div>
-                <div class="time_tag">Grotere namen</div>
+                <div class="time_tag">Middag tot avond</div>
               </div>
-              <ul>
-                <li><span class="time_stage">Bevestigd</span><span>André Manuel</span></li>
-                <li><span class="time_stage">Bevestigd</span><span>IDA</span></li>
-              </ul>
-              <p class="time_note">Dit podium draagt de grotere publieksmomenten. Speeltijden volgen zodra het schema rond is.</p>
+              <p class="time_note">Hier landen de grotere publieksmomenten. De exacte blokken volgen zodra het schema staat.</p>
             </article>
 
             <article class="time_block time_block_tent" data_reveal>
               <div class="time_block_top">
                 <div class="time_label">De Tent</div>
-                <div class="time_tag">Live en dichtbij</div>
+                <div class="time_tag">Doorlopend live</div>
               </div>
-              <ul>
-                <li><span class="time_stage">Bevestigd</span><span>Post Ella</span></li>
-                <li><span class="time_stage">Bevestigd</span><span>Lenny Monsou</span></li>
-                <li><span class="time_stage">Bevestigd</span><span>Lézard</span></li>
-              </ul>
-              <p class="time_note">De Tent is voor de andere liveacts: intiemer, directer en perfect voor een compactere setting.</p>
+              <p class="time_note">De Tent houdt de liveflow dichtbij en losser van sfeer dan het hoofdpodium.</p>
             </article>
 
             <article class="time_block time_block_loft" data_reveal>
               <div class="time_block_top">
                 <div class="time_label">Tommy-Loods</div>
-                <div class="time_tag">Dj-hoek</div>
+                <div class="time_tag">Later op de dag</div>
               </div>
-              <ul>
-                <li><span class="time_stage">Bevestigd</span><span>Yo That’s Shit</span></li>
-                <li><span class="time_stage">Bevestigd</span><span>Mørssync &amp; Sabossi</span></li>
-              </ul>
-              <p class="time_note">De dj's zitten hier samen. Zodra de tijden bekend zijn, kan dit blok direct een echte timetable worden.</p>
+              <p class="time_note">Voor de dj-sets en het latere tempo. Zodra tijden bekend zijn, wordt dit het laatste blok van de avond.</p>
             </article>
           </div>
         </div>
@@ -2854,7 +2566,7 @@
         <div>
           <p class="brand_name footer_brand">Bammetje</p>
           <p class="footer_text">
-            De mini-editie van BAM! Festival voor Hengelo en Twente. Gratis, warm en klaar om in 2026 even flink uit te pakken.
+            De mini-editie van BAM! Festival voor Hengelo en Twente. Gratis en op 23 mei gewoon bij Oogst.
           </p>
         </div>
         <div class="footer_meta">
@@ -2903,109 +2615,9 @@
     const nav_toggle = document.querySelector("#nav_toggle");
     const mobile_panel = document.querySelector("#mobile_panel");
     const mobile_links = document.querySelectorAll(".mobile_menu a");
-    const swipe_stack = document.querySelector("[data_swipe_stack]");
-    const swipe_cards = swipe_stack ? Array.from(swipe_stack.querySelectorAll("[data_swipe_card]")) : [];
-    const swipe_status = document.querySelector("[data_swipe_status]");
-    const swipe_dots = Array.from(document.querySelectorAll("[data_swipe_dot]"));
-    const swipe_prev = document.querySelector("[data_swipe_prev]");
-    const swipe_next = document.querySelector("[data_swipe_next]");
     const reveal_nodes = document.querySelectorAll("[data_reveal]");
+    const artist_cards = document.querySelectorAll(".line_up_artist");
     const prefers_reduced_motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let active_swipe_index = 0;
-    let drag_state = null;
-
-    const set_card_interactivity = (card, is_active) => {
-      card.inert = !is_active;
-      card.setAttribute("aria-hidden", String(!is_active));
-    };
-
-    const set_swipe_face_state = (card, is_flipped) => {
-      const front_face = card.querySelector(".swipe_face_front");
-      const back_face = card.querySelector(".swipe_face_back");
-      const front_button = card.querySelector('[data_flip_action="open"]');
-      const back_button = card.querySelector('[data_flip_action="close"]');
-
-      card.classList.toggle("is_flipped", is_flipped);
-
-      if (front_face && back_face) {
-        front_face.setAttribute("aria-hidden", String(is_flipped));
-        back_face.setAttribute("aria-hidden", String(!is_flipped));
-        front_face.inert = is_flipped;
-        back_face.inert = !is_flipped;
-      }
-
-      if (front_button) {
-        front_button.setAttribute("aria-expanded", String(is_flipped));
-      }
-
-      if (back_button) {
-        back_button.setAttribute("aria-expanded", String(is_flipped));
-      }
-    };
-
-    swipe_cards.forEach((card, index) => {
-      const front_face = card.querySelector(".swipe_face_front");
-      const back_face = card.querySelector(".swipe_face_back");
-      const card_title = card.querySelector("h3")?.textContent?.trim();
-
-      front_face?.querySelectorAll(".swipe_flip_hint:not(.swipe_flip_button)").forEach((node) => {
-        node.remove();
-      });
-
-      back_face?.querySelectorAll(".swipe_flip_hint:not(.swipe_flip_button)").forEach((node) => {
-        node.remove();
-      });
-
-      if (front_face && !front_face.querySelector('[data_flip_action="open"]')) {
-        const open_button = document.createElement("button");
-        open_button.type = "button";
-        open_button.className = "swipe_flip_button swipe_flip_hint";
-        open_button.dataset.flipAction = "open";
-        open_button.setAttribute("aria-expanded", "false");
-        open_button.setAttribute("aria-label", "Toon meer info over deze artiest");
-        open_button.textContent = "Bekijk details";
-        front_face.append(open_button);
-      }
-
-      if (back_face && !back_face.querySelector('[data_flip_action="close"]')) {
-        const close_button = document.createElement("button");
-        close_button.type = "button";
-        close_button.className = "swipe_flip_button swipe_flip_hint";
-        close_button.dataset.flipAction = "close";
-        close_button.setAttribute("aria-expanded", "true");
-        close_button.setAttribute("aria-label", "Ga terug naar voorkant");
-        close_button.textContent = "Terug";
-        back_face.append(close_button);
-      }
-
-      if (back_face && !back_face.id) {
-        back_face.id = `swipe-card-back-${index + 1}`;
-      }
-
-      const open_button = front_face?.querySelector('[data_flip_action="open"]');
-      const close_button = back_face?.querySelector('[data_flip_action="close"]');
-
-      if (front_face && !front_face.id) {
-        front_face.id = `swipe-card-front-${index + 1}`;
-      }
-
-      if (open_button && back_face?.id) {
-        open_button.setAttribute("aria-controls", back_face.id);
-      }
-
-      if (close_button && front_face?.id) {
-        close_button.setAttribute("aria-controls", front_face.id);
-      }
-
-      if (card_title) {
-        card.setAttribute("aria-label", `${card_title} (${index + 1} van ${swipe_cards.length})`);
-      }
-
-      card.setAttribute("role", "group");
-      card.setAttribute("aria-roledescription", "kaart");
-      set_card_interactivity(card, index === 0);
-      set_swipe_face_state(card, false);
-    });
 
     requestAnimationFrame(() => {
       page_body.classList.add("is_ready");
@@ -3050,181 +2662,6 @@
     sync_header_state();
     window.addEventListener("scroll", sync_header_state, { passive: true });
 
-    const sync_swipe_stack = () => {
-      if (!swipe_cards.length) {
-        return;
-      }
-
-      swipe_cards.forEach((card, index) => {
-        const offset = (index - active_swipe_index + swipe_cards.length) % swipe_cards.length;
-        const is_active = offset === 0;
-        card.classList.remove("is_current", "is_next", "is_third", "show_like", "show_next", "threshold_reached", "is_leaving_left", "is_leaving_right");
-        card.style.removeProperty("transform");
-        card.style.removeProperty("opacity");
-        set_card_interactivity(card, is_active);
-        set_swipe_face_state(card, false);
-
-        if (is_active) {
-          card.classList.add("is_current");
-          card.style.transform = "translate3d(0, 0, 0) rotate(-1.2deg) scale(1)";
-          card.style.opacity = "1";
-        } else if (offset === 1) {
-          card.classList.add("is_next");
-          card.style.transform = "translate3d(0, 1rem, 0) rotate(0.9deg) scale(0.97)";
-          card.style.opacity = "0.92";
-        } else if (offset === 2) {
-          card.classList.add("is_third");
-          card.style.transform = "translate3d(0, 1.9rem, 0) rotate(-0.8deg) scale(0.94)";
-          card.style.opacity = "0.78";
-        } else {
-          card.style.transform = "translate3d(0, 2.4rem, 0) scale(0.9)";
-          card.style.opacity = "0";
-        }
-      });
-
-      if (swipe_status) {
-        const current_title = swipe_cards[active_swipe_index]?.querySelector("h3")?.textContent?.trim();
-        swipe_status.textContent = current_title
-          ? `${current_title} - artiest ${active_swipe_index + 1} van ${swipe_cards.length}`
-          : `Artiest ${active_swipe_index + 1} van ${swipe_cards.length}`;
-      }
-
-      swipe_dots.forEach((dot, index) => {
-        dot.classList.toggle("is_active", index === active_swipe_index);
-      });
-    };
-
-    const move_swipe = (direction) => {
-      if (!swipe_cards.length) {
-        return;
-      }
-
-      active_swipe_index = (active_swipe_index + direction + swipe_cards.length) % swipe_cards.length;
-      sync_swipe_stack();
-    };
-
-    const finish_drag = (pointer_x) => {
-      if (!drag_state) {
-        return;
-      }
-
-      const current_card = swipe_cards[active_swipe_index];
-      const delta_x = pointer_x - drag_state.start_x;
-      const abs_delta = Math.abs(delta_x);
-      const threshold = 90;
-
-      current_card.classList.remove("is_dragging");
-      current_card.classList.remove("threshold_reached");
-
-      if (abs_delta > threshold) {
-        const direction = delta_x > 0 ? 1 : -1;
-        current_card.classList.add(direction > 0 ? "is_leaving_right" : "is_leaving_left");
-
-        window.setTimeout(() => {
-          active_swipe_index = (active_swipe_index + 1) % swipe_cards.length;
-          sync_swipe_stack();
-        }, prefers_reduced_motion.matches ? 10 : 210);
-      } else {
-        sync_swipe_stack();
-      }
-
-      drag_state = null;
-    };
-
-    if (swipe_stack && swipe_cards.length) {
-      sync_swipe_stack();
-
-      swipe_stack.addEventListener("pointerdown", (event) => {
-        const current_card = swipe_cards[active_swipe_index];
-
-        if (!current_card || event.target.closest("[data_swipe_prev], [data_swipe_next], .swipe_flip_button")) {
-          return;
-        }
-
-        if (!current_card.contains(event.target)) {
-          return;
-        }
-
-        drag_state = {
-          pointer_id: event.pointerId,
-          start_x: event.clientX,
-          start_y: event.clientY,
-          moved: false
-        };
-
-        current_card.classList.add("is_dragging");
-        current_card.setPointerCapture(event.pointerId);
-      });
-
-      swipe_stack.addEventListener("pointermove", (event) => {
-        if (!drag_state || event.pointerId !== drag_state.pointer_id) {
-          return;
-        }
-
-        const current_card = swipe_cards[active_swipe_index];
-        const delta_x = event.clientX - drag_state.start_x;
-        const rotation = delta_x / 18;
-        const opacity = Math.max(0.58, 1 - Math.abs(delta_x) / 260);
-        const abs_delta = Math.abs(delta_x);
-        const delta_y = event.clientY - drag_state.start_y;
-        const snap_threshold = 72;
-
-        if (abs_delta > 8 || Math.abs(delta_y) > 8) {
-          drag_state.moved = true;
-        }
-
-        current_card.style.transform = `translate3d(${delta_x}px, 0, 0) rotate(${rotation}deg)`;
-        current_card.style.opacity = String(opacity);
-        current_card.classList.toggle("show_like", delta_x > 36);
-        current_card.classList.toggle("show_next", delta_x < -36);
-        current_card.classList.toggle("threshold_reached", abs_delta > snap_threshold);
-      });
-
-      swipe_stack.addEventListener("pointerup", (event) => {
-        if (drag_state && !drag_state.moved) {
-          sync_swipe_stack();
-          drag_state = null;
-          return;
-        }
-
-        finish_drag(event.clientX);
-      });
-
-      swipe_stack.addEventListener("pointercancel", () => {
-        sync_swipe_stack();
-        drag_state = null;
-      });
-
-      if (swipe_prev) {
-        swipe_prev.addEventListener("click", () => {
-          move_swipe(-1);
-        });
-      }
-
-      if (swipe_next) {
-        swipe_next.addEventListener("click", () => {
-          move_swipe(1);
-        });
-      }
-
-      swipe_stack.addEventListener("click", (event) => {
-        const flip_button = event.target.closest(".swipe_flip_button");
-
-        if (!flip_button) {
-          return;
-        }
-
-        const current_card = flip_button.closest(".swipe_card");
-
-        if (!current_card) {
-          return;
-        }
-
-        const should_flip = flip_button.dataset.flipAction === "open";
-        set_swipe_face_state(current_card, should_flip);
-      });
-    }
-
     if (nav_toggle && mobile_panel) {
       nav_toggle.addEventListener("click", () => {
         const is_open = nav_toggle.getAttribute("aria-expanded") === "true";
@@ -3245,8 +2682,123 @@
       });
     });
 
+    const create_iframe = ({ src, title, allow, referrerpolicy }) => {
+      const iframe = document.createElement("iframe");
+      iframe.src = src;
+      iframe.title = title;
+      iframe.loading = "lazy";
+      iframe.allow = allow;
+
+      if (referrerpolicy) {
+        iframe.referrerPolicy = referrerpolicy;
+      }
+
+      return iframe;
+    };
+
+    const mount_artist_media = (card) => {
+      if (card.dataset.mediaMounted === "true") {
+        return;
+      }
+
+      const artist_name = card.getAttribute("data_artist_name") || "Artiest";
+      const youtube_target = card.querySelector('[data_embed="youtube"]');
+      const spotify_target = card.querySelector('[data_embed="spotify"]');
+      const youtube_group = youtube_target?.closest(".line_up_embed_group");
+      const spotify_group = spotify_target?.closest(".line_up_embed_group");
+      const youtube_query = card.getAttribute("data_youtube_query");
+      const youtube_embed = card.getAttribute("data_youtube_embed");
+      const spotify_embed = card.getAttribute("data_spotify_embed");
+
+      if (youtube_target) {
+        if (youtube_embed) {
+          youtube_target.appendChild(create_iframe({
+            src: youtube_embed,
+            title: `YouTube-video voor ${artist_name}`,
+            allow: "accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            referrerpolicy: "strict-origin-when-cross-origin"
+          }));
+        } else {
+          youtube_group?.remove();
+        }
+      }
+
+      if (spotify_target) {
+        if (spotify_embed) {
+          spotify_target.appendChild(create_iframe({
+            src: spotify_embed,
+            title: `Spotify-miniplayer voor ${artist_name}`,
+            allow: "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          }));
+        } else {
+          spotify_group?.remove();
+        }
+      }
+
+      card.dataset.mediaMounted = "true";
+    };
+
+    const set_artist_card_state = (card, should_flip) => {
+      card.classList.toggle("is_flipped", should_flip);
+      card.setAttribute("aria-expanded", String(should_flip));
+
+      if (should_flip) {
+        mount_artist_media(card);
+      }
+    };
+
+    artist_cards.forEach((card) => {
+      const close_button = card.querySelector(".line_up_artist_close");
+      const interactive_selector = "a, button, iframe";
+
+      card.addEventListener("click", (event) => {
+        if (event.target.closest(interactive_selector)) {
+          return;
+        }
+
+        const next_state = !card.classList.contains("is_flipped");
+
+        artist_cards.forEach((other_card) => {
+          set_artist_card_state(other_card, other_card === card ? next_state : false);
+        });
+      });
+
+      card.addEventListener("keydown", (event) => {
+        if (event.target.closest(interactive_selector)) {
+          return;
+        }
+
+        if (event.key !== "Enter" && event.key !== " ") {
+          return;
+        }
+
+        event.preventDefault();
+        const next_state = !card.classList.contains("is_flipped");
+
+        artist_cards.forEach((other_card) => {
+          set_artist_card_state(other_card, other_card === card ? next_state : false);
+        });
+      });
+
+      if (close_button) {
+        close_button.addEventListener("click", (event) => {
+          event.stopPropagation();
+          set_artist_card_state(card, false);
+          card.focus();
+        });
+      }
+    });
+
     document.addEventListener("keydown", (event) => {
-      if (event.key !== "Escape" || !nav_toggle || !mobile_panel) {
+      if (event.key !== "Escape") {
+        return;
+      }
+
+      artist_cards.forEach((card) => {
+        set_artist_card_state(card, false);
+      });
+
+      if (!nav_toggle || !mobile_panel) {
         return;
       }
 

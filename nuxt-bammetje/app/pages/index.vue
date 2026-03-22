@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { siteConfig } = useSite()
+const { siteConfig, getStageName } = useSite()
 const { artists } = useArtists()
 const { sponsors } = useSponsors()
 
@@ -14,437 +14,294 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="site-shell">
-    <header class="site-header">
-      <div class="frame">
-        <div class="header-row">
-          <NuxtLink to="/" class="brand-link">
-            <img
-              class="brand-mark"
-              src="/assets/favicons/logo-192.png"
-              alt="Bammetje logo"
-              width="192"
-              height="192"
-            >
-            <div>
-              <p class="brand-name">{{ siteConfig.title }}</p>
-              <p class="brand-note">{{ siteConfig.date }} • Hengelo</p>
+  <section id="top" class="hero">
+    <div class="hero-banner" aria-label="Headerbeeld van Bammetje">
+      <picture>
+        <source
+          type="image/webp"
+          srcset="
+            /assets/hero/bammetje-header-640.webp 640w,
+            /assets/hero/bammetje-header-960.webp 960w,
+            /assets/hero/bammetje-header-1440.webp 1440w,
+            /assets/hero/bammetje-header-1920.webp 1920w
+          "
+          sizes="100vw"
+        />
+        <img
+          src="/assets/hero/bammetje-header-1440.jpg"
+          srcset="
+            /assets/hero/bammetje-header-640.jpg 640w,
+            /assets/hero/bammetje-header-960.jpg 960w,
+            /assets/hero/bammetje-header-1440.jpg 1440w,
+            /assets/hero/bammetje-header-1920.jpg 1920w
+          "
+          sizes="100vw"
+          alt="Bammetje headerbeeld voor de mini-editie van BAM! Festival"
+          width="1920"
+          height="1004"
+          fetchpriority="high"
+        />
+      </picture>
+    </div>
+    <div class="frame hero-inner hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow eyebrow-dark"><span class="dot" aria-hidden="true"></span> Mini BAM, maximale vibe</span>
+        <div class="hero-title-wrap">
+          <p class="eyebrow eyebrow-dark">Gratis mini-editie van BAM! Festival</p>
+          <h1 class="hero-title">Bammetje</h1>
+          <p class="hero-subtitle">
+            {{ siteConfig.subtitle }}
+          </p>
+          <div class="hero-actions">
+            <a class="action-button action-button-primary" href="#line-up">Bekijk line-up</a>
+            <a class="action-button action-button-secondary" href="#info">Praktische info</a>
+          </div>
+          <div class="hero-strip" aria-label="Belangrijkste evenementdetails">
+            <div class="hero-strip-item">
+              <strong>{{ siteConfig.eventDate }}</strong>
+              <span>{{ siteConfig.eventDay }}. in 2026</span>
             </div>
-          </NuxtLink>
+            <div class="hero-strip-item">
+              <strong>Gratis</strong>
+              <span>Kom langs zonder ticketstress</span>
+            </div>
+            <div class="hero-strip-item">
+              <strong>Oogst</strong>
+              <span>Broedplaats in Hengelo</span>
+            </div>
+          </div>
         </div>
       </div>
-    </header>
+      <aside class="ticket-card hero-ticket" aria-label="Kerninformatie Bammetje">
+        <span class="eyebrow eyebrow-light">{{ siteConfig.freeEntry.title }}</span>
+        <strong>{{ siteConfig.freeEntry.location.replace(' / ', '\n') }}</strong>
+        <p class="section-text hero-ticket-text">
+          {{ siteConfig.freeEntry.description }}
+        </p>
+      </aside>
+    </div>
+  </section>
 
-    <main id="main-content">
-      <section id="top" class="hero">
-        <div class="hero-banner">
-          <picture>
-            <source
-              type="image/webp"
-              srcset="
-                /assets/hero/bammetje-header-640.webp 640w,
-                /assets/hero/bammetje-header-960.webp 960w,
-                /assets/hero/bammetje-header-1440.webp 1440w,
-                /assets/hero/bammetje-header-1920.webp 1920w
-              "
-              sizes="100vw"
-            >
-            <NuxtImg
-              src="/assets/hero/bammetje-header-1440.jpg"
-              srcset="
-                /assets/hero/bammetje-header-640.jpg 640w,
-                /assets/hero/bammetje-header-960.jpg 960w,
-                /assets/hero/bammetje-header-1440.jpg 1440w,
-                /assets/hero/bammetje-header-1920.jpg 1920w
-              "
-              sizes="100vw"
-              alt="Bammetje headerbeeld voor de mini-editie van BAM! Festival"
-              width="1920"
-              height="1004"
-              fetchpriority="high"
-            />
-          </picture>
-        </div>
-        <div class="frame hero-inner hero-grid">
-          <div class="hero-copy">
-            <span class="eyebrow eyebrow-dark"><span class="dot" aria-hidden="true"/> Mini BAM, maximale vibe</span>
-            <div class="hero-title-wrap">
-              <p class="eyebrow eyebrow-light">{{ siteConfig.tagline }}</p>
-              <h1 class="hero-title">{{ siteConfig.slogan.replace('Klein, maar ', '').replace('.', '') }}</h1>
-              <p class="hero-subtitle">
-                {{ siteConfig.subtitle }}
-              </p>
-              <div class="hero-actions">
-                <a class="action-button action-button-primary" href="#line-up">Bekijk line-up</a>
-                <a class="action-button action-button-secondary" href="#info">Praktische info</a>
-              </div>
-              <div class="hero-strip" aria-label="Belangrijkste evenementdetails">
-                <div class="hero-strip-item">
-                  <strong>{{ siteConfig.eventDate }}</strong>
-                  <span>{{ siteConfig.eventDay }}</span>
-                </div>
-                <div class="hero-strip-item">
-                  <strong>{{ siteConfig.admission }}</strong>
-                  <span>{{ siteConfig.admissionNote }}</span>
-                </div>
-                <div class="hero-strip-item">
-                  <strong>{{ siteConfig.freeEntry.location.split(' ')[0] }}</strong>
-                  <span>{{ siteConfig.freeEntry.location.split(' ').slice(1).join(' ') }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <aside id="gratis-entree" class="ticket-card hero-ticket" aria-label="Kerninformatie Bammetje">
-            <span class="eyebrow eyebrow-light">{{ siteConfig.freeEntry.title }}</span>
-            <strong>{{ siteConfig.freeEntry.location.replace(' / ', '\n') }}</strong>
-            <p class="section-text hero-ticket-text">
-              {{ siteConfig.freeEntry.description }}
-            </p>
-          </aside>
-        </div>
-      </section>
-
-      <section class="section story-band">
-        <div class="frame story-layout">
-          <div class="story-quote">
-            <span class="eyebrow eyebrow-dark">{{ siteConfig.about.title }}</span>
-            <p>
-              {{ siteConfig.about.intro }}
-            </p>
-          </div>
-          <div class="story-points">
-            <div
-              v-for="point in siteConfig.about.points"
-              :key="point.title"
-              class="story-point"
-            >
-              <span class="dot" aria-hidden="true"/>
-              <div>
-                <strong>{{ point.title }}</strong>
-                <p>{{ point.description }}</p>
-              </div>
-            </div>
+  <section class="section story-band">
+    <div class="frame story-layout">
+      <div class="story-quote">
+        <span class="eyebrow eyebrow-dark">{{ siteConfig.about.title }}</span>
+        <p>
+          {{ siteConfig.about.intro }}
+        </p>
+      </div>
+      <div class="story-points">
+        <div
+          v-for="point in siteConfig.about.points"
+          :key="point.title"
+          class="story-point"
+        >
+          <span class="dot" aria-hidden="true"/>
+          <div>
+            <strong>{{ point.title }}</strong>
+            <p>{{ point.description }}</p>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <section id="line-up" class="section">
-        <div class="frame">
-          <div class="section-intro">
-            <span class="eyebrow eyebrow-light">Line-up</span>
-            <h2 class="section-title">Drie podia. Zeven namen. Meteen overzicht.</h2>
-            <p class="section-text">
-              De eerste indeling staat nu vast: de grotere namen op het Hoofdpodium, de dj's in de Tommy-Loods en de andere acts in De Tent.
-              Zo voelt de line-up niet alleen levendiger, maar ook meteen logisch voor bezoekers.
-            </p>
-          </div>
+  <section id="line-up" class="section">
+    <div class="frame">
+      <div class="section-intro">
+        <span class="eyebrow eyebrow-light">Line-up</span>
+        <h2 class="section-title">Drie podia. Zeven namen. Meteen overzicht.</h2>
+        <p class="section-text">
+          De eerste indeling staat nu vast: de grotere namen op het Hoofdpodium, de dj's in de Tommy-Loods en de andere acts in De Tent.
+          Zo voelt de line-up niet alleen levendiger, maar ook meteen logisch voor bezoekers.
+        </p>
+      </div>
 
-          <div class="artist-grid">
-            <ArtistCard
-              v-for="artist in artists"
-              :key="artist.name"
-              :artist="artist"
-            />
+      <div class="artist-grid">
+        <ArtistCard
+          v-for="artist in artists"
+          :key="artist.name"
+          :artist="artist"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section id="timetable" class="section">
+    <div class="frame">
+      <div class="section-intro">
+        <span class="eyebrow eyebrow-light">Timetable</span>
+        <h2 class="section-title">Podia nu. Speeltijden straks.</h2>
+        <p class="section-text">
+          De precieze programmering komt later. Daarom staat hier geen verzonnen tijdschema, maar wel een heldere podiumindeling die straks direct naar echte speeltijden kan worden vertaald.
+        </p>
+      </div>
+
+      <div class="timetable">
+        <article class="time-block time-block-main">
+          <div class="time-block-top">
+            <div class="time-label">{{ getStageName('hoofdpodium') }}</div>
+            <div class="time-tag">Grotere namen</div>
           </div>
+          <ul>
+            <li v-for="artist in artists.filter(a => a.stage === 'hoofdpodium')" :key="artist.name">
+              <span class="time-stage">{{ artist.time || 'Bevestigd' }}</span>
+              <span>{{ artist.name }}</span>
+            </li>
+          </ul>
+          <p class="time-note">Dit podium draagt de grotere publieksmomenten. Speeltijden volgen zodra het schema rond is.</p>
+        </article>
+
+        <article class="time-block time-block-tent">
+          <div class="time-block-top">
+            <div class="time-label">{{ getStageName('de-tent') }}</div>
+            <div class="time-tag">Live en dichtbij</div>
+          </div>
+          <ul>
+            <li v-for="artist in artists.filter(a => a.stage === 'de-tent')" :key="artist.name">
+              <span class="time-stage">{{ artist.time || 'Bevestigd' }}</span>
+              <span>{{ artist.name }}</span>
+            </li>
+          </ul>
+          <p class="time-note">De Tent is voor de andere liveacts: intiemer, directer en perfect voor een compactere setting.</p>
+        </article>
+
+        <article class="time-block time-block-loft">
+          <div class="time-block-top">
+            <div class="time-label">{{ getStageName('tommy-loods') }}</div>
+            <div class="time-tag">Dj-hoek</div>
+          </div>
+          <ul>
+            <li v-for="artist in artists.filter(a => a.stage === 'tommy-loods')" :key="artist.name">
+              <span class="time-stage">{{ artist.time || 'Bevestigd' }}</span>
+              <span>{{ artist.name }}</span>
+            </li>
+          </ul>
+          <p class="time-note">De dj's zitten hier samen. Zodra de tijden bekend zijn, kan dit blok direct een echte timetable worden.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="info" class="section">
+    <div class="frame">
+      <div class="section-intro">
+        <span class="eyebrow eyebrow-light">Info</span>
+        <h2 class="section-title">Snel snappen. Dan gewoon komen.</h2>
+        <p class="section-text">
+          Dit is de kern voor bezoekers uit Hengelo en Twente: waar het is, wanneer het begint en waarom je geen drempel hebt om langs te gaan.
+        </p>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-stack">
+          <dl class="info-card">
+            <dt>Datum</dt>
+            <dd>{{ siteConfig.eventDate }} 2026</dd>
+            <dd>{{ siteConfig.eventDay }}. Klaar om buiten weer BAM-gevoel op te bouwen.</dd>
+          </dl>
+          <dl class="info-card">
+            <dt>Tijd</dt>
+            <dd>{{ siteConfig.eventTime }}</dd>
+            <dd>Van middag tot avond, compact genoeg om overzichtelijk te blijven en lang genoeg om echt sfeer te maken.</dd>
+          </dl>
+          <dl class="info-card">
+            <dt>Toegang</dt>
+            <dd>{{ siteConfig.admission }}</dd>
+            <dd>Geen ticket nodig. Gewoon komen, aansluiten en genieten van muziek en een drankje.</dd>
+          </dl>
         </div>
-      </section>
 
-      <section id="timetable" class="section">
-        <div class="frame">
-          <div class="section-intro">
-            <span class="eyebrow eyebrow-light">Timetable</span>
-            <h2 class="section-title">Podia nu. Speeltijden straks.</h2>
-            <p class="section-text">
-              De precieze programmering komt later. Daarom staat hier geen verzonnen tijdschema, maar wel een heldere podiumindeling die straks direct naar echte speeltijden kan worden vertaald.
-            </p>
-          </div>
-
-          <div class="timetable">
-            <article class="time-block time-block-main">
-              <div class="time-block-top">
-                <div class="time-label">Hoofdpodium</div>
-                <div class="time-tag">Grotere namen</div>
-              </div>
-              <ul>
-                <li v-for="artist in artists.filter(a => a.stage === 'Hoofdpodium')" :key="artist.name">
-                  <span class="time-stage">{{ artist.time || 'Bevestigd' }}</span>
-                  <span>{{ artist.name }}</span>
-                </li>
-              </ul>
-              <p class="time-note">Dit podium draagt de grotere publieksmomenten. Speeltijden volgen zodra het schema rond is.</p>
-            </article>
-
-            <article class="time-block time-block-tent">
-              <div class="time-block-top">
-                <div class="time-label">De Tent</div>
-                <div class="time-tag">Live en dichtbij</div>
-              </div>
-              <ul>
-                <li v-for="artist in artists.filter(a => a.stage === 'De Tent')" :key="artist.name">
-                  <span class="time-stage">{{ artist.time || 'Bevestigd' }}</span>
-                  <span>{{ artist.name }}</span>
-                </li>
-              </ul>
-              <p class="time-note">De Tent is voor de andere liveacts: intiemer, directer en perfect voor een compactere setting.</p>
-            </article>
-
-            <article class="time-block time-block-loft">
-              <div class="time-block-top">
-                <div class="time-label">Tommy-Loods</div>
-                <div class="time-tag">Dj-hoek</div>
-              </div>
-              <ul>
-                <li v-for="artist in artists.filter(a => a.stage === 'Tommy-Loods')" :key="artist.name">
-                  <span class="time-stage">{{ artist.time || 'Bevestigd' }}</span>
-                  <span>{{ artist.name }}</span>
-                </li>
-              </ul>
-              <p class="time-note">De dj's zitten hier samen. Zodra de tijden bekend zijn, kan dit blok direct een echte timetable worden.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="info" class="section">
-        <div class="frame">
-          <div class="section-intro">
-            <span class="eyebrow eyebrow-light">Info</span>
-            <h2 class="section-title">Snel snappen. Dan gewoon komen.</h2>
-            <p class="section-text">
-              Dit is de kern voor bezoekers uit Hengelo en Twente: waar het is, wanneer het begint en waarom je geen drempel hebt om langs te gaan.
-            </p>
-          </div>
-
-          <div class="info-grid">
-            <div class="info-stack">
-              <dl class="info-card">
-                <dt>Datum</dt>
-                <dd>{{ siteConfig.eventDate }} 2026</dd>
-                <dd>{{ siteConfig.eventDay }}. Klaar om buiten weer BAM-gevoel op te bouwen.</dd>
-              </dl>
-              <dl class="info-card">
-                <dt>Tijd</dt>
-                <dd>{{ siteConfig.eventTime }}</dd>
-                <dd>Van middag tot avond, compact genoeg om overzichtelijk te blijven en lang genoeg om echt sfeer te maken.</dd>
-              </dl>
-              <dl class="info-card">
-                <dt>Toegang</dt>
-                <dd>{{ siteConfig.admission }}</dd>
-                <dd>Geen ticket nodig. Gewoon komen, aansluiten en genieten van muziek en een drankje.</dd>
-              </dl>
-            </div>
-
-            <section id="locatie" class="location-panel" aria-labelledby="locatie_title">
-              <span class="eyebrow eyebrow-dark">Locatie</span>
-              <h2 id="locatie_title" class="section-title location-title">{{ siteConfig.freeEntry.location.split(' / ')[0] }}</h2>
-              <p>
-                Bammetje landt bij Oogst in Hengelo. Verwacht geen exacte kopie van BAM! Festival in het park, maar een kleinere setting met dezelfde liefde voor livemuziek,
-                ontmoeting en lokale energie.
-              </p>
-              <address class="location-address">
-                {{ siteConfig.address.replace(', ', '\n') }}
-              </address>
-              <div class="location-map">
-                <ClientOnly>
-                  <LMap
-                    ref="map"
-                    :zoom="15"
-                    :center="siteConfig.coordinates"
-                    :use-global-leaflet="false"
-                  >
-                    <LTileLayer
-                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                    />
-                    <LMarker :lat-lng="siteConfig.coordinates">
-                      <LPopup>
-                        <div class="map-popup">
-                          <strong>{{ siteConfig.freeEntry.location.split(' / ')[0] }}</strong><br >
-                          {{ siteConfig.address }}
-                        </div>
-                      </LPopup>
-                    </LMarker>
-                  </LMap>
-                </ClientOnly>
-              </div>
-              <div class="location-links">
-                <a class="action-button action-button-primary" :href="siteConfig.links.route" target="_blank" rel="noreferrer">Route openen</a>
-                <a class="action-button action-button-secondary" :href="siteConfig.links.bamFestival" target="_blank" rel="noreferrer">Bekijk BAM! Festival</a>
-              </div>
-            </section>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="frame">
-          <div class="quote-ribbon">
-            <p>
-              "{{ siteConfig.footer.quote }}"
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="frame">
-          <div class="light-panel sponsor-bar">
-            <div>
-              <span class="eyebrow eyebrow-light">Partners</span>
-              <h2 class="section-title section-title-tight">Lokaal gedragen.</h2>
-              <p class="section-text section-text-push">
-                Bammetje voelt sterker als partners en stad zichtbaar meedoen. Deze strook houdt de uiting compact, warm en duidelijk herkenbaar.
-              </p>
-            </div>
-            <div class="sponsor-logos">
-              <a
-                v-for="sponsor in sponsors"
-                :key="sponsor.title"
-                :href="sponsor.link"
-                target="_blank"
-                rel="noreferrer"
-                class="sponsor-logo"
+        <section id="locatie" class="location-panel" aria-labelledby="locatie_title">
+          <span class="eyebrow eyebrow-dark">Locatie</span>
+          <h2 id="locatie_title" class="section-title location-title">{{ siteConfig.freeEntry.location.split(' / ')[0] }}</h2>
+          <p>
+            Bammetje landt bij Oogst in Hengelo. Verwacht geen exacte kopie van BAM! Festival in het park, maar een kleinere setting met dezelfde liefde voor livemuziek,
+            ontmoeting en lokale energie.
+          </p>
+          <address class="location-address">
+            {{ siteConfig.address.replace(', ', '\n') }}
+          </address>
+          <div class="location-map">
+            <ClientOnly>
+              <LMap
+                ref="map"
+                :zoom="15"
+                :center="siteConfig.coordinates"
+                :use-global-leaflet="false"
               >
-                <NuxtImg
-                  :src="sponsor.logo"
-                  :alt="sponsor.logo_alt"
-                  width="640"
-                  height="238"
-                  loading="lazy"
+                <LTileLayer
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 />
-              </a>
-            </div>
+                <LMarker :lat-lng="siteConfig.coordinates">
+                  <LPopup>
+                    <div class="map-popup">
+                      <strong>{{ siteConfig.freeEntry.location.split(' / ')[0] }}</strong><br >
+                      {{ siteConfig.address }}
+                    </div>
+                  </LPopup>
+                </LMarker>
+              </LMap>
+            </ClientOnly>
           </div>
-        </div>
-      </section>
-    </main>
+          <div class="location-links">
+            <a class="action-button action-button-primary" :href="siteConfig.links.route" target="_blank" rel="noreferrer">Route openen</a>
+            <a class="action-button action-button-secondary" :href="siteConfig.links.bamFestival" target="_blank" rel="noreferrer">Bekijk BAM! Festival</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
 
-    <footer class="footer">
-      <div class="frame footer-bar">
+  <section class="section">
+    <div class="frame">
+      <div class="quote-ribbon">
+        <p>
+          "{{ siteConfig.footer.quote }}"
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="frame">
+      <div class="light-panel sponsor-bar">
         <div>
-          <p class="brand-name footer-brand">{{ siteConfig.footer.brand }}</p>
-          <p class="footer-text">
-            {{ siteConfig.footer.text }}
+          <span class="eyebrow eyebrow-light">Partners</span>
+          <h2 class="section-title section-title-tight">Lokaal gedragen.</h2>
+          <p class="section-text section-text-push">
+            Bammetje voelt sterker als partners en stad zichtbaar meedoen. Deze strook houdt de uiting compact, warm en duidelijk herkenbaar.
           </p>
         </div>
-        <div class="footer-meta">
-          <a :href="siteConfig.links.bamFestival" target="_blank" rel="noreferrer">BAM! Festival</a>
-          <a :href="siteConfig.links.route" target="_blank" rel="noreferrer">Route</a>
+        <div class="sponsor-logos">
+          <a
+            v-for="sponsor in sponsors"
+            :key="sponsor.title"
+            :href="sponsor.link"
+            target="_blank"
+            rel="noreferrer"
+            class="sponsor-logo"
+          >
+            <img
+              :src="sponsor.logo"
+              :alt="sponsor.logo_alt"
+              width="640"
+              height="238"
+              loading="lazy"
+            />
+          </a>
         </div>
       </div>
-    </footer>
-  </div>
+    </div>
+  </section>
 </template>
 
 <style>
-:root {
-  --page-ink: #22161a;
-  --page-soft-ink: #51383e;
-  --page-surface: #fcf4ef;
-  --page-surface-warm: #f7e9dc;
-  --page-panel: rgba(253, 250, 251, 0.82);
-  --page-dark: #120206;
-  --page-burgundy: #530a1d;
-  --page-red-dark: #921234;
-  --page-red: #c62144;
-  --page-orange: #e26426;
-  --page-yellow: #f8be05;
-  --page-white: #fdfafb;
-  --page-soft-white: rgba(253, 250, 251, 0.84);
-  --page-soft-white-border: rgba(253, 250, 251, 0.14);
-  --page-soft-dark: rgba(18, 2, 6, 0.68);
-  --page-header-surface: rgba(83, 10, 29, 0.72);
-  --page-accent-ring: rgba(248, 190, 5, 0.18);
-  --page-blob-orange: rgba(226, 100, 38, 0.26);
-  --page-blob-red: rgba(198, 33, 68, 0.2);
-  --page-panel-border: rgba(83, 10, 29, 0.1);
-  --page-chip-surface: rgba(253, 250, 251, 0.12);
-  --page-shadow: 0 20px 70px rgba(83, 10, 29, 0.14);
-  --page-gradient: linear-gradient(135deg, #530a1d 0%, #921234 35%, #c62144 55%, #e26426 80%, #f8be05 100%);
-  --page-story-gradient: linear-gradient(180deg, #25040d 0%, #530a1d 28%, #6d0d27 52%, #8c1233 70%, #5a0a1f 100%);
-  --page-location-gradient: linear-gradient(160deg, #2a0610 0%, #530a1d 34%, #7b112c 62%, #e26426 100%);
-  --page-footer-gradient: linear-gradient(180deg, rgba(18, 2, 6, 0) 0%, rgba(18, 2, 6, 0.85) 16%, #120206 100%);
-  --page-hero-card-gradient: 
-    radial-gradient(circle at 82% 18%, rgba(248, 190, 5, 0.28), transparent 16%),
-    radial-gradient(circle at 18% 16%, rgba(216, 151, 156, 0.24), transparent 12%),
-    radial-gradient(circle at 75% 65%, rgba(226, 100, 38, 0.28), transparent 26%),
-    linear-gradient(125deg, rgba(18, 2, 6, 0.88) 4%, rgba(83, 10, 29, 0.9) 24%, rgba(146, 18, 52, 0.92) 46%, rgba(198, 33, 68, 0.92) 64%, rgba(226, 100, 38, 0.92) 82%, rgba(248, 190, 5, 0.88) 100%);
-  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
-  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --section-gap: clamp(4rem, 7vw, 8rem);
-  --container-pad: clamp(1.25rem, 3vw, 2rem);
-
-  color-scheme: dark light;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  font-family: 'Instrument Sans', sans-serif;
-  color: var(--page-ink);
-  background:
-    radial-gradient(circle at 10% 10%, rgba(248, 190, 5, 0.16), transparent 22%),
-    radial-gradient(circle at 90% 15%, rgba(198, 33, 68, 0.15), transparent 18%),
-    linear-gradient(180deg, #fff6ec 0%, #fff1eb 26%, #fff7f2 52%, #fff1dd 100%);
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-a,
-button {
-  transition:
-    transform 220ms var(--ease-out-quint),
-    background-color 220ms var(--ease-out-quint),
-    border-color 220ms var(--ease-out-quint),
-    color 220ms var(--ease-out-quint),
-    opacity 220ms var(--ease-out-quint),
-    box-shadow 220ms var(--ease-out-quint);
-}
-
-.skip-link {
-  position: absolute;
-  left: 1rem;
-  top: -4rem;
-  z-index: 100;
-  border-radius: 999px;
-  background: var(--page-white);
-  color: var(--page-dark);
-  padding: 0.9rem 1.2rem;
-  font-weight: 700;
-  text-decoration: none;
-  box-shadow: var(--page-shadow);
-}
-
-.skip-link:focus {
-  top: 1rem;
-}
-
-.site-shell {
-  position: relative;
-  overflow: clip;
-}
-
 .site-shell::before,
 .site-shell::after {
   content: "";
   position: fixed;
-  inset: auto;
-  z-index: -1;
-  pointer-events: none;
-  filter: blur(40px);
-  opacity: 0.6;
 }
 
 .site-shell::before {
@@ -485,100 +342,6 @@ button {
   }
 }
 
-.frame {
-  width: min(100%, 76rem);
-  margin-inline: auto;
-  padding-inline: var(--container-pad);
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  border-radius: 999px;
-  padding: 0.55rem 0.9rem;
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  line-height: 1;
-}
-
-.eyebrow-light {
-  background: var(--page-soft-white);
-  color: #6c1830;
-  border: 1px solid rgba(108, 24, 48, 0.12);
-}
-
-.eyebrow-dark {
-  background: var(--page-soft-dark);
-  color: var(--page-white);
-  border: 1px solid var(--page-soft-white-border);
-}
-
-.dot {
-  width: 0.6rem;
-  height: 0.6rem;
-  border-radius: 999px;
-  background: var(--page-yellow);
-  box-shadow: 0 0 0 0.2rem var(--page-accent-ring);
-}
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 40;
-  backdrop-filter: blur(18px);
-  background: var(--page-header-surface);
-  border-bottom: 1px solid var(--page-soft-white-border);
-}
-
-.header-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  min-height: 4.75rem;
-  padding-block: 0.8rem;
-}
-
-.brand-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.9rem;
-  min-width: 0;
-  text-decoration: none;
-  color: var(--page-white);
-}
-
-.brand-mark {
-  width: 3.2rem;
-  height: 3.2rem;
-  border-radius: 1.1rem;
-  padding: 0.35rem;
-  background: rgba(253, 250, 251, 0.94);
-  box-shadow: 0 14px 34px rgba(18, 2, 6, 0.18);
-  transform-origin: center;
-}
-
-.brand-name {
-  margin: 0;
-  font-family: 'Saira Condensed', sans-serif;
-  font-size: 1.7rem;
-  line-height: 0.88;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.brand-note {
-  margin: 0.12rem 0 0;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(253, 250, 251, 0.74);
-}
-
 .hero {
   position: relative;
   padding-bottom: var(--section-gap);
@@ -589,7 +352,7 @@ button {
   width: 100%;
   min-height: clamp(16rem, 42vw, 34rem);
   overflow: clip;
-  background: #2a0610;
+  background: var(--page-burgundy);
   box-shadow: var(--page-shadow);
 }
 
@@ -692,8 +455,8 @@ button {
 }
 
 .action-button-primary {
-  background: #f8be05;
-  color: #120206;
+  background: var(--page-yellow);
+  color: var(--page-dark);
   box-shadow: 0 16px 40px rgba(248, 190, 5, 0.28);
 }
 
@@ -705,7 +468,7 @@ button {
 
 .action-button-secondary {
   border-color: rgba(253, 250, 251, 0.2);
-  color: #fdfafb;
+  color: var(--page-white);
   background: rgba(253, 250, 251, 0.1);
 }
 
@@ -731,7 +494,7 @@ button {
   border-radius: 1.25rem;
   background: var(--page-chip-surface);
   border: 1px solid rgba(253, 250, 251, 0.12);
-  color: #fdfafb;
+  color: var(--page-white);
 }
 
 .hero-strip-item strong {
@@ -868,8 +631,7 @@ button {
 @media (min-width: 48rem) {
   .hero-grid,
   .story-layout,
-  .info-grid,
-  .footer-bar {
+  .info-grid {
     grid-template-columns: repeat(12, minmax(0, 1fr));
   }
 
@@ -909,15 +671,6 @@ button {
 
   .sponsor-bar {
     grid-template-columns: 1.2fr 1fr;
-  }
-
-  .footer-bar > :first-child {
-    grid-column: span 6;
-  }
-
-  .footer-bar > :last-child {
-    grid-column: span 6;
-    justify-self: end;
   }
 }
 
@@ -1065,7 +818,7 @@ button {
   overflow: clip;
   padding: clamp(1.5rem, 3vw, 2.2rem);
   border-radius: clamp(1.8rem, 3vw, 2.4rem);
-  color: #fdfafb;
+  color: var(--page-white);
   background:
     radial-gradient(circle at 22% 18%, rgba(248, 190, 5, 0.18), transparent 14%),
     radial-gradient(circle at 82% 74%, rgba(216, 151, 156, 0.2), transparent 20%),
@@ -1114,7 +867,7 @@ button {
 .location-map :deep(.leaflet-container) {
   width: 100%;
   height: 100%;
-  background: #530a1d;
+  background: var(--page-burgundy);
 }
 
 .map-popup {
@@ -1190,12 +943,23 @@ button {
   border-radius: 1.25rem;
   background: rgba(253, 250, 251, 0.64);
   border: 1px solid rgba(83, 10, 29, 0.08);
+  transition: transform 240ms var(--ease-out-quart), background-color 220ms var(--ease-out-quint), box-shadow 240ms var(--ease-out-quart);
 }
 
 .sponsor-logo:hover {
   transform: translateY(-3px);
   background: rgba(253, 250, 251, 0.8);
   box-shadow: 0 16px 36px rgba(83, 10, 29, 0.1);
+}
+
+.sponsor-logo img {
+  display: block;
+  width: 100%;
+  max-width: 12rem;
+  height: auto;
+  max-height: 4rem;
+  object-fit: contain;
+  object-position: center;
 }
 
 .footer {
@@ -1226,7 +990,7 @@ button {
 }
 
 .footer a {
-  color: #fdfafb;
+  color: var(--page-white);
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.15em;
 }

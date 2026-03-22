@@ -1,15 +1,19 @@
 {
   "title": "Yo That's Shit",
-  "subtitle": "De Tommy-Loods is de dj-hoek van de avond: losser, later en gemaakt voor ritme, sfeer en beweging.",
-  "tags": ["tommy-loods", "dj", "electronisch"],
+  "subtitle": "Dikke beats, fijne dansbare tunes en een super relaxte sfeer.",
+  "bio": "Jarenlang was Hengelo het toneel van een rijke Hip Hop scene, van graffiti, breakdance en DJ-ing. Het was even stil, maar nu is er een nieuwe Hip Hop party in town: YO! That's That Shit. Vaste DJ's zijn Bas Basic, Jordi Noire en De Kneet. Naast dit drietal is er ruimte voor gast DJ's en een open-mic. Alles wat maar enigszins Hip Hop is komt voorbij, van Soul tot Funk, van Reggae tot Disco en van Old Skool Rap tot New School Bangers. Maar het belangrijkste: een positieve, relaxte sfeer!",
+  "tags": ["Tommy-Loods", "Hiphop", "Dj"],
   "spotify": "",
   "youtube": "",
-  "image_landscape": "/assets/stock/concert-audience-lights-960.webp",
-  "image_landscape_alt": "Yo That's Shit dj-set",
-  "image_square": "/assets/stock/concert-audience-lights-960.webp",
+  "website": "https://oogst.eu/agenda/yo-thats-that-shit/",
+  "instagram": "https://www.instagram.com/yo_thats_that_shit",
+  "facebook": "",
+  "image_landscape": "/assets/artists/yo-thats-shit/landscape.webp",
+  "image_landscape_alt": "Yo That's Shit optreden in de Tommy-Loods",
+  "image_square": "/assets/artists/yo-thats-shit/portrait.webp",
   "image_square_alt": "Yo That's Shit",
-  "stage": "Tommy-Loods",
-  "starttime": "21:15",
-  "endtime": "22:15",
-  "theme": "night"
+  "stage": "tommy-loods",
+  "starttime": "21:00",
+  "endtime": "22:00",
+  "theme": "dark"
 }

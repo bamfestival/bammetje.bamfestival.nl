@@ -12,6 +12,20 @@
   "eventTime": "14:00 – 23:00",
   "admission": "Gratis",
   "admissionNote": "Kom langs zonder ticketstress",
+  "stages": {
+    "hoofdpodium": {
+      "name": "Hoofdpodium",
+      "description": "Het grote buitenpodium"
+    },
+    "de-tent": {
+      "name": "De Tent",
+      "description": "Overdekte tent"
+    },
+    "tommy-loods": {
+      "name": "Tommy-Loods",
+      "description": "Industriële binnenruimte"
+    }
+  },
   "freeEntry": {
     "title": "Gratis entree",
     "location": "Oogst / Hengelo",
@@ -36,9 +50,21 @@
     ]
   },
   "footer": {
-    "brand": "Bammetje",
-    "text": "De mini-editie van BAM! Festival voor Hengelo en Twente. Gratis, warm en klaar om in 2026 even flink uit te pakken.",
-    "quote": "Samen genieten van livemuziek en een drankje. Dat is uiteindelijk waar BAM altijd om draait."
+    "brand": "Bammetje 2026",
+    "text": "Broedplaats Oogst, Hengelo • Mini-editie van BAM! Festival",
+    "quote": "Samen genieten van livemuziek en een drankje. Dat is uiteindelijk waar BAM altijd om draait.",
+    "address": "Broedplaats Oogst, Esrein 53, 7553 CX Hengelo",
+    "bamFestival": {
+      "name": "BAM! Festival",
+      "url": "https://www.bamfestival.nl/",
+      "address": "Vondelstraat 49, 7551 BB Hengelo (Ov.)"
+    },
+    "social": {
+      "instagram": "https://www.instagram.com/bamfestival.hengelo/",
+      "facebook": "https://www.facebook.com/BAM.Festival",
+      "youtube": "https://www.youtube.com/channel/UCcgTzyV1jlKLgUQWf32KoqQ",
+      "linkedin": "https://www.linkedin.com/company/18420424/"
+    }
   },
   "meta": {
     "description": "Bammetje is de gratis mini-editie van BAM! Festival op zaterdag 23 mei 2026 bij Broedplaats Oogst in Hengelo. Bekijk de sfeer, praktische info en updates.",

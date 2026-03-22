@@ -52,7 +52,11 @@ export default defineContentConfig({
           route: z.string(),
           hengelo: z.string(),
           hartVanZuid: z.string()
-        })
+        }),
+        stages: z.record(z.object({
+          name: z.string(),
+          description: z.string(),
+        })).optional(),
       })
     }),
     artists: defineCollection({
@@ -61,15 +65,19 @@ export default defineContentConfig({
       schema: z.object({
         title: z.string(),
         subtitle: z.string(),
+        bio: z.string().optional(),
         bodytext: z.string().optional(),
         tags: z.array(z.string()).default([]),
         spotify: z.string().optional(),
         youtube: z.string().optional(),
+        website: z.string().optional(),
+        instagram: z.string().optional(),
+        facebook: z.string().optional(),
         image_landscape: z.string(),
         image_landscape_alt: z.string(),
         image_square: z.string(),
         image_square_alt: z.string(),
-        stage: z.enum(['Hoofdpodium', 'De Tent', 'Tommy-Loods']),
+        stage: z.string(),
         starttime: z.string().optional(),
         endtime: z.string().optional(),
         theme: z.enum(['dark', 'light', 'night', 'gold']).default('dark'),
@@ -80,7 +88,7 @@ export default defineContentConfig({
       source: 'performances/*.json',
       schema: z.object({
         artist: z.string(),
-        stage: z.enum(['Hoofdpodium', 'De Tent', 'Tommy-Loods']),
+        stage: z.string(),
         starttime: z.string(),
         endtime: z.string().optional(),
         date: z.string().optional(),

@@ -11,17 +11,15 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     '@nuxt/icon',
     '@nuxt/fonts',
-    'nuxt-og-image',
     'nuxt-schema-org',
     'nuxt-swiper',
     '@dargmuesli/nuxt-cookie-control',
-    'nuxt-studio',
   ],
 
   app: {
     head: {
       htmlAttrs: { lang: 'nl' },
-      title: 'Bammetje 2026 | Gratis mini-editie van BAM! Festival in Hengelo',
+      title: 'Bammetje 2026 | Zaterdag 23 mei, Oogst Hengelo',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -37,7 +35,7 @@ export default defineNuxtConfig({
         { property: 'og:type', content: 'website' },
         {
           property: 'og:title',
-          content: 'Bammetje 2026 | Gratis mini-editie van BAM! Festival in Hengelo',
+          content: 'Bammetje 2026 | Zaterdag 23 mei, Oogst Hengelo',
         },
         {
           property: 'og:description',
@@ -51,10 +49,13 @@ export default defineNuxtConfig({
           content: 'https://bammetje.bamfestival.nl/assets/hero/bammetje-header-1440.webp',
         },
         { property: 'og:image:alt', content: 'Posterbeeld voor Bammetje 2026' },
+        { property: 'og:image:width', content: '1440' },
+        { property: 'og:image:height', content: '756' },
         { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:site', content: '@BAMfestival' },
         {
           name: 'twitter:title',
-          content: 'Bammetje 2026 | Gratis mini-editie van BAM! Festival in Hengelo',
+          content: 'Bammetje 2026 | Zaterdag 23 mei, Oogst Hengelo',
         },
         {
           name: 'twitter:description',
@@ -64,6 +65,8 @@ export default defineNuxtConfig({
           name: 'twitter:image',
           content: 'https://bammetje.bamfestival.nl/assets/hero/bammetje-header-1440.webp',
         },
+        { property: 'article:published_time', content: '2026-03-01' },
+        { property: 'article:modified_time', content: '2026-03-21' },
       ],
       link: [
         { rel: 'canonical', href: 'https://bammetje.bamfestival.nl/' },
@@ -71,7 +74,13 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/assets/favicons/logo-16.png' },
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/assets/favicons/logo-180.png' },
         { rel: 'manifest', href: '/site.webmanifest' },
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' },
+        { rel: 'preconnect', href: 'https://open.spotify.com' },
+        { rel: 'preconnect', href: 'https://www.youtube.com' },
+        { rel: 'dns-prefetch', href: 'https://www.openstreetmap.org' },
       ],
+
     },
   },
 
@@ -90,10 +99,10 @@ export default defineNuxtConfig({
     quality: 80,
   },
 
-  site: {
+    site: {
     url: 'https://bammetje.bamfestival.nl',
     name: 'Bammetje',
-    description: 'Gratis mini-editie van BAM! Festival in Hengelo',
+    description: 'Gratis mini-editie van BAM! Festival – Zaterdag 23 mei 2026 bij Oogst in Hengelo',
   },
 
   sitemap: {},
@@ -107,7 +116,7 @@ export default defineNuxtConfig({
     manifest: {
       name: 'Bammetje 2026',
       short_name: 'Bammetje',
-      description: 'Gratis mini-editie van BAM! Festival in Hengelo',
+      description: 'Gratis mini-editie van BAM! Festival – Zaterdag 23 mei 2026 bij Oogst in Hengelo',
       theme_color: '#530A1D',
       background_color: '#120206',
       display: 'standalone',
@@ -136,16 +145,31 @@ export default defineNuxtConfig({
   cookieControl: {
     locales: ['nl'],
     barPosition: 'bottom-right',
+    cookies: {
+      necessary: [
+        {
+          id: 'cookie_control_consent',
+          name: 'cookie_control_consent',
+          description: 'Onthoudt uw cookie voorkeuren',
+        },
+      ],
+      optional: [
+        {
+          id: 'matomo_analytics',
+          name: 'matomo_analytics',
+          description: 'Anonieme statistieken voor website-analyse',
+          links: {
+            text: 'Meer informatie over Matomo',
+            url: 'https://matomo.org/privacy-policy/',
+          },
+        },
+      ],
+    },
   },
 
   leaflet: {},
 
   swiper: {},
-
-  studio: {
-    dev: true,
-    route: '/_studio',
-  },
 
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
