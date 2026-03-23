@@ -79,12 +79,14 @@ onMounted(() => {
       <div class="frame">
         <div class="header-row">
           <NuxtLink to="/" class="brand-link">
-            <img
+            <NuxtImg
               class="brand-mark"
               src="/assets/favicons/logo-192.png"
               alt="Bammetje logo"
               width="192"
               height="192"
+              format="png"
+              loading="eager"
             />
             <div>
               <p class="brand-name">{{ siteConfig.title }}</p>

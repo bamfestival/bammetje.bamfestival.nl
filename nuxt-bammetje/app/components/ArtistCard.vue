@@ -92,7 +92,14 @@ const stageClass = computed(() => ({
         @keydown.space.prevent="toggleFlip"
       >
         <div class="flip-card-media">
-          <img :src="artist.image" :alt="`${artist.name} optreden`" loading="lazy" />
+          <NuxtImg
+              :src="artist.image"
+              :alt="`${artist.name} optreden`"
+              loading="lazy"
+              format="webp"
+              quality="80"
+              sizes="sm:100vw md:50vw lg:33vw"
+            />
         </div>
         <div class="flip-card-content">
           <span class="stage-chip" :class="stageClass[artist.stage]">
@@ -120,7 +127,14 @@ const stageClass = computed(() => ({
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="close-icon"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
         <div class="flip-back-media">
-          <img :src="artist.image" :alt="`${artist.name} optreden`" loading="lazy" />
+          <NuxtImg
+              :src="artist.image"
+              :alt="`${artist.name} optreden`"
+              loading="lazy"
+              format="webp"
+              quality="80"
+              sizes="sm:100vw md:50vw lg:33vw"
+            />
         </div>
         <div class="flip-back-content">
           <span class="stage-chip" :class="stageClass[artist.stage]">

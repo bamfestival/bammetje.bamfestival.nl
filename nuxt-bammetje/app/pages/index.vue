@@ -16,32 +16,17 @@ useSeoMeta({
 <template>
   <section id="top" class="hero">
     <div class="hero-banner" aria-label="Headerbeeld van Bammetje">
-      <picture>
-        <source
-          type="image/webp"
-          srcset="
-            /assets/hero/bammetje-header-640.webp 640w,
-            /assets/hero/bammetje-header-960.webp 960w,
-            /assets/hero/bammetje-header-1440.webp 1440w,
-            /assets/hero/bammetje-header-1920.webp 1920w
-          "
-          sizes="100vw"
-        />
-        <img
-          src="/assets/hero/bammetje-header-1440.jpg"
-          srcset="
-            /assets/hero/bammetje-header-640.jpg 640w,
-            /assets/hero/bammetje-header-960.jpg 960w,
-            /assets/hero/bammetje-header-1440.jpg 1440w,
-            /assets/hero/bammetje-header-1920.jpg 1920w
-          "
-          sizes="100vw"
+      <NuxtImg
+          src="/assets/hero/bammetje-header"
           alt="Bammetje headerbeeld voor de mini-editie van BAM! Festival"
           width="1920"
           height="1004"
           fetchpriority="high"
+          format="webp"
+          quality="85"
+          sizes="100vw"
+          preload
         />
-      </picture>
     </div>
     <div class="frame hero-inner hero-grid">
       <div class="hero-copy">
@@ -283,13 +268,16 @@ useSeoMeta({
             rel="noreferrer"
             class="sponsor-logo"
           >
-            <img
-              :src="sponsor.logo"
-              :alt="sponsor.logo_alt"
-              width="640"
-              height="238"
-              loading="lazy"
-            />
+            <NuxtImg
+                :src="sponsor.logo"
+                :alt="sponsor.logo_alt"
+                width="640"
+                height="238"
+                loading="lazy"
+                format="webp"
+                quality="80"
+                sizes="sm:100vw md:50vw"
+              />
           </a>
         </div>
       </div>
