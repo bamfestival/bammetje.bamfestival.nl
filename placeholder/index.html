@@ -2518,43 +2518,8 @@
                 Bammetje voelt sterker als partners en stad zichtbaar meedoen. Deze strook houdt de uiting compact, warm en duidelijk herkenbaar.
               </p>
             </div>
-            <div class="sponsor_logos">
-              <div class="sponsor_logo">
-                <picture>
-                  <source
-                    type="image/webp"
-                    srcset="./assets/logos/gemeente-hengelo-320.webp 320w, ./assets/logos/gemeente-hengelo-640.webp 640w"
-                    sizes="(min-width: 48rem) 12rem, 42vw"
-                  />
-                  <img
-                    src="./assets/logos/gemeente-hengelo-320.png"
-                    srcset="./assets/logos/gemeente-hengelo-320.png 320w, ./assets/logos/gemeente-hengelo-640.png 640w"
-                    sizes="(min-width: 48rem) 12rem, 42vw"
-                    alt="Logo van Gemeente Hengelo"
-                    width="640"
-                    height="238"
-                    loading="lazy"
-                  />
-                </picture>
-              </div>
-              <div class="sponsor_logo">
-                <picture>
-                  <source
-                    type="image/webp"
-                    srcset="./assets/logos/hart-van-zuid-320.webp 320w, ./assets/logos/hart-van-zuid-640.webp 640w"
-                    sizes="(min-width: 48rem) 12rem, 42vw"
-                  />
-                  <img
-                    src="./assets/logos/hart-van-zuid-320.png"
-                    srcset="./assets/logos/hart-van-zuid-320.png 320w, ./assets/logos/hart-van-zuid-640.png 640w"
-                    sizes="(min-width: 48rem) 12rem, 42vw"
-                    alt="Logo van Hart van Zuid"
-                    width="640"
-                    height="238"
-                    loading="lazy"
-                  />
-                </picture>
-              </div>
+            <div class="sponsor_logos" id="sponsor_logos">
+              <!-- Sponsors loaded dynamically from ./assets/logos/ -->
             </div>
           </div>
         </div>
@@ -2806,6 +2771,42 @@
       nav_toggle.setAttribute("aria-label", "Open menu");
       mobile_panel.dataset.open = "false";
     });
+
+    const load_sponsors = async () => {
+      const container = document.getElementById("sponsor_logos");
+      if (!container) return;
+
+      try {
+        const response = await fetch("./data/sponsors.json");
+        const data = await response.json();
+
+        container.innerHTML = data.sponsors.map(sponsor => `
+          <a class="sponsor_logo" href="${sponsor.url}" target="_blank" rel="noreferrer">
+            <picture>
+              <source
+                type="image/webp"
+                srcset="./assets/logos/${sponsor.logo}-320.webp 320w, ./assets/logos/${sponsor.logo}-640.webp 640w"
+                sizes="(min-width: 48rem) 12rem, 42vw"
+              />
+              <img
+                src="./assets/logos/${sponsor.logo}-320.webp"
+                srcset="./assets/logos/${sponsor.logo}-320.webp 320w, ./assets/logos/${sponsor.logo}-640.webp 640w"
+                sizes="(min-width: 48rem) 12rem, 42vw"
+                alt="Logo van ${sponsor.name}"
+                width="640"
+                height="238"
+                loading="lazy"
+                onerror="this.parentElement.parentElement.style.display='none'"
+              />
+            </picture>
+          </a>
+        `).join("");
+      } catch (e) {
+        console.warn("Could not load sponsors:", e);
+      }
+    };
+
+    load_sponsors();
 
   </script>
 </body>

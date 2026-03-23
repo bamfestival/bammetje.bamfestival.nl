@@ -1,0 +1,19 @@
+{
+  "title": "DJ Minka",
+  "subtitle": "Vinyl DJ met een brede, eigenzinnige selectie voor jong en oud.",
+  "bio": "Vinyl DJ Minka draait tijdens BAMmetje een brede, eigenzinnige selectie voor jong en oud. Van \"AHA!\" tot \"HUH?\", muziek die verrast, schuurt en verbindt. Pretentieloze vinyl, obscuur en herkenbaar. Muziek voor iedereen, op het festival voor iedereen.",
+  "tags": ["De Tent", "Vinyl", "Dj"],
+  "spotify": "",
+  "youtube": "",
+  "website": "",
+  "instagram": "",
+  "facebook": "",
+  "image_landscape": "/assets/artists/dj-minka/landscape.webp",
+  "image_landscape_alt": "DJ Minka optreden",
+  "image_square": "/assets/artists/dj-minka/portrait.webp",
+  "image_square_alt": "DJ Minka",
+  "stage": "de-tent",
+  "starttime": "16:00",
+  "endtime": "17:00",
+  "theme": "dark"
+}

@@ -144,7 +144,35 @@ export default defineNuxtConfig({
 
   cookieControl: {
     locales: ['nl'],
-    barPosition: 'bottom-right',
+    barPosition: 'bottom-full',
+    colors: {
+      barBackground: '#530A1D',
+      barButtonBackground: '#F8BE05',
+      barButtonColor: '#120206',
+      barButtonHoverBackground: '#E26426',
+      barButtonHoverColor: '#fdfafb',
+      barTextColor: '#fdfafb',
+      checkboxActiveBackground: '#C62144',
+      checkboxActiveCircleBackground: '#fdfafb',
+      checkboxDisabledBackground: '#921234',
+      checkboxDisabledCircleBackground: '#fdfafb',
+      checkboxInactiveBackground: 'rgba(253, 250, 251, 0.2)',
+      checkboxInactiveCircleBackground: '#fdfafb',
+      controlButtonBackground: '#C62144',
+      controlButtonHoverBackground: '#E26426',
+      controlButtonIconColor: '#fdfafb',
+      controlButtonIconHoverColor: '#fdfafb',
+      focusRingColor: '#F8BE05',
+      modalBackground: '#120206',
+      modalButtonBackground: '#C62144',
+      modalButtonColor: '#fdfafb',
+      modalButtonHoverBackground: '#E26426',
+      modalButtonHoverColor: '#fdfafb',
+      modalOverlay: '#530A1D',
+      modalOverlayOpacity: 0.9,
+      modalTextColor: '#fdfafb',
+      modalUnsavedColor: '#F8BE05',
+    },
     cookies: {
       necessary: [
         {

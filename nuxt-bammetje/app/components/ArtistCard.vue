@@ -226,10 +226,12 @@ const stageClass = computed(() => ({
   box-shadow: 0 20px 70px rgba(83, 10, 29, 0.14);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  transition: opacity 380ms ease;
 }
 
 .flip-card.is-flipped .flip-card-front {
   pointer-events: none;
+  opacity: 0;
 }
 
 .flip-card-front {
@@ -451,9 +453,9 @@ const stageClass = computed(() => ({
 }
 
 .stage-tent {
-  background: rgba(83, 10, 29, 0.08);
-  color: #921234;
-  border: 1px solid rgba(83, 10, 29, 0.12);
+  background: rgba(83, 10, 29, 0.22);
+  color: #fdfafb;
+  border: 1px solid rgba(253, 250, 251, 0.16);
 }
 
 .stage-loft {
