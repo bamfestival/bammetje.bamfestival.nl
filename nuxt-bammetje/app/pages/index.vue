@@ -9,55 +9,53 @@ useSeoMeta({
   description: siteConfig.value.meta.description,
   ogDescription: siteConfig.value.meta.ogDescription,
   ogImage: siteConfig.value.meta.ogImage,
+  ogImageAlt: siteConfig.value.meta.ogImageAlt,
   twitterCard: 'summary_large_image',
+  twitterTitle: siteConfig.value.title,
+  twitterDescription: siteConfig.value.meta.ogDescription,
+  twitterImage: siteConfig.value.meta.ogImage,
 })
 </script>
 
 <template>
-  <section id="top" class="hero">
-    <div class="hero-banner" aria-label="Headerbeeld van Bammetje">
+  <div>
+    <section id="top" class="hero">
+    <div class="hero-banner" :aria-label="siteConfig.hero.bannerAriaLabel">
       <NuxtImg
-          src="/assets/hero/bammetje-header"
-          alt="Bammetje headerbeeld voor de mini-editie van BAM! Festival"
-          width="1920"
-          height="1004"
-          fetchpriority="high"
-          format="webp"
-          quality="85"
-          sizes="100vw"
-          preload
-        />
+        class="hero-banner-image"
+        src="/assets/hero/bammetje-2026-header.jpg"
+        :alt="siteConfig.hero.imageAlt"
+        width="1920"
+        height="450"
+        fetchpriority="high"
+        format="webp"
+        quality="82"
+        sizes="(max-width: 640px) 640px, (max-width: 960px) 960px, (max-width: 1440px) 1440px, 1920px"
+        preload
+      />
     </div>
     <div class="frame hero-inner hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow eyebrow-dark"><span class="dot" aria-hidden="true"></span> Mini BAM, maximale vibe</span>
+        <span class="eyebrow eyebrow-dark"><span class="dot" aria-hidden="true" /> {{ siteConfig.hero.eyebrow }}</span>
         <div class="hero-title-wrap">
-          <p class="eyebrow eyebrow-dark">Gratis mini-editie van BAM! Festival</p>
-          <h1 class="hero-title">Bammetje</h1>
+          <p class="eyebrow eyebrow-dark">{{ siteConfig.hero.label }}</p>
+          <h1 class="hero-title">{{ siteConfig.hero.title }}</h1>
           <p class="hero-subtitle">
             {{ siteConfig.subtitle }}
           </p>
           <div class="hero-actions">
-            <a class="action-button action-button-primary" href="#line-up">Bekijk line-up</a>
-            <a class="action-button action-button-secondary" href="#info">Praktische info</a>
+            <a class="action-button action-button-primary" :href="siteConfig.hero.primaryActionTarget">{{ siteConfig.hero.primaryActionLabel }}</a>
+            <a class="action-button action-button-secondary" :href="siteConfig.hero.secondaryActionTarget">{{ siteConfig.hero.secondaryActionLabel }}</a>
           </div>
-          <div class="hero-strip" aria-label="Belangrijkste evenementdetails">
-            <div class="hero-strip-item">
-              <strong>{{ siteConfig.eventDate }}</strong>
-              <span>{{ siteConfig.eventDay }}. in 2026</span>
-            </div>
-            <div class="hero-strip-item">
-              <strong>Gratis</strong>
-              <span>Kom langs zonder ticketstress</span>
-            </div>
-            <div class="hero-strip-item">
-              <strong>Oogst</strong>
-              <span>Broedplaats in Hengelo</span>
+          <div class="hero-strip" :aria-label="siteConfig.hero.detailsAriaLabel">
+            <div v-for="item in siteConfig.hero.details" :key="item.value + item.label" class="hero-strip-item">
+              <strong>{{ item.value }}</strong>
+              <span>{{ item.label }}</span>
             </div>
           </div>
         </div>
       </div>
-      <aside class="ticket-card hero-ticket" aria-label="Kerninformatie Bammetje">
+      <aside id="gratis-entree" class="ticket-card hero-ticket" :aria-label="siteConfig.freeEntry.ariaLabel">
         <span class="eyebrow eyebrow-light">{{ siteConfig.freeEntry.title }}</span>
         <strong>{{ siteConfig.freeEntry.location.replace(' / ', '\n') }}</strong>
         <p class="section-text hero-ticket-text">
@@ -65,10 +63,10 @@ useSeoMeta({
         </p>
       </aside>
     </div>
-  </section>
+    </section>
 
-  <section class="section story-band">
-    <div class="frame story-layout">
+    <section class="section story-band">
+      <div class="frame story-layout">
       <div class="story-quote">
         <span class="eyebrow eyebrow-dark">{{ siteConfig.about.title }}</span>
         <p>
@@ -81,7 +79,7 @@ useSeoMeta({
           :key="point.title"
           class="story-point"
         >
-          <span class="dot" aria-hidden="true"/>
+          <span class="dot" aria-hidden="true" />
           <div>
             <strong>{{ point.title }}</strong>
             <p>{{ point.description }}</p>
@@ -89,17 +87,14 @@ useSeoMeta({
         </div>
       </div>
     </div>
-  </section>
+    </section>
 
-  <section id="line-up" class="section">
-    <div class="frame">
+    <section id="line-up" class="section">
+      <div class="frame">
       <div class="section-intro">
-        <span class="eyebrow eyebrow-light">Line-up</span>
-        <h2 class="section-title">Drie podia. Zeven namen. Meteen overzicht.</h2>
-        <p class="section-text">
-          De eerste indeling staat nu vast: de grotere namen op het Hoofdpodium, de dj's in de Tommy-Loods en de andere acts in De Tent.
-          Zo voelt de line-up niet alleen levendiger, maar ook meteen logisch voor bezoekers.
-        </p>
+        <span class="eyebrow eyebrow-light">{{ siteConfig.lineUp.title }}</span>
+        <h2 class="section-title">{{ siteConfig.lineUp.heading }}</h2>
+        <p class="section-text">{{ siteConfig.lineUp.intro }}</p>
       </div>
 
       <div class="artist-grid">
@@ -110,100 +105,93 @@ useSeoMeta({
         />
       </div>
     </div>
-  </section>
+    </section>
 
-  <section id="timetable" class="section">
-    <div class="frame">
+    <section id="timetable" class="section">
+      <div class="frame">
       <div class="section-intro">
-        <span class="eyebrow eyebrow-light">Timetable</span>
-        <h2 class="section-title">Podia nu. Speeltijden straks.</h2>
-        <p class="section-text">
-          De precieze programmering komt later. Daarom staat hier geen verzonnen tijdschema, maar wel een heldere podiumindeling die straks direct naar echte speeltijden kan worden vertaald.
-        </p>
+        <span class="eyebrow eyebrow-light">{{ siteConfig.timetableSection.title }}</span>
+        <h2 class="section-title">{{ siteConfig.timetableSection.heading }}</h2>
+        <p class="section-text">{{ siteConfig.timetableSection.intro }}</p>
       </div>
 
       <div class="timetable">
         <article class="time-block time-block-main">
           <div class="time-block-top">
             <div class="time-label">{{ getStageName('hoofdpodium') }}</div>
-            <div class="time-tag">Grotere namen</div>
+            <div class="time-tag">{{ siteConfig.timetableSection.blocks.hoofdpodium.tag }}</div>
           </div>
           <ul>
             <li v-for="artist in artists.filter(a => a.stage === 'hoofdpodium')" :key="artist.name">
-              <span class="time-stage">{{ artist.time || 'Bevestigd' }}</span>
+              <span class="time-stage">{{ artist.time || siteConfig.timetableSection.fallbackTimeLabel }}</span>
               <span>{{ artist.name }}</span>
             </li>
           </ul>
-          <p class="time-note">Dit podium draagt de grotere publieksmomenten. Speeltijden volgen zodra het schema rond is.</p>
+          <p class="time-note">{{ siteConfig.timetableSection.blocks.hoofdpodium.note }}</p>
         </article>
 
         <article class="time-block time-block-tent">
           <div class="time-block-top">
             <div class="time-label">{{ getStageName('de-tent') }}</div>
-            <div class="time-tag">Live en dichtbij</div>
+            <div class="time-tag">{{ siteConfig.timetableSection.blocks['de-tent'].tag }}</div>
           </div>
           <ul>
             <li v-for="artist in artists.filter(a => a.stage === 'de-tent')" :key="artist.name">
-              <span class="time-stage">{{ artist.time || 'Bevestigd' }}</span>
+              <span class="time-stage">{{ artist.time || siteConfig.timetableSection.fallbackTimeLabel }}</span>
               <span>{{ artist.name }}</span>
             </li>
           </ul>
-          <p class="time-note">De Tent is voor de andere liveacts: intiemer, directer en perfect voor een compactere setting.</p>
+          <p class="time-note">{{ siteConfig.timetableSection.blocks['de-tent'].note }}</p>
         </article>
 
         <article class="time-block time-block-loft">
           <div class="time-block-top">
             <div class="time-label">{{ getStageName('tommy-loods') }}</div>
-            <div class="time-tag">Dj-hoek</div>
+            <div class="time-tag">{{ siteConfig.timetableSection.blocks['tommy-loods'].tag }}</div>
           </div>
           <ul>
             <li v-for="artist in artists.filter(a => a.stage === 'tommy-loods')" :key="artist.name">
-              <span class="time-stage">{{ artist.time || 'Bevestigd' }}</span>
+              <span class="time-stage">{{ artist.time || siteConfig.timetableSection.fallbackTimeLabel }}</span>
               <span>{{ artist.name }}</span>
             </li>
           </ul>
-          <p class="time-note">De dj's zitten hier samen. Zodra de tijden bekend zijn, kan dit blok direct een echte timetable worden.</p>
+          <p class="time-note">{{ siteConfig.timetableSection.blocks['tommy-loods'].note }}</p>
         </article>
       </div>
     </div>
-  </section>
+    </section>
 
-  <section id="info" class="section">
-    <div class="frame">
+    <section id="info" class="section">
+      <div class="frame">
       <div class="section-intro">
-        <span class="eyebrow eyebrow-light">Info</span>
-        <h2 class="section-title">Snel snappen. Dan gewoon komen.</h2>
-        <p class="section-text">
-          Dit is de kern voor bezoekers uit Hengelo en Twente: waar het is, wanneer het begint en waarom je geen drempel hebt om langs te gaan.
-        </p>
+        <span class="eyebrow eyebrow-light">{{ siteConfig.infoSection.title }}</span>
+        <h2 class="section-title">{{ siteConfig.infoSection.heading }}</h2>
+        <p class="section-text">{{ siteConfig.infoSection.intro }}</p>
       </div>
 
       <div class="info-grid">
         <div class="info-stack">
           <dl class="info-card">
-            <dt>Datum</dt>
-            <dd>{{ siteConfig.eventDate }} 2026</dd>
-            <dd>{{ siteConfig.eventDay }}. Klaar om buiten weer BAM-gevoel op te bouwen.</dd>
+            <dt>{{ siteConfig.infoSection.items.date.label }}</dt>
+            <dd>{{ siteConfig.infoSection.items.date.value }}</dd>
+            <dd>{{ siteConfig.infoSection.items.date.description }}</dd>
           </dl>
           <dl class="info-card">
-            <dt>Tijd</dt>
-            <dd>{{ siteConfig.eventTime }}</dd>
-            <dd>Van middag tot avond, compact genoeg om overzichtelijk te blijven en lang genoeg om echt sfeer te maken.</dd>
+            <dt>{{ siteConfig.infoSection.items.time.label }}</dt>
+            <dd>{{ siteConfig.infoSection.items.time.value }}</dd>
+            <dd>{{ siteConfig.infoSection.items.time.description }}</dd>
           </dl>
           <dl class="info-card">
-            <dt>Toegang</dt>
-            <dd>{{ siteConfig.admission }}</dd>
-            <dd>Geen ticket nodig. Gewoon komen, aansluiten en genieten van muziek en een drankje.</dd>
+            <dt>{{ siteConfig.infoSection.items.admission.label }}</dt>
+            <dd>{{ siteConfig.infoSection.items.admission.value }}</dd>
+            <dd>{{ siteConfig.infoSection.items.admission.description }}</dd>
           </dl>
         </div>
 
         <section id="locatie" class="location-panel" aria-labelledby="locatie_title">
-          <span class="eyebrow eyebrow-dark">Locatie</span>
-          <h2 id="locatie_title" class="section-title location-title">{{ siteConfig.freeEntry.location.split(' / ')[0] }}</h2>
-          <p>
-            Bammetje landt bij Oogst in Hengelo. Verwacht geen exacte kopie van BAM! Festival in het park, maar een kleinere setting met dezelfde liefde voor livemuziek,
-            ontmoeting en lokale energie.
-          </p>
+          <span class="eyebrow eyebrow-dark">{{ siteConfig.infoSection.locationTitle }}</span>
+          <h2 id="locatie_title" class="section-title location-title">{{ siteConfig.infoSection.locationHeading }}</h2>
+          <p>{{ siteConfig.infoSection.locationDescription }}</p>
           <address class="location-address">
             {{ siteConfig.address.replace(', ', '\n') }}
           </address>
@@ -231,33 +219,31 @@ useSeoMeta({
             </ClientOnly>
           </div>
           <div class="location-links">
-            <a class="action-button action-button-primary" :href="siteConfig.links.route" target="_blank" rel="noreferrer">Route openen</a>
-            <a class="action-button action-button-secondary" :href="siteConfig.links.bamFestival" target="_blank" rel="noreferrer">Bekijk BAM! Festival</a>
+            <a class="action-button action-button-primary" :href="siteConfig.links.route" target="_blank" rel="noreferrer">{{ siteConfig.infoSection.routeLabel }}</a>
+            <a class="action-button action-button-secondary" :href="siteConfig.links.bamFestival" target="_blank" rel="noreferrer">{{ siteConfig.infoSection.bamFestivalLabel }}</a>
           </div>
         </section>
       </div>
     </div>
-  </section>
+    </section>
 
-  <section class="section">
-    <div class="frame">
+    <section class="section">
+      <div class="frame">
       <div class="quote-ribbon">
         <p>
           "{{ siteConfig.footer.quote }}"
         </p>
       </div>
     </div>
-  </section>
+    </section>
 
-  <section class="section">
-    <div class="frame">
+    <section class="section">
+      <div class="frame">
       <div class="light-panel sponsor-bar">
-        <div>
-          <span class="eyebrow eyebrow-light">Partners</span>
-          <h2 class="section-title section-title-tight">Lokaal gedragen.</h2>
-          <p class="section-text section-text-push">
-            Bammetje voelt sterker als partners en stad zichtbaar meedoen. Deze strook houdt de uiting compact, warm en duidelijk herkenbaar.
-          </p>
+        <div class="sponsor-copy">
+          <span class="eyebrow eyebrow-light">{{ siteConfig.sponsorsSection.title }}</span>
+          <h2 class="section-title section-title-tight">{{ siteConfig.sponsorsSection.heading }}</h2>
+          <p class="section-text section-text-push">{{ siteConfig.sponsorsSection.intro }}</p>
         </div>
         <div class="sponsor-logos">
           <a
@@ -269,20 +255,21 @@ useSeoMeta({
             class="sponsor-logo"
           >
             <NuxtImg
-                :src="sponsor.logo"
-                :alt="sponsor.logo_alt"
-                width="640"
-                height="238"
-                loading="lazy"
-                format="webp"
-                quality="80"
-                sizes="sm:100vw md:50vw"
-              />
+              :src="sponsor.logo"
+              :alt="sponsor.logo_alt"
+              width="640"
+              height="238"
+              loading="lazy"
+              format="webp"
+              quality="80"
+              sizes="sm:100vw md:50vw"
+            />
           </a>
         </div>
       </div>
     </div>
-  </section>
+    </section>
+  </div>
 </template>
 
 <style>
@@ -332,39 +319,27 @@ useSeoMeta({
 
 .hero {
   position: relative;
-  padding-bottom: var(--section-gap);
+  padding-bottom: calc(var(--section-gap) * 1.45);
 }
 
 .hero-banner {
   position: relative;
   width: 100%;
-  min-height: clamp(16rem, 42vw, 34rem);
   overflow: clip;
   background: var(--page-burgundy);
   box-shadow: var(--page-shadow);
 }
 
-.hero-banner::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(18, 2, 6, 0.08) 0%, rgba(18, 2, 6, 0.22) 32%, rgba(18, 2, 6, 0.52) 100%);
-  pointer-events: none;
-}
-
+.hero-banner-image,
 .hero-banner picture,
 .hero-banner img {
+  display: block;
   width: 100%;
-  height: 100%;
-}
-
-.hero-banner img {
-  object-fit: cover;
-  object-position: center;
+  height: auto;
 }
 
 .hero-inner {
-  margin-top: clamp(-2.8rem, -4vw, -2rem);
+  margin-top: clamp(1.25rem, 3vw, 2rem);
   position: relative;
   z-index: 1;
 }
@@ -657,9 +632,6 @@ useSeoMeta({
     grid-column: span 7;
   }
 
-  .sponsor-bar {
-    grid-template-columns: 1.2fr 1fr;
-  }
 }
 
 @media (min-width: 64rem) {
@@ -880,14 +852,20 @@ useSeoMeta({
 
 .sponsor-bar {
   display: grid;
-  gap: 1rem;
-  align-items: center;
+  gap: 1.5rem;
+  align-items: start;
   position: relative;
   overflow: hidden;
   padding: 1.4rem;
   background:
     radial-gradient(circle at 12% 18%, rgba(248, 190, 5, 0.09), transparent 18%),
     linear-gradient(180deg, rgba(253, 250, 251, 0.86) 0%, rgba(255, 246, 236, 0.96) 100%);
+}
+
+.sponsor-copy {
+  display: grid;
+  align-content: start;
+  justify-items: start;
 }
 
 .sponsor-bar::after {
@@ -919,7 +897,20 @@ useSeoMeta({
 .sponsor-logos {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
+  align-items: stretch;
+}
+
+@media (min-width: 48rem) {
+  .sponsor-logos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .sponsor-logos {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 .sponsor-logo {
@@ -943,9 +934,9 @@ useSeoMeta({
 .sponsor-logo img {
   display: block;
   width: 100%;
-  max-width: 12rem;
+  max-width: 14rem;
   height: auto;
-  max-height: 4rem;
+  max-height: 5.25rem;
   object-fit: contain;
   object-position: center;
 }

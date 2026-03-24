@@ -2,10 +2,14 @@
   "name": "nuxt-bammetje",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=25 <26"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
+    "lint": "eslint .",
     "preview": "nuxt preview"
   },
   "dependencies": {
@@ -22,10 +26,9 @@
     "@vite-pwa/nuxt": "^1.1.1",
     "better-sqlite3": "^12.8.0",
     "nuxt": "^4.4.2",
-    "nuxt-og-image": "^6.0.3",
-    "nuxt-schema-org": "^5.0.10",
-    "nuxt-studio": "^1.4.0",
-    "nuxt-swiper": "^2.0.1",
     "playwright-core": "^1.58.2"
+  },
+  "devDependencies": {
+    "serve": "^14.2.6"
   }
 }

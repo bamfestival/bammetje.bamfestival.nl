@@ -9,13 +9,24 @@ const { siteConfig } = useSite()
 const { cookiesEnabledIds, isConsentGiven } = useCookieControl()
 
 const isScrolled = ref(false)
+const isMobileMenuOpen = ref(false)
+
+const footerLinks = computed(() => {
+  const links = siteConfig.value?.links || {}
+  return Object.entries(links)
+    .filter(([key, value]) => value && !['bamFestival', 'route'].includes(key))
+    .map(([key, value]) => ({
+      label: key,
+      href: value as string,
+    }))
+})
 
 function loadMatomo() {
   if (import.meta.client && cookiesEnabledIds.value?.includes('matomo_analytics')) {
     window._paq = window._paq || []
     window._paq.push(['trackPageView'])
     window._paq.push(['enableLinkTracking'])
-    const u = '//matomo.puntuale.nl/'
+    const u = 'https://matomo.puntuale.nl/'
     window._paq.push(['setTrackerUrl', u + 'matomo.php'])
     window._paq.push(['setSiteId', '14'])
     const d = document
@@ -45,26 +56,6 @@ onMounted(() => {
   window.addEventListener('scroll', handleScroll, { passive: true })
   handleScroll()
 
-  // Mobile menu toggle
-  const toggle = document.getElementById('nav-toggle')
-  const panel = document.getElementById('mobile-panel')
-
-  if (toggle && panel) {
-    toggle.addEventListener('click', () => {
-      const isOpen = toggle.getAttribute('aria-expanded') === 'true'
-      toggle.setAttribute('aria-expanded', String(!isOpen))
-      panel.setAttribute('data-open', String(!isOpen))
-    })
-
-    // Close menu when clicking a link
-    panel.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        toggle.setAttribute('aria-expanded', 'false')
-        panel.setAttribute('data-open', 'false')
-      })
-    })
-  }
-
   // Load Matomo if consent was already given
   if (isConsentGiven.value) {
     loadMatomo()
@@ -74,7 +65,7 @@ onMounted(() => {
 
 <template>
   <div class="site-shell">
-    <a href="#main-content" class="skip-link">Naar content</a>
+    <a href="#main-content" class="skip-link">{{ siteConfig.ui.skipLinkLabel }}</a>
     <header class="site-header" :class="{ 'is-scrolled': isScrolled }">
       <div class="frame">
         <div class="header-row">
@@ -90,25 +81,26 @@ onMounted(() => {
             />
             <div>
               <p class="brand-name">{{ siteConfig.title }}</p>
-              <p class="brand-note">{{ siteConfig.date }} • Hengelo</p>
+              <p class="brand-note">{{ siteConfig.date }} • {{ siteConfig.location }}</p>
             </div>
           </NuxtLink>
           
-          <nav class="main-nav" aria-label="Hoofdnavigatie">
-            <a href="#line-up">Line-up</a>
-            <a href="#timetable">Timetable</a>
-            <a href="#info">Info</a>
-            <a href="#locatie">Locatie</a>
-            <a href="#gratis-entree">Gratis entree</a>
+          <nav class="main-nav" :aria-label="siteConfig.ui.mainNavAriaLabel">
+            <a href="#line-up">{{ siteConfig.ui.nav.lineUp }}</a>
+            <a href="#timetable">{{ siteConfig.ui.nav.timetable }}</a>
+            <a href="#info">{{ siteConfig.ui.nav.info }}</a>
+            <a href="#locatie">{{ siteConfig.ui.nav.location }}</a>
+            <a href="#gratis-entree">{{ siteConfig.ui.nav.freeEntry }}</a>
           </nav>
           
           <button
-            class="nav-toggle"
             id="nav-toggle"
+            class="nav-toggle"
             type="button"
-            aria-expanded="false"
+            :aria-expanded="String(isMobileMenuOpen)"
             aria-controls="mobile-panel"
-            aria-label="Open menu"
+            :aria-label="siteConfig.ui.menuButtonLabel"
+            @click="isMobileMenuOpen = !isMobileMenuOpen"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M4 7h16M4 12h16M4 17h16" />
@@ -116,14 +108,14 @@ onMounted(() => {
           </button>
         </div>
         
-        <div class="mobile-panel" id="mobile-panel" data-open="false">
+        <div id="mobile-panel" class="mobile-panel" :data-open="String(isMobileMenuOpen)">
           <div class="mobile-panel-inner">
-            <nav class="mobile-menu" aria-label="Mobiele navigatie">
-              <a href="#line-up">Line-up</a>
-              <a href="#timetable">Timetable</a>
-              <a href="#info">Info</a>
-              <a href="#locatie">Locatie</a>
-              <a href="#gratis-entree">Gratis entree</a>
+            <nav class="mobile-menu" :aria-label="siteConfig.ui.mobileNavAriaLabel">
+              <a href="#line-up" @click="isMobileMenuOpen = false">{{ siteConfig.ui.nav.lineUp }}</a>
+              <a href="#timetable" @click="isMobileMenuOpen = false">{{ siteConfig.ui.nav.timetable }}</a>
+              <a href="#info" @click="isMobileMenuOpen = false">{{ siteConfig.ui.nav.info }}</a>
+              <a href="#locatie" @click="isMobileMenuOpen = false">{{ siteConfig.ui.nav.location }}</a>
+              <a href="#gratis-entree" @click="isMobileMenuOpen = false">{{ siteConfig.ui.nav.freeEntry }}</a>
             </nav>
           </div>
         </div>
@@ -142,16 +134,16 @@ onMounted(() => {
             <p class="footer-text">{{ siteConfig.footer.text }}</p>
           </div>
           <div class="footer-socials">
-            <a :href="siteConfig.footer.social.instagram" target="_blank" rel="noreferrer" :aria-label="`Volg BAM! Festival op Instagram`" class="footer-social-link">
+            <a :href="siteConfig.footer.social.instagram" target="_blank" rel="noreferrer" :aria-label="siteConfig.ui.socialLabels.instagram" class="footer-social-link">
               <svg viewBox="0 0 24 24" fill="#fdfafb" class="social-icon"><path d="M12 2.2c2.7 0 3 0 4 .1 1 0 1.6.2 2 .4.5.2.8.5 1.1.9.3.4.6.7.9 1.1.4.5.5 1.1.6 2 .1 1 .1 1.3.1 4s0 3-.1 4c0 1-.2 1.6-.4 2-.2.5-.5.8-.9 1.1-.4.3-.7.6-1.1.9-.5.4-1.1.5-2 .6-1 .1-1.3.1-4 .1s-3 0-4-.1c-1 0-1.6-.2-2-.4-.5-.2-.8-.5-1.1-.9-.3-.4-.6-.7-.9-1.1-.4-.5-.5-1.1-.6-2-.1-1-.1-1.3-.1-4s0-3 .1-4c0-1 .2-1.6.4-2 .2-.5.5-.8.9-1.1.4-.3.7-.6 1.1-.9.5-.4 1.1-.5 2-.6 1-.1 1.3-.1 4-.1M12 0C8.7 0 8.3 0 7 .1c-1.3 0-2.2.2-3 .6C3.5 1 2.8 1.3 2.1 2 1.5 2.7 1.2 3.4 1 4.2c-.4.8-.6 1.7-.6 3C0 8.3 0 8.7 0 12s0 3.7.1 5.3c0 1.3.2 2.2.6 3 .3.7.6 1.4 1.1 2 .7.7 1.4 1 2.2 1.2.8.4 1.7.6 3 .6C8.3 24 8.7 24 12 24s3.7 0 5.3-.1c1.3 0 2.2-.2 3-.6.7-.3 1.4-.6 2-1.1.7-.7 1-1.4 1.2-2.2.4-.8.6-1.7.6-3 .1-1.6.1-2 .1-5.3s0-3.7-.1-5.3c0-1.3-.2-2.2-.6-3-.3-.7-.6-1.4-1.1-2-.7-.7-1.4-1-2.2-1.2-.8-.4-1.7-.6-3-.6C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 100 12.4 6.2 6.2 0 000-12.4zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-10.5a1.4 1.4 0 100 2.8 1.4 1.4 0 000-2.8z"/></svg>
             </a>
-            <a :href="siteConfig.footer.social.linkedin" target="_blank" rel="noreferrer" :aria-label="`Volg BAM! Festival op LinkedIn`" class="footer-social-link">
+            <a :href="siteConfig.footer.social.linkedin" target="_blank" rel="noreferrer" :aria-label="siteConfig.ui.socialLabels.linkedin" class="footer-social-link">
               <svg viewBox="0 0 24 24" fill="#fdfafb" class="social-icon"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             </a>
-            <a :href="siteConfig.footer.social.youtube" target="_blank" rel="noreferrer" :aria-label="`Bekijk BAM! Festival op YouTube`" class="footer-social-link">
+            <a :href="siteConfig.footer.social.youtube" target="_blank" rel="noreferrer" :aria-label="siteConfig.ui.socialLabels.youtube" class="footer-social-link">
               <svg viewBox="0 0 24 24" fill="#fdfafb" class="social-icon"><path d="M23.5 6.2c-.3-1-1-1.8-2-2.1C20 3.5 12 3.5 12 3.5s-8 0-9.5.6c-1.1.3-1.8 1.1-2 2.1C0 8 0 12 0 12s0 4 .5 5.8c.2 1 1 1.8 2 2.1 1.5.6 7.5.6 7.5.6s8 0 9.5-.6c1.1-.3 1.8-1.1 2-2.1.5-1.8.5-5.8.5-5.8s0-4-.5-5.8zM9.5 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
             </a>
-            <a :href="siteConfig.footer.social.facebook" target="_blank" rel="noreferrer" :aria-label="`Volg BAM! Festival op Facebook`" class="footer-social-link">
+            <a :href="siteConfig.footer.social.facebook" target="_blank" rel="noreferrer" :aria-label="siteConfig.ui.socialLabels.facebook" class="footer-social-link">
               <svg viewBox="0 0 24 24" fill="#fdfafb" class="social-icon"><path d="M24 12c0-6.6-5.4-12-12-12S0 5.4 0 12c0 6 4.4 11 10.1 11.9v-8.4H6.9v-3.5h3.2V9.3c0-3.1 1.8-4.8 4.6-4.8 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-1.9.9-1.9 1.8v2.3h3.3l-.5 3.5H15l-.1 8.4C19.6 23 24 18 24 12z"/></svg>
             </a>
           </div>
@@ -159,13 +151,25 @@ onMounted(() => {
         <div class="footer-meta">
           <a :href="siteConfig.footer.bamFestival.url" target="_blank" rel="noreferrer" class="footer-bam-link">{{ siteConfig.footer.bamFestival.name }}</a>
           <span class="footer-address">{{ siteConfig.footer.bamFestival.address }}</span>
+          <span class="footer-address">{{ siteConfig.footer.address }}</span>
           <a :href="siteConfig.links.route" target="_blank" rel="noreferrer">Route</a>
-          <a href="#top">Naar boven</a>
+          <a
+            v-for="link in footerLinks"
+            :key="link.label"
+            :href="link.href"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {{ link.label }}
+          </a>
+          <a href="#top">{{ siteConfig.ui.backToTopLabel }}</a>
         </div>
       </div>
     </footer>
 
-    <CookieControl locale="nl" />
+    <ClientOnly>
+      <CookieControl locale="nl" />
+    </ClientOnly>
   </div>
 </template>
 

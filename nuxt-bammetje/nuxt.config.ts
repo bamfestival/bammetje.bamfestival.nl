@@ -1,3 +1,16 @@
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
+
+const siteConfig = JSON.parse(
+  readFileSync(resolve('./content/site.json'), 'utf-8'),
+) as {
+  title: string
+  tagline: string
+  meta?: {
+    description?: string
+  }
+}
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
@@ -11,60 +24,23 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     '@nuxt/icon',
     '@nuxt/fonts',
-    'nuxt-schema-org',
-    'nuxt-swiper',
     '@dargmuesli/nuxt-cookie-control',
   ],
 
   app: {
     head: {
       htmlAttrs: { lang: 'nl' },
-      title: 'Bammetje 2026 | Zaterdag 23 mei, Oogst Hengelo',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        {
-          name: 'description',
-          content:
-            'Bammetje is de gratis mini-editie van BAM! Festival op zaterdag 23 mei 2026 bij Broedplaats Oogst in Hengelo. Bekijk de sfeer, praktische info en updates.',
-        },
         { name: 'theme-color', content: '#530A1D' },
         { name: 'color-scheme', content: 'dark light' },
         { name: 'format-detection', content: 'telephone=no' },
         { property: 'og:locale', content: 'nl_NL' },
         { property: 'og:type', content: 'website' },
-        {
-          property: 'og:title',
-          content: 'Bammetje 2026 | Zaterdag 23 mei, Oogst Hengelo',
-        },
-        {
-          property: 'og:description',
-          content:
-            'Klein, maar BAM. Op zaterdag 23 mei 2026 strijkt Bammetje neer bij Broedplaats Oogst in Hengelo.',
-        },
         { property: 'og:url', content: 'https://bammetje.bamfestival.nl/' },
         { property: 'og:site_name', content: 'Bammetje' },
-        {
-          property: 'og:image',
-          content: 'https://bammetje.bamfestival.nl/assets/hero/bammetje-header-1440.webp',
-        },
-        { property: 'og:image:alt', content: 'Posterbeeld voor Bammetje 2026' },
-        { property: 'og:image:width', content: '1440' },
-        { property: 'og:image:height', content: '756' },
-        { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:site', content: '@BAMfestival' },
-        {
-          name: 'twitter:title',
-          content: 'Bammetje 2026 | Zaterdag 23 mei, Oogst Hengelo',
-        },
-        {
-          name: 'twitter:description',
-          content: 'Gratis muziek, warme BAM-sfeer en een compacte festivaldag op Oogst in Hengelo.',
-        },
-        {
-          name: 'twitter:image',
-          content: 'https://bammetje.bamfestival.nl/assets/hero/bammetje-header-1440.webp',
-        },
         { property: 'article:published_time', content: '2026-03-01' },
         { property: 'article:modified_time', content: '2026-03-21' },
       ],
@@ -73,7 +49,6 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/assets/favicons/logo-32.png' },
         { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/assets/favicons/logo-16.png' },
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/assets/favicons/logo-180.png' },
-        { rel: 'manifest', href: '/site.webmanifest' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' },
         { rel: 'preconnect', href: 'https://open.spotify.com' },
@@ -99,13 +74,15 @@ export default defineNuxtConfig({
     quality: 80,
   },
 
-    site: {
+  site: {
     url: 'https://bammetje.bamfestival.nl',
-    name: 'Bammetje',
-    description: 'Gratis mini-editie van BAM! Festival – Zaterdag 23 mei 2026 bij Oogst in Hengelo',
+    name: siteConfig.title,
+    description: siteConfig.meta?.description || siteConfig.tagline,
   },
 
-  sitemap: {},
+  sitemap: {
+    zeroRuntime: true,
+  },
 
   robots: {
     disallow: [],
@@ -114,9 +91,12 @@ export default defineNuxtConfig({
   pwa: {
     registerType: 'autoUpdate',
     manifest: {
-      name: 'Bammetje 2026',
-      short_name: 'Bammetje',
-      description: 'Gratis mini-editie van BAM! Festival – Zaterdag 23 mei 2026 bij Oogst in Hengelo',
+      name: siteConfig.title,
+      short_name: siteConfig.title,
+      description: siteConfig.meta?.description || siteConfig.tagline,
+      lang: 'nl-NL',
+      start_url: '/',
+      scope: '/',
       theme_color: '#530A1D',
       background_color: '#120206',
       display: 'standalone',
@@ -133,12 +113,14 @@ export default defineNuxtConfig({
         },
       ],
     },
-    workbox: {
-      navigateFallback: '/',
-      globPatterns: ['**/*.{js,css,html,png,svg,ico,webp}'],
-    },
     devOptions: {
       enabled: false,
+    },
+  },
+
+  nitro: {
+    prerender: {
+      routes: ['/'],
     },
   },
 
@@ -197,10 +179,8 @@ export default defineNuxtConfig({
 
   leaflet: {},
 
-  swiper: {},
-
   compatibilityDate: '2024-04-03',
-  devtools: { enabled: true },
+  devtools: { enabled: false },
 
   vite: {
     optimizeDeps: {

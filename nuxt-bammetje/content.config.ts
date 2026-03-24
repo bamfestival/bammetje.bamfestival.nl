@@ -18,6 +18,22 @@ export default defineContentConfig({
         coordinates: z.tuple([z.number(), z.number()]),
         slogan: z.string(),
         subtitle: z.string(),
+        hero: z.object({
+          eyebrow: z.string(),
+          label: z.string(),
+          title: z.string(),
+          bannerAriaLabel: z.string(),
+          imageAlt: z.string(),
+          primaryActionLabel: z.string(),
+          primaryActionTarget: z.string(),
+          secondaryActionLabel: z.string(),
+          secondaryActionTarget: z.string(),
+          detailsAriaLabel: z.string(),
+          details: z.array(z.object({
+            value: z.string(),
+            label: z.string(),
+          })),
+        }).optional(),
         eventDate: z.string(),
         eventDay: z.string(),
         eventTime: z.string(),
@@ -26,8 +42,9 @@ export default defineContentConfig({
         freeEntry: z.object({
           title: z.string(),
           location: z.string(),
+          ariaLabel: z.string().optional(),
           description: z.string()
-        }),
+        }).optional(),
         about: z.object({
           title: z.string(),
           intro: z.string(),
@@ -35,24 +52,108 @@ export default defineContentConfig({
             title: z.string(),
             description: z.string()
           }))
-        }),
+        }).optional(),
+        lineUp: z.object({
+          title: z.string(),
+          heading: z.string(),
+          intro: z.string(),
+        }).optional(),
+        timetableSection: z.object({
+          title: z.string(),
+          heading: z.string(),
+          intro: z.string(),
+          fallbackTimeLabel: z.string().optional(),
+          blocks: z.object({
+            hoofdpodium: z.object({
+              tag: z.string(),
+              note: z.string(),
+            }),
+            'de-tent': z.object({
+              tag: z.string(),
+              note: z.string(),
+            }),
+            'tommy-loods': z.object({
+              tag: z.string(),
+              note: z.string(),
+            }),
+          }),
+        }).optional(),
+        infoSection: z.object({
+          title: z.string(),
+          heading: z.string(),
+          intro: z.string(),
+          items: z.object({
+            date: z.object({
+              label: z.string(),
+              value: z.string(),
+              description: z.string(),
+            }),
+            time: z.object({
+              label: z.string(),
+              value: z.string(),
+              description: z.string(),
+            }),
+            admission: z.object({
+              label: z.string(),
+              value: z.string(),
+              description: z.string(),
+            }),
+          }),
+          locationTitle: z.string(),
+          locationHeading: z.string(),
+          locationDescription: z.string(),
+          routeLabel: z.string(),
+          bamFestivalLabel: z.string(),
+        }).optional(),
+        sponsorsSection: z.object({
+          title: z.string(),
+          heading: z.string(),
+          intro: z.string(),
+        }).optional(),
         footer: z.object({
           brand: z.string(),
           text: z.string(),
-          quote: z.string()
-        }),
+          quote: z.string(),
+          address: z.string().optional(),
+          bamFestival: z.object({
+            name: z.string(),
+            url: z.string(),
+            address: z.string(),
+          }).optional(),
+          social: z.object({
+            instagram: z.string(),
+            facebook: z.string(),
+            youtube: z.string(),
+            linkedin: z.string(),
+          }).optional(),
+        }).optional(),
         meta: z.object({
           description: z.string(),
           ogDescription: z.string(),
           ogImage: z.string(),
           ogImageAlt: z.string()
-        }),
-        links: z.object({
-          bamFestival: z.string(),
-          route: z.string(),
-          hengelo: z.string(),
-          hartVanZuid: z.string()
-        }),
+        }).optional(),
+        links: z.record(z.string()).optional(),
+        ui: z.object({
+          skipLinkLabel: z.string(),
+          mainNavAriaLabel: z.string(),
+          mobileNavAriaLabel: z.string(),
+          menuButtonLabel: z.string(),
+          backToTopLabel: z.string(),
+          nav: z.object({
+            lineUp: z.string(),
+            timetable: z.string(),
+            info: z.string(),
+            location: z.string(),
+            freeEntry: z.string(),
+          }),
+          socialLabels: z.object({
+            instagram: z.string(),
+            linkedin: z.string(),
+            youtube: z.string(),
+            facebook: z.string(),
+          }),
+        }).optional(),
         stages: z.record(z.object({
           name: z.string(),
           description: z.string(),
@@ -81,17 +182,6 @@ export default defineContentConfig({
         starttime: z.string().optional(),
         endtime: z.string().optional(),
         theme: z.enum(['dark', 'light', 'night', 'gold']).default('dark'),
-      })
-    }),
-    performances: defineCollection({
-      type: 'data',
-      source: 'performances/*.json',
-      schema: z.object({
-        artist: z.string(),
-        stage: z.string(),
-        starttime: z.string(),
-        endtime: z.string().optional(),
-        date: z.string().optional(),
       })
     }),
     sponsors: defineCollection({

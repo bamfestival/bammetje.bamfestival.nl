@@ -20,13 +20,42 @@ const props = defineProps<{
 
 const youtubeEmbedUrl = computed(() => {
   if (!props.artist.youtube) return ''
-  const url = props.artist.youtube
-  if (url.includes('/embed/')) return url
-  if (url.includes('/@')) {
-    return url.replace('/www.youtube.com/', '/www.youtube.com/embed/')
+  const url = props.artist.youtube.trim()
+
+  if (url.includes('/embed/')) {
+    return url.replace('youtube.com/embed/', 'youtube-nocookie.com/embed/')
   }
-  return url
+
+  try {
+    const parsed = new URL(url)
+    const hostname = parsed.hostname.replace(/^www\./, '')
+
+    if (hostname === 'youtu.be') {
+      const videoId = parsed.pathname.slice(1)
+      return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` : ''
+    }
+
+    if (hostname === 'youtube.com' || hostname === 'm.youtube.com') {
+      const videoId = parsed.searchParams.get('v')
+      if (parsed.pathname === '/watch' && videoId) {
+        return `https://www.youtube-nocookie.com/embed/${videoId}`
+      }
+
+      const shortsMatch = parsed.pathname.match(/^\/shorts\/([^/]+)/)
+      if (shortsMatch?.[1]) {
+        return `https://www.youtube-nocookie.com/embed/${shortsMatch[1]}`
+      }
+    }
+  }
+  catch {
+    return ''
+  }
+
+  return ''
 })
+
+const resolvedYoutubeEmbedUrl = ref('')
+const hasTriedYoutubeResolve = ref(false)
 
 const cardRef = ref<HTMLElement | null>(null)
 const closeButtonRef = ref<HTMLButtonElement | null>(null)
@@ -56,11 +85,32 @@ const handleKeydown = (event: KeyboardEvent) => {
   }
 }
 
+const activeYoutubeEmbedUrl = computed(() => youtubeEmbedUrl.value || resolvedYoutubeEmbedUrl.value)
+
+const resolveYoutubeEmbedUrl = async () => {
+  if (!props.artist.youtube || youtubeEmbedUrl.value || hasTriedYoutubeResolve.value) {
+    return
+  }
+
+  hasTriedYoutubeResolve.value = true
+
+  try {
+    const response = await $fetch<{ embedUrl?: string }>('/api/youtube/resolve', {
+      query: { url: props.artist.youtube }
+    })
+    resolvedYoutubeEmbedUrl.value = response.embedUrl || ''
+  }
+  catch {
+    resolvedYoutubeEmbedUrl.value = ''
+  }
+}
+
 watch(isFlipped, (flipped) => {
   if (flipped) {
     nextTick(() => {
       closeButtonRef.value?.focus()
     })
+    resolveYoutubeEmbedUrl()
   }
 })
 
@@ -83,23 +133,23 @@ const stageClass = computed(() => ({
         ref="frontRef"
         class="flip-card-front" 
         :data-theme="artist.theme" 
-        @click="toggleFlip" 
         role="button"
         tabindex="0"
         :aria-expanded="isFlipped"
         :aria-controls="`artist-back-${artist.name.toLowerCase().replace(/\s+/g, '-')}`"
+        @click="toggleFlip" 
         @keydown.enter.prevent="toggleFlip"
         @keydown.space.prevent="toggleFlip"
       >
         <div class="flip-card-media">
           <NuxtImg
-              :src="artist.image"
-              :alt="`${artist.name} optreden`"
-              loading="lazy"
-              format="webp"
-              quality="80"
-              sizes="sm:100vw md:50vw lg:33vw"
-            />
+            :src="artist.image"
+            :alt="`${artist.name} optreden`"
+            loading="lazy"
+            format="webp"
+            quality="80"
+            sizes="sm:100vw md:50vw lg:33vw"
+          />
         </div>
         <div class="flip-card-content">
           <span class="stage-chip" :class="stageClass[artist.stage]">
@@ -121,20 +171,20 @@ const stageClass = computed(() => ({
         <button 
           ref="closeButtonRef"
           class="flip-close" 
-          @click="closeFlip" 
           aria-label="Sluit kaart en ga terug"
+          @click="closeFlip" 
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="close-icon"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
         <div class="flip-back-media">
           <NuxtImg
-              :src="artist.image"
-              :alt="`${artist.name} optreden`"
-              loading="lazy"
-              format="webp"
-              quality="80"
-              sizes="sm:100vw md:50vw lg:33vw"
-            />
+            :src="artist.image"
+            :alt="`${artist.name} optreden`"
+            loading="lazy"
+            format="webp"
+            quality="80"
+            sizes="sm:100vw md:50vw lg:33vw"
+          />
         </div>
         <div class="flip-back-content">
           <span class="stage-chip" :class="stageClass[artist.stage]">
@@ -142,27 +192,27 @@ const stageClass = computed(() => ({
           </span>
           <h3>{{ artist.name }}</h3>
           <p class="flip-bio">{{ artist.bio }}</p>
-          <div class="flip-embed-group" v-if="isFlipped">
-            <div class="flip-embed" v-if="artist.youtube && youtubeEmbedUrl">
+          <div v-if="isFlipped" class="flip-embed-group">
+            <div v-if="artist.youtube && activeYoutubeEmbedUrl" class="flip-embed">
               <p class="flip-embed-label">YouTube</p>
               <div class="video-container">
                 <iframe 
-                  :src="youtubeEmbedUrl"
+                  :src="activeYoutubeEmbedUrl"
                   :title="`${artist.name} op YouTube`"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowfullscreen
                   loading="lazy"
-                ></iframe>
+                />
               </div>
             </div>
-            <div class="flip-embed" v-if="artist.spotify">
+            <div v-if="artist.spotify" class="flip-embed">
               <p class="flip-embed-label">Spotify</p>
               <iframe 
                 :src="artist.spotify"
                 :title="`${artist.name} op Spotify`"
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                 loading="lazy"
-              ></iframe>
+              />
             </div>
           </div>
           <div class="flip-socials">
