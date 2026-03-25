@@ -9,11 +9,26 @@
   "instagram": "",
   "facebook": "",
   "image_landscape": "/assets/artists/dj-minka/landscape.webp",
-  "image_landscape_alt": "DJ Minka optreden",
-  "image_square": "/assets/artists/dj-minka/portrait.webp",
-  "image_square_alt": "DJ Minka",
-  "stage": "de-tent",
-  "starttime": "16:00",
-  "endtime": "17:00",
+  "image_landscape_alt": "DJ Minka op promotiebeeld voor haar set tijdens Bammetje",
+  "image_square": "/assets/artists/dj-minka/square.webp",
+  "image_square_alt": "Portretfoto van DJ Minka",
+  "weight": 1,
+  "performances": [
+    {
+      "stage": "de-tent",
+      "starttime": "14:00",
+      "endtime": "14:45"
+    },
+    {
+      "stage": "hoofdpodium",
+      "starttime": "16:00",
+      "endtime": "16:30"
+    },
+    {
+      "stage": "tommy-loods",
+      "starttime": "18:00",
+      "endtime": "18:45"
+    }
+  ],
   "theme": "dark"
 }

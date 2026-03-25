@@ -1,6 +1,7 @@
 {
   "title": "Gemeente Hengelo",
   "logo": "/assets/logos/gemeente-hengelo-640.webp",
-  "logo_alt": "Logo van Gemeente Hengelo",
-  "link": "https://www.hengelo.nl/"
+  "logo_alt": "Gemeente Hengelo",
+  "link": "https://www.hengelo.nl/",
+  "weight": 5
 }

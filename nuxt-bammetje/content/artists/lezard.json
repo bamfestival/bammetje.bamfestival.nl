@@ -8,12 +8,17 @@
   "website": "https://lezardmusic.com",
   "instagram": "https://www.instagram.com/lezardmusic",
   "facebook": "https://www.facebook.com/lezardband",
-  "image_landscape": "/assets/artists/lezard/horizontal.webp",
-  "image_landscape_alt": "Lézard optreden in De Tent",
+  "image_landscape": "/assets/artists/lezard/landscape.webp",
+  "image_landscape_alt": "Lézard op promotiebeeld voor het optreden in De Tent",
   "image_square": "/assets/artists/lezard/square.webp",
-  "image_square_alt": "Lézard",
-  "stage": "de-tent",
-  "starttime": "18:30",
-  "endtime": "19:15",
+  "image_square_alt": "Bandfoto van Lézard",
+  "weight": 4,
+  "performances": [
+    {
+      "stage": "de-tent",
+      "starttime": "19:15",
+      "endtime": "20:00"
+    }
+  ],
   "theme": "dark"
 }

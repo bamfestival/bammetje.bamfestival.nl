@@ -9,11 +9,16 @@
   "instagram": "https://www.instagram.com/yo_thats_that_shit",
   "facebook": "",
   "image_landscape": "/assets/artists/yo-thats-shit/landscape.webp",
-  "image_landscape_alt": "Yo That's That Shit optreden in de Tommy-Loods",
-  "image_square": "/assets/artists/yo-thats-shit/portrait.webp",
-  "image_square_alt": "Yo That's That Shit",
-  "stage": "tommy-loods",
-  "starttime": "21:00",
-  "endtime": "22:00",
+  "image_landscape_alt": "Yo That's That Shit op promotiebeeld voor de set in de Tommy-Loods",
+  "image_square": "/assets/artists/yo-thats-shit/square.webp",
+  "image_square_alt": "Promotiebeeld van Yo That's That Shit",
+  "weight": 2,
+  "performances": [
+    {
+      "stage": "tommy-loods",
+      "starttime": "21:00",
+      "endtime": "22:00"
+    }
+  ],
   "theme": "dark"
 }

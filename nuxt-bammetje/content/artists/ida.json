@@ -9,11 +9,16 @@
   "instagram": "https://www.instagram.com/idaweilers",
   "facebook": "",
   "image_landscape": "/assets/artists/ida/landscape.webp",
-  "image_landscape_alt": "IDA optreden op het Hoofdpodium",
-  "image_square": "/assets/artists/ida/portrait.webp",
-  "image_square_alt": "IDA",
-  "stage": "hoofdpodium",
-  "starttime": "16:00",
-  "endtime": "17:00",
+  "image_landscape_alt": "IDA op promotiebeeld voor haar optreden op het Hoofdpodium",
+  "image_square": "/assets/artists/ida/square.webp",
+  "image_square_alt": "Portretfoto van IDA",
+  "weight": 4,
+  "performances": [
+    {
+      "stage": "hoofdpodium",
+      "starttime": "16:45",
+      "endtime": "17:30"
+    }
+  ],
   "theme": "dark"
 }

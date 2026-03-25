@@ -8,12 +8,17 @@
   "website": "",
   "instagram": "",
   "facebook": "",
-  "image_landscape": "/assets/stock/concert-singer-audience-960.webp",
-  "image_landscape_alt": "Morssync & Sabossi dj-set in de Tommy-Loods",
-  "image_square": "/assets/stock/concert-singer-audience-960.webp",
-  "image_square_alt": "Morssync & Sabossi",
-  "stage": "tommy-loods",
-  "starttime": "22:30",
-  "endtime": "23:00",
+  "image_landscape": "/assets/artists/morssync-sabossi/landscape.webp",
+  "image_landscape_alt": "Morssync en Sabossi op promotiebeeld voor hun dj-set in de Tommy-Loods",
+  "image_square": "/assets/artists/morssync-sabossi/square.webp",
+  "image_square_alt": "Duoportret van Morssync en Sabossi",
+  "weight": 2,
+  "performances": [
+    {
+      "stage": "tommy-loods",
+      "starttime": "22:00",
+      "endtime": "23:00"
+    }
+  ],
   "theme": "dark"
 }

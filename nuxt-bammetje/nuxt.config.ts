@@ -59,7 +59,7 @@ export default defineNuxtConfig({
     },
   },
 
-  css: ['~/assets/css/main.css', 'leaflet/dist/leaflet.css'],
+  css: ['~/assets/css/main.css', '~/assets/css/home.css', 'leaflet/dist/leaflet.css'],
 
   fonts: {
     families: [

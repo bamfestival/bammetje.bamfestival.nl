@@ -1,6 +1,7 @@
 {
   "title": "Rabobank",
   "logo": "/assets/logos/rabobank-640.webp",
-  "logo_alt": "Logo van Rabobank",
-  "link": "http://www.rabobank.nl/"
+  "logo_alt": "Rabobank",
+  "link": "http://www.rabobank.nl/",
+  "weight": 4
 }

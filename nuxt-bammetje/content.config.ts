@@ -63,6 +63,7 @@ export default defineContentConfig({
           heading: z.string(),
           intro: z.string(),
           fallbackTimeLabel: z.string().optional(),
+          timeLabelSuffix: z.string().optional(),
           blocks: z.object({
             hoofdpodium: z.object({
               tag: z.string(),
@@ -153,6 +154,17 @@ export default defineContentConfig({
             youtube: z.string(),
             facebook: z.string(),
           }),
+          artistCard: z.object({
+            closeLabel: z.string(),
+            youtubeLabel: z.string(),
+            spotifyLabel: z.string(),
+            instagramAriaLabel: z.string(),
+            youtubeAriaLabel: z.string(),
+            spotifyAriaLabel: z.string(),
+            facebookAriaLabel: z.string(),
+            websiteAriaLabel: z.string(),
+            detailsAriaLabel: z.string(),
+          }),
         }).optional(),
         stages: z.record(z.object({
           name: z.string(),
@@ -178,9 +190,12 @@ export default defineContentConfig({
         image_landscape_alt: z.string(),
         image_square: z.string(),
         image_square_alt: z.string(),
-        stage: z.string(),
-        starttime: z.string().optional(),
-        endtime: z.string().optional(),
+        performances: z.array(z.object({
+          stage: z.enum(['hoofdpodium', 'de-tent', 'tommy-loods']),
+          starttime: z.string(),
+          endtime: z.string().optional(),
+        })).min(1),
+        weight: z.number().int().min(0).max(5).default(0),
         theme: z.enum(['dark', 'light', 'night', 'gold']).default('dark'),
       })
     }),
@@ -192,6 +207,7 @@ export default defineContentConfig({
         logo: z.string(),
         logo_alt: z.string(),
         link: z.string(),
+        weight: z.number().int().min(0).max(5).default(0),
       })
     }),
   }

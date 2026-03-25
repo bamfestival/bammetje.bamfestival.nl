@@ -1,3 +1,5 @@
+import type { ArtistRecord } from '~/app/types/artist'
+
 export const useSite = () => {
   const { data: siteConfig } = useAsyncData('site-config', () =>
     queryCollection('site').first()
@@ -17,13 +19,13 @@ export const useSite = () => {
     address: 'Esrein 53, 7553 CX Hengelo',
     coordinates: [52.2621, 6.7937] as [number, number],
     slogan: 'Klein, maar BAM.',
-    subtitle: 'Op zaterdag 23 mei 2026 landt de mini-editie van BAM! Festival bij Broedplaats Oogst in Hengelo: gratis muziek, warme sfeer en een dag die voelt als een compacte uitbarsting van alles waar BAM voor staat.',
+    subtitle: 'BAM! Festival kan dit jaar niet landen in het Prins Bernhardplantsoen, maar stil blijft het niet: Bammetje houdt een dag vol livemuziek, ontmoeting en zomergevoel levend.',
     hero: {
       eyebrow: 'Mini BAM, maximale vibe',
       label: 'Gratis mini-editie van BAM! Festival',
       title: 'Bammetje',
       bannerAriaLabel: 'Headerbeeld van Bammetje',
-      imageAlt: 'Bammetje headerbeeld voor de mini-editie van BAM! Festival',
+      imageAlt: 'Sfeerbeeld van Bammetje 2026 met golvende BAM-vormen in rood, oranje en geel',
       primaryActionLabel: 'Bekijk line-up',
       primaryActionTarget: '#line-up',
       secondaryActionLabel: 'Praktische info',
@@ -45,40 +47,41 @@ export const useSite = () => {
       title: 'Gratis entree',
       location: 'Oogst / Hengelo',
       ariaLabel: 'Kerninformatie Bammetje',
-      description: 'Van middag tot avond, met ruimte voor muziek, drinken en die herkenbare BAM-sfeer in een compactere vorm.'
+      description: 'Kleiner van opzet, maar nog steeds warm, open en vol muziek.'
     },
     about: {
       title: 'Waarom Bammetje',
-      intro: 'BAM! Festival kan in 2026 niet neerstrijken in het Prins Bernhardplantsoen, maar stil blijft het niet. Vanuit liefde voor muziek, organiseren en vrijwilligersenergie komt er een kleinere editie op Oogst.',
+      intro: 'Omdat het Prins Bernhardplantsoen wordt verbouwd is er in 2026 geen BAM! Festival. Met Bammetje als kleinere editie houden we een onmisbaar festival toch levend. Want zeg nou zelf: een jaar geen BAM!, is een jaar niet geleefd.',
       points: [
         {
-          title: 'Geen vervanging, wel dezelfde geest',
-          description: 'Bammetje is bewust kleiner dan het festival in het park, maar moet dezelfde open, warme en lokale energie vasthouden.'
+          title: 'Wat blijft hetzelfde?',
+          description: 'Het vertrouwde BAM!-gevoel blijft. Samen genieten van livemuziek en een drankje, met dezelfde open en warme sfeer.'
         },
         {
-          title: 'Gebouwd voor Hengelo en Twente',
-          description: 'De site moet snel duidelijk maken dat dit een gratis, toegankelijke festivaldag is voor het lokale publiek dat BAM mist.'
+          title: 'Wat is er dit jaar anders?',
+          description: 'Het festival vindt eenmalig plaats op een andere locatie in Hengelo: Broedplaats Oogst. Kleiner betekent hier niet minder, maar compacter en dichter op elkaar.'
         },
         {
-          title: 'Compact in info, rijk in sfeer',
-          description: 'Niet volstoppen met details. Eerst gevoel, dan de praktische zekerheid om gewoon te komen.'
+          title: 'Voor Hengelo en Twente',
+          description: 'Bammetje blijft een toegankelijke festivaldag voor iedereen die BAM mist en in 2026 toch samen muziek wil beleven.'
         }
       ]
     },
     lineUp: {
       title: 'Line-up',
       heading: 'Drie podia. Zeven namen. Meteen overzicht.',
-      intro: "De eerste indeling staat nu vast: de grotere namen op het Hoofdpodium, de dj's in de Tommy-Loods en de andere acts in De Tent. Zo voelt de line-up niet alleen levendiger, maar ook meteen logisch voor bezoekers."
+      intro: 'De line-up staat nu per podium ingedeeld, zodat je meteen ziet hoe de dag is opgebouwd: grotere publieksmomenten op het Hoofdpodium, liveacts in De Tent en dj-sets in de Tommy-Loods. Zo voelt het programma vanaf de eerste blik helder, levendig en goed verspreid over de dag.'
     },
     timetableSection: {
       title: 'Timetable',
-      heading: 'Podia nu. Speeltijden straks.',
-      intro: 'De precieze programmering komt later. Daarom staat hier geen verzonnen tijdschema, maar wel een heldere podiumindeling die straks direct naar echte speeltijden kan worden vertaald.',
+      heading: 'Van middag tot laat.',
+      intro: 'De timetable laat nu in één oogopslag zien hoe Bammetje zich van 14:00 tot laat over de drie podia ontvouwt. Zo zie je meteen waar je begint, waar de piekmomenten zitten en hoe de avond per podium doorloopt.',
       fallbackTimeLabel: 'Bevestigd',
+      timeLabelSuffix: '',
       blocks: {
         hoofdpodium: {
           tag: 'Grotere namen',
-          note: 'Dit podium draagt de grotere publieksmomenten. Speeltijden volgen zodra het schema rond is.'
+          note: 'Hier vallen de grotere publieksmomenten samen: de acts die de dag open trekken, de druk opvoeren en het veld echt in beweging zetten.'
         },
         'de-tent': {
           tag: 'Live en dichtbij',
@@ -86,34 +89,34 @@ export const useSite = () => {
         },
         'tommy-loods': {
           tag: 'Dj-hoek',
-          note: 'De dj\'s zitten hier samen. Zodra de tijden bekend zijn, kan dit blok direct een echte timetable worden.'
+          note: 'Hier bouwt de dag op van losse grooves naar een vollere dansvloer: de plek voor dj-sets die Bammetje richting avond trekken.'
         }
       }
     },
     infoSection: {
       title: 'Info',
-      heading: 'Snel snappen. Dan gewoon komen.',
-      intro: 'Dit is de kern voor bezoekers uit Hengelo en Twente: waar het is, wanneer het begint en waarom je geen drempel hebt om langs te gaan.',
+      heading: 'Alles op een rij.',
+      intro: 'Datum, tijd en plek in een paar tellen helder.',
       items: {
         date: {
           label: 'Datum',
           value: '23 mei 2026',
-          description: 'Zaterdag. Klaar om buiten weer BAM-gevoel op te bouwen.'
+          description: ''
         },
         time: {
           label: 'Tijd',
           value: '14:00 – 23:00',
-          description: 'Van middag tot avond, compact genoeg om overzichtelijk te blijven en lang genoeg om echt sfeer te maken.'
+          description: ''
         },
         admission: {
           label: 'Toegang',
           value: 'Gratis',
-          description: 'Geen ticket nodig. Gewoon komen, aansluiten en genieten van muziek en een drankje.'
+          description: ''
         }
       },
       locationTitle: 'Locatie',
       locationHeading: 'Oogst',
-      locationDescription: 'Bammetje landt bij Oogst in Hengelo. Verwacht geen exacte kopie van BAM! Festival in het park, maar een kleinere setting met dezelfde liefde voor livemuziek, ontmoeting en lokale energie.',
+      locationDescription: 'Bammetje strijkt dit jaar neer bij Broedplaats Oogst: een rauwe, warme plek die precies past bij deze kleinere editie.',
       routeLabel: 'Route openen',
       bamFestivalLabel: 'Bekijk BAM! Festival'
     },
@@ -131,7 +134,7 @@ export const useSite = () => {
       description: 'Bammetje is de gratis mini-editie van BAM! Festival op zaterdag 23 mei 2026 bij Broedplaats Oogst in Hengelo. Bekijk de sfeer, praktische info en updates.',
       ogDescription: 'Klein, maar BAM. Op zaterdag 23 mei 2026 strijkt Bammetje neer bij Broedplaats Oogst in Hengelo.',
       ogImage: 'https://bammetje.bamfestival.nl/assets/hero/bammetje-2026-header.jpg',
-      ogImageAlt: 'Posterbeeld voor Bammetje 2026'
+      ogImageAlt: 'Promotiebeeld van Bammetje 2026 met de BAM!-huisstijlkleuren'
     },
     links: {
       bamFestival: 'https://www.bamfestival.nl/',
@@ -156,6 +159,17 @@ export const useSite = () => {
         youtube: 'Bekijk Bammetje op YouTube',
         facebook: 'Volg Bammetje op Facebook',
       },
+      artistCard: {
+        closeLabel: 'Sluit kaart en ga terug',
+        youtubeLabel: 'YouTube',
+        spotifyLabel: 'Spotify',
+        instagramAriaLabel: 'Volg {artist} op Instagram',
+        youtubeAriaLabel: 'Bekijk {artist} op YouTube',
+        spotifyAriaLabel: 'Luister naar {artist} op Spotify',
+        facebookAriaLabel: 'Volg {artist} op Facebook',
+        websiteAriaLabel: 'Bezoek de website van {artist}',
+        detailsAriaLabel: '{artist} details',
+      },
     }
   }
 
@@ -168,27 +182,16 @@ export const useSite = () => {
         : T[K]
   }
 
-  type _ArtistRecord = {
-    title: string
-    stage: string
-    subtitle: string
-    bio?: string
-    starttime?: string
-    theme?: 'dark' | 'light' | 'night' | 'gold'
-    image_landscape: string
-    spotify?: string
-    youtube?: string
-    website?: string
-    instagram?: string
-    facebook?: string
-  }
-
   type _SponsorRecord = {
     title: string
     logo?: string
     logo_alt?: string
     link?: string
+    weight?: number
   }
+
+  const getDefinedValue = <T>(...values: Array<T | undefined>) =>
+    values.find(value => value !== undefined)
 
   const config = computed(() => {
     const source = (siteConfig.value || {}) as DeepPartial<SiteConfig>
@@ -247,22 +250,27 @@ export const useSite = () => {
           date: {
             ...defaultConfig.infoSection.items.date,
             ...sourceInfoItems.date,
-            value: sourceInfoItems.date?.value || source.date || defaultConfig.date,
-            description: sourceInfoItems.date?.description || `${source.eventDay || defaultConfig.eventDay}. Klaar om buiten weer BAM-gevoel op te bouwen.`,
+            value: getDefinedValue(sourceInfoItems.date?.value, source.date, defaultConfig.date) ?? defaultConfig.date,
+            description: getDefinedValue(
+              sourceInfoItems.date?.description,
+              source.eventDay ? `${source.eventDay}. Klaar om buiten weer BAM-gevoel op te bouwen.` : undefined,
+              `${defaultConfig.eventDay}. Klaar om buiten weer BAM-gevoel op te bouwen.`,
+            ) ?? '',
           },
           time: {
             ...defaultConfig.infoSection.items.time,
             ...sourceInfoItems.time,
-            value: sourceInfoItems.time?.value || source.eventTime || defaultConfig.eventTime,
+            value: getDefinedValue(sourceInfoItems.time?.value, source.eventTime, defaultConfig.eventTime) ?? defaultConfig.eventTime,
           },
           admission: {
             ...defaultConfig.infoSection.items.admission,
             ...sourceInfoItems.admission,
-            value: sourceInfoItems.admission?.value || source.admission || defaultConfig.admission,
-            description: sourceInfoItems.admission?.description || source.admissionNote || defaultConfig.admissionNote,
+            value: getDefinedValue(sourceInfoItems.admission?.value, source.admission, defaultConfig.admission) ?? defaultConfig.admission,
+            description: getDefinedValue(sourceInfoItems.admission?.description, source.admissionNote, defaultConfig.admissionNote) ?? '',
           },
         },
-        locationHeading: sourceInfoSection.locationHeading || source.location?.split(',')[0] || defaultConfig.infoSection.locationHeading,
+        locationHeading: getDefinedValue(sourceInfoSection.locationHeading, source.location?.split(',')[0], defaultConfig.infoSection.locationHeading)
+          ?? defaultConfig.infoSection.locationHeading,
       },
       sponsorsSection: {
         ...defaultConfig.sponsorsSection,
@@ -291,6 +299,10 @@ export const useSite = () => {
           ...defaultConfig.ui.socialLabels,
           ...sourceUi.socialLabels,
         },
+        artistCard: {
+          ...defaultConfig.ui.artistCard,
+          ...sourceUi.artistCard,
+        },
       },
     }
   })
@@ -317,25 +329,13 @@ export const useArtists = () => {
     queryCollection('artists').all()
   )
 
-  const mappedArtists = computed(() => {
+  const sortedArtists = computed<ArtistRecord[]>(() => {
     if (!artists.value) return []
-    return (artists.value as _ArtistRecord[]).map((artist) => ({
-      name: artist.title,
-      stage: artist.stage,
-      description: artist.subtitle,
-      bio: artist.bio || '',
-      time: artist.starttime ? `${artist.starttime} indicatie` : '',
-      theme: artist.theme || 'dark',
-      image: artist.image_landscape,
-      spotify: artist.spotify || '',
-      youtube: artist.youtube || '',
-      website: artist.website || '',
-      instagram: artist.instagram || '',
-      facebook: artist.facebook || '',
-    }))
+    return [...(artists.value as ArtistRecord[])]
+      .sort((a, b) => (b.weight ?? 0) - (a.weight ?? 0) || a.title.localeCompare(b.title, 'nl'))
   })
 
-  return { artists: mappedArtists }
+  return { artists: sortedArtists }
 }
 
 export const useSponsors = () => {
@@ -345,12 +345,15 @@ export const useSponsors = () => {
 
   const mappedSponsors = computed(() => {
     if (!sponsors.value) return []
-    return (sponsors.value as _SponsorRecord[]).map((sponsor) => ({
-      title: sponsor.title,
-      logo: sponsor.logo || '/assets/logos/default-640.webp',
-      logo_alt: sponsor.logo_alt || `Logo van ${sponsor.title}`,
-      link: sponsor.link || '#',
-    }))
+    return [...(sponsors.value as _SponsorRecord[])]
+      .sort((a, b) => Number(b.weight ?? 0) - Number(a.weight ?? 0) || a.title.localeCompare(b.title, 'nl'))
+      .map((sponsor) => ({
+        title: sponsor.title,
+        logo: sponsor.logo || '/assets/logos/default-640.webp',
+        logo_alt: sponsor.logo_alt || `Logo van ${sponsor.title}`,
+        link: sponsor.link || '#',
+        weight: Number(sponsor.weight ?? 0),
+      }))
   })
 
   return { sponsors: mappedSponsors }

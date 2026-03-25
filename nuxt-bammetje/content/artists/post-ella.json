@@ -9,11 +9,16 @@
   "instagram": "https://www.instagram.com/postellaband",
   "facebook": "https://www.facebook.com/postellaband",
   "image_landscape": "/assets/artists/post-ella/landscape.webp",
-  "image_landscape_alt": "Post Ella optreden in De Tent",
-  "image_square": "/assets/artists/post-ella/portrait.webp",
-  "image_square_alt": "Post Ella",
-  "stage": "de-tent",
-  "starttime": "15:30",
-  "endtime": "16:15",
+  "image_landscape_alt": "Post Ella op promotiebeeld voor het optreden in De Tent",
+  "image_square": "/assets/artists/post-ella/square.webp",
+  "image_square_alt": "Bandfoto van Post Ella",
+  "weight": 5,
+  "performances": [
+    {
+      "stage": "de-tent",
+      "starttime": "15:00",
+      "endtime": "15:45"
+    }
+  ],
   "theme": "dark"
 }

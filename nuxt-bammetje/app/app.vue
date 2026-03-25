@@ -11,6 +11,14 @@ const { cookiesEnabledIds, isConsentGiven } = useCookieControl()
 const isScrolled = ref(false)
 const isMobileMenuOpen = ref(false)
 
+const navItems = computed(() => [
+  { href: '#line-up', label: siteConfig.value.ui.nav.lineUp },
+  { href: '#timetable', label: siteConfig.value.ui.nav.timetable },
+  { href: '#info', label: siteConfig.value.ui.nav.info },
+  { href: '#locatie', label: siteConfig.value.ui.nav.location },
+  { href: '#gratis-entree', label: siteConfig.value.ui.nav.freeEntry },
+])
+
 const footerLinks = computed(() => {
   const links = siteConfig.value?.links || {}
   return Object.entries(links)
@@ -73,7 +81,7 @@ onMounted(() => {
             <NuxtImg
               class="brand-mark"
               src="/assets/favicons/logo-192.png"
-              alt="Bammetje logo"
+              alt="Bammetje 2026 logo"
               width="192"
               height="192"
               format="png"
@@ -84,38 +92,48 @@ onMounted(() => {
               <p class="brand-note">{{ siteConfig.date }} • {{ siteConfig.location }}</p>
             </div>
           </NuxtLink>
-          
-          <nav class="main-nav" :aria-label="siteConfig.ui.mainNavAriaLabel">
-            <a href="#line-up">{{ siteConfig.ui.nav.lineUp }}</a>
-            <a href="#timetable">{{ siteConfig.ui.nav.timetable }}</a>
-            <a href="#info">{{ siteConfig.ui.nav.info }}</a>
-            <a href="#locatie">{{ siteConfig.ui.nav.location }}</a>
-            <a href="#gratis-entree">{{ siteConfig.ui.nav.freeEntry }}</a>
-          </nav>
-          
-          <button
-            id="nav-toggle"
-            class="nav-toggle"
-            type="button"
-            :aria-expanded="String(isMobileMenuOpen)"
-            aria-controls="mobile-panel"
-            :aria-label="siteConfig.ui.menuButtonLabel"
-            @click="isMobileMenuOpen = !isMobileMenuOpen"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M4 7h16M4 12h16M4 17h16" />
-            </svg>
-          </button>
+
+          <div class="header-actions">
+            <div class="main-nav-shell">
+              <nav class="main-nav" :aria-label="siteConfig.ui.mainNavAriaLabel">
+                <a
+                  v-for="item in navItems"
+                  :key="item.href"
+                  :href="item.href"
+                >
+                  <span class="nav-label">{{ item.label }}</span>
+                </a>
+              </nav>
+            </div>
+
+            <button
+              id="nav-toggle"
+              class="nav-toggle"
+              type="button"
+              :aria-expanded="String(isMobileMenuOpen)"
+              aria-controls="mobile-panel"
+              :aria-label="siteConfig.ui.menuButtonLabel"
+              @click="isMobileMenuOpen = !isMobileMenuOpen"
+            >
+              <span class="nav-toggle-text">Menu</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 7h16M4 12h16M4 17h16" />
+              </svg>
+            </button>
+          </div>
         </div>
         
         <div id="mobile-panel" class="mobile-panel" :data-open="String(isMobileMenuOpen)">
           <div class="mobile-panel-inner">
             <nav class="mobile-menu" :aria-label="siteConfig.ui.mobileNavAriaLabel">
-              <a href="#line-up" @click="isMobileMenuOpen = false">{{ siteConfig.ui.nav.lineUp }}</a>
-              <a href="#timetable" @click="isMobileMenuOpen = false">{{ siteConfig.ui.nav.timetable }}</a>
-              <a href="#info" @click="isMobileMenuOpen = false">{{ siteConfig.ui.nav.info }}</a>
-              <a href="#locatie" @click="isMobileMenuOpen = false">{{ siteConfig.ui.nav.location }}</a>
-              <a href="#gratis-entree" @click="isMobileMenuOpen = false">{{ siteConfig.ui.nav.freeEntry }}</a>
+              <a
+                v-for="item in navItems"
+                :key="`${item.href}-mobile`"
+                :href="item.href"
+                @click="isMobileMenuOpen = false"
+              >
+                <span class="mobile-nav-label">{{ item.label }}</span>
+              </a>
             </nav>
           </div>
         </div>
@@ -209,6 +227,12 @@ onMounted(() => {
   padding-block: 0.8rem;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
 .brand-link {
   display: inline-flex;
   align-items: center;
@@ -258,41 +282,91 @@ onMounted(() => {
 }
 
 @media (min-width: 48rem) {
+  .main-nav-shell {
+    position: relative;
+    display: block;
+    padding: 0.55rem;
+    border-radius: 1.45rem;
+    background:
+      linear-gradient(135deg, rgba(248, 190, 5, 0.14) 0%, rgba(226, 100, 38, 0.18) 26%, rgba(198, 33, 68, 0.2) 56%, rgba(83, 10, 29, 0.84) 100%);
+    border: 1px solid rgba(253, 250, 251, 0.14);
+    box-shadow: 0 18px 34px rgba(18, 2, 6, 0.14);
+    overflow: hidden;
+  }
+
+  .main-nav-shell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 14% 20%, rgba(248, 190, 5, 0.2), transparent 24%),
+      radial-gradient(circle at 84% 72%, rgba(198, 33, 68, 0.24), transparent 28%);
+    pointer-events: none;
+  }
+
   .main-nav {
+    position: relative;
+    z-index: 1;
     display: flex;
-    gap: 1.5rem;
+    gap: 0.45rem;
+    align-items: center;
   }
 
   .main-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 3rem;
+    padding: 0.72rem 0.9rem;
+    border-radius: 1rem;
     color: var(--page-white);
     text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    padding: 0.5rem 0.25rem;
-    border-bottom: 2px solid transparent;
-    transition: border-color 220ms ease, color 220ms ease;
+    background: rgba(253, 250, 251, 0.06);
+    border: 1px solid rgba(253, 250, 251, 0.08);
+    box-shadow: inset 0 1px 0 rgba(253, 250, 251, 0.08);
+    transition: transform 220ms var(--ease-out-quint), background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
   }
 
   .main-nav a:hover,
   .main-nav a:focus-visible {
-    border-bottom-color: var(--page-yellow);
-    color: var(--page-yellow);
+    transform: translateY(-2px) rotate(-1deg);
+    background: rgba(253, 250, 251, 0.12);
+    border-color: rgba(248, 190, 5, 0.42);
+    box-shadow: 0 12px 24px rgba(18, 2, 6, 0.18), inset 0 1px 0 rgba(253, 250, 251, 0.14);
   }
+}
+
+.nav-label {
+  font-family: 'Saira Condensed', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .nav-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
+  gap: 0.55rem;
+  min-width: 3rem;
   height: 3rem;
-  border-radius: 0.9rem;
+  padding-inline: 0.9rem;
+  border-radius: 999px;
   border: 1px solid rgba(253, 250, 251, 0.18);
   background: linear-gradient(160deg, rgba(248, 190, 5, 0.18) 0%, rgba(226, 100, 38, 0.16) 42%, rgba(83, 10, 29, 0.82) 100%);
   color: var(--page-white);
   box-shadow: 0 10px 24px rgba(18, 2, 6, 0.12);
   cursor: pointer;
   transition: transform 220ms var(--ease-out-quint), box-shadow 220ms var(--ease-out-quint), background-color 220ms var(--ease-out-quint);
+}
+
+.nav-toggle-text {
+  font-family: 'Saira Condensed', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .nav-toggle svg {
@@ -344,6 +418,7 @@ onMounted(() => {
 .mobile-panel-inner {
   overflow: hidden;
   border-top: 1px solid rgba(253, 250, 251, 0.12);
+  padding-top: 0.35rem;
 }
 
 .mobile-menu {
@@ -354,14 +429,13 @@ onMounted(() => {
 
 .mobile-menu a {
   position: relative;
-  border-radius: 1rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.8rem;
+  border-radius: 1.15rem;
   padding: 1rem 1rem 1rem 1.15rem;
   text-decoration: none;
-  font-family: 'Saira Condensed', sans-serif;
-  font-size: 1.16rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
   color: var(--page-white);
   background: linear-gradient(140deg, rgba(248, 190, 5, 0.12) 0%, rgba(226, 100, 38, 0.1) 30%, rgba(83, 10, 29, 0.82) 100%);
   border: 1px solid rgba(253, 250, 251, 0.14);
@@ -379,6 +453,14 @@ onMounted(() => {
   width: 0.28rem;
   border-radius: 999px;
   background: linear-gradient(180deg, var(--page-yellow) 0%, var(--page-orange) 50%, var(--page-red) 100%);
+}
+
+.mobile-nav-label {
+  font-family: 'Saira Condensed', sans-serif;
+  font-size: 1.16rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .mobile-panel[data-open="true"] .mobile-menu a {
@@ -517,6 +599,42 @@ onMounted(() => {
 @media (max-width: 30rem) {
   .footer-address {
     width: 100%;
+  }
+}
+</style>
+
+<style>
+.cookieControl__ControlButton {
+  right: 0.85rem;
+  bottom: 0.85rem;
+  width: 2.1rem;
+  min-width: 2.1rem;
+  height: 2.1rem;
+  min-height: 2.1rem;
+  opacity: 0.48;
+  box-shadow: 0 8px 18px rgba(18, 2, 6, 0.12);
+  backdrop-filter: blur(10px);
+  transform: scale(0.92);
+}
+
+.cookieControl__ControlButton svg {
+  max-width: 1rem;
+  min-width: 1rem;
+  max-height: 1rem;
+  min-height: 1rem;
+}
+
+.cookieControl__ControlButton:hover,
+.cookieControl__ControlButton:focus-visible {
+  opacity: 0.78;
+  transform: scale(1);
+}
+
+@media (min-width: 48rem) {
+  .cookieControl__ControlButton {
+    right: 1rem;
+    bottom: 1rem;
+    opacity: 0.42;
   }
 }
 </style>

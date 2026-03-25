@@ -6,13 +6,13 @@
   "address": "Esrein 53, 7553 CX Hengelo",
   "coordinates": [52.2621, 6.7937],
   "slogan": "Klein, maar BAM.",
-  "subtitle": "Op zaterdag 23 mei 2026 landt de mini-editie van BAM! Festival bij Broedplaats Oogst in Hengelo: gratis muziek, warme sfeer en een dag die voelt als een compacte uitbarsting van alles waar BAM voor staat.",
+  "subtitle": "BAM! Festival kan dit jaar niet landen in het Prins Bernhardplantsoen, maar stil blijft het niet: Bammetje houdt een dag vol livemuziek, ontmoeting en zomergevoel levend.",
   "hero": {
     "eyebrow": "Mini BAM, maximale vibe",
     "label": "Gratis mini-editie van BAM! Festival",
     "title": "Bammetje",
     "bannerAriaLabel": "Headerbeeld van Bammetje",
-    "imageAlt": "Bammetje headerbeeld voor de mini-editie van BAM! Festival",
+    "imageAlt": "Sfeerbeeld van Bammetje 2026 met golvende BAM-vormen in rood, oranje en geel",
     "primaryActionLabel": "Bekijk line-up",
     "primaryActionTarget": "#line-up",
     "secondaryActionLabel": "Praktische info",
@@ -56,40 +56,41 @@
     "title": "Gratis entree",
     "location": "Oogst / Hengelo",
     "ariaLabel": "Kerninformatie Bammetje",
-    "description": "Van middag tot avond, met ruimte voor muziek, drinken en die herkenbare BAM-sfeer in een compactere vorm."
+    "description": "Kleiner van opzet, maar nog steeds warm, open en vol muziek."
   },
   "about": {
     "title": "Waarom Bammetje",
-    "intro": "BAM! Festival kan in 2026 niet neerstrijken in het Prins Bernhardplantsoen, maar stil blijft het niet. Vanuit liefde voor muziek, organiseren en vrijwilligersenergie komt er een kleinere editie op Oogst.",
+    "intro": "Omdat het Prins Bernhardplantsoen wordt verbouwd is er in 2026 geen BAM! Festival. Met Bammetje als kleinere editie houden we een onmisbaar festival toch levend. Want zeg nou zelf: een jaar geen BAM!, is een jaar niet geleefd.",
     "points": [
       {
-        "title": "Geen vervanging, wel dezelfde geest",
-        "description": "Bammetje is bewust kleiner dan het festival in het park, maar moet dezelfde open, warme en lokale energie vasthouden."
+        "title": "Wat blijft hetzelfde?",
+        "description": "Het vertrouwde BAM!-gevoel blijft. Samen genieten van livemuziek en een drankje, met dezelfde open en warme sfeer."
       },
       {
-        "title": "Gebouwd voor Hengelo en Twente",
-        "description": "De site moet snel duidelijk maken dat dit een gratis, toegankelijke festivaldag is voor het lokale publiek dat BAM mist."
+        "title": "Wat is er dit jaar anders?",
+        "description": "Het festival vindt eenmalig plaats op een andere locatie in Hengelo: Broedplaats Oogst. Kleiner betekent hier niet minder, maar compacter en dichter op elkaar."
       },
       {
-        "title": "Compact in info, rijk in sfeer",
-        "description": "Niet volstoppen met details. Eerst gevoel, dan de praktische zekerheid om gewoon te komen."
+        "title": "Voor Hengelo en Twente",
+        "description": "Bammetje blijft een toegankelijke festivaldag voor iedereen die BAM mist en in 2026 toch samen muziek wil beleven."
       }
     ]
   },
   "lineUp": {
     "title": "Line-up",
     "heading": "Drie podia. Vele namen. Meteen overzicht.",
-    "intro": "De eerste indeling staat nu vast: de grotere namen op het Hoofdpodium, de dj's in de Tommy-Loods en de andere acts in De Tent. Zo voelt de line-up niet alleen levendiger, maar ook meteen logisch voor bezoekers."
+    "intro": "De line-up staat nu per podium ingedeeld, zodat je meteen ziet hoe de dag is opgebouwd: grotere publieksmomenten op het Hoofdpodium, liveacts in De Tent en dj-sets in de Tommy-Loods. Zo voelt het programma vanaf de eerste blik helder, levendig en goed verspreid over de dag."
   },
   "timetableSection": {
     "title": "Timetable",
-    "heading": "Podia nu. Speeltijden straks.",
-    "intro": "De precieze programmering komt later. Daarom staat hier geen verzonnen tijdschema, maar wel een heldere podiumindeling die straks direct naar echte speeltijden kan worden vertaald.",
+    "heading": "Van middag tot laat.",
+    "intro": "De timetable laat nu in één oogopslag zien hoe Bammetje zich van 14:00 tot laat over de drie podia ontvouwt. Zo zie je meteen waar je begint, waar de piekmomenten zitten en hoe de avond per podium doorloopt.",
     "fallbackTimeLabel": "Bevestigd",
+    "timeLabelSuffix": "",
     "blocks": {
       "hoofdpodium": {
         "tag": "Grotere namen",
-        "note": "Dit podium draagt de grotere publieksmomenten. Speeltijden volgen zodra het schema rond is."
+        "note": "Hier vallen de grotere publieksmomenten samen: de acts die de dag open trekken, de druk opvoeren en het veld echt in beweging zetten."
       },
       "de-tent": {
         "tag": "Live en dichtbij",
@@ -97,34 +98,34 @@
       },
       "tommy-loods": {
         "tag": "Dj-hoek",
-        "note": "De dj's zitten hier samen. Zodra de tijden bekend zijn, kan dit blok direct een echte timetable worden."
+        "note": "Hier bouwt de dag op van losse grooves naar een vollere dansvloer: de plek voor dj-sets die Bammetje richting avond trekken."
       }
     }
   },
   "infoSection": {
     "title": "Info",
-    "heading": "Snel snappen. Dan gewoon komen.",
-    "intro": "Dit is de kern voor bezoekers uit Hengelo en Twente: waar het is, wanneer het begint en waarom je geen drempel hebt om langs te gaan.",
+    "heading": "Alles op een rij.",
+    "intro": "Datum, tijd en plek in een paar tellen helder.",
     "items": {
       "date": {
         "label": "Datum",
         "value": "23 mei 2026",
-        "description": "Zaterdag. Klaar om buiten weer BAM-gevoel op te bouwen."
+        "description": ""
       },
       "time": {
         "label": "Tijd",
         "value": "14:00 – 23:00",
-        "description": "Van middag tot avond, compact genoeg om overzichtelijk te blijven en lang genoeg om echt sfeer te maken."
+        "description": ""
       },
       "admission": {
         "label": "Toegang",
         "value": "Gratis",
-        "description": "Geen ticket nodig. Gewoon komen, aansluiten en genieten van muziek en een drankje."
+        "description": ""
       }
     },
     "locationTitle": "Locatie",
     "locationHeading": "Oogst",
-    "locationDescription": "Bammetje landt bij Oogst in Hengelo. Verwacht geen exacte kopie van BAM! Festival in het park, maar een kleinere setting met dezelfde liefde voor livemuziek, ontmoeting en lokale energie.",
+    "locationDescription": "Bammetje strijkt dit jaar neer bij Broedplaats Oogst: een rauwe, warme plek die precies past bij deze kleinere editie.",
     "routeLabel": "Route openen",
     "bamFestivalLabel": "Bekijk BAM! Festival"
   },
@@ -154,7 +155,7 @@
     "description": "Bammetje is de gratis mini-editie van BAM! Festival op zaterdag 23 mei 2026 bij Broedplaats Oogst in Hengelo. Bekijk de sfeer, praktische info en updates.",
     "ogDescription": "Klein, maar BAM. Op zaterdag 23 mei 2026 strijkt Bammetje neer bij Broedplaats Oogst in Hengelo.",
     "ogImage": "https://bammetje.bamfestival.nl/assets/hero/bammetje-2026-header.jpg",
-    "ogImageAlt": "Posterbeeld voor Bammetje 2026"
+    "ogImageAlt": "Promotiebeeld van Bammetje 2026 met de BAM!-huisstijlkleuren"
   },
   "links": {
     "bamFestival": "https://www.bamfestival.nl/",
@@ -179,6 +180,17 @@
       "linkedin": "Volg Bammetje op LinkedIn",
       "youtube": "Bekijk Bammetje op YouTube",
       "facebook": "Volg Bammetje op Facebook"
+    },
+    "artistCard": {
+      "closeLabel": "Sluit kaart en ga terug",
+      "youtubeLabel": "YouTube",
+      "spotifyLabel": "Spotify",
+      "instagramAriaLabel": "Volg {artist} op Instagram",
+      "youtubeAriaLabel": "Bekijk {artist} op YouTube",
+      "spotifyAriaLabel": "Luister naar {artist} op Spotify",
+      "facebookAriaLabel": "Volg {artist} op Facebook",
+      "websiteAriaLabel": "Bezoek de website van {artist}",
+      "detailsAriaLabel": "{artist} details"
     }
   }
 }

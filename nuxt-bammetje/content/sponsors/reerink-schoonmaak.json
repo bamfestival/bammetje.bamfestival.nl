@@ -1,6 +1,7 @@
 {
   "title": "Reerink Schoonmaak & onderhoud",
   "logo": "/assets/logos/reerink-schoonmaak-640.webp",
-  "logo_alt": "Logo van Reerink Schoonmaak & onderhoud",
-  "link": "https://www.reerinkschoonmaak.nl/"
+  "logo_alt": "Reerink Schoonmaak & onderhoud",
+  "link": "https://www.reerinkschoonmaak.nl/",
+  "weight": 0
 }
