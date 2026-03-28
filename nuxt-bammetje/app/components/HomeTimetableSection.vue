@@ -1,10 +1,10 @@
 <script setup lang="ts">
 const { siteConfig } = useSite()
-const { artists } = useArtists()
+const { artistsWithPerformances, hasPerformances } = useArtists()
 </script>
 
 <template>
-  <section id="timetable" class="section">
+  <section v-if="hasPerformances" id="timetable" class="section">
     <div class="frame">
       <div class="section-intro">
         <span class="eyebrow eyebrow-light">{{ siteConfig.timetableSection.title }}</span>
@@ -13,7 +13,7 @@ const { artists } = useArtists()
       </div>
 
       <TimetableGrid
-        :artists="artists"
+        :artists="artistsWithPerformances"
         :fallback-time-label="siteConfig.timetableSection.fallbackTimeLabel"
         :time-label-suffix="siteConfig.timetableSection.timeLabelSuffix"
         :blocks="siteConfig.timetableSection.blocks"

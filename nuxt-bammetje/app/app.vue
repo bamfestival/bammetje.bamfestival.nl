@@ -11,13 +11,11 @@ const { cookiesEnabledIds, isConsentGiven } = useCookieControl()
 const isScrolled = ref(false)
 const isMobileMenuOpen = ref(false)
 
-const navItems = computed(() => [
-  { href: '#line-up', label: siteConfig.value.ui.nav.lineUp },
-  { href: '#timetable', label: siteConfig.value.ui.nav.timetable },
-  { href: '#info', label: siteConfig.value.ui.nav.info },
-  { href: '#locatie', label: siteConfig.value.ui.nav.location },
-  { href: '#gratis-entree', label: siteConfig.value.ui.nav.freeEntry },
-])
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 50
+}
+
+const navItems = computed(() => siteConfig.value.ui.navItems || [])
 
 const footerLinks = computed(() => {
   const links = siteConfig.value?.links || {}
@@ -58,9 +56,6 @@ watch(
 )
 
 onMounted(() => {
-  const handleScroll = () => {
-    isScrolled.value = window.scrollY > 50
-  }
   window.addEventListener('scroll', handleScroll, { passive: true })
   handleScroll()
 
@@ -68,6 +63,10 @@ onMounted(() => {
   if (isConsentGiven.value) {
     loadMatomo()
   }
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
 })
 </script>
 
@@ -285,7 +284,7 @@ onMounted(() => {
   .main-nav-shell {
     position: relative;
     display: block;
-    padding: 0.55rem;
+    padding: 0.55rem 0.7rem;
     border-radius: 1.45rem;
     background:
       linear-gradient(135deg, rgba(248, 190, 5, 0.14) 0%, rgba(226, 100, 38, 0.18) 26%, rgba(198, 33, 68, 0.2) 56%, rgba(83, 10, 29, 0.84) 100%);
@@ -308,16 +307,17 @@ onMounted(() => {
     position: relative;
     z-index: 1;
     display: flex;
-    gap: 0.45rem;
+    gap: 0.55rem;
     align-items: center;
   }
 
   .main-nav a {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.55rem;
-    min-height: 3rem;
-    padding: 0.72rem 0.9rem;
+    height: 3rem;
+    padding: 0.72rem 1.05rem;
     border-radius: 1rem;
     color: var(--page-white);
     text-decoration: none;
@@ -337,9 +337,11 @@ onMounted(() => {
 }
 
 .nav-label {
+  display: block;
   font-family: 'Saira Condensed', sans-serif;
   font-size: 0.98rem;
   font-weight: 700;
+  line-height: 1;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }

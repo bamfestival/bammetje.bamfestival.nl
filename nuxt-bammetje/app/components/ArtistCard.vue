@@ -63,7 +63,7 @@ const hasTriedYoutubeResolve = ref(false)
 const cardRef = ref<HTMLElement | null>(null)
 const closeButtonRef = ref<HTMLButtonElement | null>(null)
 const backRef = ref<HTMLDivElement | null>(null)
-const frontRef = ref<HTMLDivElement | null>(null)
+const frontRef = ref<HTMLButtonElement | null>(null)
 const isFlipped = ref(false)
 
 const prefersReducedMotion = ref(false)
@@ -165,9 +165,13 @@ const stageClass = computed(() => ({
 
 const compareTimes = (left: string, right: string) => left.localeCompare(right, 'nl')
 
+const performances = computed(() => props.artist.performances ?? [])
+
 const sortedPerformances = computed(() =>
-  [...props.artist.performances].sort((left, right) => compareTimes(left.starttime, right.starttime))
+  [...performances.value].sort((left, right) => compareTimes(left.starttime, right.starttime))
 )
+
+const hasPerformances = computed(() => sortedPerformances.value.length > 0)
 
 const uniqueStages = computed(() => {
   const seen = new Set<StageKey>()
@@ -197,19 +201,16 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
     @keydown="handleKeydown"
   >
     <div class="flip-card-inner">
-      <div 
+      <button
         ref="frontRef"
-        class="flip-card-front" 
-        :data-theme="artist.theme || 'dark'" 
-        role="button"
-        :tabindex="isFlipped ? -1 : 0"
+        type="button"
+        class="flip-card-front"
+        :data-theme="artist.theme || 'dark'"
         :aria-expanded="isFlipped"
         :aria-controls="`artist-back-${cardId}`"
-        :aria-hidden="isFlipped"
-        :inert="isFlipped"
-        @click="toggleFlip" 
-        @keydown.enter.prevent="toggleFlip"
-        @keydown.space.prevent="toggleFlip"
+        aria-haspopup="dialog"
+        :disabled="isFlipped"
+        @click="toggleFlip"
       >
         <div class="flip-card-media">
           <NuxtImg
@@ -222,7 +223,7 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
           />
         </div>
         <div class="flip-card-content">
-          <div class="stage-chip-list">
+          <div v-if="hasPerformances" class="stage-chip-list">
             <span
               v-for="performance in uniqueStages"
               :key="`${artist.title}-${performance.stage}`"
@@ -240,7 +241,7 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
             </li>
           </ul>
         </div>
-      </div>
+      </button>
       <div
         v-if="isFlipped"
         :id="`artist-back-${cardId}`"
@@ -271,7 +272,7 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
           />
         </div>
         <div class="flip-back-content">
-          <div class="stage-chip-list">
+          <div v-if="hasPerformances" class="stage-chip-list">
             <span
               v-for="performance in uniqueStages"
               :key="`${artist.title}-${performance.stage}-back`"
@@ -288,7 +289,7 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
               {{ tag }}
             </li>
           </ul>
-          <ul class="performance-list">
+          <ul v-if="hasPerformances" class="performance-list">
             <li
               v-for="(performance, index) in sortedPerformances"
               :key="`${artist.title}-${performance.stage}-${performance.starttime}-${index}`"
@@ -411,11 +412,21 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  text-align: left;
+  appearance: none;
+  -webkit-appearance: none;
   background:
     radial-gradient(circle at 82% 18%, rgba(248, 190, 5, 0.28), transparent 16%),
     radial-gradient(circle at 18% 16%, rgba(216, 151, 156, 0.24), transparent 12%),
     linear-gradient(125deg, rgba(18, 2, 6, 0.88) 4%, rgba(83, 10, 29, 0.9) 24%, rgba(146, 18, 52, 0.92) 46%, rgba(198, 33, 68, 0.92) 64%, rgba(226, 100, 38, 0.92) 82%, rgba(248, 190, 5, 0.88) 100%);
   color: #fdfafb;
+}
+
+.flip-card-front:disabled {
+  cursor: default;
 }
 
 .flip-card-front[data-theme="light"] {

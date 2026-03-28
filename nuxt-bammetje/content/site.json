@@ -1,16 +1,16 @@
 {
-  "title": "Bammetje 2026",
+  "title": "Bammetje 2026 - Gratis mini-editie BAM! - Hengelo",
   "tagline": "Gratis mini-editie van BAM! Festival in Hengelo",
   "date": "23 mei 2026",
   "location": "Broedplaats Oogst, Hengelo",
   "address": "Esrein 53, 7553 CX Hengelo",
-  "coordinates": [52.2621, 6.7937],
-  "slogan": "Klein, maar BAM.",
-  "subtitle": "BAM! Festival kan dit jaar niet landen in het Prins Bernhardplantsoen, maar stil blijft het niet: Bammetje houdt een dag vol livemuziek, ontmoeting en zomergevoel levend.",
+  "coordinates": [52.2580145, 6.7915145],
+  "slogan": "Geen BAM! Wel festival",
+  "subtitle": "Op zaterdag 23 mei landt Bammetje bij Broedplaats Oogst: een kleine editie met gratis live muziek, ontmoeting en de vertrouwde BAM!-sfeer.",
   "hero": {
-    "eyebrow": "Mini BAM, maximale vibe",
+    "eyebrow": "een mini editie met de vertrouwde BAM!-sfeer",
     "label": "Gratis mini-editie van BAM! Festival",
-    "title": "Bammetje",
+    "title": "Bammetje 2026",
     "bannerAriaLabel": "Headerbeeld van Bammetje",
     "imageAlt": "Sfeerbeeld van Bammetje 2026 met golvende BAM-vormen in rood, oranje en geel",
     "primaryActionLabel": "Bekijk line-up",
@@ -20,16 +20,16 @@
     "detailsAriaLabel": "Belangrijkste evenementdetails",
     "details": [
       {
-        "value": "23 mei",
-        "label": "Zaterdag in 2026"
+        "value": "23 mei 2026",
+        "label": "14:00 tot 23:00 uur"
       },
       {
         "value": "Gratis",
-        "label": "Kom langs zonder ticketstress"
+        "label": "Maar wees op tijd, vol=vol!"
       },
       {
         "value": "Oogst",
-        "label": "Broedplaats in Hengelo"
+        "label": "Fiets naar: Broedplaats Oogst, Esrein 53, 7553 CX Hengelo"
       }
     ]
   },
@@ -56,30 +56,30 @@
     "title": "Gratis entree",
     "location": "Oogst / Hengelo",
     "ariaLabel": "Kerninformatie Bammetje",
-    "description": "Kleiner van opzet, maar nog steeds warm, open en vol muziek."
+    "description": "Gratis binnenlopen, muziek meepakken en samen de dag in."
   },
   "about": {
-    "title": "Waarom Bammetje",
-    "intro": "Omdat het Prins Bernhardplantsoen wordt verbouwd is er in 2026 geen BAM! Festival. Met Bammetje als kleinere editie houden we een onmisbaar festival toch levend. Want zeg nou zelf: een jaar geen BAM!, is een jaar niet geleefd.",
+    "title": "Waarom Bammetje?",
+    "intro": "In 2026 krijgt het Prins Bernhardplantsoen een verbouwing, dus het grote BAM! Festival slaat een jaar over. Met Bammetje blijft er toch een dag waarop Hengelo samen muziek kan beleven.",
     "points": [
       {
         "title": "Wat blijft hetzelfde?",
-        "description": "Het vertrouwde BAM!-gevoel blijft. Samen genieten van livemuziek en een drankje, met dezelfde open en warme sfeer."
+        "description": "De sfeer blijft herkenbaar: livemuziek, een drankje en samen een dag buiten zijn."
       },
       {
         "title": "Wat is er dit jaar anders?",
-        "description": "Het festival vindt eenmalig plaats op een andere locatie in Hengelo: Broedplaats Oogst. Kleiner betekent hier niet minder, maar compacter en dichter op elkaar."
+        "description": "De editie is compacter en vindt eenmalig plaats bij Broedplaats Oogst aan het Esrein."
       },
       {
-        "title": "Voor Hengelo en Twente",
-        "description": "Bammetje blijft een toegankelijke festivaldag voor iedereen die BAM mist en in 2026 toch samen muziek wil beleven."
+        "title": "Wat kun je verwachten?",
+        "description": "Drie podia, een compacte line-up en genoeg ruimte om van act naar act te dwalen."
       }
     ]
   },
   "lineUp": {
     "title": "Line-up",
     "heading": "Drie podia. Vele namen. Meteen overzicht.",
-    "intro": "De line-up staat nu per podium ingedeeld, zodat je meteen ziet hoe de dag is opgebouwd: grotere publieksmomenten op het Hoofdpodium, liveacts in De Tent en dj-sets in de Tommy-Loods. Zo voelt het programma vanaf de eerste blik helder, levendig en goed verspreid over de dag."
+    "intro": "De line-up staat per podium gegroepeerd. Op mobiel blader je er makkelijk doorheen, op desktop zie je meteen hoe de dag over het terrein is verdeeld."
   },
   "timetableSection": {
     "title": "Timetable",
@@ -90,7 +90,7 @@
     "blocks": {
       "hoofdpodium": {
         "tag": "Grotere namen",
-        "note": "Hier vallen de grotere publieksmomenten samen: de acts die de dag open trekken, de druk opvoeren en het veld echt in beweging zetten."
+        "note": ""
       },
       "de-tent": {
         "tag": "Live en dichtbij",
@@ -132,13 +132,29 @@
   "sponsorsSection": {
     "title": "Partners",
     "heading": "Lokaal gedragen.",
-    "intro": "Bammetje voelt sterker als partners en stad zichtbaar meedoen. Deze strook houdt de uiting compact, warm en duidelijk herkenbaar."
+    "intro": "Deze partners maken Bammetje mee mogelijk: lokaal betrokken, zichtbaar aanwezig en onmisbaar voor deze editie.",
+    "article": {
+      "headline": "Goed nieuws: organisatie BAM! komt met mini-festival",
+      "paragraphs": [
+        "Toen eind vorig jaar bekend werd dat BAM! Festival in 2026 niet door kan gaan vanwege de verbouwing van het Prins Bernhardplantsoen, viel dat bij veel muziekliefhebbers rauw op het dak. Maar helemaal stil blijft het dit jaar toch niet.",
+        "De organisatie komt met een kleine, nieuwe variant: een mini-editie bij Broedplaats Oogst.",
+        "Het begon te kriebelen.",
+        "Sinds duidelijk werd dat BAM dit jaar niet kan plaatsvinden, bleef het idee om toch iets te doen. \"Het begon eigenlijk meteen te kriebelen\", vertelt voorzitter Thijmen de Groot.",
+        "\"We zijn een groep met een hart voor muziek én voor het organiseren van BAM. We konden het niet laten om toch iets neer te zetten. Veel vrijwilligers hadden het weekend al vrijgehouden. Ze willen hun energie met liefde in deze kleine editie steken.\"",
+        "Klein, maar met dezelfde sfeer.",
+        "Op zaterdag 23 mei organiseert de club daarom een mini-editie bij Broedplaats Oogst. De organisatie benadrukt dat dit geen vervanging is van het echte BAM! Festival, maar dat het initiatief echt uit liefde voor muziek en organiseren is ontstaan.",
+        "\"Je kunt zo'n groot festival als BAM niet zomaar verplaatsen naar een andere plek in de stad. Verwacht dus geen grote podia zoals in het park, maar klein betekent zeker niet minder goed.\"",
+        "Wat wél blijft volgens Thijmen, is de sfeer waar het festival om bekendstaat. \"Samen genieten van livemuziek en een drankje. Dat is uiteindelijk waar BAM altijd om draait.\"",
+        "Achter de schermen wordt gewerkt aan een line-up. Begin april lees je daar meer over op indebuurt Hengelo."
+      ],
+      "credit": "Tekst: Robin Menduapessy | indebuurt Hengelo"
+    }
   },
   "footer": {
     "brand": "Bammetje 2026",
     "text": "Broedplaats Oogst, Hengelo • Mini-editie van BAM! Festival",
-    "quote": "Samen genieten van livemuziek en een drankje. Dat is uiteindelijk waar BAM altijd om draait.",
-    "address": "Broedplaats Oogst, Esrein 53, 7553 CX Hengelo",
+    "quote": "Eén dag samen muziek beleven. Daar draait Bammetje om.",
+    "address": "",
     "bamFestival": {
       "name": "BAM! Festival",
       "url": "https://www.bamfestival.nl/",
@@ -159,15 +175,23 @@
   },
   "links": {
     "bamFestival": "https://www.bamfestival.nl/",
-    "route": "https://www.google.com/maps/search/?api=1&query=Broedplaats+Oogst+Hengelo",
-    "Puntuale": "https://www.puntuale.nl/"
+    "Cookies": "https://bamfestival.nl/cookies",
+    "Disclaimer en Privacy": "https://bamfestival.nl/disclaimer-copy-right-privacy",
+    "ANBI Status": "https://bamfestival.nl/anbi-status"
   },
   "ui": {
     "skipLinkLabel": "Naar content",
     "mainNavAriaLabel": "Hoofdnavigatie",
     "mobileNavAriaLabel": "Mobiele navigatie",
     "menuButtonLabel": "Open menu",
-    "backToTopLabel": "Naar boven",
+    "backToTopLabel": "Terug naar boven",
+    "navItems": [
+      { "label": "Line-up", "href": "#line-up" },
+      { "label": "Timetable", "href": "#timetable" },
+      { "label": "Info", "href": "#info" },
+      { "label": "Locatie", "href": "#locatie" }
+      
+    ],
     "nav": {
       "lineUp": "Line-up",
       "timetable": "Timetable",
@@ -176,10 +200,11 @@
       "freeEntry": "Gratis entree"
     },
     "socialLabels": {
-      "instagram": "Volg Bammetje op Instagram",
-      "linkedin": "Volg Bammetje op LinkedIn",
-      "youtube": "Bekijk Bammetje op YouTube",
-      "facebook": "Volg Bammetje op Facebook"
+      "facebook": "Volg BAM! Festival op Facebook",
+      "instagram": "Volg BAM! Festival op Instagram",
+      "linkedin": "Volg BAM! Festival op LinkedIn",
+      "youtube": "Bekijk BAM! Festival op YouTube"
+      
     },
     "artistCard": {
       "closeLabel": "Sluit kaart en ga terug",

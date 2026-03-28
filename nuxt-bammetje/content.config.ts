@@ -110,6 +110,11 @@ export default defineContentConfig({
           title: z.string(),
           heading: z.string(),
           intro: z.string(),
+          article: z.object({
+            headline: z.string(),
+            paragraphs: z.array(z.string()),
+            credit: z.string(),
+          }).optional(),
         }).optional(),
         footer: z.object({
           brand: z.string(),
@@ -147,7 +152,11 @@ export default defineContentConfig({
             info: z.string(),
             location: z.string(),
             freeEntry: z.string(),
-          }),
+          }).optional(),
+          navItems: z.array(z.object({
+            label: z.string(),
+            href: z.string(),
+          })).optional(),
           socialLabels: z.object({
             instagram: z.string(),
             linkedin: z.string(),
@@ -194,7 +203,7 @@ export default defineContentConfig({
           stage: z.enum(['hoofdpodium', 'de-tent', 'tommy-loods']),
           starttime: z.string(),
           endtime: z.string().optional(),
-        })).min(1),
+        })).default([]),
         weight: z.number().int().min(0).max(5).default(0),
         theme: z.enum(['dark', 'light', 'night', 'gold']).default('dark'),
       })

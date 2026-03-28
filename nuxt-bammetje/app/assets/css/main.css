@@ -44,6 +44,22 @@
   --text-on-dark: rgba(253, 250, 251, 0.92);
   --text-on-dark-soft: rgba(253, 250, 251, 0.86);
   --text-on-dark-muted: rgba(253, 250, 251, 0.8);
+  --surface-sponsor-panel:
+    radial-gradient(circle at 12% 18%, rgba(248, 190, 5, 0.09), transparent 18%),
+    linear-gradient(180deg, rgba(253, 250, 251, 0.86) 0%, rgba(255, 246, 236, 0.96) 100%);
+  --surface-sponsor-article:
+    radial-gradient(circle at 88% 12%, rgba(248, 190, 5, 0.18), transparent 20%),
+    linear-gradient(145deg, rgba(83, 10, 29, 0.98) 0%, rgba(58, 7, 20, 0.98) 100%);
+  --surface-sponsor-logo: rgba(253, 250, 251, 0.64);
+  --surface-sponsor-logo-hover: rgba(253, 250, 251, 0.8);
+  --border-sponsor-article: rgba(83, 10, 29, 0.28);
+  --border-sponsor-logo: rgba(83, 10, 29, 0.08);
+  --shadow-sponsor-article: 0 18px 40px rgba(83, 10, 29, 0.18);
+  --shadow-sponsor-logo-hover: 0 16px 36px rgba(83, 10, 29, 0.1);
+  --text-sponsor-article: rgba(253, 250, 251, 0.96);
+  --text-sponsor-credit: rgba(248, 190, 5, 0.95);
+  --text-sponsor-label: rgba(83, 10, 29, 0.68);
+  --surface-sponsor-label: rgba(83, 10, 29, 0.06);
   --header-surface-scrolled: rgba(83, 10, 29, 0.88);
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);

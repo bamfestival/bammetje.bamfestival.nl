@@ -80,9 +80,7 @@ export default defineNuxtConfig({
     description: siteConfig.meta?.description || siteConfig.tagline,
   },
 
-  sitemap: {
-    zeroRuntime: true,
-  },
+  sitemap: {},
 
   robots: {
     disallow: [],

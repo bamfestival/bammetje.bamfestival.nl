@@ -15,7 +15,6 @@ const { siteConfig } = useSite()
         format="webp"
         quality="82"
         sizes="(max-width: 640px) 640px, (max-width: 960px) 960px, (max-width: 1440px) 1440px, 1920px"
-        preload
       />
     </div>
     <div class="frame hero-inner hero-grid">

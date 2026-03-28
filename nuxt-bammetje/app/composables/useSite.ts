@@ -17,7 +17,7 @@ export const useSite = () => {
     date: '23 mei 2026',
     location: 'Broedplaats Oogst, Hengelo',
     address: 'Esrein 53, 7553 CX Hengelo',
-    coordinates: [52.2621, 6.7937] as [number, number],
+    coordinates: [52.2580145, 6.7915145] as [number, number],
     slogan: 'Klein, maar BAM.',
     subtitle: 'BAM! Festival kan dit jaar niet landen in het Prins Bernhardplantsoen, maar stil blijft het niet: Bammetje houdt een dag vol livemuziek, ontmoeting en zomergevoel levend.',
     hero: {
@@ -123,7 +123,8 @@ export const useSite = () => {
     sponsorsSection: {
       title: 'Partners',
       heading: 'Lokaal gedragen.',
-      intro: 'Bammetje voelt sterker als partners en stad zichtbaar meedoen. Deze strook houdt de uiting compact, warm en duidelijk herkenbaar.'
+      intro: 'Bammetje voelt sterker als partners en stad zichtbaar meedoen. Deze strook houdt de uiting compact, warm en duidelijk herkenbaar.',
+      article: undefined,
     },
     footer: {
       brand: 'Bammetje',
@@ -138,7 +139,7 @@ export const useSite = () => {
     },
     links: {
       bamFestival: 'https://www.bamfestival.nl/',
-      route: 'https://www.google.com/maps/search/?api=1&query=Broedplaats+Oogst+Hengelo',
+      route: 'https://www.google.com/maps/search/?api=1&query=Esrein+53%2C+7553+CX+Hengelo',
     },
     ui: {
       skipLinkLabel: 'Naar content',
@@ -153,6 +154,13 @@ export const useSite = () => {
         location: 'Locatie',
         freeEntry: 'Gratis entree',
       },
+      navItems: [
+        { href: '#line-up', label: 'Line-up' },
+        { href: '#timetable', label: 'Timetable' },
+        { href: '#info', label: 'Info' },
+        { href: '#locatie', label: 'Locatie' },
+        { href: '#gratis-entree', label: 'Gratis entree' },
+      ],
       socialLabels: {
         instagram: 'Volg Bammetje op Instagram',
         linkedin: 'Volg Bammetje op LinkedIn',
@@ -207,6 +215,7 @@ export const useSite = () => {
     const sourceMeta = source.meta || {}
     const sourceLinks = source.links || {}
     const sourceUi = source.ui || {}
+    const sourceNav = sourceUi.nav || {}
     const sourceInfoItems = sourceInfoSection.items || {}
 
     return {
@@ -293,8 +302,15 @@ export const useSite = () => {
         ...sourceUi,
         nav: {
           ...defaultConfig.ui.nav,
-          ...sourceUi.nav,
+          ...sourceNav,
         },
+        navItems: sourceUi.navItems || [
+          { href: '#line-up', label: getDefinedValue(sourceNav.lineUp, defaultConfig.ui.nav.lineUp) ?? defaultConfig.ui.nav.lineUp },
+          { href: '#timetable', label: getDefinedValue(sourceNav.timetable, defaultConfig.ui.nav.timetable) ?? defaultConfig.ui.nav.timetable },
+          { href: '#info', label: getDefinedValue(sourceNav.info, defaultConfig.ui.nav.info) ?? defaultConfig.ui.nav.info },
+          { href: '#locatie', label: getDefinedValue(sourceNav.location, defaultConfig.ui.nav.location) ?? defaultConfig.ui.nav.location },
+          { href: '#gratis-entree', label: getDefinedValue(sourceNav.freeEntry, defaultConfig.ui.nav.freeEntry) ?? defaultConfig.ui.nav.freeEntry },
+        ],
         socialLabels: {
           ...defaultConfig.ui.socialLabels,
           ...sourceUi.socialLabels,
@@ -332,10 +348,24 @@ export const useArtists = () => {
   const sortedArtists = computed<ArtistRecord[]>(() => {
     if (!artists.value) return []
     return [...(artists.value as ArtistRecord[])]
+      .map(artist => ({
+        ...artist,
+        performances: artist.performances ?? [],
+      }))
       .sort((a, b) => (b.weight ?? 0) - (a.weight ?? 0) || a.title.localeCompare(b.title, 'nl'))
   })
 
-  return { artists: sortedArtists }
+  const artistsWithPerformances = computed(() =>
+    sortedArtists.value.filter(artist => artist.performances.length > 0)
+  )
+
+  const hasPerformances = computed(() => artistsWithPerformances.value.length > 0)
+
+  return {
+    artists: sortedArtists,
+    artistsWithPerformances,
+    hasPerformances,
+  }
 }
 
 export const useSponsors = () => {
