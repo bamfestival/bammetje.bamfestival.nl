@@ -1,0 +1,4 @@
+Contact: https://www.bamfestival.nl/disclaimer-copy-right-privacy
+Canonical: https://bammetje.bamfestival.nl/.well-known/security.txt
+Policy: https://www.bamfestival.nl/disclaimer-copy-right-privacy
+Preferred-Languages: nl, en

@@ -51,8 +51,7 @@ export default defineNuxtConfig({
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/assets/favicons/logo-180.png' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' },
-        { rel: 'preconnect', href: 'https://open.spotify.com' },
-        { rel: 'preconnect', href: 'https://www.youtube.com' },
+        { rel: 'preload', as: 'image', href: '/assets/hero/bammetje-header-1440.webp', fetchpriority: 'high' },
         { rel: 'dns-prefetch', href: 'https://www.openstreetmap.org' },
       ],
 
@@ -63,8 +62,8 @@ export default defineNuxtConfig({
 
   fonts: {
     families: [
-      { name: 'Saira Condensed', provider: 'google', weights: [500, 700, 800] },
-      { name: 'Instrument Sans', provider: 'google', weights: [400, 500, 600, 700] },
+      { name: 'Saira Condensed', provider: 'google', weights: [700, 800] },
+      { name: 'Instrument Sans', provider: 'google', weights: [400, 700] },
     ],
   },
 
@@ -117,6 +116,37 @@ export default defineNuxtConfig({
   },
 
   nitro: {
+    routeRules: {
+      '/**': {
+        headers: {
+          'Content-Security-Policy': [
+            "default-src 'self'",
+            "base-uri 'self'",
+            "object-src 'none'",
+            "frame-ancestors 'self'",
+            "img-src 'self' data: https:",
+            "font-src 'self' data: https://fonts.gstatic.com",
+            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+            "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'",
+            "connect-src 'self' https://matomo.puntuale.nl https://nominatim.openstreetmap.org",
+            "frame-src 'self' https://www.youtube-nocookie.com https://open.spotify.com",
+            "media-src 'self' https:",
+            "upgrade-insecure-requests",
+          ].join('; '),
+          'Permissions-Policy': 'accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()',
+          'Referrer-Policy': 'strict-origin-when-cross-origin',
+          'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
+          'X-Content-Type-Options': 'nosniff',
+          'X-Frame-Options': 'SAMEORIGIN',
+        },
+      },
+      '/.well-known/security.txt': {
+        headers: {
+          'Cache-Control': 'public, max-age=3600',
+          'Content-Type': 'text/plain; charset=utf-8',
+        },
+      },
+    },
     prerender: {
       routes: ['/'],
     },

@@ -6,7 +6,7 @@ const { siteConfig } = useSite()
   <section class="section story-band">
     <div class="frame story-layout">
       <div class="story-quote">
-        <span class="eyebrow eyebrow-dark">{{ siteConfig.about.title }}</span>
+        <h2 class="eyebrow eyebrow-dark story-heading">{{ siteConfig.about.title }}</h2>
         <p>{{ siteConfig.about.intro }}</p>
       </div>
       <div class="story-points">
@@ -25,3 +25,9 @@ const { siteConfig } = useSite()
     </div>
   </section>
 </template>
+
+<style scoped>
+.story-heading {
+  margin: 0;
+}
+</style>

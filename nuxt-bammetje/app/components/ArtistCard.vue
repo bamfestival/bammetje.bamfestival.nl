@@ -201,17 +201,22 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
     @keydown="handleKeydown"
   >
     <div class="flip-card-inner">
-      <button
-        ref="frontRef"
-        type="button"
+      <div
         class="flip-card-front"
         :data-theme="artist.theme || 'dark'"
-        :aria-expanded="isFlipped"
-        :aria-controls="`artist-back-${cardId}`"
-        aria-haspopup="dialog"
-        :disabled="isFlipped"
-        @click="toggleFlip"
       >
+        <button
+          ref="frontRef"
+          type="button"
+          class="flip-card-front-button"
+          :aria-expanded="isFlipped"
+          :aria-controls="isFlipped ? `artist-back-${cardId}` : undefined"
+          aria-haspopup="dialog"
+          :aria-label="withArtistName(artistCardUi.detailsAriaLabel)"
+          @click="toggleFlip"
+        >
+          <span class="sr-only">{{ withArtistName(artistCardUi.detailsAriaLabel) }}</span>
+        </button>
         <div class="flip-card-media">
           <NuxtImg
             :src="frontImage"
@@ -241,7 +246,7 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
             </li>
           </ul>
         </div>
-      </button>
+      </div>
       <div
         v-if="isFlipped"
         :id="`artist-back-${cardId}`"
@@ -409,15 +414,8 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
 }
 
 .flip-card-front {
-  cursor: pointer;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  padding: 0;
-  border: 0;
-  text-align: left;
-  appearance: none;
-  -webkit-appearance: none;
   background:
     radial-gradient(circle at 82% 18%, rgba(248, 190, 5, 0.28), transparent 16%),
     radial-gradient(circle at 18% 16%, rgba(216, 151, 156, 0.24), transparent 12%),
@@ -425,8 +423,18 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
   color: #fdfafb;
 }
 
-.flip-card-front:disabled {
-  cursor: default;
+.flip-card-front-button {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  border-radius: inherit;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 .flip-card-front[data-theme="light"] {

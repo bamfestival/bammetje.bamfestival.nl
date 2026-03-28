@@ -4,16 +4,18 @@ const { siteConfig } = useSite()
 
 <template>
   <section id="top" class="hero">
-    <div class="hero-banner" :aria-label="siteConfig.hero.bannerAriaLabel">
+    <div class="hero-banner">
       <NuxtImg
         class="hero-banner-image"
-        src="/assets/hero/bammetje-2026-header.jpg"
+        src="/assets/hero/bammetje-header-1920.webp"
         :alt="siteConfig.hero.imageAlt"
         width="1920"
         height="450"
         fetchpriority="high"
+        loading="eager"
+        decoding="async"
         format="webp"
-        quality="82"
+        quality="76"
         sizes="(max-width: 640px) 640px, (max-width: 960px) 960px, (max-width: 1440px) 1440px, 1920px"
       />
     </div>
@@ -22,14 +24,17 @@ const { siteConfig } = useSite()
         <span class="eyebrow eyebrow-dark"><span class="dot" aria-hidden="true" /> {{ siteConfig.hero.eyebrow }}</span>
         <div class="hero-title-wrap">
           <p class="eyebrow eyebrow-dark">{{ siteConfig.hero.label }}</p>
-          <h1 class="hero-title">{{ siteConfig.hero.title }}</h1>
+          <h1 class="hero-title">
+            <span>{{ siteConfig.hero.title }}</span>
+            <span class="sr-only"> 2026 gratis mini-editie van BAM! Festival in Hengelo</span>
+          </h1>
           <p class="hero-subtitle">{{ siteConfig.subtitle }}</p>
           <div class="hero-actions">
             <a class="action-button action-button-primary" :href="siteConfig.hero.primaryActionTarget">{{ siteConfig.hero.primaryActionLabel }}</a>
             <a class="action-button action-button-secondary" :href="siteConfig.hero.secondaryActionTarget">{{ siteConfig.hero.secondaryActionLabel }}</a>
           </div>
-          <div class="hero-strip" :aria-label="siteConfig.hero.detailsAriaLabel">
-            <div v-for="item in siteConfig.hero.details" :key="item.value + item.label" class="hero-strip-item">
+          <div class="hero-strip" role="list" :aria-label="siteConfig.hero.detailsAriaLabel">
+            <div v-for="item in siteConfig.hero.details" :key="item.value + item.label" class="hero-strip-item" role="listitem">
               <strong>{{ item.value }}</strong>
               <span>{{ item.label }}</span>
             </div>
