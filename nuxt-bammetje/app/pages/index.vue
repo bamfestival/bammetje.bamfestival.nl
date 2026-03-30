@@ -89,11 +89,20 @@ const structuredData = computed(() => {
 })
 
 const structuredDataJson = computed(() => JSON.stringify(structuredData.value))
+
+useHead({
+  script: [
+    {
+      key: 'home-structured-data',
+      type: 'application/ld+json',
+      textContent: structuredDataJson,
+    },
+  ],
+})
 </script>
 
 <template>
   <div>
-    <component :is="'script'" type="application/ld+json" v-html="structuredDataJson" />
     <HomeHeroSection />
     <HomeStorySection />
     <HomeLineupSection />

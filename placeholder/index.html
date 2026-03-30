@@ -858,6 +858,8 @@
       box-shadow: var(--page_shadow);
       perspective: 1400px;
       cursor: pointer;
+      isolation: isolate;
+      z-index: 2;
     }
 
     .line_up_artist.artist_main,
@@ -1083,8 +1085,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 2.4rem;
-      padding: 0.55rem 0.85rem;
+      min-height: 2.75rem;
+      padding: 0.65rem 1rem;
       border-radius: 999px;
       font-weight: 800;
       letter-spacing: 0.08em;
@@ -1167,8 +1169,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 2.2rem;
-      padding: 0.5rem 0.8rem;
+      min-height: 2.75rem;
+      padding: 0.65rem 1rem;
       border-radius: 999px;
       text-decoration: none;
       font-size: 0.76rem;
@@ -1529,6 +1531,10 @@
 
     .footer a {
       color: var(--page_white);
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.75rem;
+      padding: 0.3rem 0;
       text-decoration-thickness: 0.08em;
       text-underline-offset: 0.15em;
     }
@@ -1863,7 +1869,6 @@
             <a href="#timetable">Timetable</a>
             <a href="#info">Info</a>
             <a href="#locatie">Locatie</a>
-            <a href="#gratis_entree">Gratis entree</a>
           </nav>
           <button
             class="nav_toggle"
@@ -1886,7 +1891,6 @@
               <a href="#timetable">Timetable</a>
               <a href="#info">Info</a>
               <a href="#locatie">Locatie</a>
-              <a href="#gratis_entree">Gratis entree</a>
             </nav>
           </div>
         </div>
@@ -1922,41 +1926,6 @@
               fetchpriority="high"
             />
           </picture>
-        </div>
-        <div class="frame hero_inner hero_grid">
-          <div class="hero_copy" data_reveal>
-            <span class="eyebrow eyebrow_dark"><span class="dot" aria-hidden="true"></span> Home</span>
-            <div class="hero_title_wrap">
-              <p class="eyebrow eyebrow_light">Bammetje 2026</p>
-              <h1 class="hero_title">BAMMETJE 2026 - GRATIS MINI-EDITIE BAM! - HENGELO</h1>
-              <p class="hero_subtitle">23 MEI 2026 • BROEDPLAATS OOGST, HENGELO</p>
-              <div class="hero_actions">
-                <a class="action_button action_button_primary" href="#line_up">Bekijk line-up</a>
-                <a class="action_button action_button_secondary" href="#info">Praktische info</a>
-              </div>
-              <div class="hero_strip" aria-label="Belangrijkste evenementdetails">
-                <div class="hero_strip_item">
-                  <strong>23 mei</strong>
-                  <span>Zaterdag in 2026</span>
-                </div>
-                <div class="hero_strip_item">
-                  <strong>Gratis</strong>
-                  <span>Kom langs zonder ticketstress</span>
-                </div>
-                <div class="hero_strip_item">
-                  <strong>Oogst</strong>
-                  <span>Broedplaats in Hengelo</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <aside class="ticket_card hero_ticket" id="gratis_entree" data_reveal aria-label="Kerninformatie Bammetje">
-            <span class="eyebrow eyebrow_light">Gratis entree</span>
-            <strong>Oogst<br />Hengelo</strong>
-            <p class="section_text hero_ticket_text">
-              Van 14:00 tot 23:00. Gewoon aanwaaien, iets drinken en blijven hangen.
-            </p>
-          </aside>
         </div>
       </section>
 
@@ -2695,8 +2664,31 @@
     };
 
     const set_artist_card_state = (card, should_flip) => {
+      const front_face = card.querySelector(".line_up_artist_front");
+      const back_face = card.querySelector(".line_up_artist_back");
+
       card.classList.toggle("is_flipped", should_flip);
       card.setAttribute("aria-expanded", String(should_flip));
+      card.setAttribute("tabindex", should_flip ? "-1" : "0");
+      card.setAttribute("role", should_flip ? "group" : "button");
+
+      if (front_face) {
+        front_face.setAttribute("aria-hidden", String(should_flip));
+        if (should_flip) {
+          front_face.setAttribute("inert", "");
+        } else {
+          front_face.removeAttribute("inert");
+        }
+      }
+
+      if (back_face) {
+        back_face.setAttribute("aria-hidden", String(!should_flip));
+        if (should_flip) {
+          back_face.removeAttribute("inert");
+        } else {
+          back_face.setAttribute("inert", "");
+        }
+      }
 
       if (should_flip) {
         mount_artist_media(card);
@@ -2743,6 +2735,8 @@
           card.focus();
         });
       }
+
+      set_artist_card_state(card, false);
     });
 
     document.addEventListener("keydown", (event) => {

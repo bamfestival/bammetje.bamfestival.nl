@@ -6,13 +6,34 @@ declare global {
 }
 
 const { siteConfig } = useSite()
-const { cookiesEnabledIds, isConsentGiven } = useCookieControl()
 
 const isScrolled = ref(false)
 const isMobileMenuOpen = ref(false)
+const isClientReady = ref(false)
+const hasMatomoConsent = ref(false)
+const matomoLoaded = ref(false)
+
+let consentPollId: number | undefined
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 50
+}
+
+const readCookie = (name: string) => {
+  if (!import.meta.client) return null
+
+  const cookie = document.cookie
+    .split('; ')
+    .find(entry => entry.startsWith(`${name}=`))
+
+  if (!cookie) return null
+
+  return decodeURIComponent(cookie.split('=').slice(1).join('='))
+}
+
+const updateConsentState = () => {
+  const enabledIds = readCookie('ncc_e')
+  hasMatomoConsent.value = enabledIds?.split(',').includes('matomo_analytics') ?? false
 }
 
 const navItems = computed(() => siteConfig.value.ui.navItems || [])
@@ -28,45 +49,48 @@ const footerLinks = computed(() => {
 })
 
 function loadMatomo() {
-  if (import.meta.client && cookiesEnabledIds.value?.includes('matomo_analytics')) {
-    window._paq = window._paq || []
-    window._paq.push(['trackPageView'])
-    window._paq.push(['enableLinkTracking'])
-    const u = 'https://matomo.puntuale.nl/'
-    window._paq.push(['setTrackerUrl', u + 'matomo.php'])
-    window._paq.push(['setSiteId', '14'])
-    const d = document
-    const g = d.createElement('script')
-    const s = d.getElementsByTagName('script')[0]
-    if (s?.parentNode) {
-      g.async = true
-      g.src = u + 'matomo.js'
-      s.parentNode.insertBefore(g, s)
-    }
+  if (!import.meta.client || !hasMatomoConsent.value || matomoLoaded.value) return
+
+  window._paq = window._paq || []
+  window._paq.push(['trackPageView'])
+  window._paq.push(['enableLinkTracking'])
+  const u = 'https://matomo.puntuale.nl/'
+  window._paq.push(['setTrackerUrl', u + 'matomo.php'])
+  window._paq.push(['setSiteId', '14'])
+  const d = document
+  const g = d.createElement('script')
+  const s = d.getElementsByTagName('script')[0]
+  if (s?.parentNode) {
+    g.async = true
+    g.src = u + 'matomo.js'
+    s.parentNode.insertBefore(g, s)
+    matomoLoaded.value = true
   }
 }
 
 watch(
-  () => cookiesEnabledIds.value,
-  (current) => {
-    if (current?.includes('matomo_analytics')) {
+  hasMatomoConsent,
+  (isAllowed) => {
+    if (isAllowed) {
       loadMatomo()
     }
   },
 )
 
 onMounted(() => {
+  isClientReady.value = true
   window.addEventListener('scroll', handleScroll, { passive: true })
   handleScroll()
-
-  // Load Matomo if consent was already given
-  if (isConsentGiven.value) {
-    loadMatomo()
-  }
+  updateConsentState()
+  loadMatomo()
+  consentPollId = window.setInterval(updateConsentState, 1000)
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+  if (consentPollId) {
+    window.clearInterval(consentPollId)
+  }
 })
 </script>
 
@@ -169,7 +193,7 @@ onUnmounted(() => {
     </footer>
 
     <ClientOnly>
-      <CookieControl locale="nl" />
+      <CookieControl v-if="isClientReady" locale="nl" />
     </ClientOnly>
   </div>
 </template>
@@ -458,6 +482,10 @@ onUnmounted(() => {
 
 .footer a {
   color: var(--page-white);
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.3rem 0;
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.15em;
   transition: color 200ms ease;
@@ -536,6 +564,11 @@ onUnmounted(() => {
   font-size: 0.85rem;
 }
 
+.footer-meta a {
+  min-width: 2.75rem;
+  padding-inline: 0.25rem;
+}
+
 .footer-bam-link {
   font-weight: 700;
 }
@@ -556,10 +589,10 @@ onUnmounted(() => {
 .cookieControl__ControlButton {
   right: 0.85rem;
   bottom: 0.85rem;
-  width: 2.75rem;
-  min-width: 2.75rem;
-  height: 2.75rem;
-  min-height: 2.75rem;
+  width: 3rem;
+  min-width: 3rem;
+  height: 3rem;
+  min-height: 3rem;
   opacity: 0.48;
   box-shadow: 0 8px 18px rgba(18, 2, 6, 0.12);
   backdrop-filter: blur(10px);

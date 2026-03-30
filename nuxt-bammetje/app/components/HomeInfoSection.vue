@@ -51,7 +51,7 @@ const { siteConfig } = useSite()
                 <LMarker :lat-lng="siteConfig.coordinates">
                   <LPopup>
                     <div class="map-popup">
-                      <strong>{{ siteConfig.freeEntry.location.split(' / ')[0] }}</strong><br >
+                      <strong>{{ siteConfig.infoSection.locationHeading }}</strong><br >
                       {{ siteConfig.address }}
                     </div>
                   </LPopup>

@@ -39,20 +39,8 @@ export const useSite = () => {
     subtitle: '23 MEI 2026 • BROEDPLAATS OOGST, HENGELO',
     hero: {
       eyebrow: 'Home',
-      label: 'Bammetje 2026',
-      title: 'BAMMETJE 2026 - GRATIS MINI-EDITIE BAM! - HENGELO',
       bannerAriaLabel: 'Headerbeeld van Bammetje',
       imageAlt: 'Sfeerbeeld van Bammetje 2026 met golvende BAM-vormen in rood, oranje en geel',
-      primaryActionLabel: 'Bekijk line-up',
-      primaryActionTarget: '#line-up',
-      secondaryActionLabel: 'Praktische info',
-      secondaryActionTarget: '#info',
-      detailsAriaLabel: 'Belangrijkste evenementdetails',
-      details: [
-        { value: '23 mei', label: 'Zaterdag in 2026' },
-        { value: 'Gratis', label: 'Kom langs zonder ticketstress' },
-        { value: 'Oogst', label: 'Broedplaats in Hengelo' }
-      ]
     },
     eventDate: '23 mei',
     eventDay: 'Zaterdag',
@@ -60,19 +48,13 @@ export const useSite = () => {
     admission: 'Gratis',
     admissionNote: 'Kom langs zonder ticketstress',
     artistRelease: {
-      publishAt: '2026-04-15T10:00:00+02:00',
+      publishAt: '2026-03-31T12:00:00+02:00',
       bannerEyebrow: 'Line-up update',
       bannerTitle: 'To be announced',
       bannerText: 'De line-up en timetable verschijnen hier automatisch zodra de artiesten live gaan.',
       bannerTimePrefix: 'Live vanaf',
     },
     stages: defaultStages,
-    freeEntry: {
-      title: 'Gratis entree',
-      location: 'Oogst / Hengelo',
-      ariaLabel: 'Kerninformatie Bammetje',
-      description: 'Kleiner van opzet, maar nog steeds warm, open en vol muziek.'
-    },
     about: {
       title: 'Waarom Bammetje',
       intro: 'Omdat het Prins Bernhardplantsoen wordt verbouwd is er in 2026 geen BAM! Festival. Met Bammetje als kleinere editie houden we een onmisbaar festival toch levend. Want zeg nou zelf: een jaar geen BAM!, is een jaar niet geleefd.',
@@ -172,7 +154,6 @@ export const useSite = () => {
         timetable: 'Timetable',
         info: 'Info',
         location: 'Locatie',
-        freeEntry: 'Gratis entree',
       },
       navItems: [
         { href: '#top', label: 'Home' },
@@ -180,7 +161,6 @@ export const useSite = () => {
         { href: '#timetable', label: 'Timetable' },
         { href: '#info', label: 'Info' },
         { href: '#locatie', label: 'Locatie' },
-        { href: '#gratis-entree', label: 'Gratis entree' },
       ],
       socialLabels: {
         instagram: 'Volg Bammetje op Instagram',
@@ -218,7 +198,6 @@ export const useSite = () => {
     const source = siteData as DeepPartial<SiteConfig>
     const sourceHero = source.hero || {}
     const sourceStages = source.stages || {}
-    const sourceFreeEntry = source.freeEntry || {}
     const sourceArtistRelease = source.artistRelease || {}
     const sourceAbout = source.about || {}
     const sourceLineUp = source.lineUp || {}
@@ -242,10 +221,6 @@ export const useSite = () => {
       stages: {
         ...defaultConfig.stages,
         ...sourceStages,
-      },
-      freeEntry: {
-        ...defaultConfig.freeEntry,
-        ...sourceFreeEntry,
       },
       artistRelease: {
         ...defaultConfig.artistRelease,
@@ -327,7 +302,6 @@ export const useSite = () => {
           { href: '#timetable', label: getDefinedValue(sourceNav.timetable, defaultConfig.ui.nav.timetable) ?? defaultConfig.ui.nav.timetable },
           { href: '#info', label: getDefinedValue(sourceNav.info, defaultConfig.ui.nav.info) ?? defaultConfig.ui.nav.info },
           { href: '#locatie', label: getDefinedValue(sourceNav.location, defaultConfig.ui.nav.location) ?? defaultConfig.ui.nav.location },
-          { href: '#gratis-entree', label: getDefinedValue(sourceNav.freeEntry, defaultConfig.ui.nav.freeEntry) ?? defaultConfig.ui.nav.freeEntry },
         ],
         socialLabels: {
           ...defaultConfig.ui.socialLabels,

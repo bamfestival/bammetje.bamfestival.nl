@@ -1,8 +1,8 @@
 {
   "title": "DJ Minka",
-  "subtitle": "Vinyl",
+  "subtitle": "",
   "bio": "Met een koffer vol vinyl draait DJ Minka tijdens Bammetje een set zonder enige voorspelbaarheid. Een optreden dat alle kanten op schiet. Minka draait muziek die verrast, eigenzinnig is en altijd met een knipoog. Van obscure parels tot ineens dat ene nummer dat je allang vergeten was (maar stiekem woord voor woord meezingt). Voor jong, oud en alles daartussenin, precies zoals Bammetje bedoeld is.",
-  "tags": ["Op het veld", "Vinyl"],
+  "tags": ["Op het veld", "Vinyl","DJ"],
   "spotify": "",
   "youtube": "",
   "website": "",
@@ -14,22 +14,6 @@
   "image_square_alt": "Portretfoto van DJ Minka",
   "weight": 73,
   "published": true,
-  "performances": [
-    {
-      "stage": "tommy-loods",
-      "starttime": "14:00",
-      "endtime": "14:45"
-    },
-    {
-      "stage": "hoofdpodium",
-      "starttime": "16:00",
-      "endtime": "16:30"
-    },
-    {
-      "stage": "tommy-loods",
-      "starttime": "18:00",
-      "endtime": "18:45"
-    }
-  ],
+  "performances": [],
   "theme": "dark"
 }

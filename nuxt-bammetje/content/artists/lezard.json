@@ -1,8 +1,8 @@
 {
   "title": "Lézard",
-  "subtitle": "Postpunk",
+  "subtitle": "",
   "bio": "Met Lézard krijgen we bezoek van onze onderburen. Deze Belgische band maakt muziek die alle kanten op schiet. Een gecontroleerde chaos waarin tegenstellingen elkaar constant opzoeken. Post-punk, disco, glamrock, new wave en electroclash lopen moeiteloos door elkaar heen. Hun debuutalbum Que Se Passe t-il is een soort muzikale scène waar dromers, nachtbrakers en buitenbeentjes samenkomen onder een kapotte discobal. Hun energieke liveshows zitten vol spektakel en vervreemding, wat resulteert in een show die alle kanten op gaat.",
-  "tags": ["Op het podium", "Postpunk"],
+  "tags": ["Postpunk"],
   "spotify": "",
   "youtube": "https://www.youtube.com/watch?v=O4g-BHdvhyI",
   "website": "https://lezardmusic.com",
@@ -14,12 +14,6 @@
   "image_square_alt": "Bandfoto van Lézard",
   "weight": 78,
   "published": true,
-  "performances": [
-    {
-      "stage": "hoofdpodium",
-      "starttime": "19:15",
-      "endtime": "20:00"
-    }
-  ],
+  "performances": [],
   "theme": "dark"
 }

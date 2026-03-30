@@ -1,6 +1,6 @@
 {
   "title": "Sabossi en Mørssync",
-  "subtitle": "Techno - acid",
+  "subtitle": "",
   "bio": "Sabossi en Mørssync nemen je mee van diepe, rollende grooves naar rauwe acid en stevige peak-time techno. Hun sets bouwen langzaam op, waardoor je steeds verder de nacht in wordt gezogen. Tijdens hun optreden draait alles om pulserende beats, hypnotische melodieën en bakken energie op de dansvloer.",
   "tags": ["In de loods", "Techno", "Acid"],
   "spotify": "",
@@ -14,12 +14,6 @@
   "image_square_alt": "Duoportret van Sabossi en Mørssync",
   "weight": 75,
   "published": true,
-  "performances": [
-    {
-      "stage": "tommy-loods",
-      "starttime": "22:00",
-      "endtime": "23:00"
-    }
-  ],
+  "performances": [],
   "theme": "dark"
 }

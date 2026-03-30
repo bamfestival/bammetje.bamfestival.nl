@@ -194,6 +194,8 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
       <div
         class="flip-card-front"
         :data-theme="artist.theme || 'dark'"
+        :aria-hidden="isFlipped"
+        :inert="isFlipped || undefined"
       >
         <button
           ref="frontRef"
@@ -203,6 +205,7 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
           :aria-controls="isFlipped ? `artist-back-${cardId}` : undefined"
           aria-haspopup="dialog"
           :aria-label="withArtistName(artistCardUi.detailsAriaLabel)"
+          :tabindex="isFlipped ? -1 : 0"
           @click="toggleFlip"
         >
           <span class="sr-only">{{ withArtistName(artistCardUi.detailsAriaLabel) }}</span>
@@ -235,6 +238,7 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
         :data-theme="artist.theme || 'dark'"
         role="dialog"
         :aria-label="withArtistName(artistCardUi.detailsAriaLabel)"
+        :aria-hidden="!isFlipped"
         aria-modal="true"
         @keydown="handleBackKeydown"
       >
@@ -341,6 +345,8 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
   min-height: 32rem;
   perspective: 1200px;
   scroll-margin-top: 7rem;
+  isolation: isolate;
+  z-index: 2;
 }
 
 .flip-card.reduce-motion .flip-card-inner {

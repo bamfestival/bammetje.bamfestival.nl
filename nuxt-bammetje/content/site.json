@@ -9,29 +9,8 @@
   "subtitle": "23 MEI 2026 • BROEDPLAATS OOGST, HENGELO",
   "hero": {
     "eyebrow": "Home",
-    "label": "Bammetje 2026",
-    "title": "BAMMETJE 2026 - GRATIS MINI-EDITIE BAM! - HENGELO",
     "bannerAriaLabel": "Headerbeeld van Bammetje",
-    "imageAlt": "Sfeerbeeld van Bammetje 2026 met golvende BAM-vormen in rood, oranje en geel",
-    "primaryActionLabel": "Bekijk line-up",
-    "primaryActionTarget": "#line-up",
-    "secondaryActionLabel": "Praktische info",
-    "secondaryActionTarget": "#info",
-    "detailsAriaLabel": "Belangrijkste evenementdetails",
-    "details": [
-      {
-        "value": "23 mei 2026",
-        "label": "14:00 tot 23:00 uur"
-      },
-      {
-        "value": "Gratis",
-        "label": "Maar wees op tijd, vol=vol!"
-      },
-      {
-        "value": "Oogst",
-        "label": "Fiets naar: Broedplaats Oogst, Esrein 53, 7553 CX Hengelo"
-      }
-    ]
+    "imageAlt": "Sfeerbeeld van Bammetje 2026 met golvende BAM-vormen in rood, oranje en geel"
   },
   "eventDate": "23 mei",
   "eventDay": "Zaterdag",
@@ -39,7 +18,7 @@
   "admission": "Gratis",
   "admissionNote": "Kom langs zonder ticketstress",
   "artistRelease": {
-    "publishAt": "2026-03-15T10:00:00+02:00",
+    "publishAt": "2026-03-31T12:00:00+02:00",
     "bannerEyebrow": "Line-up update",
     "bannerTitle": "To be announced",
     "bannerText": "De line-up en timetable verschijnen hier automatisch zodra de artiesten live gaan.",
@@ -55,12 +34,6 @@
       "description": "Industriële binnenruimte"
     }
   },
-  "freeEntry": {
-    "title": "Gratis entree",
-    "location": "Oogst / Hengelo",
-    "ariaLabel": "Kerninformatie Bammetje",
-    "description": "Gratis binnenlopen, muziek meepakken en samen de dag in."
-  },
   "about": {
     "title": "Waarom Bammetje?",
     "intro": "In 2026 krijgt het Prins Bernhardplantsoen een verbouwing, dus het grote BAM! Festival slaat een jaar over. Met Bammetje blijft er toch een dag waarop Hengelo samen muziek kan beleven.",
@@ -71,7 +44,7 @@
       },
       {
         "title": "Wat is er dit jaar anders?",
-        "description": "De editie is compacter en vindt eenmalig plaats bij Broedplaats Oogst aan het Esrein."
+        "description": "De editie is compacter en vindt eenmalig plaats bij Broedplaats Oogst aan het Esrein 53."
       },
       {
         "title": "Wat kun je verwachten?",
@@ -82,7 +55,7 @@
   "lineUp": {
     "title": "Line-up",
     "heading": "Twee podia. Vele namen. Meteen overzicht.",
-    "intro": "De line-up staat per podium gegroepeerd. Op mobiel blader je er makkelijk doorheen, op desktop zie je meteen hoe de dag tussen de Rabobank Stage en IPA Stage is verdeeld.",
+    "intro": "Klik op een artiest voor meer info, muziek en links.",
     "preReleaseIntro": "De namen zijn nog niet zichtbaar, maar hier verschijnt straks de volledige line-up per podium. Zodra de release live staat zie je meteen hoe de dag over de Rabobank Stage en IPA Stage is verdeeld."
   },
   "timetableSection": {
@@ -182,8 +155,7 @@
       "lineUp": "Line-up",
       "timetable": "Timetable",
       "info": "Info",
-      "location": "Locatie",
-      "freeEntry": "Gratis entree"
+      "location": "Locatie"
     },
     "socialLabels": {
       "facebook": "Volg BAM! Festival op Facebook",

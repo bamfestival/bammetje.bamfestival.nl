@@ -14,12 +14,6 @@
   "image_square_alt": "Promotiebeeld van Yo! That's that shit",
   "weight": 74,
   "published": true,
-  "performances": [
-    {
-      "stage": "tommy-loods",
-      "starttime": "21:00",
-      "endtime": "22:00"
-    }
-  ],
+  "performances": [],
   "theme": "dark"
 }
