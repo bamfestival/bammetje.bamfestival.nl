@@ -36,9 +36,39 @@
   --surface-panel-soft: rgba(253, 250, 251, 0.86);
   --surface-panel-strong: rgba(253, 250, 251, 0.92);
   --surface-panel-muted: rgba(253, 250, 251, 0.78);
+  --surface-panel-warm:
+    linear-gradient(180deg, rgba(253, 250, 251, 0.94) 0%, rgba(255, 246, 236, 0.92) 100%);
+  --surface-panel-warm-strong:
+    linear-gradient(145deg, rgba(253, 250, 251, 0.96) 0%, rgba(255, 242, 230, 0.92) 100%);
   --surface-tint-soft: rgba(83, 10, 29, 0.08);
   --surface-dark-soft: rgba(253, 250, 251, 0.1);
   --surface-dark-strong: rgba(253, 250, 251, 0.16);
+  --surface-glass-dark:
+    linear-gradient(145deg, rgba(83, 10, 29, 0.84) 0%, rgba(58, 7, 20, 0.9) 100%);
+  --surface-glass-dark-strong:
+    linear-gradient(145deg, rgba(83, 10, 29, 0.92) 0%, rgba(34, 5, 13, 0.96) 100%);
+  --surface-glass-dark-highlight:
+    radial-gradient(circle at 14% 20%, rgba(248, 190, 5, 0.18), transparent 24%),
+    radial-gradient(circle at 84% 72%, rgba(198, 33, 68, 0.2), transparent 28%);
+  --surface-glass-light: rgba(253, 250, 251, 0.08);
+  --surface-glass-light-strong: rgba(253, 250, 251, 0.14);
+  --border-glass-dark: rgba(253, 250, 251, 0.14);
+  --shadow-glass: 0 18px 34px rgba(18, 2, 6, 0.14);
+  --shadow-glass-strong: 0 14px 30px rgba(18, 2, 6, 0.24);
+  --surface-notice-panel:
+    linear-gradient(145deg, rgba(253, 250, 251, 0.97) 0%, rgba(255, 244, 230, 0.94) 100%);
+  --surface-notice-tint:
+    linear-gradient(135deg, rgba(83, 10, 29, 0.08) 0%, rgba(198, 33, 68, 0.1) 100%);
+  --border-notice-panel: rgba(146, 18, 52, 0.18);
+  --text-notice-muted: rgba(83, 10, 29, 0.78);
+  --surface-stage-main: linear-gradient(180deg, rgba(198, 33, 68, 0.92) 0%, rgba(146, 18, 52, 0.96) 100%);
+  --surface-stage-loft: linear-gradient(180deg, rgba(248, 190, 5, 0.92) 0%, rgba(226, 100, 38, 0.94) 100%);
+  --surface-stage-card:
+    linear-gradient(180deg, rgba(253, 250, 251, 0.82) 0%, rgba(253, 250, 251, 0.92) 100%);
+  --surface-stage-card-strong:
+    linear-gradient(180deg, rgba(253, 250, 251, 0.98) 0%, rgba(253, 250, 251, 0.9) 100%);
+  --border-stage-card: rgba(83, 10, 29, 0.09);
+  --shadow-stage-card: 0 16px 30px rgba(83, 10, 29, 0.14);
   --border-tint-soft: rgba(108, 24, 48, 0.12);
   --text-tint-strong: #6c1830;
   --text-on-dark: rgba(253, 250, 251, 0.92);

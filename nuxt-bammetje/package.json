@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@dargmuesli/nuxt-cookie-control": "^9.1.18",
-    "@nuxt/content": "^3.12.0",
     "@nuxt/eslint": "^1.15.2",
     "@nuxt/fonts": "^0.14.0",
     "@nuxt/icon": "^2.2.1",
@@ -24,7 +23,6 @@
     "@nuxtjs/robots": "^5.7.1",
     "@nuxtjs/sitemap": "^7.6.0",
     "@vite-pwa/nuxt": "^1.1.1",
-    "better-sqlite3": "^12.8.0",
     "nuxt": "^4.4.2",
     "playwright-core": "^1.58.2"
   },

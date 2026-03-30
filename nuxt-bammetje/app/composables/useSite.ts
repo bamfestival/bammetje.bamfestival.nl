@@ -1,14 +1,31 @@
 import type { ArtistRecord } from '~/app/types/artist'
+import siteData from '../../content/site.json'
+
+type SponsorRecord = {
+  title: string
+  logo?: string
+  logo_alt?: string
+  link?: string
+  weight?: number
+}
+
+const artistModules = import.meta.glob('../../content/artists/*.json', {
+  eager: true,
+  import: 'default',
+}) as Record<string, ArtistRecord>
+
+const sponsorModules = import.meta.glob('../../content/sponsors/*.json', {
+  eager: true,
+  import: 'default',
+}) as Record<string, SponsorRecord>
+
+const artistRecords = Object.values(artistModules)
+const sponsorRecords = Object.values(sponsorModules)
 
 export const useSite = () => {
-  const { data: siteConfig } = useAsyncData('site-config', () =>
-    queryCollection('site').first()
-  )
-
   const defaultStages = {
-    hoofdpodium: { name: 'Hoofdpodium', description: 'Het grote buitenpodium' },
-    'de-tent': { name: 'De Tent', description: 'Overdekte tent' },
-    'tommy-loods': { name: 'Tommy-Loods', description: 'Industriële binnenruimte' },
+    hoofdpodium: { name: 'Rabobank Stage', description: 'Het grote buitenpodium' },
+    'tommy-loods': { name: 'IPA Stage', description: 'Industriële binnenruimte' },
   }
 
   const defaultConfig = {
@@ -19,11 +36,11 @@ export const useSite = () => {
     address: 'Esrein 53, 7553 CX Hengelo',
     coordinates: [52.2580145, 6.7915145] as [number, number],
     slogan: 'Klein, maar BAM.',
-    subtitle: 'BAM! Festival kan dit jaar niet landen in het Prins Bernhardplantsoen, maar stil blijft het niet: Bammetje houdt een dag vol livemuziek, ontmoeting en zomergevoel levend.',
+    subtitle: '23 MEI 2026 • BROEDPLAATS OOGST, HENGELO',
     hero: {
-      eyebrow: 'Mini BAM, maximale vibe',
-      label: 'Gratis mini-editie van BAM! Festival',
-      title: 'Bammetje',
+      eyebrow: 'Home',
+      label: 'Bammetje 2026',
+      title: 'BAMMETJE 2026 - GRATIS MINI-EDITIE BAM! - HENGELO',
       bannerAriaLabel: 'Headerbeeld van Bammetje',
       imageAlt: 'Sfeerbeeld van Bammetje 2026 met golvende BAM-vormen in rood, oranje en geel',
       primaryActionLabel: 'Bekijk line-up',
@@ -42,6 +59,13 @@ export const useSite = () => {
     eventTime: '14:00 – 23:00',
     admission: 'Gratis',
     admissionNote: 'Kom langs zonder ticketstress',
+    artistRelease: {
+      publishAt: '2026-04-15T10:00:00+02:00',
+      bannerEyebrow: 'Line-up update',
+      bannerTitle: 'To be announced',
+      bannerText: 'De line-up en timetable verschijnen hier automatisch zodra de artiesten live gaan.',
+      bannerTimePrefix: 'Live vanaf',
+    },
     stages: defaultStages,
     freeEntry: {
       title: 'Gratis entree',
@@ -69,23 +93,19 @@ export const useSite = () => {
     },
     lineUp: {
       title: 'Line-up',
-      heading: 'Drie podia. Zeven namen. Meteen overzicht.',
-      intro: 'De line-up staat nu per podium ingedeeld, zodat je meteen ziet hoe de dag is opgebouwd: grotere publieksmomenten op het Hoofdpodium, liveacts in De Tent en dj-sets in de Tommy-Loods. Zo voelt het programma vanaf de eerste blik helder, levendig en goed verspreid over de dag.'
+      heading: 'Twee podia. Zeven namen. Meteen overzicht.',
+      intro: 'De line-up staat nu per podium ingedeeld, zodat je meteen ziet hoe de dag is opgebouwd: grotere publieksmomenten op de Rabobank Stage en dj-sets op de IPA Stage. Zo voelt het programma vanaf de eerste blik helder, levendig en goed verspreid over de dag.'
     },
     timetableSection: {
       title: 'Timetable',
       heading: 'Van middag tot laat.',
-      intro: 'De timetable laat nu in één oogopslag zien hoe Bammetje zich van 14:00 tot laat over de drie podia ontvouwt. Zo zie je meteen waar je begint, waar de piekmomenten zitten en hoe de avond per podium doorloopt.',
+      intro: 'De timetable laat nu in één oogopslag zien hoe Bammetje zich van 14:00 tot laat over twee podia ontvouwt. Zo zie je meteen waar je begint, waar de piekmomenten zitten en hoe de avond per podium doorloopt.',
       fallbackTimeLabel: 'Bevestigd',
       timeLabelSuffix: '',
       blocks: {
         hoofdpodium: {
           tag: 'Grotere namen',
           note: 'Hier vallen de grotere publieksmomenten samen: de acts die de dag open trekken, de druk opvoeren en het veld echt in beweging zetten.'
-        },
-        'de-tent': {
-          tag: 'Live en dichtbij',
-          note: 'De Tent is voor de andere liveacts: intiemer, directer en perfect voor een compactere setting.'
         },
         'tommy-loods': {
           tag: 'Dj-hoek',
@@ -155,6 +175,7 @@ export const useSite = () => {
         freeEntry: 'Gratis entree',
       },
       navItems: [
+        { href: '#top', label: 'Home' },
         { href: '#line-up', label: 'Line-up' },
         { href: '#timetable', label: 'Timetable' },
         { href: '#info', label: 'Info' },
@@ -190,22 +211,15 @@ export const useSite = () => {
         : T[K]
   }
 
-  type _SponsorRecord = {
-    title: string
-    logo?: string
-    logo_alt?: string
-    link?: string
-    weight?: number
-  }
-
   const getDefinedValue = <T>(...values: Array<T | undefined>) =>
     values.find(value => value !== undefined)
 
   const config = computed(() => {
-    const source = (siteConfig.value || {}) as DeepPartial<SiteConfig>
+    const source = siteData as DeepPartial<SiteConfig>
     const sourceHero = source.hero || {}
     const sourceStages = source.stages || {}
     const sourceFreeEntry = source.freeEntry || {}
+    const sourceArtistRelease = source.artistRelease || {}
     const sourceAbout = source.about || {}
     const sourceLineUp = source.lineUp || {}
     const sourceTimetableSection = source.timetableSection || {}
@@ -232,6 +246,10 @@ export const useSite = () => {
       freeEntry: {
         ...defaultConfig.freeEntry,
         ...sourceFreeEntry,
+      },
+      artistRelease: {
+        ...defaultConfig.artistRelease,
+        ...sourceArtistRelease,
       },
       about: {
         ...defaultConfig.about,
@@ -333,25 +351,61 @@ export const useSite = () => {
     return config.value?.stages || defaultStages
   })
 
+  const artistReleaseNow = useState('artist-release-now', () => Date.now())
+
+  if (import.meta.client) {
+    onMounted(() => {
+      artistReleaseNow.value = Date.now()
+    })
+  }
+
+  const artistPublishDate = computed(() => {
+    const value = config.value?.artistRelease?.publishAt
+    if (!value) return null
+
+    const timestamp = Date.parse(value)
+    if (Number.isNaN(timestamp)) return null
+
+    return new Date(timestamp)
+  })
+
+  const artistPublishLabel = computed(() => {
+    if (!artistPublishDate.value) return ''
+
+    return new Intl.DateTimeFormat('nl-NL', {
+      dateStyle: 'long',
+      timeStyle: 'short',
+      timeZone: 'Europe/Amsterdam',
+    }).format(artistPublishDate.value)
+  })
+
+  const artistsArePublished = computed(() => {
+    if (!artistPublishDate.value) return true
+    return artistReleaseNow.value >= artistPublishDate.value.getTime()
+  })
+
   return {
     siteConfig: config,
     getStageName,
     stages,
+    artistPublishDate,
+    artistPublishLabel,
+    artistsArePublished,
   }
 }
 
 export const useArtists = () => {
-  const { data: artists } = useAsyncData('artists', () =>
-    queryCollection('artists').all()
-  )
+  const { artistsArePublished } = useSite()
 
   const sortedArtists = computed<ArtistRecord[]>(() => {
-    if (!artists.value) return []
-    return [...(artists.value as ArtistRecord[])]
+    if (!artistsArePublished.value) return []
+    return [...artistRecords]
       .map(artist => ({
         ...artist,
+        published: artist.published ?? false,
         performances: artist.performances ?? [],
       }))
+      .filter(artist => artist.published)
       .sort((a, b) => (b.weight ?? 0) - (a.weight ?? 0) || a.title.localeCompare(b.title, 'nl'))
   })
 
@@ -365,17 +419,13 @@ export const useArtists = () => {
     artists: sortedArtists,
     artistsWithPerformances,
     hasPerformances,
+    artistsArePublished,
   }
 }
 
 export const useSponsors = () => {
-  const { data: sponsors } = useAsyncData('sponsors', () =>
-    queryCollection('sponsors').all()
-  )
-
   const mappedSponsors = computed(() => {
-    if (!sponsors.value) return []
-    return [...(sponsors.value as _SponsorRecord[])]
+    return [...sponsorRecords]
       .sort((a, b) => Number(b.weight ?? 0) - Number(a.weight ?? 0) || a.title.localeCompare(b.title, 'nl'))
       .map((sponsor) => ({
         title: sponsor.title,

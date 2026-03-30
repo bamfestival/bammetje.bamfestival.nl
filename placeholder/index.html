@@ -302,7 +302,7 @@
     .header_row {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       gap: 1rem;
       min-height: 5rem;
       padding-block: 0.8rem;
@@ -1728,9 +1728,14 @@
     }
 
     @media (min-width: 64rem) {
+      .header_row {
+        justify-content: center;
+      }
+
       .main_nav {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 0.6rem;
         padding: 0.3rem;
         border-radius: 999px;
@@ -1852,20 +1857,8 @@
     <header class="site_header">
       <div class="frame">
         <div class="header_row">
-          <a class="brand_link" href="#top">
-            <img
-              class="brand_mark"
-              src="./assets/favicons/logo-192.png"
-              alt="Bammetje logo"
-              width="192"
-              height="192"
-            />
-            <div>
-              <p class="brand_name">Bammetje</p>
-              <p class="brand_note">23 mei 2026 • Hengelo</p>
-            </div>
-          </a>
           <nav class="main_nav" aria-label="Hoofdnavigatie">
+            <a href="#top">Home</a>
             <a href="#line_up">Line-up</a>
             <a href="#timetable">Timetable</a>
             <a href="#info">Info</a>
@@ -1888,6 +1881,7 @@
         <div class="mobile_panel" id="mobile_panel" data-open="false">
           <div class="mobile_panel_inner">
             <nav class="mobile_menu" aria-label="Mobiele navigatie">
+              <a href="#top">Home</a>
               <a href="#line_up">Line-up</a>
               <a href="#timetable">Timetable</a>
               <a href="#info">Info</a>
@@ -1931,14 +1925,11 @@
         </div>
         <div class="frame hero_inner hero_grid">
           <div class="hero_copy" data_reveal>
-            <span class="eyebrow eyebrow_dark"><span class="dot" aria-hidden="true"></span> Mini BAM, maximale vibe</span>
+            <span class="eyebrow eyebrow_dark"><span class="dot" aria-hidden="true"></span> Home</span>
             <div class="hero_title_wrap">
-              <p class="eyebrow eyebrow_light">Gratis mini-editie van BAM! Festival</p>
-              <h1 class="hero_title">Bammetje</h1>
-              <p class="hero_subtitle">
-                Op zaterdag 23 mei 2026 landt Bammetje bij Broedplaats Oogst in Hengelo:
-                gratis muziek, warme sfeer en een compacte festivaldag zonder gedoe.
-              </p>
+              <p class="eyebrow eyebrow_light">Bammetje 2026</p>
+              <h1 class="hero_title">BAMMETJE 2026 - GRATIS MINI-EDITIE BAM! - HENGELO</h1>
+              <p class="hero_subtitle">23 MEI 2026 • BROEDPLAATS OOGST, HENGELO</p>
               <div class="hero_actions">
                 <a class="action_button action_button_primary" href="#line_up">Bekijk line-up</a>
                 <a class="action_button action_button_secondary" href="#info">Praktische info</a>

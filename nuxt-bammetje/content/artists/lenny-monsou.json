@@ -1,23 +1,24 @@
 {
   "title": "Lenny Monsou",
-  "subtitle": "Glamrock en new-romantic met een hitgevoelige ondertoon.",
+  "subtitle": "Glamrock",
   "bio": "Lenny Monsou is zo’n artiest die je niet in één hokje krijgt. Met krachtige vocalen en een neus voor sterke songs mixt hij moeiteloos rock, pop en elektronische invloeden tot iets dat tegelijk fris en vertrouwd voelt. Zijn muziek glanst en zit vol met gevoel, melancholie en energie. Hij neemt je mee in een belevingswereld met invloeden van toen, met de flair van nu. Met een sound tussen glamrock en new romantic bouwt hij met een scherp hitgevoel aan zijn plek in de muziekwereld. ",
-  "tags": ["De Tent", "Zang", "Intiem"],
+  "tags": ["Op het podium", "Glamrock"],
   "spotify": "https://open.spotify.com/embed/artist/1mCVKxQihZkfBjdphoGLT3?utm_source=generator",
   "youtube": "https://www.youtube.com/watch?v=DQde8c6B0sg",
   "website": "https://www.lennymonsou.com",
   "instagram": "https://www.instagram.com/lennymonsou",
   "facebook": "https://www.facebook.com/lennymonsou",
   "image_landscape": "/assets/artists/lenny-monsou/landscape.webp",
-  "image_landscape_alt": "Lenny Monsou op promotiebeeld voor zijn optreden in De Tent",
+  "image_landscape_alt": "Lenny Monsou op promotiebeeld voor zijn optreden op de Rabobank Stage",
   "image_square": "/assets/artists/lenny-monsou/square.webp",
   "image_square_alt": "Portretfoto van Lenny Monsou",
-  "weight": 5,
+  "weight": 80,
+  "published": true,
   "performances": [
     {
-      "stage": "de-tent",
-      "starttime": "17:15",
-      "endtime": "18:00"
+      "stage": "hoofdpodium",
+      "starttime": "17:30",
+      "endtime": "18:15"
     }
   ],
   "theme": "dark"

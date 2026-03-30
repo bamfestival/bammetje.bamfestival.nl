@@ -2,19 +2,6 @@
 const { siteConfig } = useSite()
 const { artists, hasPerformances } = useArtists()
 
-useSeoMeta({
-  title: siteConfig.value.title,
-  ogTitle: siteConfig.value.title,
-  description: siteConfig.value.meta.description,
-  ogDescription: siteConfig.value.meta.ogDescription,
-  ogImage: siteConfig.value.meta.ogImage,
-  ogImageAlt: siteConfig.value.meta.ogImageAlt,
-  twitterCard: 'summary_large_image',
-  twitterTitle: siteConfig.value.title,
-  twitterDescription: siteConfig.value.meta.ogDescription,
-  twitterImage: siteConfig.value.meta.ogImage,
-})
-
 const structuredData = computed(() => {
   const config = siteConfig.value
   const performers = artists.value.map(artist => ({
@@ -101,19 +88,12 @@ const structuredData = computed(() => {
   }
 })
 
-useHead({
-  script: [
-    {
-      key: 'ld-json-bammetje',
-      type: 'application/ld+json',
-      innerHTML: JSON.stringify(structuredData.value),
-    },
-  ],
-})
+const structuredDataJson = computed(() => JSON.stringify(structuredData.value))
 </script>
 
 <template>
   <div>
+    <component :is="'script'" type="application/ld+json" v-html="structuredDataJson" />
     <HomeHeroSection />
     <HomeStorySection />
     <HomeLineupSection />

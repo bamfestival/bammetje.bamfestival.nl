@@ -1,6 +1,6 @@
 export type ArtistTheme = 'dark' | 'light' | 'night' | 'gold'
 
-export type StageKey = 'hoofdpodium' | 'de-tent' | 'tommy-loods'
+export type StageKey = 'hoofdpodium' | 'tommy-loods'
 
 export interface ArtistPerformance {
   stage: StageKey
@@ -14,6 +14,7 @@ export interface ArtistRecord {
   bio?: string
   tags?: string[]
   weight?: number
+  published: boolean
   performances: ArtistPerformance[]
   theme?: ArtistTheme
   image_landscape: string

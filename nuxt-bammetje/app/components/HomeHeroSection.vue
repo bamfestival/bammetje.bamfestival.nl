@@ -26,7 +26,6 @@ const { siteConfig } = useSite()
           <p class="eyebrow eyebrow-dark">{{ siteConfig.hero.label }}</p>
           <h1 class="hero-title">
             <span>{{ siteConfig.hero.title }}</span>
-            <span class="sr-only"> 2026 gratis mini-editie van BAM! Festival in Hengelo</span>
           </h1>
           <p class="hero-subtitle">{{ siteConfig.subtitle }}</p>
           <div class="hero-actions">

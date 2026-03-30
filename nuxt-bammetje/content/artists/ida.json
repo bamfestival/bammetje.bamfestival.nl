@@ -1,18 +1,19 @@
 {
   "title": "IDA",
-  "subtitle": "Hyper-pop soloproject met introspectieve teksten en dansbare tracks.",
+  "subtitle": "Hyper-pop",
   "bio": "IDA is het hyperpop-soloproject van Ida Weiler en zoekt met haar sound moeiteloos de randen van de Nederlandstalige elektronische pop op. Speels, kwetsbaar en tegelijk verrassend dansbaar. IDA zingt over de frustraties van het volwassen leven, maar doet dat met een energie waar je niet stil bij blijft staan. Met sterke singles op zak, een Popronde-tour achter de rug en een debuut-EP op komst, is dit er zo eentje waarbij jij straks nonchalant kunt zeggen dat je haar toen al kende.",
-  "tags": ["Hoofdpodium", "Publieksmoment", "Open lucht"],
+  "tags": ["Op het podium", "Hyper-pop"],
   "spotify": "https://open.spotify.com/embed/artist/7c4xb6WHJ6NhTQqgTQnbDN?utm_source=generator",
   "youtube": "",
   "website": "",
   "instagram": "https://www.instagram.com/idaweilers",
   "facebook": "",
   "image_landscape": "/assets/artists/ida/landscape.webp",
-  "image_landscape_alt": "IDA op promotiebeeld voor haar optreden op het Hoofdpodium",
+  "image_landscape_alt": "IDA op promotiebeeld voor haar optreden op de Rabobank Stage",
   "image_square": "/assets/artists/ida/square.webp",
   "image_square_alt": "Portretfoto van IDA",
-  "weight": 4,
+  "weight": 79,
+  "published": true,
   "performances": [
     {
       "stage": "hoofdpodium",

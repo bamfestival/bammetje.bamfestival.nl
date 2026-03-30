@@ -159,7 +159,6 @@ watch(isFlipped, (flipped) => {
 
 const stageClass = computed(() => ({
   'hoofdpodium': 'stage-main',
-  'de-tent': 'stage-tent',
   'tommy-loods': 'stage-loft'
 } as Record<StageKey, string>))
 
@@ -172,15 +171,6 @@ const sortedPerformances = computed(() =>
 )
 
 const hasPerformances = computed(() => sortedPerformances.value.length > 0)
-
-const uniqueStages = computed(() => {
-  const seen = new Set<StageKey>()
-  return sortedPerformances.value.filter((performance) => {
-    if (seen.has(performance.stage)) return false
-    seen.add(performance.stage)
-    return true
-  })
-})
 
 const formatPerformanceTime = (performance: ArtistPerformance) =>
   performance.endtime ? `${performance.starttime} - ${performance.endtime}` : performance.starttime
@@ -228,16 +218,6 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
           />
         </div>
         <div class="flip-card-content">
-          <div v-if="hasPerformances" class="stage-chip-list">
-            <span
-              v-for="performance in uniqueStages"
-              :key="`${artist.title}-${performance.stage}`"
-              class="stage-chip"
-              :class="stageClass[performance.stage]"
-            >
-              {{ getStageName(performance.stage) }}
-            </span>
-          </div>
           <h3>{{ artist.title }}</h3>
           <p class="flip-description">{{ artist.subtitle }}</p>
           <ul v-if="artistTags.length" class="tag-list">
@@ -277,16 +257,6 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
           />
         </div>
         <div class="flip-back-content">
-          <div v-if="hasPerformances" class="stage-chip-list">
-            <span
-              v-for="performance in uniqueStages"
-              :key="`${artist.title}-${performance.stage}-back`"
-              class="stage-chip"
-              :class="stageClass[performance.stage]"
-            >
-              {{ getStageName(performance.stage) }}
-            </span>
-          </div>
           <h3>{{ artist.title }}</h3>
           <p class="flip-bio">{{ artist.bio || artist.subtitle }}</p>
           <ul v-if="artistTags.length" class="tag-list">
@@ -425,8 +395,8 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
 
 .flip-card-front-button {
   position: absolute;
-  inset: 0;
-  z-index: 2;
+  inset: 42% 0 0;
+  z-index: 1;
   border: 0;
   padding: 0;
   margin: 0;
@@ -508,8 +478,8 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
   top: 1rem;
   right: 1rem;
   z-index: 10;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.85rem;
+  height: 2.85rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -547,11 +517,12 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, rgba(18, 2, 6, 0.1) 0%, rgba(18, 2, 6, 0.72) 100%);
+  pointer-events: none;
 }
 
 .flip-card-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   margin-top: auto;
   padding: 1.5rem;
   display: flex;
@@ -600,8 +571,8 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 999px;
   background: rgba(253, 250, 251, 0.12);
   color: inherit;

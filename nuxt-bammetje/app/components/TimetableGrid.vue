@@ -5,16 +5,15 @@ const props = defineProps<{
   artists: ArtistRecord[]
   fallbackTimeLabel: string
   timeLabelSuffix?: string
-  blocks: Record<StageKey, { tag: string, note: string }>
+  blocks: Partial<Record<StageKey, { tag: string, note: string }>>
 }>()
 
 const { getStageName } = useSite()
 
-const stageOrder: StageKey[] = ['hoofdpodium', 'de-tent', 'tommy-loods']
+const stageOrder: StageKey[] = ['hoofdpodium', 'tommy-loods']
 
 const stageClassMap: Record<StageKey, string> = {
   hoofdpodium: 'time-block-main',
-  'de-tent': 'time-block-tent',
   'tommy-loods': 'time-block-loft',
 }
 
@@ -158,73 +157,69 @@ const stageBlocks = computed(() =>
           height: Math.max(duration * pxPerMinute, minimumCardHeight),
         }
       }),
-    ...props.blocks[stage],
+    ...(props.blocks[stage] || { tag: '', note: '' }),
     className: stageClassMap[stage],
   }))
 )
+
+const mobileTimelineEntries = computed(() =>
+  performanceEntries.value
+    .slice()
+    .sort((left, right) =>
+      compareTimes(left.starttime, right.starttime)
+      || stageOrder.indexOf(left.stage) - stageOrder.indexOf(right.stage)
+      || left.title.localeCompare(right.title, 'nl')
+    )
+    .map((performance) => {
+      const block = stageBlocks.value.find(stage => stage.key === performance.stage)
+
+      return {
+        ...performance,
+        timeLabel: formatTimeLabel(performance.starttime, performance.endtime),
+        stageName: block?.name || getStageName(performance.stage),
+        stageTag: block?.tag || '',
+        className: block?.className || stageClassMap[performance.stage],
+      }
+    })
+)
+
+const desktopGridStyle = computed(() => ({
+  gridTemplateColumns: `5rem repeat(${stageBlocks.value.length}, minmax(18rem, 1fr))`,
+  minWidth: `${5 + stageBlocks.value.length * 18 + stageBlocks.value.length * 1}rem`,
+}))
 
 </script>
 
 <template>
   <div class="timetable-mobile">
-    <div class="mobile-scroll-shell">
-      <div class="mobile-scroll-grid">
-        <div class="mobile-timeline-corner">Tijd</div>
-
-        <header
-          v-for="block in stageBlocks"
-          :key="`${block.key}-mobile-header`"
-          class="mobile-stage-header"
-          :class="block.className"
-        >
-          <div class="time-label">{{ block.name }}</div>
-          <div class="time-tag">{{ block.tag }}</div>
-        </header>
-
-        <div class="mobile-timeline-axis" :style="{ '--timeline-height': `${timelineHeight}px` }">
-          <div
-            v-for="marker in timelineHourMarkers"
-            :key="`${marker.key}-mobile`"
-            class="mobile-timeline-axis-marker"
-            :style="{ top: `${marker.offset}px` }"
-          >
-            <span>{{ marker.label }}</span>
+    <div class="mobile-agenda">
+      <article
+        v-for="performance in mobileTimelineEntries"
+        :key="`${performance.key}-mobile-list`"
+        class="mobile-agenda-item"
+        :class="performance.className"
+      >
+        <a class="mobile-agenda-link" :href="performance.artistHref" :title="performance.tooltip">
+          <div class="mobile-agenda-time">
+            <span class="mobile-agenda-time-label">{{ performance.timeLabel }}</span>
           </div>
-        </div>
-
-        <div
-          v-for="block in stageBlocks"
-          :key="`${block.key}-mobile-body`"
-          class="mobile-stage-column"
-          :class="block.className"
-          :style="{ '--timeline-height': `${timelineHeight}px` }"
-        >
-          <div
-            v-for="guide in timelineGuides"
-            :key="`${block.key}-${guide.key}-mobile`"
-            class="mobile-stage-guide"
-            :class="{ 'is-major': guide.major }"
-            :style="{ top: `${guide.offset}px` }"
-          />
-
-          <article
-            v-for="performance in block.performances"
-            :key="`${performance.key}-mobile`"
-            class="mobile-stage-performance"
-            :style="{ top: `${performance.top}px`, height: `${performance.height}px` }"
-          >
-            <a class="mobile-stage-performance-link" :href="performance.artistHref" :title="performance.tooltip">
-              <span class="mobile-stage-performance-time">{{ performance.timeLabel }}</span>
-              <h3 class="mobile-stage-performance-title">{{ performance.title }}</h3>
-            </a>
-          </article>
-        </div>
+          <div class="mobile-agenda-body">
+            <div class="mobile-agenda-stage-row">
+              <span class="mobile-agenda-stage">{{ performance.stageName }}</span>
+              <span v-if="performance.stageTag" class="mobile-agenda-tag">{{ performance.stageTag }}</span>
+            </div>
+            <h3 class="mobile-agenda-title">{{ performance.title }}</h3>
+          </div>
+        </a>
+      </article>
+      <div v-if="!mobileTimelineEntries.length" class="mobile-agenda-empty">
+        {{ fallbackTimeLabel }}
       </div>
     </div>
   </div>
 
   <div class="timetable-desktop">
-    <div class="timeline-grid">
+    <div class="timeline-grid" :style="desktopGridStyle">
       <div class="timeline-corner">Tijd</div>
 
       <header
@@ -287,144 +282,108 @@ const stageBlocks = computed(() =>
   display: block;
 }
 
-.mobile-scroll-shell {
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding-bottom: 0.45rem;
-  -webkit-overflow-scrolling: touch;
-}
-
-.mobile-scroll-grid {
+.mobile-agenda {
   display: grid;
-  grid-template-columns: 4.25rem repeat(3, minmax(11rem, 11rem));
-  min-width: 38rem;
-  gap: 0.8rem;
-  align-items: stretch;
+  gap: 0.9rem;
 }
 
-.mobile-timeline-corner {
-  padding: 1rem 0.35rem 0;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(83, 10, 29, 0.66);
-}
-
-.mobile-stage-header {
-  min-height: 5.75rem;
-  padding: 1rem 0.95rem 0.9rem;
+.mobile-agenda-item {
   border-radius: 1.35rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-  justify-content: space-between;
-  background: rgba(253, 250, 251, 0.92);
-  border: 1px solid rgba(83, 10, 29, 0.08);
-  box-shadow: 0 12px 24px rgba(83, 10, 29, 0.08);
-}
-
-.mobile-stage-header .time-label {
-  font-size: clamp(1.45rem, 6vw, 1.75rem);
-}
-
-.mobile-timeline-axis,
-.mobile-stage-column {
-  position: relative;
-  height: var(--timeline-height);
-  min-height: var(--timeline-height);
-}
-
-.mobile-timeline-axis {
-  border-right: 1px solid rgba(83, 10, 29, 0.14);
-}
-
-.mobile-timeline-axis-marker {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  transform: translateY(-50%);
-}
-
-.mobile-timeline-axis-marker span {
-  display: inline-flex;
-  justify-content: flex-end;
-  width: 100%;
-  padding-right: 0.55rem;
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(83, 10, 29, 0.58);
-}
-
-.mobile-stage-column {
-  border-radius: 1.45rem;
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(253, 250, 251, 0.84), rgba(253, 250, 251, 0.94));
-  border: 1px solid rgba(83, 10, 29, 0.09);
-  box-shadow: inset 0 1px 0 rgba(253, 250, 251, 0.72);
+  box-shadow: var(--shadow-stage-card);
 }
 
-.mobile-stage-guide {
-  position: absolute;
-  left: 0;
-  right: 0;
-  border-top: 1px dashed rgba(83, 10, 29, 0.09);
-  transform: translateY(-0.5px);
-}
-
-.mobile-stage-guide.is-major {
-  border-top-style: solid;
-  border-top-color: rgba(83, 10, 29, 0.18);
-}
-
-.mobile-stage-performance {
-  position: absolute;
-  left: 0.55rem;
-  right: 0.55rem;
-  padding: 0.65rem 0.72rem;
-  border-radius: 0.95rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  overflow: hidden;
-  box-shadow: 0 14px 24px rgba(83, 10, 29, 0.14);
-}
-
-.mobile-stage-performance-link,
+.mobile-agenda-link,
 .timeline-performance-link {
   display: flex;
-  flex-direction: column;
-  gap: inherit;
+  gap: 0;
   width: 100%;
-  height: 100%;
   color: inherit;
   text-decoration: none;
 }
 
-.mobile-stage-performance-link:focus-visible,
+.mobile-agenda-link:focus-visible,
 .timeline-performance-link:focus-visible {
   outline: 2px solid rgba(253, 250, 251, 0.92);
   outline-offset: 2px;
 }
 
-.mobile-stage-performance-time {
-  font-size: 0.64rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  opacity: 0.84;
+.mobile-agenda-time {
+  flex: 0 0 5.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.8rem;
+  background: rgba(18, 2, 6, 0.14);
+  border-right: 1px solid var(--border-glass-dark);
 }
 
-.mobile-stage-performance-title {
+.mobile-agenda-time-label {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.mobile-agenda-body {
+  min-width: 0;
+  flex: 1 1 auto;
+  padding: 1rem 1rem 1rem 1.05rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.mobile-agenda-stage-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.mobile-agenda-stage,
+.mobile-agenda-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.9rem;
+  border-radius: 999px;
+  padding: 0.32rem 0.72rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.mobile-agenda-stage {
+  background: var(--surface-glass-light-strong);
+  border: 1px solid var(--border-glass-dark);
+}
+
+.mobile-agenda-tag {
+  background: rgba(18, 2, 6, 0.12);
+}
+
+.mobile-agenda-title {
   margin: 0;
   font-family: 'Saira Condensed', sans-serif;
-  font-size: clamp(0.95rem, 4vw, 1.15rem);
+  font-size: clamp(1.15rem, 5vw, 1.45rem);
   line-height: 0.95;
   letter-spacing: 0.03em;
   text-transform: uppercase;
   text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.mobile-agenda-empty {
+  padding: 1rem 1.1rem;
+  border-radius: 1.1rem;
+  background: var(--surface-panel-warm);
+  border: 1px solid var(--border-stage-card);
+  color: var(--text-notice-muted);
 }
 
 .time-block-main {
@@ -439,33 +398,18 @@ const stageBlocks = computed(() =>
   --stage-accent: var(--page-yellow);
 }
 
-.time-block-main.mobile-stage-header,
-.time-block-main.mobile-stage-column {
-  border-top: 0.35rem solid var(--page-red);
-}
-
-.time-block-tent.mobile-stage-header,
-.time-block-tent.mobile-stage-column {
-  border-top: 0.35rem solid var(--page-orange);
-}
-
-.time-block-loft.mobile-stage-header,
-.time-block-loft.mobile-stage-column {
-  border-top: 0.35rem solid var(--page-yellow);
-}
-
-.time-block-main .mobile-stage-performance {
-  background: linear-gradient(180deg, rgba(198, 33, 68, 0.92), rgba(146, 18, 52, 0.96));
+.time-block-main.mobile-agenda-item {
+  background: var(--surface-stage-main);
   color: #fdfafb;
 }
 
-.time-block-tent .mobile-stage-performance {
+.time-block-tent.mobile-agenda-item {
   background: linear-gradient(180deg, rgba(226, 100, 38, 0.92), rgba(146, 18, 52, 0.92));
   color: #fdfafb;
 }
 
-.time-block-loft .mobile-stage-performance {
-  background: linear-gradient(180deg, rgba(248, 190, 5, 0.92), rgba(226, 100, 38, 0.94));
+.time-block-loft.mobile-agenda-item {
+  background: var(--surface-stage-loft);
   color: #120206;
 }
 
@@ -494,7 +438,7 @@ const stageBlocks = computed(() =>
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  background: rgba(83, 10, 29, 0.08);
+  background: var(--surface-tint-soft);
   color: var(--page-burgundy);
 }
 
@@ -539,18 +483,17 @@ const stageBlocks = computed(() =>
     border-radius: 1.5rem;
     display: flex;
     flex-direction: column;
-    background:
-      linear-gradient(180deg, rgba(253, 250, 251, 0.98), rgba(253, 250, 251, 0.88));
-    border: 1px solid rgba(83, 10, 29, 0.08);
+    background: var(--surface-panel-warm-strong);
+    border: 1px solid var(--border-stage-card);
     border-top-width: 0.4rem;
-    box-shadow: 0 12px 28px rgba(83, 10, 29, 0.08);
+    box-shadow: var(--page-shadow);
   }
 
   .timeline-stage-note {
     margin: 0.75rem 0 0;
     font-size: 0.9rem;
     line-height: 1.55;
-    color: rgba(18, 2, 6, 0.72);
+    color: var(--text-notice-muted);
     flex: 1 1 auto;
   }
 
@@ -591,9 +534,8 @@ const stageBlocks = computed(() =>
   .timeline-stage {
     border-radius: 1.6rem;
     overflow: hidden;
-    background:
-      linear-gradient(180deg, rgba(253, 250, 251, 0.82), rgba(253, 250, 251, 0.92));
-    border: 1px solid rgba(83, 10, 29, 0.09);
+    background: var(--surface-stage-card);
+    border: 1px solid var(--border-stage-card);
     box-shadow: inset 0 1px 0 rgba(253, 250, 251, 0.7);
   }
 
@@ -621,7 +563,7 @@ const stageBlocks = computed(() =>
     justify-content: flex-start;
     gap: 0.45rem;
     overflow: hidden;
-    box-shadow: 0 16px 30px rgba(83, 10, 29, 0.14);
+    box-shadow: var(--shadow-stage-card);
     backdrop-filter: blur(4px);
   }
 
@@ -630,7 +572,7 @@ const stageBlocks = computed(() =>
   }
 
   .time-block-main .timeline-performance {
-    background: linear-gradient(180deg, rgba(198, 33, 68, 0.92), rgba(146, 18, 52, 0.96));
+    background: var(--surface-stage-main);
     color: #fdfafb;
   }
 
@@ -640,7 +582,7 @@ const stageBlocks = computed(() =>
   }
 
   .time-block-loft .timeline-performance {
-    background: linear-gradient(180deg, rgba(248, 190, 5, 0.92), rgba(226, 100, 38, 0.94));
+    background: var(--surface-stage-loft);
     color: #120206;
   }
 

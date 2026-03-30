@@ -5,7 +5,7 @@ Nuxt implementation for `bammetje.bamfestival.nl`, the mini-edition of BAM! Fest
 ## Stack
 
 - Nuxt 4
-- Nuxt Content for site, artist, and sponsor data
+- Static JSON content for site, artist, and sponsor data
 - Nuxt Image for optimized asset delivery
 - Nuxt Fonts for Saira Condensed and Instrument Sans
 - Leaflet for the location map
@@ -16,7 +16,7 @@ Nuxt implementation for `bammetje.bamfestival.nl`, the mini-edition of BAM! Fest
 - `app/app.vue`: global shell, header, footer, cookie control, and Matomo bootstrapping
 - `app/pages/index.vue`: homepage sections and content presentation
 - `app/components/ArtistCard.vue`: interactive artist cards
-- `app/composables/useSite.ts`: content queries and mapped site data
+- `app/composables/useSite.ts`: static data mapping for site, artist, and sponsor content
 - `content/site.json`: global site copy and metadata
 - `content/artists/*.json`: line-up data, stage assignment, and schedule hints
 - `content/sponsors/*.json`: sponsor data
@@ -26,12 +26,6 @@ Nuxt implementation for `bammetje.bamfestival.nl`, the mini-edition of BAM! Fest
 
 ```bash
 npm install
-```
-
-If `better-sqlite3` was built with another Node version, rebuild it before running Nuxt:
-
-```bash
-npm rebuild better-sqlite3
 ```
 
 ## Development
@@ -70,7 +64,6 @@ npm run preview
 Recommended checks after meaningful changes:
 
 ```bash
-npm rebuild better-sqlite3
 npm run build
 ```
 

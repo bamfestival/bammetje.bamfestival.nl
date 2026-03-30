@@ -76,22 +76,6 @@ onUnmounted(() => {
     <header class="site-header" :class="{ 'is-scrolled': isScrolled }">
       <div class="frame">
         <div class="header-row">
-          <NuxtLink to="/" class="brand-link">
-            <NuxtImg
-              class="brand-mark"
-              src="/assets/favicons/logo-192.png"
-              alt="Bammetje 2026 logo"
-              width="192"
-              height="192"
-              format="png"
-              loading="eager"
-            />
-            <div>
-              <p class="brand-name">{{ siteConfig.title }}</p>
-              <p class="brand-note">{{ siteConfig.date }} • {{ siteConfig.location }}</p>
-            </div>
-          </NuxtLink>
-
           <div class="header-actions">
             <div class="main-nav-shell">
               <nav class="main-nav" :aria-label="siteConfig.ui.mainNavAriaLabel">
@@ -195,9 +179,9 @@ onUnmounted(() => {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--page-header-surface);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid var(--page-soft-white-border);
+  background: var(--surface-glass-dark);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-glass-dark);
 }
 
 .site-header::after {
@@ -212,68 +196,25 @@ onUnmounted(() => {
 }
 
 .site-header.is-scrolled {
-  background: var(--header-surface-scrolled);
+  background: var(--surface-glass-dark-strong);
   border-bottom-color: rgba(253, 250, 251, 0.2);
-  box-shadow: 0 12px 34px rgba(18, 2, 6, 0.22);
+  box-shadow: var(--shadow-glass);
 }
 
 .header-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 1rem;
-  min-height: 5rem;
-  padding-block: 0.8rem;
+  min-height: 4.15rem;
+  padding-block: 0.45rem;
 }
 
 .header-actions {
   display: flex;
   align-items: center;
   gap: 0.85rem;
-}
-
-.brand-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.9rem;
-  min-width: 0;
-  text-decoration: none;
-  color: var(--page-white);
-}
-
-.brand-mark {
-  width: 3.2rem;
-  height: 3.2rem;
-  border-radius: 1rem;
-  padding: 0.35rem;
-  background: linear-gradient(155deg, rgba(248, 190, 5, 0.98) 0%, rgba(226, 100, 38, 0.98) 54%, rgba(198, 33, 68, 0.96) 100%);
-  box-shadow: 0 14px 34px rgba(18, 2, 6, 0.18), inset 0 1px 0 rgba(253, 250, 251, 0.28);
-  transform: rotate(-5deg);
-  transition: transform 260ms var(--ease-out-quint), box-shadow 260ms var(--ease-out-quint);
-}
-
-.brand-link:hover .brand-mark,
-.brand-link:focus-visible .brand-mark {
-  transform: rotate(-2deg) translateY(-0.08rem) scale(1.04);
-  box-shadow: 0 18px 42px rgba(18, 2, 6, 0.22), inset 0 1px 0 rgba(253, 250, 251, 0.34);
-}
-
-.brand-name {
-  margin: 0;
-  font-family: 'Saira Condensed', sans-serif;
-  font-size: clamp(1.8rem, 3vw, 2.15rem);
-  line-height: 0.88;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.brand-note {
-  margin: 0.12rem 0 0;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(253, 250, 251, 0.74);
+  margin-inline: auto 0;
 }
 
 .main-nav {
@@ -281,15 +222,22 @@ onUnmounted(() => {
 }
 
 @media (min-width: 48rem) {
+  .header-row {
+    justify-content: center;
+  }
+
+  .header-actions {
+    margin-inline: 0;
+  }
+
   .main-nav-shell {
     position: relative;
     display: block;
-    padding: 0.55rem 0.7rem;
-    border-radius: 1.45rem;
-    background:
-      linear-gradient(135deg, rgba(248, 190, 5, 0.14) 0%, rgba(226, 100, 38, 0.18) 26%, rgba(198, 33, 68, 0.2) 56%, rgba(83, 10, 29, 0.84) 100%);
-    border: 1px solid rgba(253, 250, 251, 0.14);
-    box-shadow: 0 18px 34px rgba(18, 2, 6, 0.14);
+    padding: 0.4rem 0.52rem;
+    border-radius: 1.2rem;
+    background: var(--surface-glass-dark);
+    border: 1px solid var(--border-glass-dark);
+    box-shadow: var(--shadow-glass);
     overflow: hidden;
   }
 
@@ -297,9 +245,7 @@ onUnmounted(() => {
     content: "";
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(circle at 14% 20%, rgba(248, 190, 5, 0.2), transparent 24%),
-      radial-gradient(circle at 84% 72%, rgba(198, 33, 68, 0.24), transparent 28%);
+    background: var(--surface-glass-dark-highlight);
     pointer-events: none;
   }
 
@@ -307,7 +253,7 @@ onUnmounted(() => {
     position: relative;
     z-index: 1;
     display: flex;
-    gap: 0.55rem;
+    gap: 0.4rem;
     align-items: center;
   }
 
@@ -316,13 +262,13 @@ onUnmounted(() => {
     align-items: center;
     justify-content: center;
     gap: 0.55rem;
-    height: 3rem;
-    padding: 0.72rem 1.05rem;
-    border-radius: 1rem;
+    height: 2.5rem;
+    padding: 0.58rem 0.88rem;
+    border-radius: 0.85rem;
     color: var(--page-white);
     text-decoration: none;
-    background: rgba(253, 250, 251, 0.06);
-    border: 1px solid rgba(253, 250, 251, 0.08);
+    background: var(--surface-glass-light);
+    border: 1px solid rgba(253, 250, 251, 0.1);
     box-shadow: inset 0 1px 0 rgba(253, 250, 251, 0.08);
     transition: transform 220ms var(--ease-out-quint), background-color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
   }
@@ -330,7 +276,7 @@ onUnmounted(() => {
   .main-nav a:hover,
   .main-nav a:focus-visible {
     transform: translateY(-2px) rotate(-1deg);
-    background: rgba(253, 250, 251, 0.12);
+    background: var(--surface-glass-light-strong);
     border-color: rgba(248, 190, 5, 0.42);
     box-shadow: 0 12px 24px rgba(18, 2, 6, 0.18), inset 0 1px 0 rgba(253, 250, 251, 0.14);
   }
@@ -339,7 +285,7 @@ onUnmounted(() => {
 .nav-label {
   display: block;
   font-family: 'Saira Condensed', sans-serif;
-  font-size: 0.98rem;
+  font-size: 0.9rem;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0.05em;
@@ -352,11 +298,12 @@ onUnmounted(() => {
   justify-content: center;
   gap: 0.55rem;
   min-width: 3rem;
+  min-height: 3rem;
   height: 3rem;
-  padding-inline: 0.9rem;
+  padding-inline: 0.75rem;
   border-radius: 999px;
   border: 1px solid rgba(253, 250, 251, 0.18);
-  background: linear-gradient(160deg, rgba(248, 190, 5, 0.18) 0%, rgba(226, 100, 38, 0.16) 42%, rgba(83, 10, 29, 0.82) 100%);
+  background: var(--surface-glass-dark);
   color: var(--page-white);
   box-shadow: 0 10px 24px rgba(18, 2, 6, 0.12);
   cursor: pointer;
@@ -365,7 +312,7 @@ onUnmounted(() => {
 
 .nav-toggle-text {
   font-family: 'Saira Condensed', sans-serif;
-  font-size: 0.92rem;
+  font-size: 0.84rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -380,11 +327,11 @@ onUnmounted(() => {
 .nav-toggle:hover,
 .nav-toggle:focus-visible {
   transform: translateY(-1px) rotate(-2deg);
-  box-shadow: 0 14px 30px rgba(18, 2, 6, 0.24);
+  box-shadow: var(--shadow-glass-strong);
 }
 
 .nav-toggle[aria-expanded="true"] {
-  background: linear-gradient(160deg, rgba(248, 190, 5, 0.28) 0%, rgba(198, 33, 68, 0.22) 40%, rgba(83, 10, 29, 0.92) 100%);
+  background: var(--surface-glass-dark-strong);
 }
 
 .nav-toggle[aria-expanded="true"] svg {
@@ -439,8 +386,8 @@ onUnmounted(() => {
   padding: 1rem 1rem 1rem 1.15rem;
   text-decoration: none;
   color: var(--page-white);
-  background: linear-gradient(140deg, rgba(248, 190, 5, 0.12) 0%, rgba(226, 100, 38, 0.1) 30%, rgba(83, 10, 29, 0.82) 100%);
-  border: 1px solid rgba(253, 250, 251, 0.14);
+  background: var(--surface-glass-dark);
+  border: 1px solid var(--border-glass-dark);
   opacity: 0;
   transform: translateY(-0.45rem);
   transition: transform 240ms var(--ease-out-quart), opacity 180ms var(--ease-out-quart), background-color 220ms var(--ease-out-quint), border-color 220ms var(--ease-out-quint);
@@ -479,7 +426,7 @@ onUnmounted(() => {
 .mobile-menu a:hover,
 .mobile-menu a:focus-visible {
   transform: translateY(-2px) translateX(0.1rem);
-  background: linear-gradient(140deg, rgba(248, 190, 5, 0.18) 0%, rgba(198, 33, 68, 0.16) 36%, rgba(83, 10, 29, 0.94) 100%);
+  background: var(--surface-glass-dark-strong);
 }
 
 .footer {
@@ -609,10 +556,10 @@ onUnmounted(() => {
 .cookieControl__ControlButton {
   right: 0.85rem;
   bottom: 0.85rem;
-  width: 2.1rem;
-  min-width: 2.1rem;
-  height: 2.1rem;
-  min-height: 2.1rem;
+  width: 2.75rem;
+  min-width: 2.75rem;
+  height: 2.75rem;
+  min-height: 2.75rem;
   opacity: 0.48;
   box-shadow: 0 8px 18px rgba(18, 2, 6, 0.12);
   backdrop-filter: blur(10px);
@@ -620,10 +567,10 @@ onUnmounted(() => {
 }
 
 .cookieControl__ControlButton svg {
-  max-width: 1rem;
-  min-width: 1rem;
-  max-height: 1rem;
-  min-height: 1rem;
+  max-width: 1.15rem;
+  min-width: 1.15rem;
+  max-height: 1.15rem;
+  min-height: 1.15rem;
 }
 
 .cookieControl__ControlButton:hover,

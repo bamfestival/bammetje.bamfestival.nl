@@ -251,6 +251,35 @@
   text-wrap: pretty;
 }
 
+.tba-banner {
+  display: grid;
+  gap: 0.9rem;
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+  border-radius: 1.8rem;
+  background: var(--surface-notice-panel), var(--surface-notice-tint);
+  border: 1px solid var(--border-notice-panel);
+  box-shadow: var(--page-shadow);
+}
+
+.tba-banner-title {
+  margin: 0;
+  font-family: 'Saira Condensed', sans-serif;
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  line-height: 0.92;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--page-burgundy);
+}
+
+.tba-banner-meta {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--page-red);
+}
+
 .story-band {
   position: relative;
   color: #fdfafb;
@@ -433,9 +462,8 @@
   padding: clamp(1.35rem, 2.6vw, 1.95rem) clamp(1.2rem, 3vw, 2.2rem);
   border-radius: 1.75rem;
   overflow: clip;
-  background:
-    linear-gradient(135deg, rgba(253, 250, 251, 0.92) 0%, rgba(255, 242, 230, 0.9) 100%);
-  border: 1px solid rgba(83, 10, 29, 0.09);
+  background: var(--surface-panel-warm-strong);
+  border: 1px solid var(--border-stage-card);
   box-shadow: var(--page-shadow);
 }
 

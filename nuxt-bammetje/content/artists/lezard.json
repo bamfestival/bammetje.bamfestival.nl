@@ -1,21 +1,22 @@
 {
   "title": "Lézard",
-  "subtitle": "Postpunk, disco en glam rock met hysterische podiumchemie.",
+  "subtitle": "Postpunk",
   "bio": "Met Lézard krijgen we bezoek van onze onderburen. Deze Belgische band maakt muziek die alle kanten op schiet. Een gecontroleerde chaos waarin tegenstellingen elkaar constant opzoeken. Post-punk, disco, glamrock, new wave en electroclash lopen moeiteloos door elkaar heen. Hun debuutalbum Que Se Passe t-il is een soort muzikale scène waar dromers, nachtbrakers en buitenbeentjes samenkomen onder een kapotte discobal. Hun energieke liveshows zitten vol spektakel en vervreemding, wat resulteert in een show die alle kanten op gaat.",
-  "tags": ["De Tent", "Experimenteel", "Live"],
+  "tags": ["Op het podium", "Postpunk"],
   "spotify": "",
   "youtube": "https://www.youtube.com/watch?v=O4g-BHdvhyI",
   "website": "https://lezardmusic.com",
   "instagram": "https://www.instagram.com/lezardmusic",
   "facebook": "https://www.facebook.com/lezardband",
   "image_landscape": "/assets/artists/lezard/landscape.webp",
-  "image_landscape_alt": "Lézard op promotiebeeld voor het optreden in De Tent",
+  "image_landscape_alt": "Lézard op promotiebeeld voor het optreden op de Rabobank Stage",
   "image_square": "/assets/artists/lezard/square.webp",
   "image_square_alt": "Bandfoto van Lézard",
-  "weight": 4,
+  "weight": 78,
+  "published": true,
   "performances": [
     {
-      "stage": "de-tent",
+      "stage": "hoofdpodium",
       "starttime": "19:15",
       "endtime": "20:00"
     }
