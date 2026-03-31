@@ -24,8 +24,8 @@ const sponsorRecords = Object.values(sponsorModules)
 
 export const useSite = () => {
   const defaultStages = {
-    hoofdpodium: { name: 'Rabobank Stage', description: 'Het grote buitenpodium' },
-    'tommy-loods': { name: 'IPA Stage', description: 'Industriële binnenruimte' },
+    hoofdpodium: { name: 'IPA Stage', description: 'Het buitenpodium' },
+    'tommy-loods': { name: 'Rabobank Stage', description: 'De Loods' },
   }
 
   const defaultConfig = {
@@ -76,7 +76,7 @@ export const useSite = () => {
     lineUp: {
       title: 'Line-up',
       heading: 'Twee podia. Zeven namen. Meteen overzicht.',
-      intro: 'De line-up staat nu per podium ingedeeld, zodat je meteen ziet hoe de dag is opgebouwd: grotere publieksmomenten op de Rabobank Stage en dj-sets op de IPA Stage. Zo voelt het programma vanaf de eerste blik helder, levendig en goed verspreid over de dag.'
+      intro: 'De line-up staat nu per podium ingedeeld, zodat je meteen ziet hoe de dag is opgebouwd: grotere publieksmomenten op de Rabobank Stage in de Loods en dj-sets op de IPA Stage op het buitenpodium. Zo voelt het programma vanaf de eerste blik helder, levendig en goed verspreid over de dag.'
     },
     timetableSection: {
       title: 'Timetable',
@@ -87,11 +87,11 @@ export const useSite = () => {
       blocks: {
         hoofdpodium: {
           tag: 'Grotere namen',
-          note: 'Hier vallen de grotere publieksmomenten samen: de acts die de dag open trekken, de druk opvoeren en het veld echt in beweging zetten.'
+          note: 'Hier bouwt de dag buiten op van losse grooves naar een vollere dansvloer: de plek voor dj-sets die Bammetje richting avond trekken.'
         },
         'tommy-loods': {
-          tag: 'Dj-hoek',
-          note: 'Hier bouwt de dag op van losse grooves naar een vollere dansvloer: de plek voor dj-sets die Bammetje richting avond trekken.'
+          tag: 'Grotere namen',
+          note: 'Hier vallen in de Loods de grotere publieksmomenten samen: de acts die de dag open trekken, de druk opvoeren en het publiek echt in beweging zetten.'
         }
       }
     },

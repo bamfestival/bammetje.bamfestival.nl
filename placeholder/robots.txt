@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://bammetje.bamfestival.nl/sitemap.xml

@@ -26,12 +26,12 @@
   },
   "stages": {
     "hoofdpodium": {
-      "name": "Rabobank Stage",
-      "description": "Het grote buitenpodium"
+      "name": "IPA Stage",
+      "description": "Het buitenpodium"
     },
     "tommy-loods": {
-      "name": "IPA Stage",
-      "description": "Industriële binnenruimte"
+      "name": "Rabobank Stage",
+      "description": "De Loods"
     }
   },
   "about": {
@@ -56,7 +56,7 @@
     "title": "Line-up",
     "heading": "Twee podia. Vele namen. Meteen overzicht.",
     "intro": "Klik op een artiest voor meer info, muziek en links.",
-    "preReleaseIntro": "De namen zijn nog niet zichtbaar, maar hier verschijnt straks de volledige line-up per podium. Zodra de release live staat zie je meteen hoe de dag over de Rabobank Stage en IPA Stage is verdeeld."
+    "preReleaseIntro": "De namen zijn nog niet zichtbaar, maar hier verschijnt straks de volledige line-up per podium. Zodra de release live staat zie je meteen hoe de dag over de Rabobank Stage in de Loods en de IPA Stage buiten is verdeeld."
   },
   "timetableSection": {
     "title": "Timetable",
@@ -67,12 +67,12 @@
     "timeLabelSuffix": "",
     "blocks": {
       "hoofdpodium": {
-        "tag": "Grotere namen",
-        "note": ""
+        "tag": "Dj-hoek",
+        "note": "Hier bouwt de dag buiten op van losse grooves naar een vollere dansvloer: de plek voor dj-sets die Bammetje richting avond trekken."
       },
       "tommy-loods": {
-        "tag": "Dj-hoek",
-        "note": "Hier bouwt de dag op van losse grooves naar een vollere dansvloer: de plek voor dj-sets die Bammetje richting avond trekken."
+        "tag": "Grotere namen",
+        "note": "Hier vallen in de Loods de grotere publieksmomenten samen: de acts die de dag open trekken, de druk opvoeren en het publiek echt in beweging zetten."
       }
     }
   },
