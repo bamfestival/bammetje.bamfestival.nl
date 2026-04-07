@@ -297,7 +297,7 @@ const desktopGridStyle = computed(() => ({
 .mobile-agenda-link,
 .timeline-performance-link {
   display: flex;
-  gap: 0;
+  gap: 0.4rem;
   width: 100%;
   color: inherit;
   text-decoration: none;
@@ -334,9 +334,9 @@ const desktopGridStyle = computed(() => ({
 .mobile-agenda-body {
   min-width: 0;
   flex: 1 1 auto;
-  padding: 1rem 1rem 1rem 1.05rem;
+  padding: 1rem 1rem 1rem 1.3rem;
   display: grid;
-  gap: 0.45rem;
+  gap: 0.55rem;
 }
 
 .mobile-agenda-stage-row {
@@ -562,7 +562,7 @@ const desktopGridStyle = computed(() => ({
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 0.45rem;
+    gap: 0.65rem;
     overflow: hidden;
     box-shadow: var(--shadow-stage-card);
     backdrop-filter: blur(4px);
