@@ -159,7 +159,8 @@ watch(isFlipped, (flipped) => {
 
 const stageClass = computed(() => ({
   'hoofdpodium': 'stage-main',
-  'tommy-loods': 'stage-loft'
+  'tommy-loods': 'stage-loft',
+  veld: 'stage-tent',
 } as Record<StageKey, string>))
 
 const compareTimes = (left: string, right: string) => left.localeCompare(right, 'nl')
@@ -401,7 +402,7 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
 
 .flip-card-front-button {
   position: absolute;
-  inset: 42% 0 0;
+  inset: 0;
   z-index: 1;
   border: 0;
   padding: 0;

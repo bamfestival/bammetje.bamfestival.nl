@@ -14,6 +14,12 @@
   "image_square_alt": "Portretfoto van DJ Minka",
   "weight": 73,
   "published": true,
-  "performances": [],
+  "performances": [
+    {
+      "stage": "veld",
+      "starttime": "14:00",
+      "endtime": "23:00"
+    }
+  ],
   "theme": "dark"
 }

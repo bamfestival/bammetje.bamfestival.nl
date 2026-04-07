@@ -10,11 +10,12 @@ const props = defineProps<{
 
 const { getStageName } = useSite()
 
-const stageOrder: StageKey[] = ['hoofdpodium', 'tommy-loods']
+const stageOrder: StageKey[] = ['hoofdpodium', 'tommy-loods', 'veld']
 
 const stageClassMap: Record<StageKey, string> = {
   hoofdpodium: 'time-block-main',
   'tommy-loods': 'time-block-loft',
+  veld: 'time-block-tent',
 }
 
 const pxPerMinute = 1.35

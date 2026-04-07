@@ -1,6 +1,6 @@
 export type ArtistTheme = 'dark' | 'light' | 'night' | 'gold'
 
-export type StageKey = 'hoofdpodium' | 'tommy-loods'
+export type StageKey = 'hoofdpodium' | 'tommy-loods' | 'veld'
 
 export interface ArtistPerformance {
   stage: StageKey

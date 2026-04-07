@@ -16,9 +16,9 @@
   "published": true,
   "performances": [
     {
-      "stage": "",
-      "starttime": "",
-      "endtime": ""
+      "stage": "hoofdpodium",
+      "starttime": "14:30",
+      "endtime": "15:30"
     }
   ],
   "theme": "dark"

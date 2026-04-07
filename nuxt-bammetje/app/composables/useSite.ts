@@ -26,6 +26,7 @@ export const useSite = () => {
   const defaultStages = {
     hoofdpodium: { name: 'IPA Stage', description: 'Het buitenpodium' },
     'tommy-loods': { name: 'Rabobank Stage', description: 'De Loods' },
+    veld: { name: 'Op het veld', description: 'Het veld naast het podium en de loods' },
   }
 
   const defaultConfig = {
@@ -92,6 +93,10 @@ export const useSite = () => {
         'tommy-loods': {
           tag: 'Grotere namen',
           note: 'Hier vallen in de Loods de grotere publieksmomenten samen: de acts die de dag open trekken, de druk opvoeren en het publiek echt in beweging zetten.'
+        },
+        veld: {
+          tag: 'Doorlopend',
+          note: 'Op het veld draait de dag tussendoor en doorlopend door: de plek voor vinyl, verrassingen en muziek terwijl je rondhangt, bijpraat en tussen de podia beweegt.'
         }
       }
     },
