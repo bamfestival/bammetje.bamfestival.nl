@@ -410,7 +410,7 @@ export const useSponsors = () => {
         title: sponsor.title,
         logo: sponsor.logo || '/assets/logos/default-640.webp',
         logo_alt: sponsor.logo_alt || `Logo van ${sponsor.title}`,
-        link: sponsor.link || '#',
+        link: sponsor.link,
         weight: Number(sponsor.weight ?? 0),
       }))
   })

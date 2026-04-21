@@ -31,38 +31,14 @@ const supportingSponsors = computed(() => sponsors.value.filter((sponsor) => spo
           <p class="section-text section-text-push">{{ siteConfig.sponsorsSection.intro }}</p>
         </div>
         <div class="featured-sponsors">
-          <a
-            v-for="sponsor in featuredSponsors"
-            :key="sponsor.title"
-            :href="sponsor.link"
-            :title="sponsor.title"
-            target="_blank"
-            rel="noreferrer"
-            class="sponsor-logo sponsor-logo-featured"
-          >
-            <NuxtImg
-              :src="sponsor.logo"
-              :alt="sponsor.logo_alt"
-              width="640"
-              height="640"
-              loading="lazy"
-              format="webp"
-              quality="80"
-              sizes="sm:100vw md:50vw"
-            />
-          </a>
-        </div>
-        <div class="supporting-sponsors">
-          <span class="supporting-sponsors-label">Met steun van</span>
-          <div class="sponsor-logos">
+          <template v-for="sponsor in featuredSponsors" :key="sponsor.title">
             <a
-              v-for="sponsor in supportingSponsors"
-              :key="sponsor.title"
+              v-if="sponsor.link"
               :href="sponsor.link"
               :title="sponsor.title"
               target="_blank"
               rel="noreferrer"
-              class="sponsor-logo sponsor-logo-supporting"
+              class="sponsor-logo sponsor-logo-featured"
             >
               <NuxtImg
                 :src="sponsor.logo"
@@ -75,6 +51,64 @@ const supportingSponsors = computed(() => sponsors.value.filter((sponsor) => spo
                 sizes="sm:100vw md:50vw"
               />
             </a>
+            <div
+              v-else
+              :title="sponsor.title"
+              class="sponsor-logo sponsor-logo-featured"
+            >
+              <NuxtImg
+                :src="sponsor.logo"
+                :alt="sponsor.logo_alt"
+                width="640"
+                height="640"
+                loading="lazy"
+                format="webp"
+                quality="80"
+                sizes="sm:100vw md:50vw"
+              />
+            </div>
+          </template>
+        </div>
+        <div class="supporting-sponsors">
+          <span class="supporting-sponsors-label">Met steun van</span>
+          <div class="sponsor-logos">
+            <template v-for="sponsor in supportingSponsors" :key="sponsor.title">
+              <a
+                v-if="sponsor.link"
+                :href="sponsor.link"
+                :title="sponsor.title"
+                target="_blank"
+                rel="noreferrer"
+                class="sponsor-logo sponsor-logo-supporting"
+              >
+                <NuxtImg
+                  :src="sponsor.logo"
+                  :alt="sponsor.logo_alt"
+                  width="640"
+                  height="640"
+                  loading="lazy"
+                  format="webp"
+                  quality="80"
+                  sizes="sm:100vw md:50vw"
+                />
+              </a>
+              <div
+                v-else
+                :title="sponsor.title"
+                class="sponsor-logo sponsor-logo-supporting"
+              >
+                <NuxtImg
+                  :src="sponsor.logo"
+                  :alt="sponsor.logo_alt"
+                  width="640"
+                  height="640"
+                  loading="lazy"
+                  format="webp"
+                  quality="80"
+                  sizes="sm:100vw md:50vw"
+                />
+              </div>
+            </template>
           </div>
         </div>
       </div>
