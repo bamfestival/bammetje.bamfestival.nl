@@ -14,12 +14,6 @@
   "image_square_alt": "Portretfoto van Lenny Monsou",
   "weight": 80,
   "published": true,
-  "performances": [
-    {
-      "stage": "hoofdpodium",
-      "starttime": "18:00",
-      "endtime": "19:00"
-    }
-  ],
+  "performances": [],
   "theme": "dark"
 }

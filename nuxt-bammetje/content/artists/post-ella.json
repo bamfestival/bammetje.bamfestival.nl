@@ -14,12 +14,6 @@
   "image_square_alt": "Bandfoto van Post Ella",
   "weight": 77,
   "published": true,
-  "performances": [
-    {
-      "stage": "hoofdpodium",
-      "starttime": "14:30",
-      "endtime": "15:30"
-    }
-  ],
+  "performances": [],
   "theme": "dark"
 }

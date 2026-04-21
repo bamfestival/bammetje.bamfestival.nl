@@ -14,12 +14,6 @@
   "image_square_alt": "Portretfoto van IDA",
   "weight": 79,
   "published": true,
-  "performances": [
-    {
-      "stage": "hoofdpodium",
-      "starttime": "20:00",
-      "endtime": "20:30"
-    }
-  ],
+  "performances": [],
   "theme": "dark"
 }

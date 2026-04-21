@@ -14,12 +14,6 @@
   "image_square_alt": "Portretfoto van André Manuel",
   "weight": 76,
   "published": true,
-  "performances": [
-    {
-      "stage": "hoofdpodium",
-      "starttime": "16:30",
-      "endtime": "17:30"
-    }
-  ],
+  "performances": [],
   "theme": "dark"
 }

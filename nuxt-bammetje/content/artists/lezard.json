@@ -14,12 +14,6 @@
   "image_square_alt": "Bandfoto van Lézard",
   "weight": 78,
   "published": true,
-  "performances": [
-    {
-      "stage": "hoofdpodium",
-      "starttime": "21:30",
-      "endtime": "22:30"
-    }
-  ],
+  "performances": [],
   "theme": "dark"
 }

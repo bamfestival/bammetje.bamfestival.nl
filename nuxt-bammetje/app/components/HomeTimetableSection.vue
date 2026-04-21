@@ -1,10 +1,10 @@
 <script setup lang="ts">
 const { siteConfig, artistPublishLabel } = useSite()
-const { artistsWithPerformances, hasPerformances, artistsArePublished } = useArtists()
+const { artistsWithPerformances, hasTimetablePerformances, artistsArePublished } = useArtists()
 </script>
 
 <template>
-  <section v-if="!artistsArePublished || hasPerformances" id="timetable" class="section">
+  <section v-if="hasTimetablePerformances" id="timetable" class="section">
     <div class="frame">
       <div class="section-intro">
         <span class="eyebrow eyebrow-light">{{ siteConfig.timetableSection.title }}</span>

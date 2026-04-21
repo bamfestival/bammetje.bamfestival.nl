@@ -154,7 +154,6 @@
     "navItems": [
       { "label": "Home", "href": "#top" },
       { "label": "Line-up", "href": "#line-up" },
-      { "label": "Timetable", "href": "#timetable" },
       { "label": "Info", "href": "#info" },
       { "label": "Locatie", "href": "#locatie" }
       

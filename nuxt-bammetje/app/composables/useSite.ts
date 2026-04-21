@@ -160,13 +160,12 @@ export const useSite = () => {
         info: 'Info',
         location: 'Locatie',
       },
-      navItems: [
-        { href: '#top', label: 'Home' },
-        { href: '#line-up', label: 'Line-up' },
-        { href: '#timetable', label: 'Timetable' },
-        { href: '#info', label: 'Info' },
-        { href: '#locatie', label: 'Locatie' },
-      ],
+        navItems: [
+          { href: '#top', label: 'Home' },
+          { href: '#line-up', label: 'Line-up' },
+          { href: '#info', label: 'Info' },
+          { href: '#locatie', label: 'Locatie' },
+        ],
       socialLabels: {
         instagram: 'Volg Bammetje op Instagram',
         linkedin: 'Volg Bammetje op LinkedIn',
@@ -304,7 +303,6 @@ export const useSite = () => {
         },
         navItems: sourceUi.navItems || [
           { href: '#line-up', label: getDefinedValue(sourceNav.lineUp, defaultConfig.ui.nav.lineUp) ?? defaultConfig.ui.nav.lineUp },
-          { href: '#timetable', label: getDefinedValue(sourceNav.timetable, defaultConfig.ui.nav.timetable) ?? defaultConfig.ui.nav.timetable },
           { href: '#info', label: getDefinedValue(sourceNav.info, defaultConfig.ui.nav.info) ?? defaultConfig.ui.nav.info },
           { href: '#locatie', label: getDefinedValue(sourceNav.location, defaultConfig.ui.nav.location) ?? defaultConfig.ui.nav.location },
         ],
@@ -393,11 +391,19 @@ export const useArtists = () => {
   )
 
   const hasPerformances = computed(() => artistsWithPerformances.value.length > 0)
+  const hasTimetablePerformances = computed(() =>
+    sortedArtists.value.some(artist =>
+      (artist.performances || []).some(performance =>
+        Boolean(performance.starttime?.trim()) && Boolean(performance.endtime?.trim())
+      )
+    )
+  )
 
   return {
     artists: sortedArtists,
     artistsWithPerformances,
     hasPerformances,
+    hasTimetablePerformances,
     artistsArePublished,
   }
 }

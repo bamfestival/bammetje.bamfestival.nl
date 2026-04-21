@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { siteConfig } = useSite()
-const { artists, hasPerformances } = useArtists()
+const { artists, hasTimetablePerformances } = useArtists()
 
 const structuredData = computed(() => {
   const config = siteConfig.value
@@ -79,7 +79,7 @@ const structuredData = computed(() => {
           'Hero',
           'Waarom Bammetje',
           'Line-up',
-          ...(hasPerformances.value ? ['Timetable'] : []),
+          ...(hasTimetablePerformances.value ? ['Timetable'] : []),
           'Info',
           'Partners',
         ],
