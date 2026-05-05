@@ -403,7 +403,7 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
 .flip-card-front-button {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 5;
   border: 0;
   padding: 0;
   margin: 0;
@@ -412,6 +412,11 @@ const withArtistName = (label: string) => label.replace('{artist}', props.artist
   background: transparent;
   appearance: none;
   -webkit-appearance: none;
+}
+
+.flip-card-front-button:focus-visible {
+  outline: 3px solid rgba(248, 190, 5, 0.92);
+  outline-offset: -0.5rem;
 }
 
 .flip-card-front[data-theme="light"] {
