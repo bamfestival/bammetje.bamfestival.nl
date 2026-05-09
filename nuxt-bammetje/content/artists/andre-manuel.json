@@ -9,11 +9,17 @@
   "instagram": "https://www.instagram.com/andre___manuel",
   "facebook": "https://www.facebook.com/people/Andre-Manuel/artiest-columnist-gitarist-acteur-muzikant-zanger/61554034833186",
   "image_landscape": "/assets/artists/andre-manuel/landscape.webp",
-  "image_landscape_alt": "André Manuel op promotiebeeld voor zijn optreden op de Rabobank Stage",
+  "image_landscape_alt": "André Manuel op promotiebeeld voor zijn optreden op de IPA Stage",
   "image_square": "/assets/artists/andre-manuel/square.webp",
   "image_square_alt": "Portretfoto van André Manuel",
   "weight": 76,
   "published": true,
-  "performances": [],
+  "performances": [
+    {
+      "stage": "hoofdpodium",
+      "starttime": "16:15",
+      "endtime": "17:00"
+    }
+  ],
   "theme": "dark"
 }

@@ -76,29 +76,70 @@ export const useSite = () => {
     },
     lineUp: {
       title: 'Line-up',
-      heading: 'Twee podia. Zeven namen. Meteen overzicht.',
-      intro: 'De line-up staat nu per podium ingedeeld, zodat je meteen ziet hoe de dag is opgebouwd: grotere publieksmomenten op de Rabobank Stage in de Loods en dj-sets op de IPA Stage op het buitenpodium. Zo voelt het programma vanaf de eerste blik helder, levendig en goed verspreid over de dag.'
+      heading: 'Drie plekken. Acht acts. Meteen overzicht.',
+      intro: 'Klik op een artiest voor meer info, muziek, links en speeltijden.'
     },
     timetableSection: {
       title: 'Timetable',
       heading: 'Van middag tot laat.',
-      intro: 'De timetable laat nu in één oogopslag zien hoe Bammetje zich van 14:00 tot laat over twee podia ontvouwt. Zo zie je meteen waar je begint, waar de piekmomenten zitten en hoe de avond per podium doorloopt.',
+      intro: 'De timetable laat nu in één oogopslag zien hoe Bammetje zich van 14:00 tot 23:00 over de IPA Stage, Rabobank Stage en het veld ontvouwt.',
       fallbackTimeLabel: 'Bevestigd',
       timeLabelSuffix: '',
       blocks: {
         hoofdpodium: {
-          tag: 'Grotere namen',
-          note: 'Hier bouwt de dag buiten op van losse grooves naar een vollere dansvloer: de plek voor dj-sets die Bammetje richting avond trekken.'
+          tag: 'Live buiten',
+          note: 'Op de IPA Stage bouwt de dag op met korte liveblokken: van Post Ella in de middag tot Lézard richting de late avond.'
         },
         'tommy-loods': {
-          tag: 'Grotere namen',
-          note: 'Hier vallen in de Loods de grotere publieksmomenten samen: de acts die de dag open trekken, de druk opvoeren en het publiek echt in beweging zetten.'
+          tag: 'In de Loods',
+          note: "De Rabobank Stage houdt de Loods in beweging met lange sets van YO! That's That Shit en Sabossi en Mørssync."
         },
         veld: {
           tag: 'Doorlopend',
-          note: 'Op het veld draait de dag tussendoor en doorlopend door: de plek voor vinyl, verrassingen en muziek terwijl je rondhangt, bijpraat en tussen de podia beweegt.'
+          note: 'Op het veld draait DJ Minka de hele dag door, van de eerste binnenkomst tot het einde van Bammetje.'
         }
       }
+    },
+    randprogrammaSection: {
+      title: 'Randprogramma',
+      heading: 'Meer te doen tussen de muziek door.',
+      intro: 'Tussen de optredens door ontdek je makers, kunst, bloemen, glas, shopjes en kleine verrassingen op het terrein. Loop ook binnen bij de Creative Terminal voor de tijdelijke expositie.',
+      items: [
+        {
+          title: 'Billboard van Merijn Hos',
+          displayTitle: 'Billboard van\nMerijn Hos',
+          description: 'Op het terrein spot je een billboard van illustrator en kunstenaar Merijn Hos, met roots in Twente.',
+          imageBase: 'merijn-hos',
+          imageAlt: 'Werk van Merijn Hos voor het randprogramma van Bammetje'
+        },
+        {
+          title: 'Bij Vier Seizoenen Blij kan je zaaien',
+          displayTitle: 'Bij Vier Seizoenen Blij\nkan je zaaien',
+          description: 'Steek je handen in de aarde bij Vier Seizoenen Blij en zaai zelf een beetje bloemen geluk. Dit jaar kleurt de tuin roze voor de Pink Ribbon-actie In bloei voor jou.',
+          imageBase: 'bloementuin',
+          imageAlt: 'Bloementuin voor het randprogramma van Bammetje'
+        },
+        {
+          title: 'Onrust.shop opent zijn atelier',
+          displayTitle: 'Onrust.shop\nopent zijn atelier',
+          description: 'Neem een kijkje bij Onrust.shop en ontdek waar hout, leer en slimme machines samenkomen in unieke ontwerpen.',
+          imageBase: 'onrust-shop',
+          imageAlt: 'Onrust Shop voor het randprogramma van Bammetje'
+        },
+        {
+          title: 'Meneer B in het veld',
+          description: 'Geen BAM zonder B! Dus ook op de miniversie van 2026 heb je grote kans om Meneer B. tegen het gezette lijf te lopen. Dit jaar gaat hij helemaal los op de dansvloer, en hij nodigt jou uit om met hem mee te doen! Stap in de groove en schud je billen, swing je heupen en draai je pelvis! Life is a party, Baby!',
+          imageBase: 'meneer-b-post',
+          imageAlt: 'Meneer B voor het randprogramma van Bammetje'
+        },
+        {
+          title: 'UitGlas opent haar atelier',
+          displayTitle: 'UitGlas opent\nhaar atelier',
+          description: 'Stap binnen bij UitGlas en zie hoe Kim experimenteert met glas-in-lood, kleur en licht in haar atelier op Oogst.',
+          imageBase: 'uitglas',
+          imageAlt: 'Uitglas voor het randprogramma van Bammetje'
+        }
+      ]
     },
     infoSection: {
       title: 'Info',

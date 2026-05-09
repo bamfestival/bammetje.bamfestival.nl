@@ -14,6 +14,12 @@
   "image_square_alt": "Duoportret van Sabossi en Mørssync",
   "weight": 75,
   "published": true,
-  "performances": [],
+  "performances": [
+    {
+      "stage": "tommy-loods",
+      "starttime": "20:00",
+      "endtime": "23:00"
+    }
+  ],
   "theme": "dark"
 }

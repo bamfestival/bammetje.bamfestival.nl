@@ -468,6 +468,208 @@
   line-height: 1.4;
 }
 
+.randprogramma-section {
+  position: relative;
+  overflow: clip;
+  color: var(--page-white);
+  background:
+    radial-gradient(circle at 9% 16%, rgba(248, 190, 5, 0.2), transparent 15%),
+    radial-gradient(circle at 88% 72%, rgba(226, 100, 38, 0.2), transparent 18%),
+    linear-gradient(160deg, #120206 0%, #530a1d 42%, #921234 72%, #c62144 100%);
+}
+
+.randprogramma-layout {
+  display: grid;
+  gap: clamp(1.7rem, 4vw, 3rem);
+}
+
+.randprogramma-intro {
+  max-width: 48rem;
+}
+
+.randprogramma-intro .section-text {
+  color: rgba(253, 250, 251, 0.82);
+}
+
+.randprogramma-grid {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.35rem);
+}
+
+.randprogramma-item {
+  position: relative;
+  min-height: 28rem;
+  perspective: 1400px;
+}
+
+.randprogramma-toggle {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.randprogramma-card {
+  display: block;
+  width: 100%;
+  min-height: inherit;
+  padding: 0;
+  border: 0;
+  border-radius: clamp(1.3rem, 2.4vw, 2rem);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  perspective: inherit;
+}
+
+.randprogramma-toggle:focus-visible + .randprogramma-card {
+  outline: 3px solid rgba(248, 190, 5, 0.92);
+  outline-offset: 5px;
+}
+
+.randprogramma-card-inner {
+  position: relative;
+  display: block;
+  min-height: inherit;
+  border-radius: inherit;
+  transform-style: preserve-3d;
+  transition: transform 620ms var(--ease-out-quint);
+}
+
+.randprogramma-toggle:checked + .randprogramma-card .randprogramma-card-inner {
+  transform: rotateY(180deg);
+}
+
+.randprogramma-card-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  overflow: clip;
+  min-height: inherit;
+  border-radius: inherit;
+  box-shadow: var(--page-shadow);
+  backface-visibility: hidden;
+  isolation: isolate;
+}
+
+.randprogramma-card-front {
+  background: var(--page-burgundy);
+}
+
+.randprogramma-card-back {
+  align-content: end;
+  gap: 0.85rem;
+  padding: clamp(1.25rem, 2.7vw, 1.9rem);
+  color: var(--page-white);
+  background:
+    radial-gradient(circle at 18% 18%, rgba(248, 190, 5, 0.28), transparent 18%),
+    radial-gradient(circle at 82% 82%, rgba(216, 151, 156, 0.18), transparent 20%),
+    linear-gradient(145deg, rgba(198, 33, 68, 0.98) 0%, rgba(83, 10, 29, 0.98) 58%, rgba(18, 2, 6, 0.98) 100%);
+  transform: rotateY(180deg);
+}
+
+.randprogramma-picture,
+.randprogramma-picture img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.randprogramma-picture {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.randprogramma-picture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(18, 2, 6, 0.04) 0%, rgba(18, 2, 6, 0.32) 48%, rgba(18, 2, 6, 0.84) 100%);
+  pointer-events: none;
+}
+
+.randprogramma-picture img {
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.01);
+  transition: transform 420ms var(--ease-out-quart), filter 420ms var(--ease-out-quart);
+}
+
+.randprogramma-copy {
+  display: grid;
+  align-content: end;
+  gap: 0.55rem;
+  min-height: 100%;
+  padding: clamp(1.15rem, 2.5vw, 1.7rem);
+}
+
+.randprogramma-title,
+.randprogramma-back-title {
+  margin: 0;
+  font-family: 'Saira Condensed', sans-serif;
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  white-space: pre-line;
+}
+
+.randprogramma-back-kicker {
+  width: fit-content;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(253, 250, 251, 0.14);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(253, 250, 251, 0.86);
+}
+
+.randprogramma-back-title {
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
+}
+
+.randprogramma-back-text {
+  max-width: 26rem;
+  margin: 0;
+  color: rgba(253, 250, 251, 0.86);
+  font-size: clamp(1.02rem, 1.6vw, 1.18rem);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.randprogramma-card:hover .randprogramma-picture img,
+.randprogramma-toggle:focus-visible + .randprogramma-card .randprogramma-picture img {
+  filter: saturate(1.08);
+  transform: scale(1.045);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .randprogramma-card-inner {
+    transition: none;
+  }
+
+  .randprogramma-toggle:checked + .randprogramma-card .randprogramma-card-inner {
+    transform: none;
+  }
+
+  .randprogramma-card-back {
+    opacity: 0;
+    transform: none;
+  }
+
+  .randprogramma-toggle:checked + .randprogramma-card .randprogramma-card-back {
+    opacity: 1;
+  }
+}
+
 .section-quote {
   padding-top: clamp(2.5rem, 4vw, 4rem);
   padding-bottom: clamp(1.6rem, 2.8vw, 2.75rem);
@@ -731,12 +933,58 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .randprogramma-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .randprogramma-item-featured {
+    grid-column: span 2;
+    min-height: 34rem;
+  }
+
   .featured-sponsors {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 64rem) {
+  .randprogramma-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .randprogramma-item {
+    grid-column: span 2;
+    min-height: 31rem;
+  }
+
+  .randprogramma-item:not(.randprogramma-item-featured) .randprogramma-title {
+    font-size: clamp(2.05rem, 3.7vw, 2.95rem);
+    line-height: 0.94;
+  }
+
+  .randprogramma-item:not(.randprogramma-item-featured) .randprogramma-back-title {
+    font-size: clamp(2.05rem, 3.5vw, 2.9rem);
+    line-height: 0.94;
+  }
+
+  .randprogramma-item:not(.randprogramma-item-featured) .randprogramma-back-text {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .randprogramma-item:not(.randprogramma-item-featured) .randprogramma-card-back {
+    gap: 0.65rem;
+    padding: 1.55rem;
+  }
+
+  .randprogramma-item-featured {
+    grid-column: span 3;
+  }
+
+  .randprogramma-item:nth-child(2) {
+    grid-column: span 3;
+  }
+
   .sponsor-bar {
     gap: 1.4rem;
   }

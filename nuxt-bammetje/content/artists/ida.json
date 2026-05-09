@@ -9,11 +9,17 @@
   "instagram": "https://www.instagram.com/idaweilers",
   "facebook": "",
   "image_landscape": "/assets/artists/ida/landscape.webp",
-  "image_landscape_alt": "IDA op promotiebeeld voor haar optreden op de Rabobank Stage",
+  "image_landscape_alt": "IDA op promotiebeeld voor haar optreden op de IPA Stage",
   "image_square": "/assets/artists/ida/square.webp",
   "image_square_alt": "Portretfoto van IDA",
   "weight": 79,
   "published": true,
-  "performances": [],
+  "performances": [
+    {
+      "stage": "hoofdpodium",
+      "starttime": "19:45",
+      "endtime": "20:30"
+    }
+  ],
   "theme": "dark"
 }

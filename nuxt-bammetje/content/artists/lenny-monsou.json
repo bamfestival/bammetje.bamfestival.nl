@@ -9,11 +9,17 @@
   "instagram": "https://www.instagram.com/lennymonsou",
   "facebook": "https://www.facebook.com/lennymonsou",
   "image_landscape": "/assets/artists/lenny-monsou/landscape.webp",
-  "image_landscape_alt": "Lenny Monsou op promotiebeeld voor zijn optreden op de Rabobank Stage",
+  "image_landscape_alt": "Lenny Monsou op promotiebeeld voor zijn optreden op de IPA Stage",
   "image_square": "/assets/artists/lenny-monsou/square.webp",
   "image_square_alt": "Portretfoto van Lenny Monsou",
   "weight": 80,
   "published": true,
-  "performances": [],
+  "performances": [
+    {
+      "stage": "hoofdpodium",
+      "starttime": "18:00",
+      "endtime": "18:45"
+    }
+  ],
   "theme": "dark"
 }

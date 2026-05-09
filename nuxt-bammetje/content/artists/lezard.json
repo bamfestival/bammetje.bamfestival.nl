@@ -9,11 +9,17 @@
   "instagram": "https://www.instagram.com/lezardmusic",
   "facebook": "https://www.facebook.com/lezardband",
   "image_landscape": "/assets/artists/lezard/landscape.webp",
-  "image_landscape_alt": "Lézard op promotiebeeld voor het optreden op de Rabobank Stage",
+  "image_landscape_alt": "Lézard op promotiebeeld voor het optreden op de IPA Stage",
   "image_square": "/assets/artists/lezard/square.webp",
   "image_square_alt": "Bandfoto van Lézard",
   "weight": 78,
   "published": true,
-  "performances": [],
+  "performances": [
+    {
+      "stage": "hoofdpodium",
+      "starttime": "21:30",
+      "endtime": "22:15"
+    }
+  ],
   "theme": "dark"
 }

@@ -80,6 +80,7 @@ const structuredData = computed(() => {
           'Waarom Bammetje',
           'Line-up',
           ...(hasTimetablePerformances.value ? ['Timetable'] : []),
+          'Randprogramma',
           'Info',
           'Partners',
         ],
@@ -107,6 +108,7 @@ useHead({
     <HomeStorySection />
     <HomeLineupSection />
     <HomeTimetableSection />
+    <HomeRandprogrammaSection />
     <HomeInfoSection />
     <HomeQuoteSection />
     <HomeSponsorsSection />
