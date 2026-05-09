@@ -150,7 +150,23 @@
     "locationHeading": "Oogst",
     "locationDescription": "Bammetje strijkt dit jaar neer bij Broedplaats Oogst: een rauwe, warme plek die precies past bij deze kleinere editie.",
     "routeLabel": "Route openen",
-    "bamFestivalLabel": "Bekijk BAM! Festival"
+    "bamFestivalLabel": "Bekijk BAM! Festival",
+    "visuals": [
+      {
+        "title": "Bekersysteem",
+        "description": "",
+        "hideCaption": true,
+        "imageBase": "bekersysteem",
+        "imageAlt": "Uitleg van het bekersysteem tijdens Bammetje"
+      },
+      {
+        "title": "Draag bij aan de BAM! ledwall",
+        "description": "",
+        "hideCaption": true,
+        "imageBase": "bijdragen-bam-led-wall",
+        "imageAlt": "Oproep om bij te dragen aan de BAM ledwall"
+      }
+    ]
   },
   "sponsorsSection": {
     "title": "Partners",

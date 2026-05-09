@@ -1,5 +1,16 @@
 <script setup lang="ts">
+import { joinURL } from 'ufo'
+
 const { siteConfig } = useSite()
+const runtimeConfig = useRuntimeConfig()
+
+const infoImageWidths = [480, 720, 960, 1280, 1512]
+
+const infoAssetPath = (imageBase: string, width: number) =>
+  joinURL(runtimeConfig.app.baseURL, `/assets/info/${imageBase}-${width}.webp`)
+
+const infoSrcsetFor = (imageBase: string) =>
+  infoImageWidths.map(width => `${infoAssetPath(imageBase, width)} ${width}w`).join(', ')
 </script>
 
 <template>
@@ -64,6 +75,34 @@ const { siteConfig } = useSite()
             <a class="action-button action-button-secondary" :href="siteConfig.links.bamFestival" target="_blank" rel="noreferrer">{{ siteConfig.infoSection.bamFestivalLabel }}</a>
           </div>
         </section>
+      </div>
+
+      <div class="info-visuals" aria-label="Praktische informatie">
+        <article
+          v-for="visual in siteConfig.infoSection.visuals"
+          :key="visual.imageBase"
+          class="info-visual"
+        >
+          <picture class="info-visual-picture">
+            <source
+              type="image/webp"
+              :srcset="infoSrcsetFor(visual.imageBase)"
+              sizes="(min-width: 64rem) 42vw, 92vw"
+            >
+            <img
+              :src="infoAssetPath(visual.imageBase, 960)"
+              :alt="visual.imageAlt"
+              width="1512"
+              height="851"
+              loading="lazy"
+              decoding="async"
+            >
+          </picture>
+          <div v-if="!visual.hideCaption" class="info-visual-copy">
+            <h3>{{ visual.title }}</h3>
+            <p>{{ visual.description }}</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
