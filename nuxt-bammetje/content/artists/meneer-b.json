@@ -1,0 +1,23 @@
+{
+  "title": "Meneer B",
+  "subtitle": "Dansvloerenergie in Het Veld",
+  "bio": "Geen BAM zonder B! Dus ook op de miniversie van 2026 heb je grote kans om Meneer B. tegen het gezette lijf te lopen. Dit jaar gaat hij helemaal los op de dansvloer, en hij nodigt jou uit om met hem mee te doen! Stap in de groove en schud je billen, swing je heupen en draai je pelvis! Life is a party, Baby!",
+  "tags": ["In het Veld", "Dans", "Randprogramma"],
+  "spotify": "",
+  "youtube": "",
+  "website": "",
+  "instagram": "",
+  "facebook": "",
+  "image_landscape": "/assets/randprogramma/meneer-b-post-1280.webp",
+  "image_landscape_alt": "Meneer B voor het randprogramma van Bammetje",
+  "weight": 72,
+  "published": true,
+  "performances": [
+    {
+      "stage": "veld",
+      "starttime": "14:00",
+      "endtime": "19:00"
+    }
+  ],
+  "theme": "dark"
+}

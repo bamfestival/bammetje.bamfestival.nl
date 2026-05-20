@@ -26,7 +26,7 @@ export const useSite = () => {
   const defaultStages = {
     hoofdpodium: { name: 'IPA Stage', description: 'Het buitenpodium' },
     'tommy-loods': { name: 'Rabobank Stage', description: 'De Loods' },
-    veld: { name: 'Op het veld', description: 'Het veld naast het podium en de loods' },
+    veld: { name: 'In het Veld', description: 'Het Veld naast het podium en de loods' },
   }
 
   const defaultConfig = {
@@ -76,13 +76,13 @@ export const useSite = () => {
     },
     lineUp: {
       title: 'Line-up',
-      heading: 'Drie plekken. Acht acts. Meteen overzicht.',
+      heading: 'Drie plekken. De hele dag overzicht.',
       intro: 'Klik op een artiest voor meer info, muziek, links en speeltijden.'
     },
     timetableSection: {
       title: 'Timetable',
       heading: 'Van middag tot laat.',
-      intro: 'De timetable laat nu in één oogopslag zien hoe Bammetje zich van 14:00 tot 23:00 over de IPA Stage, Rabobank Stage en het veld ontvouwt.',
+      intro: 'De timetable laat nu in één oogopslag zien hoe Bammetje zich van 14:00 tot 23:00 over de IPA Stage, Rabobank Stage en Het Veld ontvouwt.',
       fallbackTimeLabel: 'Bevestigd',
       timeLabelSuffix: '',
       blocks: {
@@ -96,7 +96,7 @@ export const useSite = () => {
         },
         veld: {
           tag: 'Doorlopend',
-          note: 'Op het veld draait DJ Minka de hele dag door, van de eerste binnenkomst tot het einde van Bammetje.'
+          note: 'In het Veld draait DJ Minka de hele dag door en neemt Meneer B de dansvloer mee van 14:00 tot 19:00.'
         }
       }
     },
@@ -127,8 +127,8 @@ export const useSite = () => {
           imageAlt: 'Onrust Shop voor het randprogramma van Bammetje'
         },
         {
-          title: 'Meneer B in het veld',
-          description: 'Geen BAM zonder B! Dus ook op de miniversie van 2026 heb je grote kans om Meneer B. tegen het gezette lijf te lopen. Dit jaar gaat hij helemaal los op de dansvloer, en hij nodigt jou uit om met hem mee te doen! Stap in de groove en schud je billen, swing je heupen en draai je pelvis! Life is a party, Baby!',
+          title: 'Meneer B in Het Veld',
+          description: 'Geen BAM zonder B! Dus ook op de miniversie van 2026 heb je tussen 14:00 en 19:00 grote kans om Meneer B. tegen het gezette lijf te lopen. Dit jaar gaat hij helemaal los op de dansvloer, en hij nodigt jou uit om met hem mee te doen! Stap in de groove en schud je billen, swing je heupen en draai je pelvis! Life is a party, Baby!',
           imageBase: 'meneer-b-post',
           imageAlt: 'Meneer B voor het randprogramma van Bammetje'
         },

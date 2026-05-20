@@ -84,6 +84,31 @@ const performanceEntries = computed(() =>
   )
 )
 
+type PerformanceEntry = typeof performanceEntries.value[number]
+
+const assignPerformanceLanes = (performances: PerformanceEntry[]) => {
+  const laneEndMinutes: number[] = []
+
+  const entriesWithLanes = performances.map((performance) => {
+    const startMinutes = performance.startMinutes ?? 0
+    const endMinutes = performance.endMinutes ?? startMinutes + defaultDurationMinutes
+    const availableLane = laneEndMinutes.findIndex(laneEnd => laneEnd <= startMinutes)
+    const laneIndex = availableLane === -1 ? laneEndMinutes.length : availableLane
+
+    laneEndMinutes[laneIndex] = endMinutes
+
+    return {
+      ...performance,
+      laneIndex,
+    }
+  })
+
+  return entriesWithLanes.map(entry => ({
+    ...entry,
+    laneCount: laneEndMinutes.length || 1,
+  }))
+}
+
 const timelineStartMinutes = computed(() => {
   const starts = performanceEntries.value
     .map(entry => entry.startMinutes)
@@ -136,13 +161,15 @@ const timelineGuides = computed(() => {
 })
 
 const stageBlocks = computed(() =>
-  stageOrder.map((stage) => ({
-    key: stage,
-    name: getStageName(stage),
-    performances: performanceEntries.value
+  stageOrder.map((stage) => {
+    const stagePerformances = performanceEntries.value
       .filter(performance => performance.stage === stage)
       .sort((left, right) => compareTimes(left.starttime, right.starttime) || left.title.localeCompare(right.title, 'nl'))
-      .map((performance) => {
+
+    return {
+      key: stage,
+      name: getStageName(stage),
+      performances: assignPerformanceLanes(stagePerformances).map((performance) => {
         const top = performance.startMinutes !== null
           ? (performance.startMinutes - timelineStartMinutes.value) * pxPerMinute
           : 0
@@ -158,9 +185,10 @@ const stageBlocks = computed(() =>
           height: Math.max(duration * pxPerMinute, minimumCardHeight),
         }
       }),
-    ...(props.blocks[stage] || { tag: '', note: '' }),
-    className: stageClassMap[stage],
-  }))
+      ...(props.blocks[stage] || { tag: '', note: '' }),
+      className: stageClassMap[stage],
+    }
+  })
 )
 
 const mobileTimelineEntries = computed(() =>
@@ -266,7 +294,12 @@ const desktopGridStyle = computed(() => ({
           v-for="performance in block.performances"
           :key="performance.key"
           class="timeline-performance"
-          :style="{ top: `${performance.top}px`, height: `${performance.height}px` }"
+          :style="{
+            top: `${performance.top}px`,
+            height: `${performance.height}px`,
+            '--lane-index': performance.laneIndex,
+            '--lane-count': performance.laneCount,
+          }"
         >
           <a class="timeline-performance-link" :href="performance.artistHref" :title="performance.tooltip">
             <span class="timeline-performance-time">{{ performance.timeLabel }}</span>
@@ -555,8 +588,12 @@ const desktopGridStyle = computed(() => ({
 
   .timeline-performance {
     position: absolute;
-    left: 0.8rem;
-    right: 0.8rem;
+    --lane-index: 0;
+    --lane-count: 1;
+    --lane-edge: 0.8rem;
+    --lane-gap: 0.45rem;
+    left: calc(var(--lane-edge) + (var(--lane-index) * ((100% - (2 * var(--lane-edge)) + var(--lane-gap)) / var(--lane-count))));
+    width: calc(((100% - (2 * var(--lane-edge)) + var(--lane-gap)) / var(--lane-count)) - var(--lane-gap));
     padding: 0.85rem 0.9rem;
     border-radius: 1.1rem;
     display: flex;
