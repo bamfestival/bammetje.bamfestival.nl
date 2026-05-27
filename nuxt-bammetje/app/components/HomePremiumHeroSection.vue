@@ -78,15 +78,14 @@ onUnmounted(() => {
             <a href="https://bamfestival.nl/fotoalbums" target="_blank" rel="noreferrer" class="premium-btn premium-btn-primary">Bekijk foto&rsquo;s</a>
             <a href="https://bamfestival.nl" target="_blank" rel="noreferrer" class="premium-btn premium-btn-secondary">BAM! Festival 2027</a>
           </div>
+          <div class="premium-hero-badges" aria-hidden="true">
+            <div class="premium-badge"><span aria-hidden="true">☀️</span> 28,5 &deg;C</div>
+            <div class="premium-badge"><span aria-hidden="true">👥</span> 4060 bezoekers</div>
+            <div class="premium-badge"><span aria-hidden="true">📍</span> Broedplaats Oogst</div>
+            <div class="premium-badge"><span aria-hidden="true">🎵</span> Eenmalige editie</div>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="premium-hero-badges" aria-hidden="true">
-      <div class="premium-badge"><span aria-hidden="true">☀️</span> 28,5 &deg;C</div>
-      <div class="premium-badge"><span aria-hidden="true">👥</span> 4060 bezoekers</div>
-      <div class="premium-badge"><span aria-hidden="true">📍</span> Broedplaats Oogst</div>
-      <div class="premium-badge"><span aria-hidden="true">🎵</span> Eenmalige editie</div>
     </div>
 
     <div class="premium-hero-bottom">

@@ -1336,14 +1336,11 @@
 }
 
 .premium-hero-badges {
-  position: absolute;
-  z-index: 4;
-  display: grid;
-  gap: 0.55rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
   pointer-events: none;
-  bottom: 5rem;
-  left: var(--container-pad);
-  grid-template-columns: repeat(2, auto);
 }
 
 .premium-badge {
@@ -1460,14 +1457,19 @@
     font-size: clamp(5rem, 12vw, 9rem);
   }
 
+  .premium-hero-content {
+    position: relative;
+  }
+
   .premium-hero-badges {
+    position: absolute;
+    right: 0;
     top: 50%;
-    right: var(--container-pad);
-    left: auto;
-    bottom: auto;
     transform: translateY(-50%);
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    flex-wrap: nowrap;
     gap: 0.65rem;
+    margin-top: 0;
   }
 
   .premium-hero-bottom {
