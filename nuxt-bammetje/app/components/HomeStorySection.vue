@@ -3,7 +3,7 @@ const { siteConfig } = useSite()
 </script>
 
 <template>
-  <section class="section story-band">
+  <section id="waarom-bammetje" class="section story-band">
     <div class="frame story-layout">
       <div class="story-quote">
         <h2 class="eyebrow eyebrow-dark story-heading">{{ siteConfig.about.title }}</h2>

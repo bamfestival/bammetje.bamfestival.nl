@@ -105,6 +105,7 @@ useHead({
 <template>
   <div>
     <HomeHeroSection />
+    <HomePremiumHeroSection />
     <HomeStorySection />
     <HomeLineupSection />
     <HomeTimetableSection />
